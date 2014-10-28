@@ -1,0 +1,9 @@
+E:\SouceControl\GitSource\HDS\T2VSoft.WebUI\bin\Debug\T2VSoft.WebUI.dll
+E:\SouceControl\GitSource\HDS\T2VSoft.WebUI\bin\Debug\T2VSoft.WebUI.pdb
+E:\SouceControl\GitSource\HDS\T2VSoft.WebUI\obj\Debug\T2VSoft.WebUI.csprojResolveAssemblyReference.cache
+E:\SouceControl\GitSource\HDS\T2VSoft.WebUI\obj\Debug\T2VSoft.WebUI.dll
+E:\SouceControl\GitSource\HDS\T2VSoft.WebUI\obj\Debug\T2VSoft.WebUI.pdb
+E:\SouceControl\GitSource\RMA\T2VSoft.WebUI\bin\Debug\T2VSoft.WebUI.dll
+E:\SouceControl\GitSource\RMA\T2VSoft.WebUI\bin\Debug\T2VSoft.WebUI.pdb
+E:\SouceControl\GitSource\RMA\T2VSoft.WebUI\obj\Debug\T2VSoft.WebUI.dll
+E:\SouceControl\GitSource\RMA\T2VSoft.WebUI\obj\Debug\T2VSoft.WebUI.pdb

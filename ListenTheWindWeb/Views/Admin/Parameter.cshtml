@@ -1,0 +1,43 @@
+﻿@using DataAccess.DC;
+@model List<ParameterSet>
+           
+@{
+    ViewBag.Title = "Parameter";
+    Layout = "~/Views/Home/_HomeLayout.cshtml";
+}
+@section head{
+    <script src="@VirtualPathUtility.ToAbsolute("~/Scripts/T2VBusiness/t2v-AdminSet.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+           t2v_AdminSet.getSelectValue();
+        });
+    </script>
+}
+<div>
+    <table style="width:500px">
+        <tr>
+            <td>
+                Type:
+            </td>
+            <td>
+                <select id="selExceed">
+                    @{
+                        if (Model != null)
+                        {
+                            foreach (ParameterSet ps in Model)
+                            {
+                        <option value="@ps.PType">@ps.PType</option>
+                            }
+                        }
+                    }
+                </select>
+            </td>
+            <td>
+               Value: <input id="txtValue" type="text" value="" />
+            </td>
+            <td>
+                <input type="button" value="Save" onclick="t2v_AdminSet.SaveParameter();" />
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,469 @@
+﻿@{
+    ViewBag.Title = "Release Note";
+    Layout = "~/Views/Home/_HomeLayout.cshtml";
+}
+<div id="divMainPageDiv">
+    <div class="CreateArea">
+        <div style="float: left; padding: 5px;">
+            <h2>
+                Release Note</h2>
+        </div>
+    </div>
+    <div class="ReleaseNote">
+        <h3>
+            Release 10/14/2013 Version 1.03.002</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_10_14_2013.pdf">Download
+                Release 10/14/2013</a>
+        </div>
+        <span><b>This release the CHIRP team makes the major change on AI# assignment and claim
+            document validation. Also add the option to input customer ref# in claim section,
+            instead of having to go to authorization. In addition to these major enhancements
+            this week’s release fixes the issue of cloning feature. </b></span>
+        <br />
+        <ul>
+            <li>When a change is made to an approved AI# and re-submitted, continue to use the previous
+                AI#.</li>
+            <li>Remove the mandatory to have both "Proof of Sales" and "Proof of Inventory".</li>
+            <li>Add the ability to input Customer Ref# in claim.</li>
+            <li>Fix the issue when user delete item lines in cloned request, the relevant lines
+                from the original request will be lost.</li>
+            <li>Fix data missing SKUs.</li>
+            <li>Fix the status of three requests' over $25,000.</li>
+            <li>Fix "report-to" relationship.</li>
+            <li>Add new customer.</li>
+            <li>Add new user</li>
+        </ul>
+        <br />
+        <h3>
+            Release 09/16/2013 Version 1.03.001</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_9_16_2013.pdf">Download
+                Release 09/16/2013</a>
+        </div>
+        <span><b>This release the CHIRP team introduces month end “snapshots” for accurate financial
+            accruals. No longer do users have to “massage data” in Excel to provide Finance
+            with correct accrual information for marketing programs. In addition to the accrual
+            feature this week’s release enhances the usability of the various lists in the system
+            with multiple criteria searches. </b></span>
+        <br />
+        <ul>
+            <li>Authorized users can access accrual worksheet under tools from the auth screen.</li>
+            <li>Authorized users can "close" a month for the accrual. If user trying to close accrual
+                before period ends, give warning message which says “Period cannot be closed until
+                after the last fiscal date in the month. “</li>
+            <li>Add validation on valid date range. Pricing can't back-date to closed accrual month.
+                And if the month that an auth program in has been accrued, then pricing cannot change
+                valid from/to.</li>
+            <li>Add user management.</li>
+            <li>Support multiple-criteria search in lists.</li>
+            <li>Give Reports menu independent access control.</li>
+            <li>Close message box immediately after user input and save.</li>
+            <li>Support "go back" action between Auth-IR, VIR, Claim detail pages in browser.</li>
+            <li>Remove message icon in Message menu.</li>
+            <li>Add new logins to CHIRP system.</li>
+            <li>Cancel inactive logins.</li>
+            <li>Fix price book display error caused by special characters uploaded.</li>
+            <li>Fix Reports export duplicated data issue.</li>
+        </ul>
+        <br />
+        <h3>
+            Release 09/02/2013 Version 1.02.002</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_9_2_2013.pdf">Download
+                Release 09/02/2013</a>
+        </div>
+        <span><b>Version 1.02.002 makes it easier to access authorizations and claims for a
+            given customer by providing links on from the partner page. In addition to a number
+            of other features listed below, this release also provides a feedback link that
+            gives users direct access to the development team with their ideas for improvements.</b>
+        </span>
+        <br />
+        <ul>
+            <li>Users can see claims' detail history from authorization history log</li>
+            <li>Users can see all authorization and claim activity from Partner screen</li>
+            <li>Add feedback feature</li>
+            <li>Added a second pricing approval level for requests over threshold in Claim workflow</li>
+            <li>Update My CHIRPs view based on workflow changes</li>
+            <li>Users can PASTE or INSERT an image into a message</li>
+            <li>Added CHIRP favicon to system</li>
+            <li>Improved layout of My CHIRPs page</li>
+        </ul>
+        <br />
+        <h3>
+            Release 08/19/2013 Version 1.02.001</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_8_19_2013.pdf">Download
+                Release 08/19/2013</a>
+        </div>
+        <ul>
+            <li>My CHIRPs </li>
+            <li>Direct links on the partner, authorization and claims forms to related authorizations
+                and claims.</li>
+            <li>Change CN email format</li>
+            <li>Add Customer cost to exported customer rebate authorization pdf file.</li>
+            <li>Create new login and update user access</li>
+            <li>Fix five authorization number.</li>
+            <li>Fix parseport data</li>
+        </ul>
+        <br />
+        <h3>
+            Release 08/05/2013 Version 1.01.002</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_8_5_2013.pdf">Download
+                Release 08/05/2013</a>
+        </div>
+        <ul>
+            <li>Add notification flag for "@@" message.</li>
+            <li>Add loader management for authorized user to manage different loader jobs separately.</li>
+            <li>Add link to activity. (When user click on activity, pop-up window with view of the
+                request detail)</li>
+            <li>Add alert message when data on activity list was removed.</li>
+            <li>User can see the aging in the chart and add a second series showing the balance
+                amount with a line.</li>
+            <li>Improve the way how menu expand. Fix the display issue.</li>
+            <li>Fix illegal price book data, and change program to suppress illegal chars before
+                price (i.e. /-*$157.10)</li>
+            <li>Fix adj amount history log.</li>
+            <li>Fix export function with selected fields</li>
+        </ul>
+        <br />
+        <h3>
+            Release 07/22/2013 Version 1.01.001</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_7_22_2013.pdf">Download
+                Release 07/22/2013</a>
+        </div>
+        <ul>
+            <li>Users can perform the workflow actions via email</li>
+            <li>Extend 45-day expiry to 90-day</li>
+            <li>Extend 5-day expiry to 14-day</li>
+            <li>Extend 28-day and 40-day email alert notification to send 80 days after end date</li>
+            <li>Add separate message for 14-day expiry close</li>
+            <li>Change new release welcome message</li>
+            <li>User claim 2 units less than sold and accept adjustment</li>
+        </ul>
+        <br />
+        <h3>
+            Release 07/08/2013 Version 1.00.000</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_7_8_2013.pdf">Download
+                Release 07/08/2013</a>
+        </div>
+        <ul>
+            <li>Import version number to CHIRP system.</li>
+            <li>Change the way authorization number works. System will only assign AI number when
+                reach the approved final step.</li>
+            <li>User can add message to auth and claim requests on the list, and all messages are
+                retrievable under message menu.</li>
+            <li>Allow reviewer to close out remaining balance when accept the request, other than
+                have to 'save' it.</li>
+            <li>Approved auth request is over $25k, Pricing Level 1 reduced request down below $25k
+                after he approved previously, but Pricing Level 2 can't see approve icons to continue
+                the workflow.</li>
+        </ul>
+        <br />
+        <h3>
+            Release 07/01/2013</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_7_1_2013.pdf">Download
+                Release 07/01/2013</a>
+        </div>
+        <ul>
+            <li>Add a chart gallery which user can access from Auth screen. Start from auth count
+                per status.</li>
+            <li>Add 2nd email alert sent out to requester 40 days after program end.</li>
+            <li>System auto close authorizations(AI) that are rejected or modified by pricing manager
+                where sales have not executed on their end after 5 days.</li>
+            <li>System auto close draft authorizations(AI) after 5 days.</li>
+            <li>Add Orig Auth Amt, Adj Amt, New Auth Amt, Balance to claim (CI) detail screen, and
+                remove Total Paid.</li>
+            <li>Add the ability to download AI from a claim(CI).</li>
+            <li>Change claim workflow to allow accounting level 1 override payout request, and accounting
+                level 2 can override level 1.</li>
+            <li>Change expiry email alert to include more information.</li>
+            <li>Add the ability to adjust auth balance when submitting a claim.</li>
+            <li>Fix the bug where system allow user to submit PP claim request without line.</li>
+        </ul>
+        <br />
+        <h3>
+            Release 06/24/2013</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_6_24_2013.pdf">Download
+                Release 06/24/2013</a>
+        </div>
+        <ul>
+            <li>User can manually close an IR with a balance.</li>
+            <li>User can enter a reason message for changes to an auth after approved.</li>
+            <li>Change rules of the email integration for credit notes.</li>
+            <li>System will automatically close an authorization with an open balance 45 days after
+                the end of the authorization period.</li>
+            <li>Pricing Manager can edit an AI when the status is after approved. </li>
+            <li>Capture submission if user directly submit a request.</li>
+        </ul>
+        <br />
+        <h3>
+            Release 06/17/2013</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_6_17_2013.pdf">Download
+                Release 06/17/2013</a>
+        </div>
+        <ul>
+            <li>Change 45 expire rules and recover closed auths to last status from recent release.</li>
+            <li>Change expire e-mail alert with more friendly message.</li>
+            <li>Change rules to capture Adj Amount after auth status is Approved - Final, instead
+                of Claim.</li>
+            <li>Change audit message to include MPN to distinct item lines in authorization History
+                log.</li>
+            <li>Update Reports to include new added fields, and adjust columns order same with authorization
+                menu list.</li>
+            <li>Production data changed to keep claims status up-to-date.</li>
+            <li>Fix Claim Total Paid calculation to exclude cancelled requests.</li>
+        </ul>
+        <br />
+        <h3>
+            Release 06/07/2013</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_6_7_2013.pdf">Download
+                Release 06/07/2013</a>
+        </div>
+        <ul>
+            <li>Authorization will be adjusted to 0 and closed 45 days of the auth expiry date.</li>
+            <li>Requester will get an email alert of a balance on an auth after 28 days of the auth
+                expiry date.</li>
+            <li>Pricing manager can edit an AI when status is Claim, the differential will be captured
+                in Adjusted Amt.</li>
+            <li>User can see Adjusted Auth Amount, Accrued Auth Amount and Suggested Accrual Adjusted
+                Amount on the auth detail screen list and in detail page.</li>
+            <li>When user creates a claim from an authorization, also show it up in the History
+                of the authorization.</li>
+            <li>Pricing manager can change the start and end date of an authorization bypass the
+                limited two days rule.</li>
+            <li>Change WIP Amt calculation to exclude cancelled claims' amount and change Balance
+                calculation to include back cancelled claims' amount.</li>
+            <li>Fix when user extend end date, start date automatically change to current day.</li>
+            <li>Fix several production data manually.</li>
+        </ul>
+        <br />
+        <h3>
+            Release 05/27/2013</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_5_27_2013.pdf">Download
+                Release 05/27/2013</a>
+        </div>
+        <ul>
+            <li>Change Batch Transfer filters to support instance search.</li>
+            <li>VIR: change customer entity to allow user select multiple entities.</li>
+            <li>Fixed Activity format issue, truncate content and show complete content in mouse
+                over detail.</li>
+            <li>Update IR Authorization and Claim's workflow diagram.</li>
+        </ul>
+        <br />
+        <h3>
+            Release 05/20/2013</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_5_20_2013.pdf">Download
+                Release 05/20/2013</a>
+        </div>
+        <ul>
+            <li>Authorized user can batch transfer IR authorizations and claims to another account,
+                in order to balance workload or provide backup.</li>
+            <li>Add a history log to track all batch transfer.</li>
+            <li>Remove reviewer step from VIR approval workflow.</li>
+            <li>Fix Status By had no data.</li>
+        </ul>
+        <br />
+        <h3>
+            Release 05/13/2013</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_5_13_2013.pdf">Download
+                Release 05/13/2013</a>
+        </div>
+        <ul>
+            <li>Improve Authorization - IR performance.</li>
+            <li>Strengthen system to forbid user create multiple authorization with same auth number
+                by running program.</li>
+            <li>Change to support browser backward and forward.</li>
+            <li>Change VIR Auth and Claim's edit page style with color effect to separate sections.</li>
+            <li>Change menu order to put Claim right under Authorization.</li>
+            <li>Fix issue that user cannot export all Inventory data.</li>
+        </ul>
+        <br />
+        <h3>
+            Release 05/06/2013</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_5_6_2013.pdf">Download
+                Release 05/06/2013</a>
+        </div>
+        <ul>
+            <li>User can attach files to VIR claims, and can view or delete the file later.</li>
+            <li>Add system message when user try to login with an invalid account.</li>
+            <li>Remove invalid accounts and reassign requests per demands.</li>
+            <li>Change one VIR Auth's start date to a back-date per demand.</li>
+            <li>Create a new login, and transfer another sale's all requests to this new account
+                per demand.</li>
+            <li>Fix PP claim's total paid calculation was wrong.</li>
+            <li>Keep message and history display user name consistently.</li>
+        </ul>
+        <br />
+        <h3>
+            Release 04/26/2013</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_4_26_2013.pdf">Download
+                Release 04/26/2013</a>
+        </div>
+        <ul>
+            <li>Add new tab Authorization - VIR.</li>
+            <li>Authorized user can create new VIR authorization requests.</li>
+            <li>Email alert will be sent when action is required for VIR authorization.</li>
+            <li>Authorized user can create VIR claim from approved VIR authorization, claim number
+                as "CVxxxxx".</li>
+            <li>Change original Authorization to Authorization - IR</li>
+            <li>Fix a bug in production where if user search with Auth number then go to claim detail,
+                will cause error page.</li>
+            <li>Fix a production claim with wrong creator ID.</li>
+        </ul>
+        <br />
+        <h3>
+            Release 04/15/2013</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_4_15_2013.pdf">Download
+                Release 04/15/2013</a>
+        </div>
+        <ul>
+            <li>Authorized user can create price protection/price adjustment claims (hereinafter
+                PP claims) from claim menu without authorization. PP claim number begins with "CPxxxxx".
+            </li>
+            <li>User can add PP claim line either by manually input or uploading a file created
+                from available template.</li>
+            <li>User can download last five reported inventory. And can use the file to upload PP
+                claim lines.</li>
+            <li>User can attach documents to PP claims.</li>
+            <li>Parseport week starts from Monday to Sunday. Change to system recalculate week to
+                display in Inventory and POS (starts from Sunday to Monday).</li>
+            <li>Change Inventory BuyLCY and BuyUSD to 3 digits after decimal.</li>
+            <li>Clean Price Book data in production. Allow user to upload fresh data.</li>
+        </ul>
+        <br />
+        <h3>
+            Release 04/08/2013</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_4_8_2013.pdf">Download
+                Release 04/08/2013</a>
+        </div>
+        <ul>
+            <li>Remove from Claim the validation on Proof of Claim, Proof of Sales and Proof of
+                Inventory for requester being able to submit the request first, and upload the required
+                files later. Instead we add this validation when Reviewer do approval in order to
+                avoid sending requests without proof files. We give Reviewer the ability to change
+                Claim Qty.</li>
+            <li>Add new column in Claim menu to display program type (Price Protection/Instant Rebate).
+                Instant Rebate claims are created from approved Authorization.</li>
+            <li>Add new rules to validate uploaded price book. If there's duplicated MPN in one
+                file, will inform user to change and upload again.</li>
+            <li>Change Inventory menu label to "Channel Inventory", and move ProdDescCust column
+                to the end.</li>
+            <li>Add a new calculated column - UnitCostUSD after BuyUSD to POS, and move ProdDescCusto
+                column to the end.</li>
+            <li>Add new program types in Partner detail.</li>
+            <li>Fixed when use a url to enter system directly, got error page.</li>
+            <li>Fixed where user can input a back-date into Valid From/Valid To.</li>
+            <li>Fixed claim detail page missing one row to display Reviewed By</li>
+            <li>Fixed when drill down to one partner, got a wrong customer.</li>
+            <li>Fixed customer region not refreshed.</li>
+            <li>Fixed system didn't export all search result rows into file.</li>
+        </ul>
+        <br />
+        <h3>
+            Release 04/01/2013</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_4_1_2013.pdf">Download
+                Release 04/01/2013</a>
+        </div>
+        <ul>
+            <li>Added the ability for user to download price book template, fill in new price book
+                data and upload to our system per product line and type. After uploading, user can
+                see the changes via price book change log.</li>
+            <li>Added log for data loaded from FTP site.</li>
+            <li>Added the ability for user to download available release notes. When there’s new
+                release, user will get a welcome window at the first daily login until download
+                the new release note.</li>
+            <li>Fixed login crossover under two instances (use two instances to solve MS Azure upgrade
+                broke the application).</li>
+            <li>Fixed MS Azure upgrade will remove our system private configuration, which lead
+                to data not refreshed in time (store system private configuration in Work Role).</li>
+            <li>Fixed the uploaded and downloaded files got removed under MS Azure upgrade. Store
+                them under MS Storage.</li>
+            <li>Added export icon under edit mode with message to remind user if they insist to
+                export before saving, will export the last saved data.</li>
+            <li>Changed logic to use the last effective price book.</li>
+            <li>Changed week logic, default it to “last week”.</li>
+            <li>Removed automatically under Edit mode when requester drill down to authorization
+                detail page at status is Requested or Approved-Final, in case requester accidentally
+                restarts the workflow.</li>
+            <li>Fixed production old data’s with no product line data.</li>
+            <li>Fixed a production user couldn't login.</li>
+            <li>Fixed when Claim is over $10,000, after AppLevel 2 user directly approved, status
+                still show Approved-Level 1.</li>
+        </ul>
+        <br />
+        <h3>
+            Release 03/25/2013</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_3_25_2013.pdf">Download
+                Release 03/25/2013</a></div>
+        <ul>
+            <li>User can export authorization and claim line detail to csv or pdf file. </li>
+            <li>User can see Product Category detail under Info. </li>
+            <li>Add new step to Claim workflow: RevieweràPricing ManageràAccReview. Create new status
+                bar to show the complete stages. And updated workflow diagram to guide user on the
+                new workflow.</li>
+            <li>Add time stamp to show more vividly when user made a status change.</li>
+            <li>Email notifications are sent out when action is required on an authorization request
+                to pricing manager for each product division.</li>
+            <li>Auth valid from and to dates automatically declined to two days after today.</li>
+            <li>Load new price book list to system.</li>
+            <li>Generate new log in History “Cloned Authorization from AIxxxxx” to show the original
+                auth number.</li>
+            <li>When cloned authorization was more than 10 lines, user will get blocked while trying
+                turn to next line.</li>
+            <li>Wrong calculation.</li>
+            <li>Added new columns to POS list.</li>
+            <li>Under Chrome cannot see delete icon at line level.</li>
+            <li>Fixed when Claim status is Approved-Final, missing validation before Accounting
+                Admin accept the claim.</li>
+        </ul>
+        <br />
+        <h3>
+            Release 03/18/2013</h3>
+        <div>
+            <a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_3_18_2013.pdf">Download
+                Release 03/18/2013</a></div>
+        <ul>
+            <li>Email notifications are sent out when action is required on an authorization request
+                to the appropriate parties and to the requester at final approval.</li>
+            <li>Pricing managers can now modify an authorization AFTER the IR has been approved.</li>
+            <li>Sales reps can modify an authorization AFTER it has been submitted or approved,
+                however, it’ll require sales reps to submit again, or the approval work flow will
+                be required for pricing manager’s approval of the changes approved. Sales reps can
+                “clone” a previous authorization to create a new request.</li>
+            <li>A predefined message type is created for users to add a “customer reference” number.
+                Export to PDF has been added to allow users to download on IR in PDF format with
+                the intent of sending it to the customer.</li>
+            <li>Mandatory fields on the authorization form are now highlighted and validated on
+                the submission of a new request.</li>
+            <li>OCZ logo added.</li>
+            <li>Auth valid from and to dates open up to allow entry of certain IRs that existed
+                before the system went live.</li>
+            <li>The minimum authorization amount was reduced to $200 from $500.</li>
+            <li>The source for the MPN lookup was changed to the OCZ product list as opposed to
+                Parseport.</li>
+            <li>Add price to shipment history information.</li>
+            <li>Alignment issue on authorization list after a user minimized and the reopened the
+                browser window.</li>
+            <li>Certain new part numbers not showing up in the MPN search as they did not exist
+                in the current price book.</li>
+            <li>Add customer code to search string for partner list.</li>
+        </ul>
+    </div>
+</div>

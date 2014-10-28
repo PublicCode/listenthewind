@@ -1,0 +1,78 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.UI.MasterPage" %>
+
+<%@ Import Namespace="Web.ASPX" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>Reports</title>
+    <link href="<%= VirtualPathUtility.ToAbsolute("~/Content/Default.css") %>" rel="stylesheet"
+        type="text/css" />
+    <link href="<%= VirtualPathUtility.ToAbsolute("~/Content/ui.tabs.css") %>" rel="stylesheet"
+        type="text/css" />
+    <link href="<%= VirtualPathUtility.ToAbsolute("~/Content/DWQ.css") %>" rel="stylesheet"
+        type="text/css" />
+    <link href="<%= VirtualPathUtility.ToAbsolute("~/Scripts/Vendor/bootstrap/css/bootstrap.css") %>" rel="stylesheet"
+        type="text/css" />
+    <link href="<%= VirtualPathUtility.ToAbsolute("~/Scripts/Vendor/mupSelect/jquery.multiselect.css") %>" rel="stylesheet"
+        type="text/css" />
+    <link href="<%= VirtualPathUtility.ToAbsolute("~/Scripts/Vendor/tips/jquery.yitip.css") %>" rel="stylesheet"
+        type="text/css" />
+    <link href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" rel="stylesheet"
+        type="text/css" />
+        
+    <link href="<%= VirtualPathUtility.ToAbsolute("~/Content/Vendor/jquery-ui/jquery.ui.all.css") %>"
+        rel="stylesheet" type="text/css" />
+    <script src="<%= VirtualPathUtility.ToAbsolute("~/Scripts/Vendor/jquery-1.7.2.min.js") %>"
+        type="text/javascript"></script>
+    <script src="<%= VirtualPathUtility.ToAbsolute("~/Scripts/Vendor/jquery-ui-1.8.20.min.js") %>"
+        type="text/javascript"></script>
+    <script src="<%= VirtualPathUtility.ToAbsolute("~/Scripts/Vendor/jquery.validate.js") %>"
+        type="text/javascript"></script>
+    <script src="<%= VirtualPathUtility.ToAbsolute("~/Scripts/Vendor/jquery.unobtrusive-ajax.js") %>"
+        type="text/javascript"></script>
+    <script src="<%= VirtualPathUtility.ToAbsolute("~/Scripts/Vendor/jquery.validate.unobtrusive.js") %>"
+        type="text/javascript"></script>
+    <script src="<%= VirtualPathUtility.ToAbsolute("~/Scripts/Vendor/bootstrap/js/bootstrap.js") %>"
+        type="text/javascript"></script>
+    <script src="<%= VirtualPathUtility.ToAbsolute("~/Scripts/Vendor/mupSelect/jquery.multiselect.js") %>"
+        type="text/javascript"></script>
+    <script src="<%= VirtualPathUtility.ToAbsolute("~/Scripts/Vendor/mupSelect/jquery.multiselect.filter.js") %>"
+        type="text/javascript"></script>
+    <script src="<%= VirtualPathUtility.ToAbsolute("~/Scripts/Vendor/Tips/jquery.yitip.js") %>"
+        type="text/javascript"></script>
+    <script src="<%= VirtualPathUtility.ToAbsolute("~/Scripts/t2v-dwq.js") %>" type="text/javascript"></script>
+    <script src="<%= VirtualPathUtility.ToAbsolute("~/Scripts/dcm.validate.js") %>" type="text/javascript"></script>
+    <script src="<%= VirtualPathUtility.ToAbsolute("~/Scripts/lib/t2v-form.js") %>" type="text/javascript"></script>
+    <script src="<%= VirtualPathUtility.ToAbsolute("~/Scripts/lib/t2v-core.js") %>" type="text/javascript"></script>
+    <script src="<%= VirtualPathUtility.ToAbsolute("~/Scripts/T2VBusiness/t2v-bussiness.js") %>"
+        type="text/javascript"></script>
+    <script src="<%= VirtualPathUtility.ToAbsolute("~/Scripts/T2VBusiness/t2v-main.js") %>" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('div#CPHMainContent').css('width', $(window).width() - 225);
+        });
+
+    </script>
+    <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+</head>
+<body>
+    <% WebFormMvcUtil.RenderPartial("~/Views/Shared/InnerTopBar.cshtml", new object { });%>
+    <table id="MainPage" class="MainPage" cellpadding="0" cellspacing="0" style="width:100%;">
+        <tr>
+            <asp:ContentPlaceHolder ID="CPHLeftContent" runat="server"></asp:ContentPlaceHolder>
+            <td id="controlMainDiv" style="border-bottom: solid 1px #dbdbdb; vertical-align: top; table-layout:fixed;">
+                <%--<div id="container-1">
+                    <ul id="MainTab" class="ui-tabs-nav">
+                        <li id="liDashboard"><a href="../../Home"><span>Home</span></a></li>
+                        <li id="liReport" class="ui-tabs-selected"><a href="../../ASPX/Reports.aspx"><span>Report</span></a></li>
+                    </ul>
+                </div>--%>
+                <asp:ContentPlaceHolder ID="CPHMainContent" runat="server"></asp:ContentPlaceHolder>
+            </td>
+        </tr>
+    </table>
+    <div id="divFooter" class="footer">
+        © 2008-2014 T2VSoft, Inc. All Rights Reserved.
+    </div>
+</body>
+</html>

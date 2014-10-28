@@ -1,0 +1,81 @@
+﻿@using Web.Energizer.User;
+@using System.Configuration;
+@{
+    var user = UserHelper.CurrentUser;
+}
+@if (Request.IsAuthenticated && user != null)
+{
+    <div id="divHeader">
+        <table cellpadding="0" cellspacing="0" class="QuoteMenu">
+            <tr>
+                <td>
+                    @if (ConfigurationManager.AppSettings["EnvType"].ToString() == "Test")
+                    {
+                    <div class="divLogoAreaInner" style="padding-top:3px;">
+                        <div class="spanHeaderLogoInnerOcz envHeaderLogo">&nbsp;</div>
+                        <img src="../../Content/images/TEST.png" style="padding-left:20px;" alt="Instance" /> &nbsp;<img style="padding-left:15px; padding-bottom:10px;" src="../../Content/images/Info.png" alt="about me" onclick="t2v_Authorization.ShowAbouteSystem();" />
+                    </div>
+                    }
+                    else
+                    {
+                    <div class = "divLogoAreaInner" style="padding-top:3px;">
+                        <div class="spanHeaderLogoInnerOcz envHeaderLogo">Incentives and Rebates <span class="spanCollaborateInner">&nbsp;</span></div>
+                        <img style="padding-left:15px; padding-top:10px; padding-bottom:10px;" src="../../Content/images/Info.png" alt="about me" onclick="t2v_Authorization.ShowAbouteSystem();" />
+                    </div>
+                    }
+                </td>
+                <td>
+                    <div class="loginPosition">
+                   <input type="hidden" id="hidUserTimeZone" value="@TimeZoneInfo.FindSystemTimeZoneById(user.TimeZone).BaseUtcOffset.ToString()" />
+                    &nbsp;&nbsp;
+                    
+@*                    <a href = "#" onclick="javascrpt:t2v_main.ShowFeedbackScreen();" title ="Feedback"><strong>Feedback</strong></a>
+                    <a href = "/Home/ReleaseNote" title ="Release Note"><strong>Release Note</strong></a>*@
+                        <text>Welcome <strong>@(string.IsNullOrEmpty(user.DisplayName) ? user.UserName : user.DisplayName)</strong>!
+            &nbsp;[ <a href="@Url.Action("LogOff", "Account")">
+            Log Off</a> ]</text>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="divFeedback" class="modal hide">
+    <div class="modal-header" style="background-color: #9E9500;">
+        <div style="text-align: left">
+                <button type="button" style="float: right" class="DeleteLine" data-dismiss="modal">
+                    &nbsp;
+                </button>
+            <h2>
+                Send Feedback</h2>
+        </div>
+    </div>
+    <div id="divFeedbackArea">
+    </div>
+</div>
+    
+    <div id="divInitUpload" class="modal hide">
+    <div class="modal-header" style="background-color: #9E9500;">
+        <div style="text-align: left">
+                <button type="button" style="float: right" class="DeleteLine" data-dismiss="modal">
+                    &nbsp;
+                </button>
+            <h2>
+                POC Initial Load</h2>
+        </div>
+    </div>
+    <div id="divInitUploadDataArea">
+    </div>
+</div>
+}
+else
+{
+    @:[ <a href="#logonModal" data-toggle="modal">Log On</a> ]
+    <div class="modal hide" id="logonModal">@Html.Partial("~/Views/Account/LogOn.cshtml", new ViewDataDictionary())</div>
+    <div class="modal hide" id="registerModal"></div>
+    if (Request.QueryString["popLogOn"] != null)
+    {
+    <script type="text/javascript">
+        $('#logonModal').modal('show');
+    </script>
+    }
+}

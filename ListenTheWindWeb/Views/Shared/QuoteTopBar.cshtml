@@ -1,0 +1,81 @@
+﻿@using Web.Energizer.User
+@{
+    var user = UserHelper.CurrentUser;
+}
+@if (Request.IsAuthenticated && user != null)
+{
+    <div id="divHeader">
+        <table cellpadding="0" cellspacing="0" class="QuoteMenu">
+            <tr>
+                <td class="std">
+                    <div class="workArea">
+                        <img src="../../Content/img/New.png" alt ="New" height="28px" onclick="t2v_Quote.EditQuote(0)" />
+                        <br />
+                        <span>New</span>
+                    </div>
+                </td>
+                <td class="std" style="border-right:1px solid #dbdbdb;">
+                    <div class="workArea">
+                        <img src="../../Content/img/Edit.png" alt ="Edit" height="28px" onclick="t2v_Quote.EditQuoteFromTop()" />
+                        <br />
+                        <span>Edit</span>
+                    </div>
+                </td>
+                <td class="std">
+                    <div class="workArea">
+                        <img src="../../Content/img/Delete.png" alt ="Edit" height="28px" onclick="t2v_Quote.DeleteQuote()" />
+                        <br />
+                        <span>Delete</span>
+                    </div>
+                </td>
+                <td class="std" style="border-right:1px solid #dbdbdb;">
+                    <div class="workArea">
+                        <img src="../../Content/img/Filters.png" alt ="Filter" height="28px" onclick="$(#search_QuoteList).click()" />
+                        <br />
+                        <span>Filter</span>
+                    </div>
+                </td>
+                <td class="std" style="width:160px; text-align:left; padding-top:7px; border-right:1px solid #dbdbdb;">
+                    <div class="workArea">
+                        <img src="../../Content/img/ExportExcel.png" alt ="Export" style=" vertical-align:text-top;" width="16px" onclick="t2v_Quote.ExportQuote()" />
+                        <span>Export to Excel</span>
+                    </div>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="stdR" colspan="2">Records</td>
+                <td class="stdR" colspan="2">Action</td>
+                <td class="stdR">Data</td>
+            </tr>
+        </table>
+        @* <div style="position: absolute; text-align: center; width: 100%;">
+            <span id="MasterMessage" class="textHeader03"></span>
+        </div>
+        <div class="loginPosition">
+            <text>Welcome <strong>@(string.IsNullOrEmpty(user.DisplayName) ? user.UserName : user.DisplayName)</strong>!
+            &nbsp;&nbsp;[ <a href="@Url.Action("LogOff", "Account")">
+            Log Off</a> ]</text>
+        </div>*@
+    </div>
+@*    <text>Welcome <strong>@(string.IsNullOrEmpty(user.DisplayName) ? user.UserName : user.DisplayName)</strong>!
+    [ <a href="#changePasswordModal" data-toggle="modal">Change Password</a> ] [ <a href="@Url.Action("LogOff", "Account")">
+        Log Off</a> ]</text>*@
+@*    
+    <div class="modal hide" id="changePasswordModal">@Html.Partial("~/Views/Account/ChangePassword.cshtml", new ViewDataDictionary())</div>*@
+
+}
+else
+{
+    
+    @:[ <a href="#logonModal" data-toggle="modal">Log On</a> ]
+    @*@:[ <a href="#registerModal" data-toggle="modal">Register</a> ]*@
+    <div class="modal hide" id="logonModal">@Html.Partial("~/Views/Account/LogOn.cshtml", new ViewDataDictionary())</div>
+    <div class="modal hide" id="registerModal">@Html.Partial("~/Views/Account/Register.cshtml", new ViewDataDictionary())</div>
+    if (Request.QueryString["popLogOn"] != null)
+    {
+    <script type="text/javascript">
+        $('#logonModal').modal('show');
+    </script>
+    }
+}

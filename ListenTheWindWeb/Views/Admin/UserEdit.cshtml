@@ -1,0 +1,235 @@
+﻿@using DataAccess.DC;
+@model DataAccess.DC.User
+@{
+    ViewBag.Title = "UserEdit";
+}
+<script type="text/javascript">
+    $(function () { t2v_AdminSet.AddMutileSelect(); });
+</script>
+@using (Ajax.BeginForm("SaveUserInfo", "Admin", null, new AjaxOptions { UpdateTargetId = "divMainPageDiv", HttpMethod = "post", OnBegin = "t2v_Authorization.ShowLoading()", OnSuccess = "t2v_Authorization.ShowEdit()" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(c => c.ID, new { @id = "hidID" })
+    <table cellpadding="0" cellspacing="0" width="100%" class="CreateArea" id="tblCreateArea">
+        <tr>
+            <td style="text-align: left">
+                <div style="float: left">
+                    <a class="ReturnListUserProfileF" title="Back" href="/Admin/UserProfile"></a>
+                </div>
+            </td>
+            <td style="text-align: right">
+                <div id="queueActionBar" class="queueActionBar">
+                    <a class="SaveQuote" title="Save" onclick="t2v_AdminSet.SaveUserProfile()">
+                        &nbsp; </a>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br />
+    
+<form class="well">
+  <label>Label name</label>
+  <input type="text" class="span3" style="height:32px" placeholder="Type something…">
+  <span class="help-inline">Associated help text!</span>
+  <label class="checkbox">
+    <input type="checkbox"> 点这里
+  </label>
+  <button type="submit" class="btn">提交</button>
+</form>
+    <table cellpadding="0" cellspacing="0" class="well" width="100%">
+        <tr>
+            <td style="width: 33%;">
+                <table cellpadding="0"cellspacing="0">
+                    <tr>
+                        <th colspan="2">
+                            Basic Info
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            User Name：<span style="color: Red; font-weight: bold; float: right">*</span>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(c => c.UserName, new { @id = "txtUserName", @class="span3", @height ="32px", @placeholder = "User Name", @title = "User Name", @onblur = "t2v_AdminSet.CheckUserNameExists($(this));" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 130px;">
+                            First Name:<span style="color: Red; font-weight: bold; float: right">*</span>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(c => c.FirstName, new { @id = "txtFirstName", @validate = "true", @placeholder = "First Name", @title = "First Name" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Last Name :<span style="color: Red; font-weight: bold; float: right">*</span>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(c => c.LastName, new { @id = "txtLastName", @validate = "true", @placeholder = "Last Name", @title = "Last Name" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Nick Name:
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(c => c.NickName, new { @id = "txtNickName", @validate = "true", @placeholder = "Nick Name", @title = "Nick Name" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Title:
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(c => c.Title, new { @id = "txtTitle", @validate = "true", @placeholder = "Title", @title = "Title" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            Password
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Password:<span style="color: Red; font-weight: bold; float: right">*</span>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(c => c.PassWord, new { @id = "txtPassword", @type = "password", @placeholder = "Password", @title = "Password" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Confirm Password:<span style="color: Red; font-weight: bold; float: right">*</span>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(c => c.PassWord, new { @id = "txtConfirmPassword", @type = "password", @placeholder = "Confirm Password", @onblur = "t2v_AdminSet.CheckPassword();", @title = "Confirm Password" })
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width: 33%" id="sectionHeader">
+                <table cellpadding="0" class="tblNoBorder" cellspacing="0">
+                    <tr>
+                        <th colspan="2">
+                            Contact Info
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Email：<span style="color: Red; font-weight: bold; float: right">*</span>
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(c => c.Email, new { @id = "txtEmail", @validate = "true", @placeholder = "Email", @title = "Email", @onblur = "t2v_AdminSet.CheckEmailExists($(this));" })
+                            
+                            <input type="hidden" id="hidEmailFlag" />
+                        
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Phone：
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(c => c.Phone, new { @id = "txtPhone", @validate = "true", @placeholder = "Phone", @title = "Phone" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Cell Phone：
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(c => c.CellPhone, new { @id = "txtCellPhone", @validate = "true", @placeholder = "Cell Phone", @title = "Cell Phone" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Address：
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(c => c.Address, new { @id = "txtAddress", @validate = "true", @placeholder = "Address", @title = "Address" })
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width: 33%">
+                <table cellpadding="0" class="tblNoBorder" cellspacing="0">
+                    <tr>
+                        <th colspan="2">
+                            Other
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Timezone：
+                        </td>
+                        <td>
+                            <select id="selTimeZone" onchange="t2v_AdminSet.ChangeTimeZone($(this));">
+                                <option value="">--Select--</option>
+                                @{
+    foreach (TimeZoneInfo tzi in System.TimeZoneInfo.GetSystemTimeZones())
+    {
+        if (Model.TimeZone == tzi.StandardName)
+        {
+                                    <option selected="selected">@tzi.StandardName</option> 
+        }
+        else
+        { 
+                                    <option>@tzi.StandardName</option> 
+        }
+    }
+                                }
+                            </select>
+                            @Html.HiddenFor(c => c.TimeZone)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Active Flag:
+                        </td>
+                        <td>
+                            <input type="checkbox" checked="checked" onclick="t2v_AdminSet.ChangeCheck($(this),'activeflag');" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Delete Flag:
+                        </td>
+                        <td>
+                            @{
+    if (Model.DeleteFlag != null)
+    {
+        if (Model.DeleteFlag.Value == true)
+        {
+                                <input type="checkbox" checked="checked" onclick="t2v_AdminSet.ChangeCheck($(this),'deleteflag');" />
+        }
+        else
+        {
+                                <input type="checkbox" onclick="t2v_AdminSet.ChangeCheck($(this),'deleteflag');" />
+        }
+    }
+    else
+    {
+                                <input type="checkbox" onclick="t2v_AdminSet.ChangeCheck($(this),'deleteflag');" />
+    }
+                            }
+                            @Html.HiddenFor(c => c.DeleteFlag, new { @id = "hidDeleteFlag" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Report To：
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+}

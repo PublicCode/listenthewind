@@ -1,0 +1,51 @@
+﻿@using Web.Energizer.User;
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Home/_HomeLayout.cshtml";
+
+    //var permission = "," + UserHelper.CurrentPermissions + ",";
+}
+<script src="@VirtualPathUtility.ToAbsolute("~/Scripts/T2VBusiness/Admin/t2v-AdminSet.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/T2VBusiness/Admin/t2v-SiteRouteForAdmin.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/Vendor/bootstrap.min.css")"rel="stylesheet" type="text/css"  />
+<link href="@Url.Content("~/Content/Vendor/bootstrap-responsive.min.css")"rel="stylesheet" type="text/css"  />
+
+<div id="divMainPageDiv">
+    <table cellpadding="0" cellspacing="0" width="100%" class="CreateArea" id="tblCreateArea">
+        <tr>
+            <td style="text-align: left">
+                <table>
+                    <tr>
+                        <td>
+                            <a class="ReturnListUserProfile" title="Return to index" href="/Admin/Index"></a>
+                        </td>
+                        <td>
+                            <a class="btnCreateNewRFQ" href="/Admin/UserProfile#/Create/0"  title="Create New User"></a>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+            <td style="text-align: right">
+                <div id="queueActionBar" class="queueActionBar">
+                    <div class="search_box">
+                        <input type="text" id="fullSearchBox" placeholder="Search String" class="search_input"
+                            onkeypress="javascript:t2v_AdminSet.searchenter(event)" />
+                        <input type="button" class="btnSearch" value=" " title="Search" onclick="javascript:t2v_AdminSet.fullsearch()" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div class="pageSection">
+        <div id="divUserList">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //t2v_AdminSet.GetUserProfileList();
+        t2v_SiteRouteForAdmin._initRoute();
+    });
+</script>

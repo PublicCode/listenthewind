@@ -1,0 +1,39 @@
+﻿@using Web.Energizer.User
+@*<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      ...
+    </div>
+  </div>
+</div>*@
+@{
+    var user = UserHelper.CurrentUser;
+}
+
+@if (Request.IsAuthenticated && user != null)
+{
+    <div id="divHeader" class="header">
+        <div style="text-align: center;">
+            <span id="MasterMessage" class="textHeader03"></span>
+        </div>
+       
+        <div class="loginPosition">
+            <text>Welcome <strong>@(string.IsNullOrEmpty(user.DisplayName) ? user.UserName : user.DisplayName)</strong>!
+            &nbsp;&nbsp;[ <a href="@Url.Action("LogOff", "Account")">
+            Log Off</a> ]</text>
+        </div>
+        <div class="clearBoth">&nbsp; </div>
+    </div>
+}
+else
+{
+    @:[ <a href="#logonModal" data-toggle="modal">Log On</a> ]
+    <div class="modal hide" id="logonModal">@Html.Partial("~/Views/Account/LogOn.cshtml", new ViewDataDictionary())</div>
+    <div class="modal hide" id="registerModal">@Html.Partial("~/Views/Account/Register.cshtml", new ViewDataDictionary())</div>
+    if (Request.QueryString["popLogOn"] != null)
+    {
+    <script type="text/javascript">
+        $('#logonModal').modal('show');
+    </script>
+    }
+}

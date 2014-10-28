@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Home/_HomeLayout.cshtml";
+}
+@section head {
+   <link href="@Url.Content("~/Scripts/Vendor/mupSelect/jquery.multiselect.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/T2VBusiness/Report/t2v-Report.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Vendor/mupSelect/jquery.multiselect.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Vendor/mupSelect/jquery.multiselect.filter.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/t2v-dwq.js")" type="text/javascript"></script>
+    
+    <script>
+        $(document).ready(function () {
+            
+            t2v_Report.initSearchForm();
+        });
+    </script>
+}
+<div id="divMainPageDiv">
+    <div class="CreateArea">
+        <input type='button' class='btnExport' style='width: 35px !important; height: 32px !important' value='&nbsp;' onclick='t2v_Report.ExportReport();' title='Export Quotes' />
+    </div>
+    <br />
+    <div class="pageSection">
+        <table cellpadding="0" cellspacing="0" id="obody" class="divLog" style="width: 100%;">
+            <tr>
+                <td style="text-align: left; vertical-align: top; border: 1px solid #dddddd; border-right-width: 0;">
+                    <div id="divList">
+                        <div style="text-align: center; height: 450px; padding-top: 250px;">
+                                <span style="font-family: Verdana; font-size: 20px; font-weight: bold; color: #666">
+                                    No Result Found</span>
+                        </div>
+                    </div>
+                </td>
+                <td id="tdRight" style="width: 240px; vertical-align: top; text-align: center; border: 1px solid #dddddd; padding: 0 4px;">
+                    <div style="border-bottom: 2px dashed #999; padding: 7px 0; text-align: left">
+                        <b>Reports:</b>
+                        <select id="selReportSubject" class="ddlReportItem" onchange="t2v_Report.ChangeSubject();" style="width: 160px;"></select>
+                    </div>
+                    <br />
+                    <Table ID="tbSearchForm" class="FilterArea" style="width:240px;">
+
+                    </Table>
+                    <br />
+                    <br />
+                    <div style="text-align: center;">
+                        <input type="button" id="btnSearch" value="Search" title="Search" onclick="t2v_Report.SearchResult();" class="DWQ_Button_02" />
+                        <input id="btnClear" type="button" title="Clear" value="Clear" class="DWQ_Button_02" onclick="t2v_Report.ClearData();" />
+                    </div>
+                    <br />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div id="loading" style="display: none; padding: 100px 0 0 400px">
+    <img src="@Url.Content("~/Content/images/LoadingContent.gif")" alt="loading..." />
+</div>

@@ -1,0 +1,213 @@
+﻿@{
+    ViewBag.Title = "User";
+    Layout = "~/Views/Home/_HomeLayout.cshtml";
+}
+<div id="divMainPageDiv">
+    <div class="CreateArea">
+        <input type="button" id="btnReturn" title="Return" class="ReturnList" style="float: left;" onclick="javascript: window.location.href = '/Admin/Index'" />
+        <div style="float: left; padding: 5px;">
+            <h2>Permission</h2>
+        </div>
+    </div>
+    <br />
+    <div class="pageSection">
+        <div style="float: left;">
+            <section class="featured">
+                <div class="content-wrapper">
+                    <div id="message" style="display: none;"></div>
+                    <div id="loading">
+                        <img src="@Url.Content("~/Content/images/LoadingContent.gif")" alt="Loading" />
+                    </div>
+                    <div id="result" style="display: none;">
+
+                        <a href="#" data-bind="click: $root.add">ADD NEW</a> &nbsp;&nbsp;&nbsp;
+            <a href="#" data-bind="click: $root.saveAll">SAVE ALL!</a>
+                        <div style="overflow-y: auto; height: 200px;">
+                            Role Groups:
+                            <table style="width: 100%; max-height: 100px; overflow-y: auto; border-collapse: collapse; text-align: center" border="0">
+                                <thead>
+                                    <tr>
+                                        <th>Delete</th>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: roleGroups">
+                                    <tr data-bind="click: $root.showDetail, style: { 'background-color': $data == $root.item() ? '#cccccc' : '' }">
+                                        <td><a href="#" data-bind="click: $root.removeUser">Delete</a></td>
+                                        <td data-bind="text: id"></td>
+                                        <td data-bind="text: name"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            Groups:
+                            <table style="width: 100%; max-height: 100px; overflow-y: auto; border-collapse: collapse; text-align: center" border="0">
+                                <thead>
+                                    <tr>
+                                        <th>Delete</th>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: groups">
+                                    <tr data-bind="click: $root.showDetail, style: { 'background-color': $data == $root.item() ? '#cccccc' : '' }">
+                                        <td><a href="#" data-bind="click: $root.removeUser">Delete</a></td>
+                                        <td data-bind="text: id"></td>
+                                        <td data-bind="text: name"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            User:
+                            <table style="width: 100%; max-height: 100px; overflow-y: auto; border-collapse: collapse; text-align: center" border="0">
+                                <thead>
+                                    <tr>
+                                        <th>Delete</th>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: users">
+                                    <tr data-bind="click: $root.showDetail, style: { 'background-color': $data == $root.item() ? '#cccccc' : '' }">
+                                        <td><a href="#" data-bind="click: $root.removeUser">Delete</a></td>
+                                        <td data-bind="text: id"></td>
+                                        <td data-bind="text: name"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div id="fine-uploader-left">
+            <h3 data-bind="visible: permission()">Detail:</h3>
+            <table data-bind="with: permission">
+                <tbody data-bind="foreach: bits">
+                    <tr>
+                        <td data-bind="text: name"></td>
+                        <td>
+                            <input type="checkbox" data-bind="checked: isSet" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function RoleGroup(rg) {
+        var self = this;
+        self.id = ko.observable(rg.ID);
+        self.name = ko.observable(rg.Name);
+        self.permission = ko.observable(rg.Permission);
+    }
+    function Role(r) {
+        var self = this;
+        self.id = ko.observable(r.ID);
+        self.name = ko.observable(r.Name);
+        self.permission = ko.observable(r.Permission);
+    }
+    function User(u) {
+        var self = this;
+        self.id = ko.observable(u.ID);
+        self.name = ko.observable(u.Name);
+        self.permission = ko.observable(u.Permission);
+    }
+    function PermissionsModel() {
+        var self = this;
+        self.roleGroups = ko.observableArray([]);
+        self.roles = ko.observableArray([]);
+        self.users = ko.observableArray([]);
+        self.permission = ko.observable();
+        $.ajax({
+            url: "/Admin/GetUsers",
+            cache: false,
+            beforeSend: function () {
+                $('#loading').show();
+                $('#result').hide();
+            },
+            success: function (all) {
+                var mappedUsers = $.map(all, function (item) {
+                    return new User(item);
+                });
+                self.users(mappedUsers);
+                $('#loading').fadeOut(500, function () {
+                    $('#result').fadeIn(500);
+                });
+
+            }
+        });
+
+        self.showDetail = function (item) {
+            self.user(item);
+        };
+
+        self.add = function () {
+            var time = new Date();
+            var user = new User({
+                ID: 0,
+                UserName: "",
+                PassWord: "",
+                FirstName: "",
+                LastName: "",
+                DisplayName: "",
+                NickName: "",
+                Email: "",
+                Title: "",
+                Phone: "",
+                CellPhone: "",
+                CreateDate: time.getFullYear() + "/" + (time.getMonth() + 1) + "/" + time.getDate() + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds(),
+                CreateUser: 0,
+                UpdateDate: time.getFullYear() + "/" + (time.getMonth() + 1) + "/" + time.getDate() + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds(),
+                UpdateUser: 0,
+                Address: "",
+                TimeZone: "",
+                ActiveFlag: 0,
+                DeleteFlag: 0,
+                GroupID: 0,
+                SubRoleName: "",
+                SalesOrgID: 0,
+                DistyOrgID: 0
+            });
+            self.users.push(user);
+            self.user(user);
+        };
+
+        self.removeUser = function (item) {
+            self.users.destroy(item);
+            self.user(null);
+        };
+
+        self.saveAll = function () {
+            $.ajax("/Admin/SaveUsers", {
+                data: ko.toJSON(self.users()),
+                cache: false,
+                type: "POST", contentType: "application/json",
+                beforeSend: function () {
+                    $('#message').fadeOut(300, function () {
+                        $(this).html("...").fadeIn(300);
+                    })
+                },
+                success: function (result) {
+                    $('#message').fadeOut(300, function () {
+                        $(this).html(result.message).fadeIn(300);
+                    });
+                    $.ajax({
+                        url: "/Admin/GetUsers",
+                        cache: false,
+                        success: function (all) {
+                            var mappedUsers = $.map(all, function (item) {
+                                return new User(item);
+                            });
+                            self.users(mappedUsers);
+                        }
+                    });
+                }
+            });
+        };
+    }
+    ko.applyBindings(new UsersModel());
+</script>

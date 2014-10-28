@@ -1,0 +1,369 @@
+﻿@{
+    ViewBag.Title = "User Permissions";
+    Layout = "~/Views/Home/_HomeLayout.cshtml";
+}
+<div id="divMainPageDiv">
+    <table cellpadding="0" cellspacing="0" width="100%" class="CreateArea" id="tblCreateArea">
+        <tr>
+            <td style="text-align: left">
+                <div style="float: left">
+                    <a class="ReturnListUserProfileF" title="Back" href="/Admin/Index"></a>
+                </div>
+            </td>
+            <td style="text-align: right">
+                <div id="queueActionBar" class="queueActionBar">
+                        <a href="#" class="SaveQuote" title="Save" onclick="$('#btnSave').click();"></a>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div class="pageSection" style="padding: 10px 10px 10px 10px">
+        <section class="featured">
+            <div class="content-wrapper">
+                <div id="tabs" style="/*display: none; */ height: 430px;">
+                    <ul>
+                        <li><a href='#tabs-user'>User Permissions</a></li>
+                        <!--li><a href='#tabs-role'>Role</a></li>
+                            <li><a href='#tabs-roleGroup'>Role group</a></li-->
+                    </ul>
+                    <div id="tabs-user" class="tabs-panel">
+                        <div class="tabs-container">
+                            <div id="tabs-user-message" style="display: none;">
+                            </div>
+                            <div id="tabs-user-loading">
+                                <img src="@Url.Content("~/Content/images/LoadingContent.gif")" alt="Loading" />
+                            </div>
+                            <div id="tabs-user-data" style="display: none">
+                            <a href="#" data-bind="click: $root.save" id="btnSave" style="display:none">SAVE</a>
+                                <table class="permission-table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                User Name
+                                            </th>
+                                            <!-- ko foreach: userPermissionHeaders -->
+                                            <th data-bind="text: text" style="border-left: 1px solid #cccccc">
+                                            </th>
+                                            <!-- /ko -->
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach: userPermissions">
+                                        <tr data-bind="click: $root.select, style: { 'background-color': $data == $root.selected() ? '#ececec' : '' }">
+                                            <td data-bind="text: userName">
+                                            </td>
+                                            <!-- ko foreach: permissions -->
+                                            <td style="border-left: 1px solid #cccccc">
+                                                <input type="checkbox" data-bind="checked: value" />
+                                            </td>
+                                            <!-- /ko -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--div id="tabs-role" class="tabs-panel">
+                        <div class="tabs-container">
+                            <div id="tabs-role-message" style="display: none;">
+                            </div>
+                            <div id="tabs-role-loading">
+                                <img src="@Url.Content("~/Content/images/LoadingContent.gif")" alt="Loading" />
+                            </div>
+                            <div id="tabs-role-data" style="display: none">
+                                <a href="#" data-bind="click: $root.save">SAVE</a>
+                                <table class="permission-table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Role name
+                                            </th>
+                                            <th data-bind="text: text" style="border-left: 1px solid #cccccc">
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach: rolePermissions">
+                                        <tr data-bind="click: $root.select, style: { 'background-color': $data == $root.selected() ? '#ececec' : '' }">
+                                            <td data-bind="text: roleName">
+                                            </td>
+                                            <td style="border-left: 1px solid #cccccc">
+                                                <input type="checkbox" data-bind="checked: value" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div-->
+                    <!--div id="tabs-roleGroup" class="tabs-panel">
+                        <div class="tabs-container">
+                            <div id="tabs-roleGroup-message" style="display: none;">
+                            </div>
+                            <div id="tabs-roleGroup-loading">
+                                <img src="@Url.Content("~/Content/images/LoadingContent.gif")" alt="Loading" />
+                            </div>
+                            <div id="tabs-roleGroup-data" style="display: none">
+                                <a href="#" data-bind="click: $root.save">SAVE</a>
+                                <br />
+                                <br />
+                                <table class="permission-table">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Role group name
+                                            </th>
+                                            <th data-bind="text: text" style="border-left: 1px solid #cccccc">
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach: roleGroupPermissions">
+                                        <tr data-bind="click: $root.select, style: { 'background-color': $data == $root.selected() ? '#ececec' : '' }">
+                                            <td data-bind="text: roleGroupName">
+                                            </td>
+                                            <td style="border-left: 1px solid #cccccc">
+                                                <input type="checkbox" data-bind="checked: value" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div-->
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<style type="text/css">
+    .permission-table
+    {
+        border-collapse: collapse;
+        text-wrap: none;
+        white-space: nowrap;
+    }
+    
+    .permission-table th
+    {
+        vertical-align: middle;
+        text-align: center;
+        border-top: 1px solid #cccccc;
+        border-bottom: 1px solid #cccccc;
+        padding: 3px 3px 3px 3px;
+    }
+    
+    .permission-table td
+    {
+        vertical-align: middle;
+        text-align: center;
+        border-bottom: 1px solid #cccccc;
+        padding: 3px 3px 3px 3px;
+    }
+    
+    .tabs-panel
+    {
+        overflow: auto;
+        height: 370px;
+    }
+</style>
+<script type="text/javascript">
+    $('#tabs').tabs({
+        //heightStyle: "fill",
+    });
+
+    function Permission(perm) {
+        this.value = ko.observable(perm);
+    }
+
+    function UserPermission(user) {
+        this.userName = ko.observable(user.UserName);
+        this.userId = ko.observable(user.ID);
+        this.permissions = ko.observableArray($.map(user.Permissions, function (item) { return new Permission(item); }));
+        this.isUpdated = ko.observable(false);
+        var self = this;
+        var _u = function () {
+            if (!self.isUpdated()) {
+                self.isUpdated(true);
+            }
+        };
+        ko.utils.arrayForEach(this.permissions(), function (item) {
+            item.value.subscribe(_u);
+        });
+    }
+
+    function RolePermission(role) {
+        this.roleName = ko.observable(role.RoleName);
+        this.roleId = ko.observable(role.ID);
+        this.permissions = ko.observableArray($.map(role.Permissions, function (item) { return new Permission(item); }));
+        this.isUpdated = ko.observable(false);
+        var self = this;
+        var _u = function () {
+            if (!self.isUpdated()) {
+                self.isUpdated(true);
+            }
+        };
+        ko.utils.arrayForEach(this.permissions(), function (item) {
+            item.value.subscribe(_u);
+        });
+    }
+
+    function RoleGroupPermission(roleGroup) {
+        this.roleGroupName = ko.observable(roleGroup.RoleGroupName);
+        this.roleGroupId = ko.observable(roleGroup.ID);
+        this.permissions = ko.observableArray($.map(roleGroup.Permissions, function (item) { return new Permission(item); }));
+        this.isUpdated = ko.observable(false);
+        var self = this;
+        var _u = function () {
+            if (!self.isUpdated()) {
+                self.isUpdated(true);
+            }
+        };
+        ko.utils.arrayForEach(this.permissions(), function (item) {
+            item.value.subscribe(_u);
+        });
+    }
+
+    function UserPermissionModel() {
+        var self = this;
+        self.userPermissions = ko.observableArray([]);
+        self.userPermissionHeaders = ko.observableArray([]);
+        self.selected = ko.observable();
+        self.select = function (item) {
+            self.selected(item);
+            return true;
+        }
+        $.ajax({
+            url: "/Admin/GetUserPermissions",
+            cache: false,
+            beforeSend: function () {
+                $('#tabs-user-loading').show();
+                $('#tabs-user-data').hide();
+            },
+            success: function (response) {
+                var userPermissions = $.map(response.data, function (item) {
+                    return new UserPermission(item);
+                });
+                self.userPermissionHeaders(response.headers);
+                self.userPermissions(userPermissions);
+                $('#tabs-user-loading').fadeOut(500, function () {
+                    $('#tabs-user-loading').css('display', 'none'); // DO NOT REMOVE THIS LINE!
+                    $('#tabs-user-data').fadeIn(500);
+                });
+            }
+        });
+
+        self.save = function () {
+            $.ajax("/Admin/SaveUserPermissions", {
+                data: ko.toJSON(self.userPermissions()),
+                cache: false,
+                type: "POST", contentType: "application/json",
+                beforeSend: function () {
+                    $('#tabs-user-message').fadeOut(300, function () {
+                        $(this).html("...").fadeIn(300);
+                    })
+                },
+                success: function (result) {
+                    $('#tabs-user-message').fadeOut(300, function () {
+                        $(this).html(result.message).fadeIn(300);
+                    });
+                }
+            });
+        };
+    }
+    function RolePermissionModel() {
+        var self = this;
+        self.rolePermissions = ko.observableArray([]);
+        self.rolePermissionHeaders = ko.observableArray([]);
+        self.selected = ko.observable();
+        self.select = function (item) {
+            self.selected(item);
+            return true;
+        }
+        $.ajax({
+            url: "/Admin/GetRolePermissions",
+            cache: false,
+            beforeSend: function () {
+                $('#tabs-role-loading').show();
+                $('#tabs-role-data').hide();
+            },
+            success: function (response) {
+                var rolePermissions = $.map(response.data, function (item) {
+                    return new RolePermission(item);
+                });
+                self.rolePermissionHeaders(response.headers);
+                self.rolePermissions(rolePermissions);
+                $('#tabs-role-loading').fadeOut(500, function () {
+                    $('#tabs-role-loading').css('display', 'none'); // DO NOT REMOVE THIS LINE!
+                    $('#tabs-role-data').fadeIn(500);
+                });
+            }
+        });
+
+        self.save = function () {
+            $.ajax("/Admin/SaveRolePermissions", {
+                data: ko.toJSON(self.rolePermissions()),
+                cache: false,
+                type: "POST", contentType: "application/json",
+                beforeSend: function () {
+                    $('#tabs-role-message').fadeOut(300, function () {
+                        $(this).html("...").fadeIn(300);
+                    })
+                },
+                success: function (result) {
+                    $('#tabs-role-message').fadeOut(300, function () {
+                        $(this).html(result.message).fadeIn(300);
+                    });
+                }
+            });
+        };
+    }
+    function RoleGroupPermissionModel() {
+        var self = this;
+        self.roleGroupPermissions = ko.observableArray([]);
+        self.roleGroupPermissionHeaders = ko.observableArray([]);
+        self.selected = ko.observable();
+        self.select = function (item) {
+            self.selected(item);
+            return true;
+        }
+        $.ajax({
+            url: "/Admin/GetRoleGroupPermissions",
+            cache: false,
+            beforeSend: function () {
+                $('#tabs-roleGroup-loading').show();
+                $('#tabs-roleGroup-data').hide();
+            },
+            success: function (response) {
+                var roleGroupPermissions = $.map(response.data, function (item) {
+                    return new RoleGroupPermission(item);
+                });
+                self.roleGroupPermissionHeaders(response.headers);
+                self.roleGroupPermissions(roleGroupPermissions);
+                $('#tabs-roleGroup-loading').fadeOut(500, function () {
+                    $('#tabs-roleGroup-loading').css('display', 'none'); // DO NOT REMOVE THIS LINE!
+                    $('#tabs-roleGroup-data').fadeIn(500);
+                });
+            }
+        });
+
+        self.save = function () {
+            $.ajax("/Admin/SaveRoleGroupPermissions", {
+                data: ko.toJSON(self.roleGroupPermissions()),
+                cache: false,
+                type: "POST", contentType: "application/json",
+                beforeSend: function () {
+                    $('#tabs-roleGroup-message').fadeOut(300, function () {
+                        $(this).html("...").fadeIn(300);
+                    })
+                },
+                success: function (result) {
+                    $('#tabs-roleGroup-message').fadeOut(300, function () {
+                        $(this).html(result.message).fadeIn(300);
+                    });
+                }
+            });
+        };
+    }
+    ko.applyBindings(new UserPermissionModel(), $('#tabs-user')[0]);
+    ko.applyBindings(new RolePermissionModel(), $('#tabs-role')[0]);
+    ko.applyBindings(new RoleGroupPermissionModel(), $('#tabs-roleGroup')[0]);
+</script>

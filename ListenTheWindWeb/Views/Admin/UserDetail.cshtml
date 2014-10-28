@@ -1,0 +1,198 @@
+﻿@using DataAccess.DC;
+@model DataAccess.DC.User
+@{
+    ViewBag.Title = "UserDetail";
+}
+
+@using (Ajax.BeginForm("SaveUserInfo", "Admin", null, new AjaxOptions { UpdateTargetId = "divMainPageDiv", HttpMethod = "post", OnBegin = "t2v_Authorization.ShowLoading()"}))
+{
+    
+    @Html.HiddenFor(c => c.ID)
+    <table cellpadding="0" cellspacing="0" width="100%" class="CreateArea" id="tblCreateArea">
+        <tr>
+            <td style="text-align: left">
+                <div style="float: left">
+                    <a class="ReturnListUserProfileF" href="/Admin/UserProfile"></a>
+                </div>
+            </td>
+            <td style="text-align: right">
+                <div id="queueActionBar" class="queueActionBar">
+                          <a class="EditQuote" title="Edit User Profile" onclick="t2v_AdminSet.ShowUserEdit('@Model.ID');">
+                        &nbsp; </a>
+                        
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table cellpadding="0" cellspacing="0" class="tblDetailInfo" width="100%">
+        <tr>
+            <td style="width: 33%;">
+                <table cellpadding="0" class="tblNoBorder" cellspacing="0">
+                    <tr>
+                        <th colspan="2">
+                            Basic Info
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            User Name：<span style="color: Red; font-weight: bold; float: right">*</span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(c => c.UserName)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 130px;" class="tblNoBorderLabel">
+                            First Name:<span style="color: Red; font-weight: bold; float: right">*</span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(c => c.FirstName)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Last Name :<span style="color: Red; font-weight: bold; float: right">*</span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(c => c.LastName)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Nick Name:
+                        </td>
+                        <td>
+                            @Html.DisplayFor(c => c.NickName)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Title:
+                        </td>
+                        <td>
+                            @Html.DisplayFor(c => c.Title)
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width: 33%" id="sectionHeader">
+                <table cellpadding="0" class="tblNoBorder" cellspacing="0">
+                    <tr>
+                        <th colspan="2">
+                            Contact Info
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Email：<span style="color: Red; font-weight: bold; float: right">*</span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(c => c.Email)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Phone：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(c => c.Phone)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Cell Phone：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(c => c.CellPhone)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Address：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(c => c.Address)
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width: 33%">
+                <table cellpadding="0" class="tblNoBorder" cellspacing="0">
+                    <tr>
+                        <th colspan="2">
+                            Other
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Timezone：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(c=>c.TimeZone)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Active Flag:
+                        </td>
+                        <td>
+                            @{
+    if (Model.ActiveFlag.HasValue)
+    {
+        if (Model.ActiveFlag.Value == true)
+        {
+                                <input type="checkbox" checked="checked" disabled="disabled" />
+        }
+        else
+        {
+                                <input type="checkbox" disabled="disabled" />
+        }
+    }
+    else
+    {
+                                <input type="checkbox" disabled="disabled" />
+    }
+                            }
+                            @Html.HiddenFor(c => c.ActiveFlag, new { @id = "hidActiveFlag" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Delete Flag:
+                        </td>
+                        <td>
+                            @{
+                                
+    if (Model.DeleteFlag != null)
+    {
+        if (Model.DeleteFlag.Value == true)
+        {
+                                <input type="checkbox" checked="checked" disabled="disabled" />
+        }
+        else
+        {
+                                <input type="checkbox" disabled="disabled" />
+        }
+    }
+    else
+    {
+                                <input type="checkbox" disabled="disabled" />
+    }
+                            }
+                            @Html.HiddenFor(c => c.DeleteFlag, new { @id = "hidDeleteFlag" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tblNoBorderLabel">
+                            Report To：
+                        </td>
+                        <td>
+                            @Html.DisplayFor(c=>c.ReportToName)
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+}

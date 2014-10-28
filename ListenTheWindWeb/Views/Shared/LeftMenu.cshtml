@@ -1,0 +1,43 @@
+﻿@using Web.Energizer.User
+@using System.Configuration;
+@{
+    var user = UserHelper.CurrentUser;
+    if (user == null)
+    {
+        //Response.Redirect("~/Account/LogOn");
+    }
+    var userId = user.ID;
+
+    var controller = ViewData["controller"] ?? Request.RequestContext.RouteData.Values["controller"].ToString();
+    var action = ViewData["action"] ?? Request.RequestContext.RouteData.Values["action"].ToString();
+    var full = controller + "_" + action;
+}
+<script language="javascript" type="text/javascript">
+    var menuID;
+    //debugger;
+    if ("@(action)" == "Report") {
+        menuID = 1;
+    }
+    else{
+        $(document).ready(function () {
+            $("#li@(controller)").addClass("liSelected");
+        });
+    }
+</script>
+@if (Request.IsAuthenticated && user != null)
+{
+    <div class="leftMenu">
+        <ul>
+            <li id="liQuote"><span class="li_icon li_icon_r2_c01">&nbsp;</span><a id="aMarketing"
+                href="/Quote" runat="server">RMA</a></li>
+            <li id="liReport"><span class="li_icon li_icon_r2_c05">&nbsp;</span><a id="aSettings"
+                    href="/Report" runat="server">Reports</a></li>
+        </ul>
+    </div>
+    <div id="divActivityLog" class="ActiveLog">
+        <span class="li_icon li_icon_r1_c09">&nbsp;</span><div class="activityHeader">
+            &nbsp;Activity</div>
+        <ul class="activityLog" id="ul_activeLog">
+        </ul>
+    </div>
+}

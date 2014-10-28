@@ -1,0 +1,51 @@
+﻿@using DataAccess.DC
+@using Web.Energizer.User
+
+@{
+    Layout = null;
+    var user = UserHelper.CurrentUser;
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(".watermark").each(
+                function () {
+                    if ($(this).attr("disabled")) {
+                        $(this).watermark($(this).attr("watermark"));
+                    }
+                    else {
+                        $(this).watermark("ENTER " + $(this).attr("watermark"));
+                    }
+                }
+            );
+    });
+</script>
+
+<div id="divFeedbackError" style="padding: 5px 10px; color: #FF0000; font-weight: bold;
+    font-size: 12px;">
+</div>
+<table cellpadding="0" cellspacing="0" class="tblUpload" width="100%" id="tblUploadFunction">
+    
+    <tr>
+        <td style="text-align:center">
+            <textarea id="txtFeedbackInfo"  style="width: 95%; border:1" onkeyup='this.value = this.value.substring(0, 500);' class="watermark"  watermark="YOUR FEEDBACK HERE"
+             title="ENTER YOUR FEEDBACK HERE" rows="4" cols="24"></textarea>
+
+        </td>
+    </tr>
+</table>
+<br />
+
+<div style="height:40px;">
+    <table width="100%">
+        <tr>
+        <td>
+            <i style="color:#9f9f9f;padding-left:6px;display:block;">*Feedback is meant for suggestions for improvements. We don’t promise to do them all but we do promise to review each one.</i>
+        </td>
+        <td>
+            <a class="EmailTo" style="padding-top:8px" onclick="t2v_main.SaveFeedback();" title="Save Feedback"></a>
+        </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Default.css")"rel="stylesheet" type="text/css"  />
+    <link href="@Url.Content("~/Content/Vendor/jquery-ui/jquery.ui.all.css")" rel="stylesheet" type="text/css"/>
+    <script src="@Url.Content("~/Scripts/Vendor/jquery-1.7.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Vendor/jquery-ui-1.8.20.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Vendor/jquery.validate.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Vendor/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Vendor/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/biz/t2v-bussiness.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/biz/t2v-dashboard.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Vendor/bootstrap/js/bootstrap.js") " type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jsext.js") " type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/dcm.validate.js") " type="text/javascript"></script>
+    
+    <script type="text/javascript">
+
+
+        function LoadBodyHeight() {
+            var width = window.screen.height - 240 + "px";
+            document.getElementById("divBody").style.height = width;
+        }
+        function CheckValue() {
+            var obj = document.getElementById("lgSign_ValidationSummary1").innerHTML;
+            if (obj.length > 10) {
+                document.getElementById("lgSign_divErrorAreas").style.display = "";
+            }
+            else {
+                document.getElementById("lgSign_divErrorAreas").style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body style="background-color: #333333;">
+    <div class="divHeader">
+        &nbsp;</div>
+    <div id="divMainContent" style="background-color: #FFFFFF;">
+    @{
+            string u = Request.ServerVariables["HTTP_USER_AGENT"];
+            if (!WebBrowserHelper.IsMobileDevice(u))
+            {
+                @Html.Partial("~/Views/Shared/TopBar.cshtml")
+            }
+        }
+        <div id="divBody" class="divBody">
+            @RenderBody()
+        </div>
+    </div>
+    <div class="divFooter">
+        <table style="text-align:center; width:90%">
+            <tr>
+                <td>
+                    © 2008-2014 T2VSoft, Inc. All Rights Reserved.
+                </td>
+                <td style="float:right">
+                    <img src="../../Content/images/HIT_Chirp_LOGO_ForLoginPage.png" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript">
+        LoadBodyHeight();
+    </script>
+</body>
+</html>

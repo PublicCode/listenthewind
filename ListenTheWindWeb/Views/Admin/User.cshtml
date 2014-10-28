@@ -1,0 +1,466 @@
+﻿@{
+    ViewBag.Title = "User Profiles";
+    Layout = "~/Views/Home/_HomeLayout.cshtml";
+}
+<div id="divMainPageDiv">
+    <div class="CreateArea">
+        <input type="button" id="btnReturn" title="Return" class="ReturnList" style="float: left;" onclick="javascript: window.location.href = '/Admin/Index'" />
+        <div style="float: left; padding: 5px;">
+            <h2>User Profiles</h2>
+        </div>
+    </div>
+    <br />
+    <div class="pageSection" style="padding: 5px 5px 5px 5px">
+        <section class="featured">
+            <div class="content-wrapper">
+                <div id="message" style="display: none;"></div>
+                <div id="loading">
+                    <img src="@Url.Content("~/Content/images/LoadingContent.gif")" alt="Loading" />
+                </div>
+                <div id="result" style="display: none;">
+
+                    <a href="#" data-bind="click: $root.add">ADD NEW</a> &nbsp;&nbsp;&nbsp;
+            <a href="#" data-bind="click: $root.saveAll">SAVE ALL!</a>
+                    <div style="overflow-y: auto; max-height: 250px; width: 100%">
+                        <table class="user-list" style="width: 100%" border="0">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: left;">Delete</th>
+                                    <th style="text-align: right">ID</th>
+                                    <th style="text-align: left">User Name</th>
+                                    <th style="text-align: left">Display Name</th>
+                                    @*<th style="text-align: left">Email</th>*@
+                                    <th style="text-align: right">Group ID</th>
+                                    <th style="text-align: left">Subrole Name</th>
+                                    @*<th style="text-align: right">SalesOrg ID</th>
+                                            <th style="text-align: right">DistyOrg ID</th>*@
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: users">
+                                <tr data-bind="click: $root.showDetail, style: { 'background-color': $data == $root.user() ? '#cccccc' : '' }">
+                                    <td><a href="#" data-bind="click: $root.removeUser">Delete</a></td>
+                                    <td data-bind="text: id" style="text-align: right"></td>
+                                    <td data-bind="text: userName" style="text-align: left"></td>
+                                    <td data-bind="text: displayName" style="text-align: left"></td>
+                                    @*<td data-bind="text: email" style="text-align: left"></td>*@
+                                    <td data-bind="text: groupId" style="text-align: right"></td>
+                                    <td data-bind="text: subRoleName" style="text-align: left"></td>
+                                    @*<td data-bind="text: salesOrgId" style="text-align: right"></td>
+                                            <td data-bind="text: distyOrgId" style="text-align: right"></td>*@
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="fine-uploader-left" style="padding-top: 10px;" data-bind="fadeVisible: user()">
+            <table class="user-detail" data-bind="with: user">
+                <tr>
+                    <th colspan="6" class="user-detail-header">Basic Info</th>
+                </tr>
+                <tr>
+                    <th>User Name</th>
+                    <td>
+                        <input type="text" data-bind="value: userName" /></td>
+                    <th>Password</th>
+                    <td>
+                        <input type="text" data-bind="value: password" /></td>
+                    <th>First Name</th>
+                    <td>
+                        <input type="text" data-bind="value: firstName" /></td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td>
+                        <input type="text" data-bind="value: lastName" /></td>
+                    <th>Display Name</th>
+                    <td>
+                        <input type="text" data-bind="value: displayName" /></td>
+                    <th>Nick Name</th>
+                    <td>
+                        <input type="text" data-bind="value: nickName" /></td>
+                </tr>
+                <tr>
+                    <th colspan="6" class="user-detail-header">Contact Info</th>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>
+                        <input type="text" data-bind="value: email" /></td>
+                    <th>Title</th>
+                    <td>
+                        <input type="text" data-bind="value: title" /></td>
+                    <th>Phone</th>
+                    <td>
+                        <input type="text" data-bind="value: phone" /></td>
+                </tr>
+                <tr>
+                    <th>Cell Phone</th>
+                    <td>
+                        <input type="text" data-bind="value: cellPhone" /></td>
+                    <th>Address</th>
+                    <td>
+                        <input type="text" data-bind="value: address" /></td>
+                    <td colspan="2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <th colspan="6" class="user-detail-header">System Info
+                    </th>
+                </tr>
+@*                <tr>
+                    <th>Create Date</th>
+                    <td>
+                        <input type="text" data-bind="datepicker: createDate" class="datefield" />
+                    </td>
+                    <th>Create User</th>
+                    <td data-bind="text: createUserName"></td>
+                    <th>Update Date</th>
+                    <td>
+                        <input type="text" data-bind="datepicker: updateDate" class="datefield" /></td>
+                </tr>*@
+                <tr>
+@*                    <th>Update User</th>
+                    <td data-bind="text: updateUserName"></td>*@
+                    <th>Timezone</th>
+                    <td>
+                        <select data-bind="options: $root.timezones, value: timeZone"></select>
+                    </td>
+                    <td colspan="2">&nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="6" class="user-detail-header">Permission Info</th>
+                </tr>
+                <tr>
+                    <th>Role Group</th>
+                    <td>
+                        <select data-bind="options: $root.roleGroups, optionsText: 'GroupName', optionsValue: 'ID', value: groupId"></select>
+                    </td>
+                    <th>Role</th>
+                    <td>
+                        <select data-bind="options: roles, optionsText: 'RoleName', optionsValue: 'ID', value: subRoleName" />
+                    </td>
+                    <td colspan="2" style="padding: 0 0 0 0">
+                        <table class="user-detail-inner">
+                            <tr>
+                                <th>Active Flag
+                                </th>
+                                <td style="border-right: 1px solid #eee">
+                                    <input type="checkbox" data-bind="checked: activeFlag" />
+                                </td>
+                                    <th>Delete Flag
+                                    </th>
+                                    <td>
+                                        <input type="checkbox" data-bind="checked: deleteFlag" />
+                                    </td>
+                                </tr>
+                        </table>
+                    </td>
+                </tr>
+                @*    <tr>
+        <td>SalesOrg ID</td>
+        <td>
+            <input type="text" data-bind="value: salesOrgId" /></td>
+    </tr>
+    <tr>
+        <td>DistyOrg ID</td>
+        <td>
+            <input type="text" data-bind="value: distyOrgId" /></td>
+    </tr>*@
+            </table>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .user-list {
+        width: 100%;
+        overflow-y: auto;
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+        .user-list th, .user-list td {
+            padding: 3px 3px 3px 3px;
+        }
+
+    .user-detail {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        .user-detail tr {
+            height: 16px;
+        }
+
+            .user-detail tr td:first-child {
+                text-align: left;
+            }
+
+        .user-detail input[type=text], .user-detail select {
+            width: 250px !important;
+        }
+
+        .user-detail th.user-detail-header {
+            background-color: #eee;
+        }
+
+        .user-detail td, .user-detail th {
+            border: 1px solid #eee;
+            padding: 5px 5px 5px 5px;
+        }
+
+        .user-detail .user-detail-inner {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .user-detail .user-detail-inner td, .user-detail .user-detail-inner th {
+            border:none;
+        }
+
+
+</style>
+
+
+<script type="text/javascript">
+    ko.bindingHandlers.fadeVisible = {
+        init: function (element, valueAccessor) {
+            var shouldDisplay = valueAccessor();
+            $(element).toggle(shouldDisplay);
+        },
+        update: function (element, valueAccessor) {
+            var shouldDisplay = valueAccessor();
+            shouldDisplay ? $(element).fadeIn(500) : $(element).fadeOut(500);
+        }
+    };
+
+    ko.bindingHandlers.datepicker = {
+        init: function (element, valueAccessor, allBindingsAccessor) {
+            //initialize datepicker with some optional options
+            var options = allBindingsAccessor().datepickerOptions || {};
+            $(element).datepicker(options);
+
+            //handle the field changing
+            ko.utils.registerEventHandler(element, "change", function () {
+                var observable = valueAccessor();
+                observable($(element).datepicker("getDate"));
+            });
+
+            //handle disposal (if KO removes by the template binding)
+            ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+                $(element).datepicker("destroy");
+            });
+
+        },
+        update: function (element, valueAccessor) {
+            var value = ko.utils.unwrapObservable(valueAccessor());
+
+            //handle date data coming via json from Microsoft
+            if (String(value).indexOf('/Date(') == 0) {
+                value = new Date(parseInt(value.replace(/\/Date\((.*?)\)\//gi, "$1")));
+            }
+
+            current = $(element).datepicker("getDate");
+
+            if (value - current !== 0) {
+                $(element).datepicker("setDate", value);
+            }
+        }
+    };
+
+    function User(user) {
+        this.id = ko.observable(user.ID);
+        this.userName = ko.observable(user.UserName);
+        this.password = ko.observable(user.PassWord);
+        this.firstName = ko.observable(user.FirstName);
+        this.lastName = ko.observable(user.LastName);
+        this.displayName = ko.observable(user.DisplayName);
+        this.nickName = ko.observable(user.NickName);
+        this.email = ko.observable(user.Email);
+        this.title = ko.observable(user.Title);
+        this.phone = ko.observable(user.Phone);
+        this.cellPhone = ko.observable(user.CellPhone);
+        this.createDate = ko.observable(user.CreateDate);
+        this.createUser = ko.observable(user.CreateUser);
+        this.createUserName = ko.observable(user.CreateUserName);
+        this.updateDate = ko.observable(user.UpdateDate);
+        this.updateUser = ko.observable(user.UpdateUser);
+        this.updateUserName = ko.observable(user.UpdateUserName);
+        this.address = ko.observable(user.Address);
+        this.timeZone = ko.observable(user.TimeZone);
+        this.activeFlag = ko.observable(user.ActiveFlag);
+        this.deleteFlag = ko.observable(user.DeleteFlag);
+        this.groupId = ko.observable(user.GroupID);
+        this.subRoleName = ko.observable(user.SubRoleName);
+        this.salesOrgId = ko.observable(user.SalesOrgID);
+        this.distyOrgId = ko.observable(user.DistyOrgID);
+        this.isUpdated = ko.observable(false);
+
+        var self = this;
+
+        var _u = function(){
+            if(!self.isUpdated()){
+                self.isUpdated(true);
+                self.updateUser('@Web.Energizer.User.UserHelper.CurrentUser.ID');
+                self.updateUserName('@Web.Energizer.User.UserHelper.CurrentUser.UserName');
+            }
+        };
+        this.userName.subscribe(_u);
+        this.password.subscribe(_u);
+        this.firstName.subscribe(_u);
+        this.lastName.subscribe(_u);
+        this.displayName.subscribe(_u);
+        this.nickName.subscribe(_u);
+        this.email.subscribe(_u);
+        this.title.subscribe(_u);
+        this.phone.subscribe(_u);
+        this.cellPhone.subscribe(_u);
+        this.createDate.subscribe(_u);
+        this.updateDate.subscribe(_u);
+        this.address.subscribe(_u);
+        this.timeZone.subscribe(_u);
+        this.activeFlag.subscribe(_u);
+        this.deleteFlag.subscribe(_u);
+        this.groupId.subscribe(_u);
+        this.subRoleName.subscribe(_u);
+        this.salesOrgId.subscribe(_u);
+        this.distyOrgId.subscribe(_u);
+
+        this.roles = ko.computed(function(){
+            var temp = [];
+            $.ajax({
+                url:'/Admin/GetRoleList',
+                type: 'POST',
+                async: false,
+                data: { roleGroupId: self.groupId() },
+                success: function(data) {
+                    temp = data;
+                },
+                error: function(){
+                    alert('Cannot retrieve role list.');
+                }
+            });
+            return temp;
+        }, this);
+    }
+    function UsersModel() {
+        var self = this;
+        self.users = ko.observableArray([]);
+        self.user = ko.observable();
+        self.timezones = [];
+        
+        $.ajax({
+            url: "/Admin/GetUsers",
+            cache: false,
+            beforeSend: function () {
+                $('#loading').show();
+                $('#result').hide();
+            },
+            success: function (all) {
+                var mappedUsers = $.map(all, function (item) {
+                    return new User(item);
+                });
+                self.users(mappedUsers);
+                $('#loading').fadeOut(500, function () {
+                    $('#result').fadeIn(500);
+                });
+
+            }
+        });
+
+        $.ajax({
+            url: '/Admin/GetTimeZoneList',
+            type: 'POST',
+            cache: true,
+            success: function (data) {
+                self.timezones = data;
+            },
+            error: function () {
+                alert("Could not retrieve time zones.");
+            }
+        });
+
+        $.ajax({
+            url: '/Admin/GetRoleGroupList',
+            type: 'POST',
+            cache: true,
+            success: function(data){
+                self.roleGroups = data;
+            },
+            error: function() {
+                alert("Could not retrieve role groups.");
+            }
+        });
+
+        self.showDetail = function (item) {
+            self.user(item);
+        };
+
+        self.add = function () {
+            var time = new Date();
+            var user = new User({
+                ID: 0,
+                UserName: "",
+                PassWord: "",
+                FirstName: "",
+                LastName: "",
+                DisplayName: "",
+                NickName: "",
+                Email: "",
+                Title: "",
+                Phone: "",
+                CellPhone: "",
+                CreateDate: time.getFullYear() + "/" + (time.getMonth() + 1) + "/" + time.getDate() + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds(),
+                CreateUser: @Web.Energizer.User.UserHelper.CurrentUser.ID,
+                UpdateDate: time.getFullYear() + "/" + (time.getMonth() + 1) + "/" + time.getDate() + " " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds(),
+                UpdateUser: @Web.Energizer.User.UserHelper.CurrentUser.ID,
+                Address: "",
+                TimeZone: "",
+                ActiveFlag: true,
+                DeleteFlag: false,
+                GroupID: 0,
+                SubRoleName: "",
+                SalesOrgID: 0,
+                DistyOrgID: 0
+            });
+            self.users.push(user);
+            self.user(user);
+        };
+
+        self.removeUser = function (item) {
+            self.users.destroy(item);
+            self.user(null);
+        };
+
+        self.saveAll = function () {
+            $.ajax("/Admin/SaveUsers", {
+                data: ko.toJSON(self.users()),
+                cache: false,
+                type: "POST", contentType: "application/json",
+                beforeSend: function () {
+                    $('#message').fadeOut(300, function () {
+                        $(this).html("...").fadeIn(300);
+                    })
+                },
+                success: function (result) {
+                    $('#message').fadeOut(300, function () {
+                        $(this).html(result.message).fadeIn(300);
+                    });
+                    $.ajax({
+                        url: "/Admin/GetUsers",
+                        cache: false,
+                        success: function (all) {
+                            var mappedUsers = $.map(all, function (item) {
+                                return new User(item);
+                            });
+                            self.users(mappedUsers);
+                        }
+                    });
+                }
+            });
+        };
+    }
+    ko.applyBindings(new UsersModel());
+</script>

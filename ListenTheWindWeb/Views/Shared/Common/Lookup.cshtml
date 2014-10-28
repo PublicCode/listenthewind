@@ -1,0 +1,119 @@
+﻿@using T2VSoft.Web.Mvc;
+@using T2VSoft.Web.Mvc.Extensions;
+
+@model T2VSoft.Web.Mvc.Models.LookupInfo
+
+@{
+    var o = "l" + Model.Prefix + (Model.Action + Model.Controller + Model.Area).ToLower();
+}
+
+@Html.Hidden(Model.FullName, Model.ModelValue)
+
+<input disabled="disabled" id="@(o)_input" type="text" value="@Model.ModelValue"/>
+@*<a id="@(o)_button">+</a>*@
+<input type="button" id="@(o)_button" value="+" />
+<script type="text/javascript">    $("#@(o)_button").button();</script>
+
+<div id="@(o)_dialog">
+    <div id="@(o)_list">
+        <table id="@(o)_grid">
+        </table>
+        <div id="@(o)_pager">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function ()
+    {
+        var b_@(o)_input_change = false;
+        $("#@Model.FullName").change(function()
+        {
+            if(!b_@(o)_input_change)
+            {
+                $("#@(o)_input").val($("#@Model.FullName").val());
+            }
+            else
+            {
+                b_@(o)_input_change = false;
+            }
+        });
+
+        var vm = $("#@Model.FullName").val();
+        if(vm != null && vm != '')
+        {
+            $.get('@(Url.Action(Model.Action, Model.Controller, new{area = Model.Area}))', 
+            {
+                _search: true,
+                page: 1,
+                rows: 1,
+                searchField: '@Model.ValueMember',
+                searchOper: 'eq',
+                searchString: $("#@Model.FullName").val()
+            },
+            function(data)
+            {
+                var dm = data.rows[0].cell[@Array.IndexOf(Model.Columns, Model.DisplayMember)];
+                $("#@(o)_input").val(dm);
+            });
+        }
+
+        $("#@(o)_button").click(function ()
+        {
+            $("#@(o)_dialog").hide().dialog(
+            {
+                show: "fade",
+                hide: "fade",
+                resizable: false,
+                height: 460,
+                width: 800,
+                modal: true,
+                autoOpen: false
+            })
+            .dialog("option", "buttons", [
+            {
+                text: "OK",
+                click: function () 
+                { 
+                    $(this).dialog("close"); 
+                    var grid = $("#@(o)_list #@(o)_grid");
+                    var id = grid.jqGrid('getGridParam', 'selrow');
+                    var dm = grid.jqGrid('getCell', id, '@Model.DisplayMember');
+                    var vm = grid.jqGrid('getCell', id, '@Model.ValueMember');
+                    $("#@(o)_input").val(dm);
+                    $("#@Model.FullName").val(vm).trigger("change");
+                }
+            },
+            {
+                text: "Cancel",
+                click: function () { $(this).dialog("close"); }
+            }]);
+
+
+            $("#@(o)_list #@(o)_grid").jqGrid(
+            {
+                url: '@(Url.Action(Model.Action, Model.Controller, new{area = Model.Area}))',
+                datatype: "json",
+                colNames:
+                [
+                    @Html.Raw(string.Join(",", Model.Columns.Select(s => "'" + s + "'")))
+                ],
+                colModel:
+                [
+                    @Html.Raw(string.Join(",", Model.Columns.Select(s => string.Format("{{ name: '{0}', index: '{0}' }}", s))))
+                ],
+                rowNum: 10,
+                pager: '#@(o)_pager',
+                viewrecords: true,
+                sortorder: "desc",
+                width: 700,
+                height: 280,
+                shrinkToFit: true
+            });
+
+            $("#@(o)_list #@(o)_grid").jqGrid('navGrid', '#@(o)_pager', { edit: false, add: false, del: false });
+
+            $("#@(o)_dialog").dialog("open");
+        });
+    });
+</script>

@@ -1,0 +1,8 @@
+E:\SouceControl\GitSource\HDS\T2VSoft.EnterpriseLibrary\bin\Release\T2VSoft.EnterpriseLibrary.dll
+E:\SouceControl\GitSource\HDS\T2VSoft.EnterpriseLibrary\bin\Release\T2VSoft.EnterpriseLibrary.pdb
+E:\SouceControl\GitSource\HDS\T2VSoft.EnterpriseLibrary\obj\Release\T2VSoft.EnterpriseLibrary.csprojResolveAssemblyReference.cache
+E:\SouceControl\GitSource\HDS\T2VSoft.EnterpriseLibrary\obj\Release\T2VSoft.EnterpriseLibrary.csproj.ResolveComReference.cache
+E:\SouceControl\GitSource\HDS\T2VSoft.EnterpriseLibrary\obj\Release\T2VSoft.EnterpriseLibrary.Properties.Resources.resources
+E:\SouceControl\GitSource\HDS\T2VSoft.EnterpriseLibrary\obj\Release\T2VSoft.EnterpriseLibrary.csproj.GenerateResource.Cache
+E:\SouceControl\GitSource\HDS\T2VSoft.EnterpriseLibrary\obj\Release\T2VSoft.EnterpriseLibrary.dll
+E:\SouceControl\GitSource\HDS\T2VSoft.EnterpriseLibrary\obj\Release\T2VSoft.EnterpriseLibrary.pdb

@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Home/_HomeLayout.cshtml";
+
+    //var permission = "," + Web.Energizer.User.UserHelper.CurrentPermissions + ",";
+}
+@section head{
+    <script src="@VirtualPathUtility.ToAbsolute("~/Scripts/T2VBusiness/t2v-AdminSet.js")" type="text/javascript"></script>
+}
+<div id="divMainPageDiv">
+    <div class="CreateArea">
+        <div style="float: left; padding: 5px;">
+            <h2>
+                User Management</h2>
+        </div>
+    </div>
+    <br />
+    <div class="pageSection">
+        <br />
+        <br />
+        <div style="width:50%;text-align:right;">
+            <table style="width:100%; padding-left:100px;">
+                <tr>
+                    <td>
+                        <a href="@Url.Action("UserProfile")" title="User Profile" class="Profile" ></a>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

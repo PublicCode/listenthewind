@@ -1,0 +1,9 @@
+The process cannot access the file 'D:\GitProject\HDS\Web\DownLoadData\QuoteUploadFile\2013123010363401_R00157.1.pdf' because it is being used by another process.
+
+2013/12/30 10:36:48   
+The process cannot access the file 'D:\GitProject\HDS\Web\DownLoadData\QuoteUploadFile\2013123005575101_R00176.1.pdf' because it is being used by another process.
+
+2013/12/30 17:57:59   
+The process cannot access the file 'E:\SouceControl\GitSource\HDS\Web\DownLoadData\QuoteUploadFile\2014021910472101_R00576.1.pdf' because it is being used by another process.
+
+2/19/2014 10:52:28 AM   

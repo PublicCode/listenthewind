@@ -1,0 +1,6 @@
+E:\SouceControl\GitSource\HDS\T2VSoft.MVC.Core\bin\Release\T2VSoft.MVC.Core.dll
+E:\SouceControl\GitSource\HDS\T2VSoft.MVC.Core\bin\Release\T2VSoft.MVC.Core.pdb
+E:\SouceControl\GitSource\HDS\T2VSoft.MVC.Core\bin\Release\Newtonsoft.Json.dll
+E:\SouceControl\GitSource\HDS\T2VSoft.MVC.Core\obj\Release\T2VSoft.MVC.Core.csprojResolveAssemblyReference.cache
+E:\SouceControl\GitSource\HDS\T2VSoft.MVC.Core\obj\Release\T2VSoft.MVC.Core.dll
+E:\SouceControl\GitSource\HDS\T2VSoft.MVC.Core\obj\Release\T2VSoft.MVC.Core.pdb
