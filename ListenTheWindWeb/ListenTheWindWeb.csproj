@@ -710,6 +710,7 @@
     <Content Include="Scripts\Vendor\pasteImg.js" />
     <Content Include="Scripts\Vendor\sammy.js" />
     <Content Include="Scripts\Vendor\ScreenShoot\html2canvas.js" />
+    <Content Include="Scripts\Vendor\scrollPic.js" />
     <Content Include="Scripts\Vendor\Tabs\jquery.idTabs.min.js" />
     <Content Include="Scripts\Vendor\tips\jquery.yitip.css" />
     <Content Include="Scripts\Vendor\tips\jquery.yitip.js" />

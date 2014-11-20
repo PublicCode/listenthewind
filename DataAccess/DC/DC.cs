@@ -28,6 +28,7 @@ namespace DataAccess.DC
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
         }
+        public DbSet<accountnumber> accountnumbers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserOperationLog> UserOperationLogs { get; set; }
         public DbSet<UserOperationDetail> OperationDetail { get; set; }

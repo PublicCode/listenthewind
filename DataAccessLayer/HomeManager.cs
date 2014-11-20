@@ -52,5 +52,13 @@ namespace DataAccessLayer
                 .Where(c => c.OID == objectValue)
                 .Where(m => m.OperationInfo.Contains("Add") || m.OperationInfo.Contains("Clone") || m.OperationInfo.Contains("Re quote config") || m.OperationDetails.Any(d => d.ChangeFrom != "")).OrderByDescending(m => m.OperationTime).ToList();
         }
+
+        public string TestMysqlDB()
+         {
+             DC dc = DCLoader.GetMyDC();
+             int num = dc.accountnumbers.Count();
+             accountnumber a = dc.accountnumbers.FirstOrDefault();
+             return num.ToString();
+         }
     }
 }
