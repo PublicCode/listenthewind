@@ -65,12 +65,13 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.8.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+    <Reference Include="MySql.Data, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MySql.Data.6.8.4\lib\net40\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="mysql.data.entity.EF6">
-      <HintPath>..\packages\MySql.Data.Entities.6.8.3.0\lib\net40\mysql.data.entity.EF6.dll</HintPath>
+    <Reference Include="mysql.data.entity.EF6, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MySQL.Data.Entities.6.8.3.0\lib\net40\mysql.data.entity.EF6.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\DLL\Newtonsoft.Json.dll</HintPath>

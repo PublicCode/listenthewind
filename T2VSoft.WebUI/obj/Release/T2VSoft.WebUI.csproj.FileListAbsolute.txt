@@ -1,5 +1,0 @@
-E:\SouceControl\GitSource\HDS\T2VSoft.WebUI\bin\Release\T2VSoft.WebUI.dll
-E:\SouceControl\GitSource\HDS\T2VSoft.WebUI\bin\Release\T2VSoft.WebUI.pdb
-E:\SouceControl\GitSource\HDS\T2VSoft.WebUI\obj\Release\T2VSoft.WebUI.csprojResolveAssemblyReference.cache
-E:\SouceControl\GitSource\HDS\T2VSoft.WebUI\obj\Release\T2VSoft.WebUI.dll
-E:\SouceControl\GitSource\HDS\T2VSoft.WebUI\obj\Release\T2VSoft.WebUI.pdb

@@ -229,9 +229,6 @@
     <Compile Include="Energizer\SiteDictionaryMangager.cs" />
     <Compile Include="Energizer\Unifier.cs" />
     <Compile Include="Energizer\WebBrowserHelper.cs" />
-    <Compile Include="Handler\UploadFile.ashx.cs">
-      <DependentUpon>UploadFile.ashx</DependentUpon>
-    </Compile>
     <Compile Include="Energizer\User\UserHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -826,7 +823,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="DownLoadData\ReleaseNote\OCZ_Release_Note_3_25_2013.pdf" />
-    <Content Include="Handler\UploadFile.ashx" />
     <Content Include="Views\Shared\Export.cshtml" />
     <Content Include="Views\Shared\Common\Lookup.cshtml" />
     <Content Include="Scripts\Vendor\JqueryUploadify\UploadFile.ashx" />

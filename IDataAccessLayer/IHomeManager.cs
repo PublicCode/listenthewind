@@ -10,5 +10,6 @@ namespace IDataAccessLayer
     {
         string GetNewNumber(string TypeName,string strFirstChar);
         List<UserOperationLog> GetOperationLogList(string[] objectType, string objectValue);
+        string TestMysqlDB();
     }
 }
