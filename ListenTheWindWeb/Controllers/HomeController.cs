@@ -35,7 +35,15 @@ namespace AdestoSolution.Controllers
         }
         public ActionResult ReleaseNote()
         {
-            return View("~/Views/Home/ReleaseNote.cshtml");
+            return View("~/Views/Home/CampList.cshtml");
+        }
+        public ActionResult CampDetail()
+        {
+            return View("~/Views/Home/CampDetail.cshtml");
+        }
+        public ActionResult CampBook()
+        {
+            return View("~/Views/Home/CampBook.cshtml");
         }
         public ActionResult ComingSoon()
         {

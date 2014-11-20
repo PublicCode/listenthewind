@@ -4,17 +4,17 @@
     var controller = ViewData["controller"] ?? Request.RequestContext.RouteData.Values["controller"].ToString();
     var action = ViewData["action"] ?? Request.RequestContext.RouteData.Values["action"].ToString();
     var full = controller + "_" + action;
-    Layout = null;
-    var user = UserHelper.CurrentUser;
-    if (user == null)
-    {
-        Response.Redirect("~/Account/LogOn");
-    }
-    if (Session["ReleaseNoteFlag"] == null)
-    {
-        Response.Redirect("~/Account/LogOn");
-    }
-    string releasePopupFlag = Session["ReleaseNoteFlag"] == null ? "False" : Session["ReleaseNoteFlag"].ToString();
+    //Layout = null;
+    //var user = UserHelper.CurrentUser;
+    //if (user == null)
+    //{
+    //    Response.Redirect("~/Account/LogOn");
+    //}
+    //if (Session["ReleaseNoteFlag"] == null)
+    //{
+    //    Response.Redirect("~/Account/LogOn");
+    //}
+    //string releasePopupFlag = Session["ReleaseNoteFlag"] == null ? "False" : Session["ReleaseNoteFlag"].ToString();
 }
 <!DOCTYPE html>
 <html>
@@ -24,6 +24,7 @@
     <link href="@Url.Content("~/Scripts/Vendor/bootstrap/css/bootstrap.css")" rel="stylesheet" type="text/css"/>
     <link href="@Url.Content("~/Content/Default.css")"rel="stylesheet" type="text/css"  />
     <link href="@Url.Content("~/Content/DWQ.css")"rel="stylesheet" type="text/css"  />
+    <link href="@Url.Content("~/Content/lanrenzhijia.css")"rel="stylesheet" type="text/css"  />
     <link href="@Url.Content("~/Content/Vendor/jquery-ui/jquery.ui.all.css")" rel="stylesheet" type="text/css"/>
     <link href="@Url.Content("~/Content/Vendor/jqgrid/ui.jqgrid.css")" rel="stylesheet" type="text/css"/>
     <link href="@Url.Content("~/Scripts/Vendor/mupSelect/jquery.multiselect.css")" rel="stylesheet" type="text/css" />
@@ -53,7 +54,9 @@
     <script type="text/javascript" src="@Url.Content("~/Scripts/Vendor/JqueryUploadify/jquery.uploadify.v2.1.4.min.js")"></script>
     <script src="@Url.Content("~/Scripts/Vendor/JqueryRating/jRating.jquery.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Vendor/sammy.js") " type="text/javascript"></script>
-
+    <script src="@Url.Content("~/Scripts/Vendor/jquery.flexslider.js") " type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Vendor/scrollPic.js") " type="text/javascript"></script>
+    
      <script src="@Url.Content("~/Scripts/Vendor/jquery.cookie.js") " type="text/javascript"></script>
 
     <script src="@Url.Content("~/Scripts/Vendor/pasteImg.js")" type="text/javascript"></script>
@@ -63,24 +66,36 @@
     <script src="@Url.Content("~/Scripts/Vendor/angular/angular-sanitize.min.js") " type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/T2VBusiness/t2v_angular_base.js")" type="text/javascript"></script>
 
+@*    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>听风营</title>
+<link href="css/lanrenzhijia.css" rel="stylesheet" type="text/css" />
+<link href="css/slider.css" rel="stylesheet" type="text/css" />
+<link href="css/theme.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/public.js"/></script>
+<script type="text/javascript" src="js/city.js"/></script>
+<script type="text/javascript" src="js/core.js"></script>
+<script type="text/javascript" src="js/widget.js"></script>
+<script type="text/javascript" src="js/mouse.js"></script>
+<script type="text/javascript" src="js/slider.js"></script>*@
+
 
     <script type="text/javascript">
-        function ShowExportInfo(url, postData, mainId) {
-            if (postData.fullSearch === undefined) postData.fullSearch = "";
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: { mainId: mainId, fullSearch: postData.fullSearch, colInfos: postData.exportFileds },
-                async: true,
-                success: function (response) {
-                    $("#divExport").css("left", screen.width / 2 + 100);
-                    $("#divExport").html(response);
-                    $("#divExport").modal({ show: 'true', backdrop: 'static' });
-                }
-            });
-        }
+        //function ShowExportInfo(url, postData, mainId) {
+        //    if (postData.fullSearch === undefined) postData.fullSearch = "";
+        //    $.ajax({
+        //        url: url,
+        //        type: 'POST',
+        //        data: { mainId: mainId, fullSearch: postData.fullSearch, colInfos: postData.exportFileds },
+        //        async: true,
+        //        success: function (response) {
+        //            $("#divExport").css("left", screen.width / 2 + 100);
+        //            $("#divExport").html(response);
+        //            $("#divExport").modal({ show: 'true', backdrop: 'static' });
+        //        }
+        //    });
+        //}
 
-        $(function () {
+        @*$(function () {
             $(document).ajaxError(
                 function (e, xhr, settings) {
                     if (xhr.status == 401) {
@@ -92,200 +107,220 @@
             setInterval(function () {
                 pingSession();
             }, 60000); // keep session alive by pinging every 60 sec
-        });
-        function pingSession() {
-            $.ajax({
-                url: "/Handler/DWQManagerService.asmx/KeepSessionAlive",
-                type: 'POST',
-                data: {  },
-                async: true,
-                success: function (response) {
-                    //alert("OK")
-                }
-            });
-        };
-        function printBody() {
-            //add loading to zone;
-            if ($("#MyPasteZone").find("#spPlaceHolder").length > 0) {
-                $("#MyPasteZone").find("#spPlaceHolder").remove();
-            }
-            $("#MyPasteZone").append("<img id='imgLoading' src='../../Content/images/load.gif' />");
+        });*@
+        //function pingSession() {
+        //    $.ajax({
+        //        url: "/Handler/DWQManagerService.asmx/KeepSessionAlive",
+        //        type: 'POST',
+        //        data: {  },
+        //        async: true,
+        //        success: function (response) {
+        //            //alert("OK")
+        //        }
+        //    });
+        //};
+        //function printBody() {
+        //    //add loading to zone;
+        //    if ($("#MyPasteZone").find("#spPlaceHolder").length > 0) {
+        //        $("#MyPasteZone").find("#spPlaceHolder").remove();
+        //    }
+        //    $("#MyPasteZone").append("<img id='imgLoading' src='../../Content/images/load.gif' />");
 
-            html2canvas(document.body,
-            {
-                onrendered: function (canvas) {
-                    var dataURL = canvas.toDataURL();
+        //    html2canvas(document.body,
+        //    {
+        //        onrendered: function (canvas) {
+        //            var dataURL = canvas.toDataURL();
 
-                    $.ajax({
-                        url: "/Handler/UploadFile.ashx",
-                        type: "POST",
-                        data: { Filedata: dataURL },
-                        beforeSend: function () {
-                        },
-                        success: function (url) {
-                            if ($("#MyPasteZone").find("#spPlaceHolder").length > 0) {
-                                $("#MyPasteZone").find("#spPlaceHolder").remove();
-                            }
-                            $("#MyPasteZone").find("#imgLoading").remove();
-                            $("#MyPasteZone").append("<img alt='' src='" + url + "' id='imgD' onclick='ShowOriImg(this.src);' title='Click to view original image.'/>");
-                        },
-                        error: function (status) {
-                            alert("Error:" + status);
-                        }
-                    });
+        //            $.ajax({
+        //                url: "/Handler/UploadFile.ashx",
+        //                type: "POST",
+        //                data: { Filedata: dataURL },
+        //                beforeSend: function () {
+        //                },
+        //                success: function (url) {
+        //                    if ($("#MyPasteZone").find("#spPlaceHolder").length > 0) {
+        //                        $("#MyPasteZone").find("#spPlaceHolder").remove();
+        //                    }
+        //                    $("#MyPasteZone").find("#imgLoading").remove();
+        //                    $("#MyPasteZone").append("<img alt='' src='" + url + "' id='imgD' onclick='ShowOriImg(this.src);' title='Click to view original image.'/>");
+        //                },
+        //                error: function (status) {
+        //                    alert("Error:" + status);
+        //                }
+        //            });
 
 
-                }
-            });
-        }
+        //        }
+        //    });
+        //}
 
-        function ShowOriImg(tSrc) {
-            $("#divBigImg").css("left", "50%").css("height", "400px").css("width", "500px").css("margin-top", "-200px").css("margin-left", "-250px");
-            //alert($("#divBigImg").length+ ":"+tSrc);
-            $("#divBigImgContainer").empty();
-            $("#divBigImgContainer").html("<div style='width:100%;height:100%;text-align:center;'><img src=/Content/images/LoadingContent.gif /></div>");
-            $('#divBigImg').modal("show");
-            var afterSub = tSrc.substring(0, tSrc.length - 5) + ".png";
-            var img = new Image();
-            img.src = afterSub;
-            img.onload = function () {
-                $("#divBigImgContainer").empty();
-                $("#divBigImgContainer").css("padding", "0px 0px 10px 43px");
-                $("#divBigImgContainer").append(img);
+        //function ShowOriImg(tSrc) {
+        //    $("#divBigImg").css("left", "50%").css("height", "400px").css("width", "500px").css("margin-top", "-200px").css("margin-left", "-250px");
+        //    //alert($("#divBigImg").length+ ":"+tSrc);
+        //    $("#divBigImgContainer").empty();
+        //    $("#divBigImgContainer").html("<div style='width:100%;height:100%;text-align:center;'><img src=/Content/images/LoadingContent.gif /></div>");
+        //    $('#divBigImg').modal("show");
+        //    var afterSub = tSrc.substring(0, tSrc.length - 5) + ".png";
+        //    var img = new Image();
+        //    img.src = afterSub;
+        //    img.onload = function () {
+        //        $("#divBigImgContainer").empty();
+        //        $("#divBigImgContainer").css("padding", "0px 0px 10px 43px");
+        //        $("#divBigImgContainer").append(img);
 
-                //alert(window.screen.height);
-                $("#divBigImg").css("left", "50%").css("height", eval(window.screen.height - 130)).css("width", img.width + 100).css("margin-top", -((img.height / 2 - 20))).css("margin-left", -((img.width / 2) + 50));
-                $('#divBigImg').modal("show");
-            }
-        }
+        //        //alert(window.screen.height);
+        //        $("#divBigImg").css("left", "50%").css("height", eval(window.screen.height - 130)).css("width", img.width + 100).css("margin-top", -((img.height / 2 - 20))).css("margin-left", -((img.width / 2) + 50));
+        //        $('#divBigImg').modal("show");
+        //    }
+        //}
     </script>
 </head>
-@RenderSection("head", false)
 <body>
-    @{
-        Session["ReleaseNoteFlag"] = true;
-    }
-
-    @Html.Partial("~/Views/Shared/InnerTopBar.cshtml")
-
-    <table id="main" cellpadding="0" cellspacing="0" width="100%" class="MainPage">
-        <tr>
-            <td id="controlLeftDiv" style="width: 200px;" class="left_nav">
-                <div id="divLeftMenu">
-                    @Html.Partial("~/Views/Shared/LeftMenu.cshtml")
-                </div>
-            </td>
-            <td id="controlBarDiv" style="width: 6px; border-right: 1px solid #b8b8b8;">
-                <div id="mainBar" class="mainBarLeft" onclick="t2v_main.ControlDiv();">
-                    &nbsp;
-                </div>
-            </td>
-            <td id="controlMainDiv">
-                <div class="divLog">@RenderBody()</div>
-            </td>
-            <td id="controlRightDiv" style="width: 260px; display: none" class="left_nav">
-                <div id="divRightMenu">
-                </div>
-            </td>
-        </tr>
-    </table>
-    <div id="divQuoteDetail" class="modal hide">
-    </div>
-
-    <div class="modal hide" id="divAbouteSystem" style="width: 350px;">
-        <div class="modal-header">
-            <div style="text-align: left">
-                <button type="button" style="float: right" class="DeleteLine" data-dismiss="modal">
-                    &nbsp;
-                </button>
-                <h2>&nbsp;</h2>
+		
+<div class="wrap">
+	<div class="header clear">
+    	<a href="#" class="logo"><img src="../../Content/images/logo.jpg"/></a>
+        <div class="login-con">
+        	<div class="w-login"  style="display:none"><!--未登录-->
+            	<a href="#">注册</a><a href="#">登录</a><a href="#">帮助</a>
+            </div>
+            <div class="y-login"><!--登录-->
+            	<a href="#">兜兜</a><a href="#" class="sign-out">退出</a>
             </div>
         </div>
-        <div class="modal-body">
-            <table style="width: 100%">
-                <tr>
-                    <td style="text-align: center">
-                        <img style="text-align: center" src="../../Content/images/chirp outline.png" alt="" /><br />
-                        <br />
-                        <h2 style="text-align: center">CHIRP</h2>
-                        <br />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                            Version:1.03.002
-                        </p>
-                        <br />
-                        © 2008-2013 T2VSoft, Inc. All Rights Reserved.
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="modal-footer">
-            &nbsp;
-        </div>
-    </div>
-    <div id="divReleaseNotePopUp" style="width: 260px; display: none">
-        <div class="modal-header" style="background-color: #9E9500;">
-            <div style="text-align: left">
-                <button type="button" style="float: right" class="DeleteLine" data-dismiss="modal">
-                    &nbsp;
-                </button>
-                <h2>Release Note</h2>
+        <div class="language">
+        	<div class="select-con sel-lg">
+            	<span>EN</span>
+            	<select>
+                	<option>EN</option>
+                    <option>CN</option>
+                </select>
             </div>
         </div>
-        <div id="divReleaseContent">
-            <table>
-                <tr>
-                    <td style="padding: 20px">
-                        <img src="../../Content/LoginImg/User.png" alt="avatar" />
-                    </td>
-                    <td>
-                        <span style="font-weight: bold">Dear User:</span><br />
-                        <br />
-                        <span>We have new features and enhancements released since you last logged in. </span>
-                        <br />
-                        <span>click </span><a href="/Home/GetCurrentReleaseNote?fileName=OCZ_Release_Note_10_14_2013.pdf">here</a><span> for the release notes, or you can download them later.</span>
-                    </td>
-                </tr>
-            </table>
-        </div>
     </div>
-    <div id="dialog-confirm" title="">
-        <p>
-            <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
-            <span id="spDialogContent"></span>
-        </p>
-    </div>
-    <div id="divBigImg" class="modal hide" draggable="true" style="overflow: scroll; overflow-x: scroll; overflow-y: scroll;">
-        <div class="modal-header">
-            <div style="text-align: left">
-                <button type="button" style="float: right" class="DeleteLine" onclick="$('#divBigImgContainer').empty();"
-                    data-dismiss="modal">
-                    &nbsp;
-                </button>
-                <h3>Show image</h3>
+    <div class="banner"></div>
+    @RenderBody()
+    
+</div>
+<!--底部开始-->
+<div class="footer">
+    <div class="footer-top">
+    	<div class="w980">
+        	<div class="ft-left">
+            	<h2><img src="../../Content/images/tit1.png"/></h2>
+                <div class="search-box clear">
+                	<div class="search-bg">
+                    	<input type="text" value=""/>
+                    </div>
+                    <a href="#" class="btn-search">搜索</a>
+                </div>
+            </div>
+            <div class="ft-right">
+            	<dl>
+                	<dt>
+                    	公司信息
+                    </dt>
+                    <dd>
+                    	<a href="#">关于我们</a>
+                    </dd>
+                    <dd>
+                    	<a href="#">联系我们</a>
+                    </dd>
+                    <dd>
+                    	<a href="#">博客</a>
+                    </dd>
+                    <dd>
+                    	<a href="#">新闻</a>
+                    </dd>
+                    <dd>
+                    	<a href="#">微博</a>
+                    </dd>
+                    <dd>
+                    	<a href="#">条款隐私</a>
+                    </dd>
+                </dl>
+                <dl>
+                	<dt>
+                    	重点发现
+                    </dt>
+                    <dd>
+                    	<a href="#">精选听风营</a>
+                    </dd>
+                    <dd>
+                    	<a href="#">听风故事</a>
+                    </dd>
+                    <dd>
+                    	<a href="#">移动版</a>
+                    </dd>
+                    <dd>
+                    	<a href="#">网站地图</a>
+                    </dd>
+                    <dd>
+                    	<a href="#">建设你的听风营</a>
+                    </dd>
+                </dl>
+                <dl>
+                	<dt>
+                    	听风问答
+                    </dt>
+                    <dd>
+                    	<a href="#">如何成为听风人</a>
+                    </dd>
+                    <dd>
+                    	<a href="#">如何成为听风营长</a>
+                    </dd>
+                    <dd>
+                    	<a href="#">听风能带给你什么</a>
+                    </dd>
+                    <dd>
+                    	<a href="#">听风安全</a>
+                    </dd>
+                    <dd>
+                    	<a href="#">听风流程说明</a>
+                    </dd>
+                    <dd>
+                    	<a href="#">听风档标准</a>
+                    </dd>
+                    
+                </dl>
             </div>
         </div>
-        <div id="divBigImgContainer" style="overflow: visible;">
+    </div>
+    <div class="footer-bottom">
+    	<div class="w980 clear">
+        	<div class="ft-b-left">
+            	Copyright by 
+            </div>
+            <div class="ft-b-right">
+            	<a href="#"><img src="../../Content/images/share-icon1.png"/></a><a href="#"><img src="../../Content/images/share-icon2.png"/></a><a href="#"><img src="../../Content/images/share-icon3.png"/></a>
+            </div>
         </div>
     </div>
-    <div id="divToDoList">
-    </div>
-    <div class="modal hide" id="divExport" style="width: 400px;">
-    </div>
-    <div id="divFooter" class="footer">
-         <table style="text-align:center; width:98%">
-            <tr>
-                <td style="float:left">
-                    © 2008-2014 T2VSoft, Inc. All Rights Reserved.
-                </td>
-                <td style="float:right">
-                    <img src="../../Content/images/HIT_Chirp_LOGO_ForInsidePage.png" />
-                </td>
-            </tr>
-        </table>
-    </div>
+</div>   
+<!--底部结束-->  	
+<script>
+    $(function () {
+        $("#selProvince,#selCity,#selProvince1,#selCity1").change(function () {
+
+            var val = $(this).val();
+            $(this).siblings("span").text(val);
+        })
+
+        $("#slider-range").slider({
+            orientation: "horizontal",
+            step: 50,
+            max: 10000,
+            min: 0,
+            range: true,
+            values: [315, 4800],
+            slide: function (event, ui) {
+                $("#amount").val("￥" + ui.values[0] + " - ￥" + ui.values[1]);
+            }
+        });
+        $("#amount").val("￥" + $("#slider-range").slider("values", 0) +
+			" - ￥" + $("#slider-range").slider("values", 1));
+
+    })
+</script>
 </body>
 </html>
