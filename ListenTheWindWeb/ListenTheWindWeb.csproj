@@ -609,6 +609,11 @@
     <Content Include="Scripts\Vendor\angular\angular-sanitize.min.js" />
     <Content Include="Scripts\Vendor\angular\angular.js" />
     <Content Include="Scripts\Vendor\angular\angular.min.js" />
+    <Content Include="Scripts\Vendor\Datepicker\arrows.png" />
+    <Content Include="Scripts\Vendor\Datepicker\close.png" />
+    <Content Include="Scripts\Vendor\Datepicker\kalendae.css" />
+    <Content Include="Scripts\Vendor\Datepicker\kalendae.js" />
+    <Content Include="Scripts\Vendor\Datepicker\kalendae.standalone.js" />
     <Content Include="Scripts\Vendor\jquery.cookie.js" />
     <Content Include="Scripts\Vendor\jquery.flexslider-min.js" />
     <Content Include="Scripts\Vendor\jquery.flexslider.js" />
