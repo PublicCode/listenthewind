@@ -25,10 +25,5 @@ namespace BizLogic
          {
              return homeBase.GetOperationLogList(objectTypes, objectValue);
          }
-
-         public string TestMysqlDB()
-         {
-             return homeBase.TestMysqlDB();
-         }
     }
 }

@@ -28,7 +28,20 @@ namespace DataAccess.DC
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
         }
-        public DbSet<accountnumber> accountnumbers { get; set; }
+        public DbSet<camp> camp { get; set; }
+        public DbSet<campreservedate> campreservedates { get; set; }
+        public DbSet<campcomment> campcomments { get; set; }
+        public DbSet<camphost> camphosts { get; set; }
+        public DbSet<camphostlanguage> camphostlanguages { get; set; }
+        public DbSet<campcollect> campcollects { get; set; }
+        public DbSet<campitem> campitems { get; set; }
+        public DbSet<camppile> camppiles { get; set; }
+        public DbSet<campphoto> campphotos { get; set; }
+        public DbSet<campprice> campprices { get; set; }
+        public DbSet<campreserve> campreserves { get; set; }
+        public DbSet<campreserveatt> campreserveatts { get; set; }
+        public DbSet<camptype> camptypes { get; set; }
+
         public DbSet<User> Users { get; set; }
         public DbSet<UserOperationLog> UserOperationLogs { get; set; }
         public DbSet<UserOperationDetail> OperationDetail { get; set; }
@@ -38,6 +51,7 @@ namespace DataAccess.DC
         public DbSet<MailFail> MailFails { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Role> Roles { get; set; }
+
         public override int SaveChanges()
         {
             UpdateDates();

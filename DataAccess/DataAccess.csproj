@@ -94,9 +94,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DC\campcollect.cs" />
+    <Compile Include="DC\campcomment.cs" />
+    <Compile Include="DC\camphost.cs" />
+    <Compile Include="DC\camphostlanguage.cs" />
+    <Compile Include="DC\campitem.cs" />
+    <Compile Include="DC\campphoto.cs" />
+    <Compile Include="DC\camppile.cs" />
     <Compile Include="Database\Database.cs" />
     <Compile Include="Database\DatabaseFactory.cs" />
-    <Compile Include="DC\accountnumber.cs" />
+    <Compile Include="DC\camp.cs" />
+    <Compile Include="DC\campprice.cs" />
+    <Compile Include="DC\campreserve.cs" />
+    <Compile Include="DC\campreserveatt.cs" />
+    <Compile Include="DC\campreservedate.cs" />
+    <Compile Include="DC\camptype.cs" />
     <Compile Include="DC\Country.cs" />
     <Compile Include="DC\DC.cs" />
     <Compile Include="DC\MailFail.cs" />

@@ -20,9 +20,6 @@ namespace AdestoSolution.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            HomeBizLogic h = new HomeBizLogic();
-            string num = h.TestMysqlDB();
-            ViewBag.Message = "Welcome to HDS!";
             return View();
         }
         /// <summary>
