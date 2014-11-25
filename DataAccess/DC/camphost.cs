@@ -27,6 +27,9 @@ namespace DataAccess.DC
 
         public string CampHostIntro { get; set; }
 
+        [ForeignKey("CampHostID")]
+        public virtual ICollection<camphostlanguage> Listcamphostlanguage { get; set; }
+
         long ILoggedEntity.Id
         {
             get { return CampHostID; }

@@ -39,6 +39,21 @@ namespace DataAccess.DC
 
         public DateTime? ModifyTime { get; set; }
 
+        [ForeignKey("CampID")]
+        public virtual ICollection<campcomment> Listcampcomment { get; set; }
+        [ForeignKey("CampID")]
+        public virtual ICollection<camphost> Listcamphost { get; set; }
+        [ForeignKey("CampID")]
+        public virtual ICollection<campitem> Listcampitem { get; set; }
+        [ForeignKey("CampID")]
+        public virtual ICollection<campphoto> Listcampphoto { get; set; }
+        [ForeignKey("CampID")]
+        public virtual ICollection<camppile> Listcamppile { get; set; }
+        [ForeignKey("CampID")]
+        public virtual ICollection<campprice> Listcampprice { get; set; }
+        [ForeignKey("CampID")]
+        public virtual ICollection<camptype> Listcamptype { get; set; }
+
         long ILoggedEntity.Id
         {
             get { return CampID; }

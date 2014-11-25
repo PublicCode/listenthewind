@@ -12,11 +12,19 @@ using System.Configuration;
 using System.IO;
 using DataAccessLayer;
 using IDataAccessLayer;
+using Newtonsoft.Json;
 
 namespace AdestoSolution.Controllers
 {
     public class HomeController : T2VController
     {
+        HomeBizLogic bizLogic;
+
+        public HomeController()
+        {
+            bizLogic = new HomeBizLogic();
+        }
+
         [Authorize]
         public ActionResult Index()
         {
@@ -32,8 +40,10 @@ namespace AdestoSolution.Controllers
         {
             return View();
         }
-        public ActionResult ReleaseNote()
+        public ActionResult ReleaseNote(int CampID)
         {
+            //bizLogic.GetCamp(CampID);
+            //ViewBag.CampInfo = JsonConvert.SerializeObject(order);
             return View("~/Views/Home/CampList.cshtml");
         }
         public ActionResult CampDetail()
