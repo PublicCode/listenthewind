@@ -48,7 +48,38 @@
                     </div>
                 </div>
                 <h2 class="h-tit2">可选入住信息</h2>
-                <div class="auto-kal" data-kal="months: 3, direction: 'future'"></div>
+                 <div class="book-con">
+                	<h3></h3>
+                    <script type="text/javascript" charset="utf-8">
+                        //direction
+                        new Kalendae(document.body, {
+                            months: 3,
+                            direction: 'future'
+                        });
+                        //direction
+                        new Kalendae(document.body, {
+                            months: 3,
+                            direction: 'past'
+                        });
+                        //blackout
+                        new Kalendae(document.body, {
+                            blackout: function (date) {
+                                return Kalendae.moment(date).date() % 2; //blackout every other day
+                            }
+                        });
+                        //blackout AND direction
+                        new Kalendae(document.body, {
+                            direction: 'future',
+                            blackout: function (date) {
+                                return [1, 0, 0, 0, 0, 0, 1][Kalendae.moment(date).day()]; //blackout weekends
+                            }
+                        });
+	</script>
+
+                    <div class="xbx">
+                    	<img src="../../Content/images/xbx.jpg"/>
+                    </div>
+                </div>
                 <h2 class="h-tit3">便利设施选择</h2>
                  <div class="book-con">
                 	<h3></h3>
@@ -126,6 +157,9 @@
              </div>
          </div>
     </div>
-</div>
+<script>
+    document.ready(function () {
 
+    });
+</script>
 
