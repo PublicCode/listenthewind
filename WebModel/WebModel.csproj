@@ -62,6 +62,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\AccountModel.cs" />
+    <Compile Include="Camp\campcommentModel.cs" />
+    <Compile Include="Camp\camphostlanguageModel.cs" />
+    <Compile Include="Camp\camphostModel.cs" />
+    <Compile Include="Camp\campitemModel.cs" />
+    <Compile Include="Camp\campModel.cs" />
+    <Compile Include="Camp\campphotoModel.cs" />
+    <Compile Include="Camp\camppileModel.cs" />
+    <Compile Include="Camp\camppriceModel.cs" />
+    <Compile Include="Camp\camptypeModel.cs" />
     <Compile Include="Col\colModel.cs" />
     <Compile Include="CustomerType\CustomerTypeModel.cs" />
     <Compile Include="MailFail\MailFailModel.cs" />
