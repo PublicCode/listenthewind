@@ -5,6 +5,7 @@ using System.Text;
 using DataAccessLayer;
 using IDataAccessLayer;
 using DataAccess.DC;
+using WebModel.Camp;
 
 namespace BizLogic
 {
@@ -24,6 +25,11 @@ namespace BizLogic
          public List<UserOperationLog> GetUserOperationList(string[] objectTypes, string objectValue)
          {
              return homeBase.GetOperationLogList(objectTypes, objectValue);
+         }
+
+         public campModel GetCamp(int CampID)
+         {
+             return homeBase.GetCamp(CampID);
          }
     }
 }

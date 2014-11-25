@@ -13,6 +13,7 @@ using System.IO;
 using DataAccessLayer;
 using IDataAccessLayer;
 using Newtonsoft.Json;
+using WebModel.Camp;
 
 namespace AdestoSolution.Controllers
 {
@@ -40,14 +41,15 @@ namespace AdestoSolution.Controllers
         {
             return View();
         }
-        public ActionResult ReleaseNote(int CampID)
+        public ActionResult ReleaseNote()
         {
-            //bizLogic.GetCamp(CampID);
-            //ViewBag.CampInfo = JsonConvert.SerializeObject(order);
+            
             return View("~/Views/Home/CampList.cshtml");
         }
-        public ActionResult CampDetail()
+        public ActionResult CampDetail(int CampID)
         {
+            campModel campmodel = bizLogic.GetCamp(CampID);
+            ViewBag.CampInfo = JsonConvert.SerializeObject(campmodel);
             return View("~/Views/Home/CampDetail.cshtml");
         }
         public ActionResult CampBook()

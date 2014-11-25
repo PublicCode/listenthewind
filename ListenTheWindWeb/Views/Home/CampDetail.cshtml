@@ -2,21 +2,9 @@
 @{
     Layout = "~/Views/Home/_HomeLayout.cshtml";
 }
-@section head{
-    <script src="@Url.Content("~/Scripts/T2VBusiness/RMA/t2v-CampDetail.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/T2VBusiness/RMA/t2v-CampDetailAng.js")" type="text/javascript"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            t2v_CampDetail.CampInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.CampInfo));
-
-            angular.element(document).ready(function () {
-                angular.bootstrap($('body'), ['SO']);
-            });
-        });
-    </script>
-}
-<div class="container">
+<script src="@Url.Content("~/Scripts/T2VBusiness/CampDetail/t2v-CampDetail.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/T2VBusiness/CampDetail/t2v-CampDetailAng.js")" type="text/javascript"></script>
+<div class="container" id="ng-value" ng-controller="CampDetailCtrl">
 		<h1 class="tit1">听风营地</h1>
         <div class="detail-con clear">
         	<div class="detail-left">
@@ -169,6 +157,11 @@ $(document).ready(function(){
 		pauseOnAction: false,
 		slideshow: true,                
 		slideshowSpeed: 5000,           
+	});
+	t2v_CampDetail.CampInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.CampInfo));
+
+	angular.element(document).ready(function () {
+	    angular.bootstrap($('body'), ['SO']);
 	});
 })
 function scr1(){
