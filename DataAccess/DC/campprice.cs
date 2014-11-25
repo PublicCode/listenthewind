@@ -17,7 +17,7 @@ namespace DataAccess.DC
         [Key]
         public int CampPriceID { get; set; }
 
-        public string LoggedType { get { return "camppile"; } }
+        public string LoggedType { get { return "Camp Price"; } }
 
         public int CampID { get; set; }
 

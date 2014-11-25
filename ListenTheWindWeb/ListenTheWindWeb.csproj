@@ -603,8 +603,7 @@
     <Content Include="Scripts\jquery.signalR-1.0.0-rc2.js" />
     <Content Include="Scripts\jquery.signalR-1.0.0-rc2.min.js" />
     <Content Include="Scripts\T2VBusiness\Admin\t2v-SiteRouteForAdmin.js" />
-    <Content Include="Scripts\T2VBusiness\CampDetail\t2v-CampDetail.js" />
-    <Content Include="Scripts\T2VBusiness\CampDetail\t2v-CampDetailAng.js" />
+    <Content Include="Scripts\T2VBusiness\Camp\CampBook.js" />
     <Content Include="Scripts\T2VBusiness\Report\t2v-Report.js" />
     <Content Include="Scripts\T2VBusiness\t2v-Message.js" />
     <Content Include="Scripts\T2VBusiness\t2v_angular_base.js" />
