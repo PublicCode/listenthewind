@@ -28,7 +28,7 @@ namespace DataAccess.DC
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
         }
-        public DbSet<camp> camp { get; set; }
+        public DbSet<camp> camps { get; set; }
         public DbSet<campreservedate> campreservedates { get; set; }
         public DbSet<campcomment> campcomments { get; set; }
         public DbSet<camphost> camphosts { get; set; }

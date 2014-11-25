@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WebModel.Camp;
 
 namespace IDataAccessLayer
 {
@@ -10,5 +11,6 @@ namespace IDataAccessLayer
     {
         string GetNewNumber(string TypeName,string strFirstChar);
         List<UserOperationLog> GetOperationLogList(string[] objectType, string objectValue);
+        campModel GetCamp(int CampID);
     }
 }
