@@ -23,6 +23,8 @@ namespace DataAccess.DC
 
         public int UserID { get; set; }
 
+        public string UserName { get; set; }
+
         public string CommentCon { get; set; }
 
         public string CommentRes { get; set; }

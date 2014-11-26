@@ -8,12 +8,20 @@
 		<h1 class="tit1">听风营地</h1>
         <div class="detail-con clear">
         	<div class="detail-left">
+                @*<div id="slider" class="flexslider2">
+                  <ul class="slides">
+                    <li ng-repeat="campphoto in camp.ModelListcampphoto"><img src="../../UploadImg/Camp/{{campphoto.CampPhoteFile}}"/></li>
+                  </ul>
+                </div>
+                <div id="carousel" class="flexslider2">
+                  <ul class="slides">
+                    <li ng-repeat="campphoto in camp.ModelListcampphoto"><img src="../../UploadImg/Camp/{{campphoto.CampPhoteFile}}"/></li>
+                  </ul>
+                </div>*@
                 <div class="flexslider2">
                     <ul class="slides">
-                        <li><a href="#"><img src="../../Content/images/d_bn1.jpg"/></a></li>
-                        <li><a href="#"><img src="../../Content/images/d_bn2.jpg"/></a></li>
-                        <li><a href="#"><img src="../../Content/images/d_bn3.jpg"/></a></li>
-                        <li><a href="#"><img src="../../Content/images/d_bn4.jpg"/></a></li>
+                        <li ng-repeat="campphoto in camp.ModelListcampphoto"><img src="../../UploadImg/Camp/{{campphoto.CampPhoteFile}}"/></li>
+                       
                     </ul>
                 </div>
                 <div class="more-con">
@@ -35,31 +43,23 @@
                     </div>
                 </div>
                 <div class="tab-con">
-                	<div class="tab-nav clear"><a href="javascript:void(0)" class="crr">描述</a><a href="javascript:void(0)">便利设施</a><a href="javascript:void(0)">日历</a><a href="javascript:void(0)" style="margin-right:0">地图</a></div>
+                	<div class="tab-nav clear"><a href="javascript:void(0)" class="crr">描述</a><a href="javascript:void(0)">营地类型</a><a href="javascript:void(0)">日历</a><a href="javascript:void(0)" style="margin-right:0">地图</a></div>
                     <div class="tab-box">
                     	<div class="tab-p">
-                        	<p>天目湖山水园景区是国家A天目湖山水园景区是国家A天目湖山水园景区是国家A天目湖山水园景区是国家A天目湖山水园景区是国家A天目湖山水园景区是国家A天目湖山水园景区是国家A天目湖山水园景区是国家A天目湖山水园景区是国家A天目湖山水园景区是国家A天目湖山水园景区是国家A天目湖山水园景区是国家A</p>
-                            <div class="xin-pp">
-                            	<a href="#" class="xin">1205</a><a href="#box2" class="pp">1205</a>
-                            </div>
+                        	<p>{{camp.CampIntro}}</p>
                         </div>
                         <div class="tab-p" style="display:none">
-                        	<p>便利设施</p>
-                            <div class="xin-pp">
-                            	<a href="#" class="xin">1205</a><a href="javascript:void(0)" class="pp">1205</a>
-                            </div>
+                        	<p>
+                                <text ng-repeat="camptype in camp.ModelListcamptype">
+                                    {{camptype.CampTypeName}},
+                                </text>
+                        	</p>
                         </div>
                         <div class="tab-p" style="display:none">
                         	<p>日历</p>
-                            <div class="xin-pp">
-                            	<a href="#" class="xin">1205</a><a href="javascript:void(0)" class="pp">1205</a>
-                            </div>
                         </div>
                         <div class="tab-p" style="display:none">
                         	<p>地图</p>
-                            <div class="xin-pp">
-                            	<a href="#" class="xin">1205</a><a href="javascript:void(0)" class="pp">1205</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -67,35 +67,15 @@
                 	<h2>用户评论</h2>
                     <div class="comment-list">
                     	<ul>
-                        	<li class="clear">
-                            	<a href="#" class="reply-btn">回复</a>
+                        	<li class="clear" ng-repeat="campcom in camp.ModelListcampcomment">
                             	<div class="cl-left">
                                 	<a href="#"><img src="../../Content/images/u_img1.png"/></a>
                                 </div>
                                 <div class="cl-right">
-                                	<strong>Admin</strong>
-                                    <em>2014年9月30日<i>15.30</i></em>
-                                    <p>价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵</p>
-                                </div>
-                            </li>
-                            <li class="clear">
-                            	<div class="cl-left">
-                                	<a href="#"><img src="../../Content/images/u_img1.png"/></a>
-                                </div>
-                                <div class="cl-right">
-                                	<strong>Admin</strong>
-                                    <em>2014年9月30日<i>15.30</i></em>
-                                    <p>价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价</p>
-                                </div>
-                            </li>
-                            <li class="clear">
-                            	<div class="cl-left">
-                                	<a href="#"><img src="../../Content/images/u_img1.png"/></a>
-                                </div>
-                                <div class="cl-right">
-                                	<strong>Admin</strong>
-                                    <em>2014年9月30日<i>15.30</i></em>
-                                    <p>价格有点贵价格有点贵价格有点贵价格有点贵价格有点贵价</p>
+                                	<strong>{{campcom.UserName}}</strong>
+                                    <em>{{campcom.CommentTime|  date:'yyyy年MM月dd日 mm:ss'}}</em>
+                                    <p>{{campcom.CommentCon}}</p>
+                                    回复<p>{{campcom.CommentRes}}</p>
                                 </div>
                             </li>
                         </ul>
@@ -113,14 +93,16 @@
             <div class="detail-right">
             	<div class="price">
                 	<div class="x-bg-con"><div style="width:25%"></div></div><!--百分比调整星级-->
-                    <h1>听风编号:108<strong>天目湖山水园</strong></h1>
-                    <h2>Tianmu lake mountain and water garden</h2>
-                    <div class="rmb">￥:300.00</div>
-                    <div class="through">原价￥：600</div>
+                    <h1>听风编号:{{camp.CampNum}}<strong>{{camp.CampName}}</strong></h1>
+                    @*<h2>Tianmu lake mountain and water garden</h2>*@
+                    <div class="rmb">￥:{{camp.PilePrice}}</div>
+                    @*<div class="through">原价￥：600</div>*@
                     <div class="tf-ts">
                     	<h3>听风特色</h3>
                         <div class="tf-ts-con">
-                        	<a href="#"><img src="../../Content/images/ts_icon1.jpg"/></a><a href="#"><img src="../../Content/images/ts_icon2.jpg"/></a><a href="#"><img src="../../Content/images/ts_icon2.jpg"/></a><a href="#"><img src="../../Content/images/ts_icon2.jpg"/></a><a href="#"><img src="../../Content/images/ts_icon2.jpg"/></a><a href="#"><img src="../../Content/images/ts_icon2.jpg"/></a>
+                            <span ng-repeat="campitem in camp.ModelListcampitem">
+                        	    <img title="{{campitem.CampItemName}}" src="../../Content/images/{{campitem.CampItemIcon}}"/>
+                            </span>
                         </div>
                         <div class="pr-submit clear">
                         	<a href="#" style="margin-right:36px;">在线预定</a><a href="#" style="">收藏保存</a>
@@ -129,17 +111,15 @@
                     <div class="yz_introduction">
                     	<h3>听风营长介绍</h3>
                         <div class="yz-img">
-                        	<img src="../../Content/images/yz_img1.jpg"/>
+                        	<img src="../../UploadImg/Camp/{{camp.ModelListcamphost[0].CampHostPhoto}}"/>
                         </div>
                         <div class="yz-con">
                         	<div class="yz-nav">
                             	<a href="#">营长介绍</a>
                             </div>
                             <div class="yz-txt">
-                            	<p>第三款经典塑料袋盛大锦书定量宽松基调圣诞节塑料袋嘉实多速度是</p>
-                                <div class="xin-pp">
-                            		<a class="xin" href="#">1205</a><a class="pp" href="#">1205</a>
-                            	</div>
+                            	<p>{{camp.ModelListcamphost[0].CampHostIntro}}</p>
+                                
                             </div>
                         </div>
                     </div>
@@ -151,17 +131,37 @@
 <script>
 $(document).ready(function(){
 	scr1();
-	$('.flexslider2').flexslider({
-		animation: "slide",
-		directionNav: true,
-		pauseOnAction: false,
-		slideshow: true,                
-		slideshowSpeed: 5000,           
-	});
+	
 	t2v_CampDetail.CampInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.CampInfo));
 
 	angular.element(document).ready(function () {
 	    angular.bootstrap($('body'), ['SO']);
+	    $('.flexslider2').flexslider({
+	        animation: "slide",
+	        directionNav: true,
+	        pauseOnAction: false,
+	        slideshow: true,
+	        slideshowSpeed: 5000,
+	    });
+	    //$('#carousel').flexslider({
+	    //    animation: "slide",
+	    //    controlNav: false,
+	    //    animationLoop: false,
+	    //    slideshow: false,
+	    //    itemWidth: 210,
+	    //    itemMargin: 5,
+	    //    asNavFor: '#slider'
+	    //});
+
+	    //$('#slider').flexslider({
+	    //    animation: "slide",
+	    //    controlNav: false,
+	    //    animationLoop: false,
+	    //    slideshow: false,
+	    //    sync: "#carousel",
+	    //    start: function(slider){
+	    //    }
+	    //});
 	});
 })
 function scr1(){

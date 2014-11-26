@@ -12,5 +12,7 @@ namespace WebModel.Camp
         public int CampID { get; set; }
 
         public string CampItemName { get; set; }
+
+        public string CampItemIcon { get; set; }
     }
 }

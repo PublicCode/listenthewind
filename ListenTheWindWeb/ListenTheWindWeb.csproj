@@ -289,10 +289,12 @@
     <Content Include="Content\images\ck_bg.jpg" />
     <Content Include="Content\images\code.png" />
     <Content Include="Content\images\dot.png" />
-    <Content Include="Content\images\d_bn1.jpg" />
-    <Content Include="Content\images\d_bn2.jpg" />
-    <Content Include="Content\images\d_bn3.jpg" />
-    <Content Include="Content\images\d_bn4.jpg" />
+    <Content Include="Scripts\Vendor\flexslider\flexslider.css" />
+    <Content Include="Scripts\Vendor\flexslider\jquery.flexslider.js" />
+    <Content Include="UploadImg\Camp\d_bn1.jpg" />
+    <Content Include="UploadImg\Camp\d_bn2.jpg" />
+    <Content Include="UploadImg\Camp\d_bn3.jpg" />
+    <Content Include="UploadImg\Camp\d_bn4.jpg" />
     <Content Include="Content\images\h1_1.png" />
     <Content Include="Content\images\h1_2.png" />
     <Content Include="Content\images\h1_3.png" />
@@ -381,7 +383,7 @@
     <Content Include="Content\images\yz_bottom_bg.png" />
     <Content Include="Content\images\yz_c.png" />
     <Content Include="Content\images\yz_d.png" />
-    <Content Include="Content\images\yz_img1.jpg" />
+    <Content Include="UploadImg\Camp\yz_img1.jpg" />
     <Content Include="Content\images\yz_nav_bg.png" />
     <Content Include="Content\images\zz.gif" />
     <Content Include="Content\img\arrow.gif" />
@@ -725,7 +727,7 @@
     <Content Include="Scripts\Vendor\watermark\jquery.data.js" />
     <Content Include="Scripts\Vendor\watermark\jquery.watermark.js" />
     <Content Include="UpdateBrowser.htm" />
-    <Content Include="UploadImg\index.htm" />
+    <Content Include="UploadImg\Camp\index.htm" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

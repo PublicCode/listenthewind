@@ -4,17 +4,17 @@
     var controller = ViewData["controller"] ?? Request.RequestContext.RouteData.Values["controller"].ToString();
     var action = ViewData["action"] ?? Request.RequestContext.RouteData.Values["action"].ToString();
     var full = controller + "_" + action;
-    //Layout = null;
-    //var user = UserHelper.CurrentUser;
-    //if (user == null)
-    //{
-    //    Response.Redirect("~/Account/LogOn");
-    //}
-    //if (Session["ReleaseNoteFlag"] == null)
-    //{
-    //    Response.Redirect("~/Account/LogOn");
-    //}
-    //string releasePopupFlag = Session["ReleaseNoteFlag"] == null ? "False" : Session["ReleaseNoteFlag"].ToString();
+        //Layout = null;
+        //var user = UserHelper.CurrentUser;
+        //if (user == null)
+        //{
+        //    Response.Redirect("~/Account/LogOn");
+        //}
+        //if (Session["ReleaseNoteFlag"] == null)
+        //{
+        //    Response.Redirect("~/Account/LogOn");
+        //}
+        //string releasePopupFlag = Session["ReleaseNoteFlag"] == null ? "False" : Session["ReleaseNoteFlag"].ToString();
 }
 <!DOCTYPE html>
 <html>
@@ -55,7 +55,9 @@
     <script type="text/javascript" src="@Url.Content("~/Scripts/Vendor/JqueryUploadify/jquery.uploadify.v2.1.4.min.js")"></script>
     <script src="@Url.Content("~/Scripts/Vendor/JqueryRating/jRating.jquery.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Vendor/sammy.js") " type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/Vendor/jquery.flexslider.js") " type="text/javascript"></script>
+    @*<script src="@Url.Content("~/Scripts/Vendor/jquery.flexslider.js") " type="text/javascript"></script>*@
+    <script src="@Url.Content("~/Scripts/Vendor/flexslider/jquery.flexslider.js")" type="text/javascript"></script>
+    @*<link href="@Url.Content("~/Scripts/Vendor/flexslider/flexslider.css")"  rel="stylesheet" type="text/css"/>*@
     <script src="@Url.Content("~/Scripts/Vendor/scrollPic.js") " type="text/javascript"></script>
      <script src="@Url.Content("~/Scripts/Vendor/Datepicker/kalendae.standalone.js") " type="text/javascript"></script>
     

@@ -1,1 +1,5 @@
 ﻿
+表             添加字段              类型             日期   
+camp           CampIntro            text             2014.11.26 
+CampItem       CampItemIcon         varchar(50)      2014.11.26
+campcomment    UserName             varchar(100)     2014.11.26
