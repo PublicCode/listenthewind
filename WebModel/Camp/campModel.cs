@@ -23,6 +23,8 @@ namespace WebModel.Camp
 
         public string CampAddress { get; set; }
 
+        public string CampIntro { get; set; }
+
         public int? Active { get; set; }
 
         public DateTime? CreateTime { get; set; }
