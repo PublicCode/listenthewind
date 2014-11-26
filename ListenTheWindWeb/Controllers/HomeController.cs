@@ -66,5 +66,9 @@ namespace AdestoSolution.Controllers
             IHomeManager homeManager = new HomeManager();
             return homeManager.GetNewNumber(TypeName,strFirstChar);
         }
+        //public ActionResult GetClient()
+        //{
+
+        //}
     }
 }

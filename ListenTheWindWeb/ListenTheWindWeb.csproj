@@ -609,6 +609,10 @@
     <Content Include="Scripts\T2VBusiness\CampDetail\t2v-CampDetailAng.js" />
     <Content Include="Scripts\T2VBusiness\Camp\CampBook.js" />
     <Content Include="Scripts\T2VBusiness\Report\t2v-Report.js" />
+    <Content Include="Scripts\T2VBusiness\RMA\t2v-RMA.js" />
+    <Content Include="Scripts\T2VBusiness\RMA\t2v-RMADetail.js" />
+    <Content Include="Scripts\T2VBusiness\RMA\t2v-RMAEdit.js" />
+    <Content Include="Scripts\T2VBusiness\RMA\t2v-SiteRouteForRMA.js" />
     <Content Include="Scripts\T2VBusiness\t2v-Message.js" />
     <Content Include="Scripts\T2VBusiness\t2v_angular_base.js" />
     <Content Include="Scripts\Vendor\angular\angular-sanitize.min.js" />
