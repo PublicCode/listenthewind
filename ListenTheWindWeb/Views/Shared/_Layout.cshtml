@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>@ViewBag.Title</title>
-    <link href="@Url.Content("~/Content/Default.css")" rel="stylesheet" type="text/css"  />
+    @*<link href="@Url.Content("~/Content/Default.css")" rel="stylesheet" type="text/css"  />*@
+    <link href="@Url.Content("~/Content/ListenWind/css/ListenWind.css")" rel="stylesheet" type="text/css"  />
     <link href="@Url.Content("~/Content/Vendor/jquery-ui/jquery.ui.all.css")" rel="stylesheet" type="text/css"/>
     <script src="@Url.Content("~/Scripts/Vendor/jquery-1.7.2.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Vendor/jquery-ui-1.8.20.min.js")" type="text/javascript"></script>
@@ -16,14 +17,6 @@
     <script src="@Url.Content("~/Scripts/dcm.validate.js") " type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Vendor/jquery.flexslider.js") " type="text/javascript"></script>
 
-    @*
-<link href="css/lanrenzhijia.css" rel="stylesheet" type="text/css" />
-<link href="css/theme1.css" rel="stylesheet" type="text/css" />
-<link href="css/datepicker.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/public.js"/></script>
-<script type="text/javascript" src="js/jquery.flexslider.js"/></script>
-<script type="text/javascript" src="js/datepicker.js"/></script>
-<script type="text/javascript" src="js/datepicker-zh-TW.js"/></script>*@
 </head>
 <body>
     <div class="wrap">
@@ -209,8 +202,8 @@
 <script>
     var currentShowCity = 0;
     $(document).ready(function () {
-        //$("#datepicker1").datepicker($.datepicker.regional["zh-TW"]);
-        //$("#datepicker2").datepicker($.datepicker.regional["zh-TW"]);
+        $("#datepicker1").datepicker($.datepicker.regional["zh-TW"]);
+        $("#datepicker2").datepicker($.datepicker.regional["zh-TW"]);
 
         $('.flexslider').flexslider({
             animation: "slide",
