@@ -4,6 +4,8 @@
 }
 <script src="@Url.Content("~/Scripts/T2VBusiness/CampDetail/t2v-CampDetail.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/T2VBusiness/CampDetail/t2v-CampDetailAng.js")" type="text/javascript"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uofKCFZ42dto1pTurdaS08SW"></script>
+
 <div class="container" id="ng-value" ng-controller="CampDetailCtrl">
 		<h1 class="tit1">听风营地</h1>
         <div class="detail-con clear">
@@ -43,7 +45,7 @@
                     </div>
                 </div>
                 <div class="tab-con">
-                	<div class="tab-nav clear"><a href="javascript:void(0)" class="crr">描述</a><a href="javascript:void(0)">营地类型</a><a href="javascript:void(0)">日历</a><a href="javascript:void(0)" style="margin-right:0">地图</a></div>
+                	<div class="tab-nav clear"><a href="javascript:void(0)" class="crr">描述</a><a href="javascript:void(0)">营地类型</a><a href="javascript:void(0)">营地地图</a><a href="javascript:void(0)" style="margin-right:0">地图</a></div>
                     <div class="tab-box">
                     	<div class="tab-p">
                         	<p>{{camp.CampIntro}}</p>
@@ -56,10 +58,9 @@
                         	</p>
                         </div>
                         <div class="tab-p" style="display:none">
-                        	<p>日历</p>
+                        	<img style="width:100%;height:100%" src="../../UploadImg/Camp/{{camp.CampPic}}"/>
                         </div>
-                        <div class="tab-p" style="display:none">
-                        	<p>地图</p>
+                        <div id="allmap" class="tab-p" style="display:none">
                         </div>
                     </div>
                 </div>
@@ -105,7 +106,7 @@
                             </span>
                         </div>
                         <div class="pr-submit clear">
-                        	<a href="#" style="margin-right:36px;">在线预定</a><a href="#" style="">收藏保存</a>
+                        	<a ng-click="ShowPileScreen();" style="margin-right:36px;">在线预定</a><a ng-click="CampCollect();" style="">收藏保存</a>
                         </div>
                     </div>
                     <div class="yz_introduction">
@@ -126,11 +127,29 @@
                 </div>
             </div>
         </div>
+    <div id="divSelPile" class="modal hide">
+        <div class="modal-header" style="background-color:#9E9500;">
+            <div style="text-align: left; font-weight:bold;">
+                <button type="button" style="float: right" class="DeleteLine" data-dismiss="modal">
+                    &nbsp;
+                </button>
+                <span style="font-size:18px;">选择桩号 &nbsp;&nbsp;&nbsp;</span>
+            </div>
+        </div>
+        <div id="divSelPileContent">
+            <div style="width:95%;height:95%;" >
+                <span ng-repeat="camppile in camp.ModelListcamppile">
+                    <input type="button" value="{{camppile.PileNumber}}"ng-click="LinkToCampBook(camppile.PileID);" />
+                </span>    
+            </div>
+        </div>
     </div>
-</div>
+    </div>
+
+
 <script>
 $(document).ready(function(){
-	scr1();
+    scr1();
 	
 	t2v_CampDetail.CampInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.CampInfo));
 
@@ -143,6 +162,8 @@ $(document).ready(function(){
 	        slideshow: true,
 	        slideshowSpeed: 5000,
 	    });
+
+	    
 	    //$('#carousel').flexslider({
 	    //    animation: "slide",
 	    //    controlNav: false,
