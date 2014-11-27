@@ -21,6 +21,12 @@ namespace WebModel.Camp
 
         public decimal? PilePrice { get; set; }
 
+        public decimal? Latitude { get; set; }
+
+        public decimal? Longitude { get; set; }
+
+        public string CampPic { get; set; }
+
         public string CampAddress { get; set; }
 
         public string CampIntro { get; set; }

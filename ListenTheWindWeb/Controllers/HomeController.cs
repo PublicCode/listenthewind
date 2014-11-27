@@ -52,6 +52,12 @@ namespace AdestoSolution.Controllers
             ViewBag.CampInfo = JsonConvert.SerializeObject(campmodel);
             return View("~/Views/Home/CampDetail.cshtml");
         }
+
+        public string CampCollect(int CampID)
+        {
+            return bizLogic.CampCollect(CampID);
+        }
+
         public ActionResult CampBook()
         {
             return View("~/Views/Home/CampBook.cshtml");

@@ -31,5 +31,17 @@ namespace BizLogic
          {
              return homeBase.GetCamp(CampID);
          }
+
+         public string CampCollect(int CampID)
+         {
+             if (homeBase.CheckCampCollect(CampID))
+             {
+                 return homeBase.AddCampCollect(CampID);
+             }
+             else
+             {
+                 return "已经添加收藏";
+             }
+         }
     }
 }
