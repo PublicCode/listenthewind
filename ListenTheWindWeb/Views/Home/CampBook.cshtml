@@ -7,15 +7,15 @@
             <div class="detail-left detail-lr clear">
                 <div class="flexslider3">
                     <ul class="slides">
-                        <li><a href="#"><img src="../../Content/images/d_bn1.jpg"/></a></li>
-                        <li><a href="#"><img src="../../Content/images/d_bn2.jpg"/></a></li>
-                        <li><a href="#"><img src="../../Content/images/d_bn3.jpg"/></a></li>
-                        <li><a href="#"><img src="../../Content/images/d_bn4.jpg"/></a></li>
+                        <li><a href="#"><img src="../../UploadImg/Camp/d_bn1.jpg"/></a></li>
+                        <li><a href="#"><img src="../../UploadImg/Camp/d_bn2.jpg"/></a></li>
+                        <li><a href="#"><img src="../../UploadImg/Camp/d_bn3.jpg"/></a></li>
+                        <li><a href="#"><img src="../../UploadImg/Camp/d_bn4.jpg"/></a></li>
                     </ul>
                 </div>
                 <div class="detail-right">
                     <div class="price">
-                        <div class="x-bg-con"><div style="width:25%"></div></div><!--百分比调整星级-->
+                        <div class="basic" id="service" data-average="12" data-id="2"></div>
                         <h1>听风编号:108<strong>天目湖山水园</strong></h1>
                         <h2>Tianmu lake mountain and water garden</h2>
                         <div class="rmb">￥:300.00</div>
@@ -139,6 +139,10 @@
             months: 3,
             mode: 'multiple',
             blackout:  ["11/27/2014", "12/2/2014"]
+        });
+        $("#service").jRating({
+            isDisabled: false,
+            length: 5,
         });
     });
 </script>
