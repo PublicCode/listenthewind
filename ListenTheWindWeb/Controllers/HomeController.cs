@@ -61,7 +61,7 @@ namespace AdestoSolution.Controllers
         }
         public ActionResult CampDetail(int CampID)
         {
-            campModel campmodel = bizLogic.GetCamp(CampID);
+            campModel campmodel = bizLogic.GetCamp(CampID,null);
             ViewBag.CampInfo = JsonConvert.SerializeObject(campmodel);
             return View("~/Views/Home/CampDetail.cshtml");
         }

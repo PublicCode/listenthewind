@@ -64,8 +64,10 @@ namespace DataAccessLayer
             return campInDB;
         }
 
-        public campModel GetCamp(int CampID)
+        public campModel GetCamp(int CampID,DateTime? dt)
         {
+            int userid = 1;
+
             campModel campmodel = new campModel();
             camp campInDb = GetSingleCamp(CampID);
             ModelConverter.Convert<camp, campModel>(campInDb, campmodel);
@@ -122,6 +124,39 @@ namespace DataAccessLayer
             {
                 camppileModel camppilemodel = new camppileModel();
                 ModelConverter.Convert<camppile, camppileModel>(camppileInDB, camppilemodel);
+                if (!dt.HasValue)
+                {
+                    if (camppilemodel.Active == 1)
+                    {
+                        camppilemodel.Flag = true;
+                    }
+                    else
+                    {
+                        camppilemodel.Flag = false;
+                    }
+                }
+                else
+                {
+                    campreservedate reserdate = dc.campreservedates.FirstOrDefault(c => c.CampReserveDate == dt && c.CampPileID == camppilemodel.PileID);
+                    if (reserdate == null && camppilemodel.Active == 1)
+                    {
+                        camppilemodel.Flag = true;
+                    }
+                    else
+                    {
+                        campreserve camprese = dc.campreserves.FirstOrDefault(c => c.CampReserveID == reserdate.CampReserveID);
+                        //已交款 或者未交款但是自己已经预约这天的 少个验证 用户是否登陆
+                        if (camprese.ReserveStatus == "2" || camprese.UserID == userid)
+                        {
+                            camppilemodel.Flag = false;
+                        }
+                        else
+                        {
+                            camppilemodel.Flag = true;
+                        }
+
+                    }
+                }
                 campmodel.ModelListcamppile.Add(camppilemodel);
             }
 

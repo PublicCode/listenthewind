@@ -13,6 +13,8 @@ namespace WebModel.Camp
 
         public string PileNumber { get; set; }
 
+        public bool Flag { get; set; }
+
         public int? Active { get; set; }
     }
 }
