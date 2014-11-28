@@ -1,7 +1,10 @@
-﻿@{
+﻿@using Newtonsoft.Json
+@{
     Layout = "~/Views/Home/_HomeLayout.cshtml";
 }
-    <div class="container" id="ng-value" ng-controller="CampBook">
+ <script src="@Url.Content("~/Scripts/T2VBusiness/CampDetail/t2v-CampDetail.js")" type="text/javascript"></script>
+ <script src="@Url.Content("~/Scripts/T2VBusiness/Camp/CampBook.js") " type="text/javascript"></script>
+    <div class="container" id="ng-value" ng-controller="CampBookCtrl">
 		<h1 class="tit4">在线预订</h1>
         <div class="detail-con clear">
             <div class="detail-left detail-lr clear">
@@ -134,17 +137,37 @@
          </div>
     </div>
 <script>
-    $(function () {
-        $(".cal-kalendae").kalendae({
-            direction: 'future',
-            months: 3,
-            mode: 'multiple',
-            blackout:  ["11/27/2014", "12/2/2014"]
+    t2v_CampDetail.CampInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.CampInfo));
+    angular.element(document).ready(function () {
+        angular.bootstrap($('body'), ['SO']);
+        $('.flexslider2').flexslider({
+            animation: "slide",
+            directionNav: true,
+            pauseOnAction: false,
+            slideshow: true,
+            slideshowSpeed: 5000,
         });
+        
         $("#service").jRating({
             isDisabled: false,
             length: 5,
         });
     });
+
+    scr1();
+        function scr1(){
+            scrollPic_01 = new ScrollPic();
+            scrollPic_01.scrollContId = "pic"; //图片容器ID
+            scrollPic_01.arrLeftId = "left_but"; //左按钮ID
+            scrollPic_01.arrRightId = "right_but"; //右按钮ID
+            scrollPic_01.frameWidth = 532; //图片容器宽度
+            scrollPic_01.pageWidth = 133; //每张图片宽度
+            scrollPic_01.speed = 10; //移动速度(单位毫秒，越小越快)
+            scrollPic_01.space = 10; //每次移动像素(单位px，越大越快)
+            scrollPic_01.autoPlay = false; //自动播放
+            scrollPic_01.autoPlayTime = 3; //自动播放间隔时间(秒)
+            scrollPic_01.initialize(); //初始化
+        }
 </script>
+
 
