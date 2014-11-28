@@ -19,7 +19,7 @@ namespace DataAccessLayer
         {
             DC dc = DCLoader.GetNewDC();
             TableNumberEnt qn = new TableNumberEnt();
-                qn = dc.TableNumberEnt.Where(c => c.Type == TypeName && c.FirstChar == strFirstChar).FirstOrDefault();
+            qn = dc.TableNumberEnt.Where(c => c.Type == TypeName && c.FirstChar == strFirstChar).FirstOrDefault();
             int newNumber = 0;
             if (qn == null)
             {
@@ -34,7 +34,7 @@ namespace DataAccessLayer
                 newNumber = qn.NumberID + 1;
             }
 
-            string strNewNumber= strFirstChar + newNumber.ToString("00000");
+            string strNewNumber = strFirstChar + newNumber.ToString("00000");
             //check number exists
             if (TypeName == "Quote" && strFirstChar == "R")
             {
@@ -146,7 +146,6 @@ namespace DataAccessLayer
 
             return campmodel;
         }
-<<<<<<< .mine
         public List<CityDTO> GetCitys()
         {
             DC dc = DCLoader.GetMyDC();
@@ -180,7 +179,6 @@ namespace DataAccessLayer
             }
             return dc.camps.Where(c => camIds.Contains(c.CampID)).ToList();
         }
-=======
         public bool CheckCampCollect(int CampID)
         {
             DC dc = DCLoader.GetMyDC();
@@ -215,5 +213,5 @@ namespace DataAccessLayer
                 return ex.Message;
             }
         }
->>>>>>> .theirs    }
+    }
 }
