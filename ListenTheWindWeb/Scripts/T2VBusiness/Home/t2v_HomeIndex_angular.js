@@ -50,7 +50,7 @@ soNgModule.controller("CampListCtrl", ['$scope', '$routeParams', '$http', functi
         $.ajax({
             url: SiteRoot + "/AjaxCampList",
             type: 'POST',
-            data: { locId: 1, dateTime: "2014-01-01", page: page, limit: 12 },
+            data: { searchInfo: JSON.stringify($scope.obj.searchInfo), page: page, limit: 12 },
             async: true,
             success: function (data) {
                 $scope.obj = data;

@@ -30,4 +30,10 @@ namespace DataAccessLayer.DTO
             return dto;
         }
     }
+    public class CampListSeachDTO
+    {
+        public int LocationID { get; set; }
+        public string JoinCampDate { get; set; }
+        public DateTime DBJoinCampDate { get { return Convert.ToDateTime(JoinCampDate); } }
+    }
 }

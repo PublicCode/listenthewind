@@ -198,24 +198,24 @@ namespace DataAccessLayer
             }
             return lstDTO;
         }
-        public object GetCampList(int locId, DateTime dateTime, int page, int limit)
+        public object GetCampList(CampListSeachDTO info, int page, int limit)
         {
             DC dc = DCLoader.GetMyDC();
             var camIds = new List<int>();
-            var lstId = dc.camps.Where(c => c.LocID == locId).Select(c => c.CampID).ToList();
+            var lstId = dc.camps.Where(c => c.LocID == info.LocationID).Select(c => c.CampID).ToList();
             foreach (var id in lstId)
             {
                 var allCount = dc.camppiles.Where(c => c.CampID == id).ToList().Count();
-                var freeCount = dc.campreservedates.Where(c => c.CampID == id && c.CampReserveDate == dateTime).ToList().Count();
+                var freeCount = dc.campreservedates.Where(c => c.CampID == id && c.CampReserveDate == info.DBJoinCampDate).ToList().Count();
                 if (allCount != freeCount)
                 {
                     camIds.Add(id);
                 }
             }
             var lstEF = dc.camps.Where(c => camIds.Contains(c.CampID)).ToList();
-            return GetCampListObj(lstEF, page, limit);
+            return GetCampListObj(lstEF, page, limit, info);
         }
-        public object GetCampListObj(List<camp> lstEF, int page, int limit)
+        public object GetCampListObj(List<camp> lstEF, int page, int limit, CampListSeachDTO info)
         {
             IEnumerable<camp> res = lstEF;
             if (page > 0)
@@ -233,7 +233,8 @@ namespace DataAccessLayer
                 total = limit > 0 ? Math.Ceiling((double)count / limit) : 1,
                 page = page,
                 records = count,
-                rows = res.ToList()
+                rows = res.ToList(),
+                searchInfo = info
             };
         }
         public bool CheckCampCollect(int CampID)
