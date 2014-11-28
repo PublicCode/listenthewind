@@ -75,8 +75,10 @@ namespace AdestoSolution.Controllers
             return bizLogic.CampCollect(CampID);
         }
 
-        public ActionResult CampBook()
+        public ActionResult CampBook(int CampID)
         {
+            campModel campmodel = bizLogic.GetCamp(CampID, null);
+            ViewBag.CampInfo = JsonConvert.SerializeObject(campmodel);
             return View("~/Views/Home/CampBook.cshtml");
         }
         public ActionResult ComingSoon()

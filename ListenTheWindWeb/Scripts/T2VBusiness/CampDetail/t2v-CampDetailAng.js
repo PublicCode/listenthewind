@@ -22,7 +22,7 @@
     };
 
     $scope.LinkToCampBook = function (PileID) {
-        window.location.href = "/Home/CampBook?PileID=" + PileID;
+        window.location.href = "/Home/CampBook?PileID=" + PileID + "&CampID=" + $scope.camp.CampID;
     };
     $scope.CampCollect = function () {
         $http({
