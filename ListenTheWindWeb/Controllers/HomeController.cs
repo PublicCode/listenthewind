@@ -20,15 +20,17 @@ namespace AdestoSolution.Controllers
     public class HomeController : T2VController
     {
         HomeBizLogic bizLogic;
-
+        HomeManager hoManger;
         public HomeController()
         {
             bizLogic = new HomeBizLogic();
+            hoManger = new HomeManager();
         }
 
         [Authorize]
         public ActionResult Index()
         {
+            ViewBag.CityInfo = JsonConvert.SerializeObject(hoManger.GetCitys());
             return View();
         }
         /// <summary>
@@ -43,8 +45,15 @@ namespace AdestoSolution.Controllers
         }
         public ActionResult ReleaseNote()
         {
-            
+            string strParam = Request.Form["param"];
+            if (string.IsNullOrEmpty(strParam))
+                return View("~/View/Home/Index.html");
+            ViewBag.Id = strParam;
+            //var lst = hoManger.GetCampList(Convert.ToInt32(strParam.Split('/')[0]), Convert.ToDateTime(strParam.Split('/')[1]));
+            var lst = hoManger.GetCampList(Convert.ToInt32(1), Convert.ToDateTime("2014-01-01"));
+            ViewBag.lstInfo = JsonConvert.SerializeObject(lst);
             return View("~/Views/Home/CampList.cshtml");
+            //return RedirectToAction("CampList", "Home");
         }
         public ActionResult CampDetail(int CampID)
         {

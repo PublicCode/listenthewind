@@ -51,6 +51,8 @@ namespace DataAccess.DC
         public DbSet<MailFail> MailFails { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<City> Citys { get; set; }
+        public DbSet<CityLocation> CityLocations { get; set; }
 
         public override int SaveChanges()
         {

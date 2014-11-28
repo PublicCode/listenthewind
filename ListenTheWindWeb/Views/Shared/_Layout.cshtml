@@ -3,8 +3,14 @@
 <head>
     <title>@ViewBag.Title</title>
     @*<link href="@Url.Content("~/Content/Default.css")" rel="stylesheet" type="text/css"  />*@
+    <script src="@Url.Content("~/Scripts/Vendor/angular/angular.min.js") " type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/Vendor/angular/angular-sanitize.min.js") " type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/T2VBusiness/t2v_angular_base.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/lib/t2v-core.js") " type="text/javascript"></script>
+
     <link href="@Url.Content("~/Content/ListenWind/css/ListenWind.css")" rel="stylesheet" type="text/css"  />
     <link href="@Url.Content("~/Content/Vendor/jquery-ui/jquery.ui.all.css")" rel="stylesheet" type="text/css"/>
+    
     <script src="@Url.Content("~/Scripts/Vendor/jquery-1.7.2.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Vendor/jquery-ui-1.8.20.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Vendor/jquery.validate.js")" type="text/javascript"></script>
@@ -16,7 +22,6 @@
     <script src="@Url.Content("~/Scripts/jsext.js") " type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/dcm.validate.js") " type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Vendor/jquery.flexslider.js") " type="text/javascript"></script>
-
 </head>
 <body>
     <div class="wrap">
@@ -147,10 +152,6 @@
     <!--底部结束--> 
 </div>
 
-
-
-
-
 <div id="tm" style="display:none"></div><!--透明遮罩层-->
 <!--登陆浮层开始-->
 <div class="xb_userLogin" style="display:none">
@@ -202,32 +203,31 @@
 <script>
     var currentShowCity = 0;
     $(document).ready(function () {
-        $("#datepicker1").datepicker($.datepicker.regional["zh-TW"]);
-        $("#datepicker2").datepicker($.datepicker.regional["zh-TW"]);
+        $("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' });
+        //$("#datepicker2").datepicker($.datepicker.regional["zh-TW"]);
 
         $('.flexslider').flexslider({
             animation: "slide",
             directionNav: true,
             pauseOnAction: false
         });
-        $("#province").change(function () {
-            $("#home-city span").text("请选择你要去的景点");
-            $("#province option").each(function (i, o) {
-                if ($(this).attr("selected")) {
+        //$("#province").change(function () {
+        //    $("#home-city span").text("请选择你要去的景点");
+        //    $("#province option").each(function (i, o) {
+        //        if ($(this).attr("selected")) {
 
-                    $(".city").hide();
-                    $(".city").eq(i).show();
-                    currentShowCity = i;
-                }
-            });
-        });
-        $("#province").change();
+        //            $(".city").hide();
+        //            $(".city").eq(i).show();
+        //            currentShowCity = i;
+        //        }
+        //    });
+        //});
+        //$("#province").change();
         $(".home-list-img li").mouseover(function () {
             var index = $(this).index()
             $(this).find("span").fadeIn();
             $(this).siblings().find("span").fadeOut();
             if (index == 0) {
-
                 $(".sl-line").stop().animate({ 'left': 0 }, 500, function () { });
             } else if (index == 1) {
 
@@ -238,23 +238,20 @@
                 $(".sl-line").stop().animate({ 'left': 507 }, 500, function () { });
 
             } else if (index == 3) {
-
                 $(".sl-line").stop().animate({ 'left': 760 }, 500, function () { });
-
             }
-
         })
 
     });
-    function getSelectValue() {
-        alert("1级=" + $("#province").val());
-        $(".city").each(function (i, o) {
+    //function getSelectValue() {
+    //    alert("1级=" + $("#province").val());
+    //    $(".city").each(function (i, o) {
 
-            if (i == currentShowCity) {
-                alert("2级=" + $(".city").eq(i).val());
-            }
-        });
-    }
+    //        if (i == currentShowCity) {
+    //            alert("2级=" + $(".city").eq(i).val());
+    //        }
+    //    });
+    //}
 </script>
 
 </body>

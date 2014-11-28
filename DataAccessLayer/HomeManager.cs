@@ -9,6 +9,7 @@ using ComLib.SmartLinq;
 using ComLib.SmartLinq.Energizer.JqGrid;
 using WebModel.Camp;
 using ComLib.Extension;
+using DataAccessLayer.DTO;
 
 namespace DataAccessLayer
 {
@@ -144,6 +145,40 @@ namespace DataAccessLayer
 
 
             return campmodel;
+        }
+
+        public List<CityDTO> GetCitys()
+        {
+            DC dc = DCLoader.GetMyDC();
+            var lstEF = dc.Citys.ToList();
+            var lstDTO = new List<CityDTO>();
+            foreach (var info in lstEF)
+            {
+                var dto = new CityDTO
+                {
+                    CityID = info.CityID,
+                    CityName = info.CityName,
+                    Locations = dc.CityLocations.Where(c => c.CityID == info.CityID).ToList().Select(c => CityLocationDTO.FromEFToDTO(c)).ToList()
+                };
+                lstDTO.Add(dto);
+            }
+            return lstDTO;
+        }
+        public List<camp> GetCampList(int locId, DateTime dateTime)
+        {
+            DC dc = DCLoader.GetMyDC();
+            var camIds = new List<int>();
+            var lstId = dc.camps.Where(c => c.LocID == locId).Select(c => c.CampID).ToList();
+            foreach (var id in lstId)
+            {
+                var allCount = dc.camppiles.Where(c => c.CampID == id).ToList().Count();
+                var freeCount = dc.campreservedates.Where(c => c.CampID == id && c.CampReserveDate == dateTime).ToList().Count();
+                if (allCount != freeCount)
+                {
+                    camIds.Add(id);
+                }
+            }
+            return dc.camps.Where(c => camIds.Contains(c.CampID)).ToList();
         }
     }
 }

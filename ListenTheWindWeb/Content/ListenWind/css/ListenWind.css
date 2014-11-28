@@ -232,22 +232,23 @@ body{font:12px/1.5 "Microsoft YaHei","����",sans-serif;color:#444;width:
 .sel-lg span{ position:relative;left:0;top:0}
 .sel-lg select{width:33px;height:18px; position:absolute;left:0;top:0; opacity:0;filter:alpha(opacity=0); cursor:pointer}
 
-.sel-cs{ width:176px;height:37px;border:1px #dbdada solid; border-radius:4px; background:#fff url(../images/icon2.png) 95% 16px no-repeat; font-size:13px; position:relative}
-.sel-cs span{ position:relative;left:0;top:0; line-height:37px; display:block; text-indent:5px}
-.sel-cs select{width:178px;height:39px; position:absolute;left:0;top:0; opacity:0;filter:alpha(opacity=0); cursor:pointer}
-.sel-number{ width:50px;height:37px;border:1px #dbdada solid; border-radius:4px; background:#fff url(../images/icon2.png) 85% 16px no-repeat; font-size:13px; position:relative}
+.sel-cs{ width:176px;height:37px;border:1px #dbdada solid; border-radius:4px; font-size:13px; position:relative}
+/*.sel-cs span{ position:relative;left:0;top:0; line-height:37px; display:block; text-indent:5px}*/
+.sel-cs select{width:178px; height:39px; position:absolute; left:0; top:0; cursor:pointer; }
+.sel-number{ width:50px;height:37px;border:1px #dbdada solid; border-radius:4px; font-size:13px; position:relative}
 .sel-number span{ position:relative;left:0;top:0; line-height:37px; display:block; text-indent:10px}
-.sel-number select{width:53px;height:39px; position:absolute;left:0;top:0; opacity:0;filter:alpha(opacity=0); cursor:pointer}
+.sel-number select{width:53px;height:37px; position:absolute;left:0;top:0; cursor:pointer; border:0}
 .container{ width:980px; margin:0 auto; position:relative}
 .home-con{ position:relative;top:-50px;}
 .home-con .home-top{height:103px;background:url(../images/home_top_bg.png) no-repeat; z-index:100; position:relative; font-size:13px;color:#373535; padding:17px 0 0 8px; margin-bottom:20px}
 .home-con .home-top .home-set{ width:174px; float:left; margin:0 0 0 10px}
 .home-con .home-top .home-set label{ display:block; text-indent:3px; margin-bottom:5px}
-.home-con .home-top .home-set .time-input{width:176px;height:37px;border:1px #dbdada solid; border-radius:4px; background:#fff url(../images/icon3.png) 95% 16px no-repeat; font-size:13px; position:relative}
+.home-con .home-top .home-set .time-input{width:176px;height:37px;border:1px #dbdada solid; border-radius:4px; font-size:13px; position:relative}
+ /*background:#fff url(../images/icon3.png) 95% 16px no-repeat;*/
 .home-con .home-top .home-number{ width:50px; float:left; margin:0 0 0 10px}
 .home-con .home-top .home-number label{ display:block; text-indent:3px; margin-bottom:5px}
 .home-con .home-top .home-set .time-input input{ background:none; border:0 none;height:37px; line-height:37px; width:115px; padding:0 5px; overflow:hidden}
-.home-con .home-top .btn-search{ width:94px;height:35px; text-align:center;color:#fff; font-size:14px; line-height:35px; float:left; background:#2f3443; margin-left:8px; margin-top:28px}
+.home-con .home-top .btn-search{ width:94px;height:35px; text-align:center;color:#fff; font-size:14px; line-height:35px; float:left; background:#2f3443; margin-left:8px; margin-top:27px;  border:none}
 .home-txt h1{ width:811px;height:83px; margin:0 auto; background:url(../images/h1_1.png) no-repeat; overflow:hidden; text-indent:-99em; margin-bottom:75px}
 
 .home-list-img{ margin:0 -32px 0 0; height: 177px; position:relative}

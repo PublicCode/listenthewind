@@ -109,6 +109,7 @@
     <Compile Include="DC\campreserveatt.cs" />
     <Compile Include="DC\campreservedate.cs" />
     <Compile Include="DC\camptype.cs" />
+    <Compile Include="DC\City.cs" />
     <Compile Include="DC\Country.cs" />
     <Compile Include="DC\DC.cs" />
     <Compile Include="DC\MailFail.cs" />

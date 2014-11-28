@@ -93,6 +93,7 @@
   <ItemGroup>
     <Compile Include="AccountManager.cs" />
     <Compile Include="BaseManager.cs" />
+    <Compile Include="DTO\HomeDTO.cs" />
     <Compile Include="ExportManager.cs" />
     <Compile Include="HomeManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
