@@ -282,34 +282,62 @@
     <Content Include="Content\images\avt1.jpg" />
     <Content Include="Content\images\axin.png" />
     <Content Include="Content\images\banner_1.jpg" />
+    <Content Include="Content\images\btm.png" />
     <Content Include="Content\images\btn_s.png" />
     <Content Include="Content\images\chl-btn.png" />
     <Content Include="Content\images\chl-img1.jpg" />
+    <Content Include="Content\images\ckbox.png" />
+    <Content Include="Content\images\ckboxc.png" />
     <Content Include="Content\images\ckc_bg.jpg" />
     <Content Include="Content\images\ck_bg.jpg" />
+    <Content Include="Content\images\close.jpg" />
     <Content Include="Content\images\code.png" />
     <Content Include="Content\images\dot.png" />
-    <Content Include="Content\ListenWind\css\ListenWind.css" />
+    <Content Include="Content\images\d_bn1.jpg" />
+    <Content Include="Content\images\d_bn2.jpg" />
+    <Content Include="Content\images\d_bn3.jpg" />
+    <Content Include="Content\images\d_bn4.jpg" />
+    <Content Include="Content\images\gz-img1.jpg" />
+    <Content Include="Content\images\gzk.jpg" />
+    <Content Include="Content\images\gzs.jpg" />
+    <Content Include="Content\images\h1_4.png" />
+    <Content Include="Content\images\h2_1.jpg" />
+    <Content Include="Content\images\h2_2.jpg" />
+    <Content Include="Content\images\h2_3.jpg" />
+    <Content Include="Content\images\ph2_1.jpg" />
+    <Content Include="Content\images\yz_img1.jpg" />
+    <Content Include="Content\ListenWind.css" />
     <Content Include="Content\ListenWind\images\01.png" />
     <Content Include="Content\ListenWind\images\avt.png" />
     <Content Include="Content\ListenWind\images\avt1.jpg" />
     <Content Include="Content\ListenWind\images\axin.png" />
     <Content Include="Content\ListenWind\images\banner_1.jpg" />
+    <Content Include="Content\ListenWind\images\btm.png" />
     <Content Include="Content\ListenWind\images\btn_s.png" />
     <Content Include="Content\ListenWind\images\chl-btn.png" />
     <Content Include="Content\ListenWind\images\chl-img1.jpg" />
+    <Content Include="Content\ListenWind\images\ckbox.png" />
+    <Content Include="Content\ListenWind\images\ckboxc.png" />
     <Content Include="Content\ListenWind\images\ckc_bg.jpg" />
     <Content Include="Content\ListenWind\images\ck_bg.jpg" />
+    <Content Include="Content\ListenWind\images\close.jpg" />
     <Content Include="Content\ListenWind\images\code.png" />
     <Content Include="Content\ListenWind\images\dot.png" />
     <Content Include="Content\ListenWind\images\d_bn1.jpg" />
     <Content Include="Content\ListenWind\images\d_bn2.jpg" />
     <Content Include="Content\ListenWind\images\d_bn3.jpg" />
     <Content Include="Content\ListenWind\images\d_bn4.jpg" />
+    <Content Include="Content\ListenWind\images\gz-img1.jpg" />
+    <Content Include="Content\ListenWind\images\gzk.jpg" />
+    <Content Include="Content\ListenWind\images\gzs.jpg" />
     <Content Include="Content\ListenWind\images\h1_1.png" />
     <Content Include="Content\ListenWind\images\h1_2.png" />
     <Content Include="Content\ListenWind\images\h1_3.png" />
+    <Content Include="Content\ListenWind\images\h1_4.png" />
+    <Content Include="Content\ListenWind\images\h2_1.jpg" />
     <Content Include="Content\ListenWind\images\h2_1.png" />
+    <Content Include="Content\ListenWind\images\h2_2.jpg" />
+    <Content Include="Content\ListenWind\images\h2_3.jpg" />
     <Content Include="Content\ListenWind\images\handle.png" />
     <Content Include="Content\ListenWind\images\handle_x.png" />
     <Content Include="Content\ListenWind\images\hlist_img1.jpg" />
@@ -347,6 +375,7 @@
     <Content Include="Content\ListenWind\images\next3.png" />
     <Content Include="Content\ListenWind\images\open_guan.jpg" />
     <Content Include="Content\ListenWind\images\open_guanc.jpg" />
+    <Content Include="Content\ListenWind\images\ph2_1.jpg" />
     <Content Include="Content\ListenWind\images\pp.png" />
     <Content Include="Content\ListenWind\images\prev.png" />
     <Content Include="Content\ListenWind\images\prev2.png" />
@@ -388,6 +417,7 @@
     <Content Include="Content\ListenWind\images\verc1.png" />
     <Content Include="Content\ListenWind\images\verc2.png" />
     <Content Include="Content\ListenWind\images\verc3.png" />
+    <Content Include="Content\ListenWind\images\xbx.jpg" />
     <Content Include="Content\ListenWind\images\x_bg.png" />
     <Content Include="Content\ListenWind\images\x_bgc.png" />
     <Content Include="Content\ListenWind\images\yz_bottom_bg.png" />
@@ -396,6 +426,7 @@
     <Content Include="Content\ListenWind\images\yz_img1.jpg" />
     <Content Include="Content\ListenWind\images\yz_nav_bg.png" />
     <Content Include="Content\ListenWind\images\zz.gif" />
+    <Content Include="Content\style.css" />
     <Content Include="Scripts\ListenWind\city.js" />
     <Content Include="Scripts\ListenWind\core.js" />
     <Content Include="Scripts\ListenWind\datepicker-zh-TW.js" />
@@ -885,9 +916,11 @@
     <Content Include="Views\Home\CampList.cshtml" />
     <Content Include="Views\Home\CampDetail.cshtml" />
     <Content Include="Views\Home\CampBook.cshtml" />
+    <Content Include="Views\Home\_HomeLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\ListenWind\css\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
@@ -946,9 +979,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ASPX\ReportMasterPage.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\_HomeLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\AFGTopBar.cshtml" />
