@@ -48,9 +48,8 @@ namespace AdestoSolution.Controllers
             string strParam = Request.Form["param"];
             if (string.IsNullOrEmpty(strParam))
                 return RedirectToAction("Index", "Home");
-            ViewBag.Id = strParam;
-            //var lst = hoManger.GetCampList(Convert.ToInt32(strParam.Split('/')[0]), Convert.ToDateTime(strParam.Split('/')[1]));
-            var lst = hoManger.GetCampList(Convert.ToInt32(1), Convert.ToDateTime("2014-01-01"));
+
+            var lst = hoManger.GetCampList(Convert.ToInt32(strParam.Split('/')[0]), Convert.ToDateTime(strParam.Split('/')[1]));
             ViewBag.lstInfo = JsonConvert.SerializeObject(lst);
             return View("~/Views/Home/CampList.cshtml");
             //return RedirectToAction("CampList", "Home");
