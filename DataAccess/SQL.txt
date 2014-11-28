@@ -3,3 +3,43 @@
 camp           CampIntro            text             2014.11.26 
 CampItem       CampItemIcon         varchar(50)      2014.11.26
 campcomment    UserName             varchar(100)     2014.11.26
+
+codecity :
+SET FOREIGN_KEY_CHECKS=0;
+-- ----------------------------
+-- Table structure for codecity
+-- ----------------------------
+DROP TABLE IF EXISTS `codecity`;
+CREATE TABLE `codecity` (
+  `CityID` int(11) NOT NULL AUTO_INCREMENT,
+  `CityName` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`CityID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+codecitylocation
+-- ----------------------------
+-- Records of codecity
+-- ----------------------------
+INSERT INTO `codecity` VALUES ('1', '大连');
+INSERT INTO `codecity` VALUES ('2', '沈阳');
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for codecitylocation
+-- ----------------------------
+DROP TABLE IF EXISTS `codecitylocation`;
+CREATE TABLE `codecitylocation` (
+  `LocationID` int(11) NOT NULL AUTO_INCREMENT,
+  `LocationName` varchar(20) DEFAULT NULL,
+  `CityID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`LocationID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of codecitylocation
+-- ----------------------------
+INSERT INTO `codecitylocation` VALUES ('1', '甘井子', '1');
+INSERT INTO `codecitylocation` VALUES ('2', '高新园区', '1');
+INSERT INTO `codecitylocation` VALUES ('3', '皇姑区', '2');
+INSERT INTO `codecitylocation` VALUES ('4', '和平区', '2');
