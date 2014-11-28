@@ -163,7 +163,7 @@ namespace DataAccessLayer
             }
             return lstDTO;
         }
-        public List<camp> GetCampList(int locId, DateTime dateTime)
+        public object GetCampList(int locId, DateTime dateTime, int page, int limit)
         {
             DC dc = DCLoader.GetMyDC();
             var camIds = new List<int>();
@@ -177,7 +177,29 @@ namespace DataAccessLayer
                     camIds.Add(id);
                 }
             }
-            return dc.camps.Where(c => camIds.Contains(c.CampID)).ToList();
+            var lstEF = dc.camps.Where(c => camIds.Contains(c.CampID)).ToList();
+            return GetCampListObj(lstEF, page, limit);
+        }
+        public object GetCampListObj(List<camp> lstEF, int page, int limit)
+        {
+            IEnumerable<camp> res = lstEF;
+            if (page > 0)
+            {
+                int skipPages = page - 1;
+                res = lstEF.Skip(skipPages * limit);
+            }
+            if (limit > 0)
+            {
+                res = res.Take(limit);
+            }
+            int count = lstEF.Count();
+            return new
+            {
+                total = limit > 0 ? Math.Ceiling((double)count / limit) : 1,
+                page = page,
+                records = count,
+                rows = res.ToList()
+            };
         }
         public bool CheckCampCollect(int CampID)
         {

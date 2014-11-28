@@ -49,10 +49,15 @@ namespace AdestoSolution.Controllers
             if (string.IsNullOrEmpty(strParam))
                 return RedirectToAction("Index", "Home");
 
-            var lst = hoManger.GetCampList(Convert.ToInt32(strParam.Split('/')[0]), Convert.ToDateTime(strParam.Split('/')[1]));
+            var info = new { locId= Convert.ToInt32(strParam.Split('/')[0]), dateTime= Convert.ToDateTime(strParam.Split('/')[1])};
+            var lst = hoManger.GetCampList(info.locId, info.dateTime, 1, 12);
             ViewBag.lstInfo = JsonConvert.SerializeObject(lst);
             return View("~/Views/Home/CampList.cshtml");
-            //return RedirectToAction("CampList", "Home");
+        }
+        public ActionResult AjaxCampList(int locId, string dateTime, int page, int limit)
+        {
+            var lst = hoManger.GetCampList(locId, Convert.ToDateTime(dateTime), page, limit);
+            return Json(lst, JsonRequestBehavior.AllowGet);
         }
         public ActionResult CampDetail(int CampID)
         {
