@@ -9,5 +9,11 @@
                     })
                     .error(function (d, s, h, c) {
                         t2v_angular.alertDebugError(d, s, h, c);
-        });
+                    });
+
+    $scope.bookcamp = function () {
+        debugger;
+        var picked = $("#calendarpick").val();
+        alert(picked);
+    };
 }]);

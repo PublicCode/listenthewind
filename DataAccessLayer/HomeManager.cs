@@ -13,7 +13,7 @@ using DataAccessLayer.DTO;
 
 namespace DataAccessLayer
 {
-    public class HomeManager : IHomeManager
+    public class HomeManager : BaseManager, IHomeManager
     {
         public string GetNewNumber(string TypeName, string strFirstChar)
         {
@@ -146,7 +146,7 @@ namespace DataAccessLayer
 
             return campmodel;
         }
-
+<<<<<<< .mine
         public List<CityDTO> GetCitys()
         {
             DC dc = DCLoader.GetMyDC();
@@ -180,5 +180,40 @@ namespace DataAccessLayer
             }
             return dc.camps.Where(c => camIds.Contains(c.CampID)).ToList();
         }
-    }
+=======
+        public bool CheckCampCollect(int CampID)
+        {
+            DC dc = DCLoader.GetMyDC();
+            int userid = 1;
+            campcollect coll = dc.campcollects.FirstOrDefault(c => c.UserID == userid && c.CampID == CampID);
+            if (coll == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public string AddCampCollect(int CampID)
+        {
+            try
+            {
+                DC dc = DCLoader.GetMyDC();
+                int userid = 1;
+                campcollect coll = new campcollect();
+                coll.CampID = CampID;
+                coll.UserID = userid;
+                dc.campcollects.Add(coll);
+                dc.SaveChanges();
+                return "添加收藏成功";
+                //Save(_user);
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+>>>>>>> .theirs    }
 }
