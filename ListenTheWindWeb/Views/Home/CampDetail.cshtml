@@ -139,7 +139,7 @@
         <div id="divSelPileContent">
             <div style="width:95%;height:95%;" >
                 <span ng-repeat="camppile in camp.ModelListcamppile">
-                    <input type="button" value="{{camppile.PileNumber}}"ng-click="LinkToCampBook(camppile.PileID);" />
+                    <input type="button" value="{{camppile.PileNumber}}" ng-disabled="!camppile.Flag" ng-click="LinkToCampBook(camppile.PileID);" />
                 </span>    
             </div>
         </div>

@@ -27,9 +27,9 @@ namespace BizLogic
              return homeBase.GetOperationLogList(objectTypes, objectValue);
          }
 
-         public campModel GetCamp(int CampID)
+         public campModel GetCamp(int CampID,DateTime? dt)
          {
-             return homeBase.GetCamp(CampID);
+             return homeBase.GetCamp(CampID,dt);
          }
 
          public string CampCollect(int CampID)
