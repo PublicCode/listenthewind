@@ -988,3 +988,12 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .xb_userLogin.rg li.save{ text-align:left;border-top:1px #f3f3f3 solid; padding:10px 0 0 0}
 .xb_userLogin.rg li.save span{ margin-left:13px}
 .xb_userLogin.rg li.save a{color:#ffa540; margin-left:10px}
+
+#page { padding: 0; margin: 30px 0 40px 0; font: 14px arial; white-space: nowrap; display:block; clear:both; }
+#page a, #page strong { display: inline-block; vertical-align: text-bottom; text-align:center; line-height:34px; text-decoration:none; overflow:hidden; margin-right:9px; border:1px solid #e1e2e3; }
+#page strong { background-color:#F2F8FF; border:1px solid #3388FF; }
+#page a:hover { background-color:#F2F8FF; border:1px solid #3388FF; }
+#page strong:hover {  }
+#page .n { height:34px; padding:0 18px; }
+#page .pc { width:34px; height:34px; cursor:pointer; display:inline-block;  }
+#page strong .pc { border:0; width:34px; height:34px; line-height:34px; display:inline-block;  }
