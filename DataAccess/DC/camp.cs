@@ -41,6 +41,8 @@ namespace DataAccess.DC
 
         public string CampIntro { get; set; }
 
+        public string CampPhoto { get; set; }
+
         public int? Active { get; set; }
 
         public DateTime? CreateTime { get; set; }

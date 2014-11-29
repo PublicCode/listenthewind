@@ -34,6 +34,11 @@ namespace DataAccessLayer.DTO
     {
         public int LocationID { get; set; }
         public string JoinCampDate { get; set; }
-        public DateTime DBJoinCampDate { get { return Convert.ToDateTime(JoinCampDate); } }
+        public DateTime DBJoinCampDate { get { return string.IsNullOrEmpty(JoinCampDate) ? DateTime.Now : Convert.ToDateTime(JoinCampDate); } }
+        public int? PriceStart { get; set; }
+        public int? PriceEnd { get; set; }
+        public List<int> SpecialContents { get; set; }
+        public List<int> CampType { get; set; }
+        public List<int> HostLang { get; set; }
     }
 }

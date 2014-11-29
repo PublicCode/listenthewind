@@ -17,151 +17,21 @@
                     <div class="sel-fl">
                         <label>城市:</label>
                         <div class="select-bg">
-                            <span>请选择城市</span>
-                            <select id="selProvince" onchange="provinceChange();"></select>
+                            <select ng-model="myCity" ng-options="city.CityName for city in hi"></select>
                         </div>
                     </div>
                     <div class="sel-fl">
                         <label>地区:</label>
                         <div class="select-bg">
-                            <span>东城区</span>
-                            <select id="selCity"></select>
+                            <select ng-model="myLoc" ng-options="lo.LocationName for lo in myCity.Locations" placeholder="请选择地区"></select>
                         </div>
                     </div>
                 </div>
                 <div class="input-select clear">
                     <div class="sel-fl" style="width: 300px">
                         <label>入营时间:</label>
-                        <div class="select-bg ipts">
-                            <span>Month</span>
-                            <select>
-                                <option>Month</option>
-                                <option>1月</option>
-                                <option>2月</option>
-                                <option>3月</option>
-                                <option>4月</option>
-                                <option>5月</option>
-                                <option>6月</option>
-                                <option>7月</option>
-                                <option>8月</option>
-                                <option>9月</option>
-                                <option>10月</option>
-                                <option>11月</option>
-                                <option>12月</option>
-                            </select>
-                        </div>
-                        <div class="select-bg ipts dy">
-                            <span>Day</span>
-                            <select>
-                                <option>Day</option>
-                                <option>1号</option>
-                                <option>2号</option>
-                                <option>3号</option>
-                                <option>4号</option>
-                                <option>5号</option>
-                                <option>6号</option>
-                                <option>7号</option>
-                                <option>8号</option>
-                                <option>9号</option>
-                                <option>10号</option>
-                                <option>11号</option>
-                                <option>12号</option>
-                                <option>13号</option>
-                                <option>14号</option>
-                                <option>15号</option>
-                                <option>16号</option>
-                                <option>17号</option>
-                                <option>18号</option>
-                                <option>19号</option>
-                                <option>20号</option>
-                                <option>21号</option>
-                                <option>22号</option>
-                                <option>23号</option>
-                                <option>24号</option>
-                                <option>25号</option>
-                                <option>26号</option>
-                                <option>27号</option>
-                                <option>28号</option>
-                                <option>29号</option>
-                                <option>30号</option>
-                                <option>31号</option>
-                            </select>
-                        </div>
-                        <div class="select-bg ipts dy">
-                            <span>Year</span>
-                            <select>
-                                <option>Year</option>
-                                <option>2014年</option>
-                                <option>2015年</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="input-select clear">
-                    <div class="sel-fl" style="width: 300px">
-                        <label>退营时间:</label>
-                        <div class="select-bg ipts">
-                            <span>Month</span>
-                            <select>
-                                <option>Month</option>
-                                <option>1月</option>
-                                <option>2月</option>
-                                <option>3月</option>
-                                <option>4月</option>
-                                <option>5月</option>
-                                <option>6月</option>
-                                <option>7月</option>
-                                <option>8月</option>
-                                <option>9月</option>
-                                <option>10月</option>
-                                <option>11月</option>
-                                <option>12月</option>
-                            </select>
-                        </div>
-                        <div class="select-bg ipts dy">
-                            <span>Day</span>
-                            <select>
-                                <option>Day</option>
-                                <option>1号</option>
-                                <option>2号</option>
-                                <option>3号</option>
-                                <option>4号</option>
-                                <option>5号</option>
-                                <option>6号</option>
-                                <option>7号</option>
-                                <option>8号</option>
-                                <option>9号</option>
-                                <option>10号</option>
-                                <option>11号</option>
-                                <option>12号</option>
-                                <option>13号</option>
-                                <option>14号</option>
-                                <option>15号</option>
-                                <option>16号</option>
-                                <option>17号</option>
-                                <option>18号</option>
-                                <option>19号</option>
-                                <option>20号</option>
-                                <option>21号</option>
-                                <option>22号</option>
-                                <option>23号</option>
-                                <option>24号</option>
-                                <option>25号</option>
-                                <option>26号</option>
-                                <option>27号</option>
-                                <option>28号</option>
-                                <option>29号</option>
-                                <option>30号</option>
-                                <option>31号</option>
-                            </select>
-                        </div>
-                        <div class="select-bg ipts dy">
-                            <span>Year</span>
-                            <select>
-                                <option>Year</option>
-                                <option>2014年</option>
-                                <option>2015年</option>
-                            </select>
+                        <div class="time-input">
+                            <input type="text" id="datepicker1" value="" class="datepicker" ng-model="searchInfo.JoinCampDate" placeholder="请选择城市"/>
                         </div>
                     </div>
                 </div>
@@ -175,23 +45,10 @@
             <div class="ch-con">
                 <div class="slider-txt">
                     <p style="margin-bottom: 10px">
-
                         <input type="text" id="amount" readonly style="border: 0; color: #2f3443; background: none; font-size: 12px" />
                     </p>
-
                     <div id="slider-range" style="height: 9px; width: 294px"></div>
                 </div>
-            </div>
-        </div>
-        <div class="ch-list">
-            <div class="ch-top">
-                <h2>预定选型</h2>
-                <a href="javascript:;" class="kq">开启关闭</a>
-            </div>
-            <div class="ch-con" style="padding: 0">
-                <div class="ck ckc">即时预订</div>
-                <div class="ck">保存收藏</div>
-
             </div>
         </div>
         <div class="ch-list">
@@ -201,21 +58,22 @@
             </div>
             <div class="ch-con" style="padding: 14px 0 0 12px">
                 <ul class="dxuan clear">
-                    <li><span>WIFI</span></li>
-                    <li><span>早餐</span></li>
-                    <li><span>垂钓</span></li>
-                    <li class="rddc"><span>烧烤器具</span></li>
-                    <li><span>儿童乐园</span></li>
-                    <li><span>著名景点</span></li>
-                    <li class="rddc"><span>洗衣机</span></li>
-                    <li class="rddc"><span>允许携带宠物</span></li>
-                    <li><span>草莓园</span></li>
-                    <li class="rddc"><span>西瓜园</span></li>
-                    <li><span>桃园</span></li>
-                    <li class="rddc"><span>油菜花园</span></li>
-                    <li class="rddc"><span>现代农场</span></li>
-                    <li><span>有机农产品供给</span></li>
-                    <li><span>E4E自行车</span></li>
+                    <li ng-repeat="info in basicdata | filter: 'campitem'">
+                        <input type="checkbox" class="campitem" selValue="{{info.BasicDataCollectID}}" />{{ info.DataName }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="ch-list">
+            <div class="ch-top">
+                <h2>营地类型</h2>
+                <a href="javascript:;" class="kq">开启关闭</a>
+            </div>
+            <div class="ch-con" style="padding: 14px 0 0 12px">
+                <ul class="dxuan clear">
+                    <li ng-repeat="info in basicdata | filter: 'camptype'">
+                        <input type="checkbox" class="camptype" selValue="{{info.BasicDataCollectID}}" />{{ info.DataName }}
+                    </li>
                 </ul>
 
             </div>
@@ -227,64 +85,42 @@
             </div>
             <div class="ch-con" style="padding: 14px 0 0 12px">
                 <ul class="dxuan clear">
-                    <li><span>农家乐</span></li>
-                    <li><span>特色农场</span></li>
-                    <li><span>景区营地</span></li>
-                    <li class="rddc"><span>标准营地</span></li>
-                    <li><span>现代规模农场</span></li>
-                    <li><span>特色营地</span></li>
-                    <li class="rddc"><span>出海基地</span></li>
-                    <li class="rddc"><span>公园</span></li>
-
+                    <li ng-repeat="info in basicdata | filter: 'hostlang'">
+                        <input type="checkbox" class="hostlang" selValue="{{info.BasicDataCollectID}}" />{{ info.DataName }}
+                    </li>
                 </ul>
-
-            </div>
-        </div>
-        <div class="ch-list">
-            <div class="ch-top">
-                <h2>营地类型</h2>
-                <a href="javascript:;" class="kq">开启关闭</a>
-            </div>
-            <div class="ch-con" style="padding: 14px 0 0 12px">
-                <ul class="dxuan clear">
-                    <li><span>中文</span></li>
-                    <li class="rddc"><span>英文</span></li>
-                    <li><span>当地方言</span></li>
-
-
-                </ul>
-
             </div>
         </div>
         <div class="search_ft">
             <input type="text" id="srch2" value="请输入您要搜索的关键字" />
-            <a href="#">搜索</a>
+            <a href="#" ng-click="Search()">搜索</a>
         </div>
     </div>
     <div class="choice-right">
         <ul class="chl-list">
             <li ng-repeat="info in cp">
                 <div class="chl-img">
-                    <img src="../../Content/images/chl-img1.jpg" />
+                    <img src="../../UploadImg/Camp/{{info.CampPhoto}}" />
                 </div>
-                <h2>天目湖山水</h2>
+                <h2>{{ info.CampName }}</h2>
                 <div class="chl-jg clear">
-                    <h3 ng-bind="info.PilePrice"></h3>
+                    <h3 >￥:{{info.PilePrice}}</h3>
                     <div class="x-bg-con">
                         <div style="width: 25%"></div>
                     </div>
                 </div>
                 <div class="chl-txt">
-                    ...
+                    {{ info.CampIntro }}
                 </div>
                 <div class="chl-icon clear">
-                    <a href="#">
-                        <img src="../../Content/images/sicon1.jpg" /></a><a href="#"><img src="../../Content/images/sicon1.jpg" /></a><a href="#"><img src="../../Content/images/sicon1.jpg" /></a>
+                    <a href="#" ng-repeat="campitem in info.Listcampitem | orderBy:predicate">
+                        <img title="{{campitem.CampItemName}}" style="width:16px; height:16px" ng-show="$index < 3" src="../../Content/images/{{campitem.CampItemIcon}}" />
+                    </a>
                 </div>
                 <div class="chl-avt">
                     <img src="../../Content/images/avt.png" />
                 </div>
-                <a href="/Home/CampDetail?CampID=1" class="chl-btn">查看更多信息</a>
+                <a href="/Home/CampDetail?CampID=1&&da={{}}" class="chl-btn">查看更多信息</a>
             </li>
         </ul>
         <p id="page"></p>
@@ -292,6 +128,8 @@
 </div>
 <script type="text/javascript">
     t2v_HomeIndex.lstInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.lstInfo));
+    t2v_HomeIndex.hiInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.CityInfo));
+    t2v_HomeIndex.bdInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.BasicData));
     angular.element(document).ready(function () {
         angular.bootstrap($('body'), ['SO']);
     });

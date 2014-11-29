@@ -9,30 +9,31 @@ using System.Web.Script.Serialization;
 
 namespace DataAccess.DC
 {
-    public class camphostlanguage : ILoggedEntity
+
+    public class basicdatacollect : ILoggedEntity
     {
-        /// <summary>
-        /// Key
-        /// </summary>
         [Key]
-        public int CampHostLanguageID { get; set; }
+        public int BasicDataCollectID { get; set; }
 
-        public string LoggedType { get { return "camphostlanguage"; } }
+        public string LoggedType { get { return "basicdatacollect"; } }
 
-        public int CampHostID { get; set; }
+        public string DataType { get; set; }
 
-        public string Language { get; set; }
+        public string DataName { get; set; }
 
-        public int BasicID { get; set; }
+        public string DataIcon { get; set; }
+
+        public int? DataSort { get; set; }
 
         long ILoggedEntity.Id
         {
-            get { return CampHostLanguageID; }
+            get { return BasicDataCollectID; }
         }
         /// <summary>
         /// This field is used for link operation history summary and detail.
         /// </summary>
         [NotMapped]
         public string BatchID { get; set; }
+
     }
 }

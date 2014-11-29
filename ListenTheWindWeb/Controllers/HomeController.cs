@@ -47,12 +47,12 @@ namespace AdestoSolution.Controllers
         public ActionResult ReleaseNote()
         {
             string strParam = Request.Form["param"];
-            if (string.IsNullOrEmpty(strParam))
-                return RedirectToAction("Index", "Home");
 
             var info = new CampListSeachDTO { LocationID = Convert.ToInt32(strParam.Split('/')[0]), JoinCampDate = strParam.Split('/')[1] };
             var lst = hoManger.GetCampList(info, 1, 12);
             ViewBag.lstInfo = JsonConvert.SerializeObject(lst);
+            ViewBag.CityInfo = JsonConvert.SerializeObject(hoManger.GetCitys());
+            ViewBag.BasicData = JsonConvert.SerializeObject(hoManger.GetBasicData());
             return View("~/Views/Home/CampList.cshtml");
         }
         public ActionResult AjaxCampList(string searchInfo, int page, int limit)

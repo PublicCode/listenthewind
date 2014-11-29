@@ -47,3 +47,9 @@ INSERT INTO `codecitylocation` VALUES ('1', '甘井子', '1');
 INSERT INTO `codecitylocation` VALUES ('2', '高新园区', '1');
 INSERT INTO `codecitylocation` VALUES ('3', '皇姑区', '2');
 INSERT INTO `codecitylocation` VALUES ('4', '和平区', '2');
+
+表                添加字段              类型             日期   
+campitem          CampItemSort         int              2014.11.29 
+basicdatacollect  DataIcon             varchar(100)     2014.11.29
+basicdatacollect  DataSort             int				2014.11.29       
+campitem		  BasicID			   int				2014.11.29
