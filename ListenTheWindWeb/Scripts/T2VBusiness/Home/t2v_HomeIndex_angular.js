@@ -1,12 +1,13 @@
 ﻿soNgModule.controller("HomeIndexCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
     $scope.hi = JSON.parse(t2v_HomeIndex.hiInfo);
-    $scope.myCity  = $scope.hi[0];
-    $scope.locLst = $scope.myCity.Locations;
-    $scope.myLoc = $scope.locLst[0];
-    $scope.ChangeCity = function () {
-        $scope.locLst = $scope.myCity.Locations;
-        $scope.myLoc = $scope.locLst[0];
-    };
+    //$scope.myCity  = $scope.hi[0];
+    //$scope.locLst = $scope.myCity.Locations;
+    //$scope.myLoc = $scope.locLst[0];
+    //$scope.ChangeCity = function () {
+    //    $scope.locLst = $scope.myCity.Locations;
+    //    $scope.myLoc = $scope.locLst[0];
+    //};
+    $scope.myLoc = [];
     $scope.SearchCamp = function () {
         var locId = $scope.myLoc.LocationID;
         var date = $("#datepicker1").val();

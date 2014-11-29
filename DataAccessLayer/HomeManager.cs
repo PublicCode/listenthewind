@@ -212,10 +212,24 @@ namespace DataAccessLayer
                     camIds.Add(id);
                 }
             }
+            
+            //string sql = "select CampID from Camp where 1=1";
+            //if (info.LocationID != null)
+            //{
+            //    sql += " and LocID = '" + info.LocationID + "'";
+            //}
+            //if (info.DBJoinCampDate != null)
+            //{
+            //    sql += "(select count(*) from camppile where camppile.CampID = Camp.CampID) <> (select count(*) from campreservedate where campreservedate.CampID = Camp.CampID and CampReserveDate = '" + info.DBJoinCampDate.ToString() + "')";
+            //}
+            //var camIds = dc.Database.SqlQuery<int>(sql).ToList();
+            //var lstEF = dc.camps.Where(c => camIds.Contains(c.CampID))
             var lstEF = dc.camps.Where(c => camIds.Contains(c.CampID)).ToList();
             return GetCampListObj(lstEF, page, limit, info);
         }
+
         public object GetCampListObj(List<camp> lstEF, int page, int limit, CampListSeachDTO info)
+        //public IQueryable<camp> GetCampListObj(List<camp> lstEF, int page, int limit, CampListSeachDTO info)
         {
             IEnumerable<camp> res = lstEF;
             if (page > 0)
