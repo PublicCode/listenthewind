@@ -198,24 +198,48 @@ namespace DataAccessLayer
             }
             return lstDTO;
         }
-        public object GetCampList(int locId, DateTime dateTime, int page, int limit)
+        public List<basicdatacollect> GetBasicData()
         {
             DC dc = DCLoader.GetMyDC();
-            var camIds = new List<int>();
-            var lstId = dc.camps.Where(c => c.LocID == locId).Select(c => c.CampID).ToList();
-            foreach (var id in lstId)
-            {
-                var allCount = dc.camppiles.Where(c => c.CampID == id).ToList().Count();
-                var freeCount = dc.campreservedates.Where(c => c.CampID == id && c.CampReserveDate == dateTime).ToList().Count();
-                if (allCount != freeCount)
-                {
-                    camIds.Add(id);
-                }
-            }
-            var lstEF = dc.camps.Where(c => camIds.Contains(c.CampID)).ToList();
-            return GetCampListObj(lstEF, page, limit);
+            return dc.basicdatacollects.ToList();
         }
-        public object GetCampListObj(List<camp> lstEF, int page, int limit)
+        public object GetCampList(CampListSeachDTO info, int page, int limit)
+        {
+            DC dc = DCLoader.GetMyDC();
+            string sql = "select CampID from Camp where 1=1";
+            if (info.LocationID != 0)
+            {
+                sql += " and LocID = '" + info.LocationID + "'";
+            }
+            if (!string.IsNullOrEmpty(info.JoinCampDate))
+            {
+                sql += "  and (select count(*) from camppile where camppile.CampID = Camp.CampID) <> (select count(*) from campreservedate where campreservedate.CampID = Camp.CampID and CampReserveDate = '" + info.DBJoinCampDate.ToString() + "')";
+            }
+            if (info.PriceStart != null)
+            {
+                sql += " and pileprice >=" + info.PriceStart + " and pileprice <= " + info.PriceEnd;
+            }
+            if (info.SpecialContents != null)
+            {
+                var campitemids = string.Join(",", info.SpecialContents);
+                sql += " and CampID in (select distinct CampID from campitem where BasicID in (" + campitemids + "))";
+            }
+            if (info.CampType != null)
+            {
+                var camptypeids = string.Join(",", info.CampType);
+                sql += " and CampID in (select distinct CampID from camptype where BasicID in (" + camptypeids + "))";
+            }
+            if (info.HostLang != null)
+            {
+                var hostsLangids = string.Join(",", info.HostLang);
+                sql += " and CampID in (select CampID from CampHost where camphostid in (select distinct camphostid from CampHostLanguage where BasicID in (" + hostsLangids + ")))";
+            }
+            var camIds = dc.Database.SqlQuery<int>(sql).ToList();
+            var lstEF = dc.camps.Include("Listcampitem").Where(c => camIds.Contains(c.CampID));
+            return GetCampListObj(lstEF, page, limit, info);
+        }
+
+        public object GetCampListObj(IEnumerable<camp> lstEF, int page, int limit, CampListSeachDTO info)
         {
             IEnumerable<camp> res = lstEF;
             if (page > 0)
@@ -233,7 +257,8 @@ namespace DataAccessLayer
                 total = limit > 0 ? Math.Ceiling((double)count / limit) : 1,
                 page = page,
                 records = count,
-                rows = res.ToList()
+                rows = res.ToList(),
+                searchInfo = info
             };
         }
         public bool CheckCampCollect(int CampID)

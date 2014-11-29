@@ -4,6 +4,7 @@
     var controller = ViewData["controller"] ?? Request.RequestContext.RouteData.Values["controller"].ToString();
     var action = ViewData["action"] ?? Request.RequestContext.RouteData.Values["action"].ToString();
     var full = controller + "_" + action;
+    Layout = null;
 }
 <!DOCTYPE html>
 <html>
@@ -182,12 +183,7 @@
     <!--底部结束-->
     <script>
         $(function () {
-            $("#selProvince,#selCity,#selProvince1,#selCity1").change(function () {
-
-                var val = $(this).val();
-                $(this).siblings("span").text(val);
-            })
-
+            $("#datepicker1").datepicker({ dateFormat: 'yy-mm-dd' });
             $("#slider-range").slider({
                 orientation: "horizontal",
                 step: 50,

@@ -1,31 +1,44 @@
 ﻿soNgModule.controller("HomeIndexCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
     $scope.hi = JSON.parse(t2v_HomeIndex.hiInfo);
-    $scope.myCity  = $scope.hi[0];
-    $scope.locLst = $scope.myCity.Locations;
-    $scope.myLoc = $scope.locLst[0];
-    $scope.ChangeCity = function () {
-        $scope.locLst = $scope.myCity.Locations;
-        $scope.myLoc = $scope.locLst[0];
-    };
+    //$scope.myCity  = $scope.hi[0];
+    //$scope.locLst = $scope.myCity.Locations;
+    //$scope.myLoc = $scope.locLst[0];
+    //$scope.ChangeCity = function () {
+    //    $scope.locLst = $scope.myCity.Locations;
+    //    $scope.myLoc = $scope.locLst[0];
+    //};
+    $scope.myLoc = [];
     $scope.SearchCamp = function () {
         var locId = $scope.myLoc.LocationID;
         var date = $("#datepicker1").val();
         if (locId == undefined) {
-            alert("请选择景点");
-            return false;
-        }
-        else if (date == "") {
-            alert("请选择入营时间");
-            return false;
+            locId = 0;
         }
         $("#param").val(locId + "/" + date);
-        return true;
     };
 }]);
 
 soNgModule.controller("CampListCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
     $scope.obj = JSON.parse(t2v_HomeIndex.lstInfo);
     $scope.cp = $scope.obj.rows;
+    $scope.basicdata = JSON.parse(t2v_HomeIndex.bdInfo);
+
+
+    $scope.hi = JSON.parse(t2v_HomeIndex.hiInfo);
+    $scope.searchInfo = $scope.obj.searchInfo;
+    $scope.refreshLocCity = function () {
+        angular.forEach($scope.hi, function (v, k) {
+            angular.forEach(v.Locations, function (s, p) {
+                if (s.LocationID == $scope.searchInfo.LocationID) {
+                    $scope.myLoc = s;
+                    $scope.myCity = v;
+                }
+            });
+        });
+    };
+    $scope.refreshLocCity();
+
+    $scope.predicate = '+CampItemSort';
 
     $scope.updatePage = function () {
         var strHtml = "<a href='#' onclick='t2v_HomeIndex.GoesToPage(10086)' class='n'>上一页</a>";
@@ -50,7 +63,41 @@ soNgModule.controller("CampListCtrl", ['$scope', '$routeParams', '$http', functi
         $.ajax({
             url: SiteRoot + "/AjaxCampList",
             type: 'POST',
-            data: { locId: 1, dateTime: "2014-01-01", page: page, limit: 12 },
+            data: { searchInfo: JSON.stringify($scope.obj.searchInfo), page: page, limit: 12 },
+            async: true,
+            success: function (data) {
+                $scope.obj = data;
+                $scope.cp = $scope.obj.rows;
+                $scope.$apply();
+                $scope.updatePage();
+            }
+        });
+    };
+    $scope.Search = function () {
+        var specialContents = [];
+        $(".campitem").each(function (v, k) {
+            if ($(k).prop("checked"))
+                specialContents.push($(k).attr("selValue"));
+        });
+        $scope.obj.searchInfo.SpecialContents = specialContents;
+
+        var campTypes = [];
+        $(".camptype").each(function (v, k) {
+            if ($(k).prop("checked"))
+                campTypes.push($(k).attr("selValue"));
+        });
+        $scope.obj.searchInfo.CampType = campTypes;
+
+        var hostLangs = [];
+        $(".hostlang").each(function (v, k) {
+            if ($(k).prop("checked"))
+                hostLangs.push($(k).attr("selValue"));
+        });
+        $scope.obj.searchInfo.HostLang = hostLangs;
+        $.ajax({
+            url: SiteRoot + "/AjaxCampList",
+            type: 'POST',
+            data: { searchInfo: JSON.stringify($scope.obj.searchInfo), page: 1, limit: 12 },
             async: true,
             success: function (data) {
                 $scope.obj = data;

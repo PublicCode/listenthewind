@@ -10,21 +10,21 @@
             <div class="home-set">
                 <label>城市</label>
                 <div class="select-con sel-cs">
-                    <select ng-model="myCity" ng-options="city.CityName for city in hi" required ng-change="ChangeCity()">
+                    <select ng-model="myCity" ng-options="city.CityName for city in hi" required >
                     </select>
                 </div>
             </div>
             <div class="home-set">
-                <label>景点</label>
+                <label>地区</label>
                 <div class="select-con sel-cs" id="home-city">
-                    <select ng-model="myLoc" ng-options="lo.LocationName for lo in locLst">
+                    <select ng-model="myLoc" ng-options="lo.LocationName for lo in myCity.Locations" placeholder="请选择地区">
                     </select>
                 </div>
             </div>
             <div class="home-set">
                 <label>入营时间：</label>
                 <div class="time-input">
-                    <input type="text" id="datepicker1" value="" />
+                    <input type="text" id="datepicker1" class="datepicker" value="" placeholder="请选择城市"/>
                 </div>
             </div>
             <div class="home-set">

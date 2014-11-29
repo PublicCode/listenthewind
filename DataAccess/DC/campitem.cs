@@ -25,6 +25,8 @@ namespace DataAccess.DC
 
         public string CampItemIcon { get; set; }
 
+        public int CampItemSort { get; set; }
+
         long ILoggedEntity.Id
         {
             get { return CampItemID; }

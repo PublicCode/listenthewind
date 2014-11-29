@@ -14,6 +14,7 @@ using DataAccessLayer;
 using IDataAccessLayer;
 using Newtonsoft.Json;
 using WebModel.Camp;
+using DataAccessLayer.DTO;
 
 namespace AdestoSolution.Controllers
 {
@@ -46,17 +47,20 @@ namespace AdestoSolution.Controllers
         public ActionResult ReleaseNote()
         {
             string strParam = Request.Form["param"];
-            if (string.IsNullOrEmpty(strParam))
-                return RedirectToAction("Index", "Home");
 
-            var info = new { locId= Convert.ToInt32(strParam.Split('/')[0]), dateTime= Convert.ToDateTime(strParam.Split('/')[1])};
-            var lst = hoManger.GetCampList(info.locId, info.dateTime, 1, 12);
+            var info = new CampListSeachDTO { LocationID = Convert.ToInt32(strParam.Split('/')[0]), JoinCampDate = strParam.Split('/')[1] };
+            var lst = hoManger.GetCampList(info, 1, 12);
             ViewBag.lstInfo = JsonConvert.SerializeObject(lst);
+            ViewBag.CityInfo = JsonConvert.SerializeObject(hoManger.GetCitys());
+            ViewBag.BasicData = JsonConvert.SerializeObject(hoManger.GetBasicData());
             return View("~/Views/Home/CampList.cshtml");
         }
-        public ActionResult AjaxCampList(int locId, string dateTime, int page, int limit)
+        public ActionResult AjaxCampList(string searchInfo, int page, int limit)
         {
-            var lst = hoManger.GetCampList(locId, Convert.ToDateTime(dateTime), page, limit);
+            var js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            var info = js.Deserialize<CampListSeachDTO>(searchInfo);
+
+            var lst = hoManger.GetCampList(info, page, limit);
             return Json(lst, JsonRequestBehavior.AllowGet);
         }
         public ActionResult CampDetail(int CampID)

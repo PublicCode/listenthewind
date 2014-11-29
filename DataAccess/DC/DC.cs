@@ -54,6 +54,8 @@ namespace DataAccess.DC
         public DbSet<City> Citys { get; set; }
         public DbSet<CityLocation> CityLocations { get; set; }
 
+        public DbSet<basicdatacollect> basicdatacollects { get; set; }
+
         public override int SaveChanges()
         {
             UpdateDates();

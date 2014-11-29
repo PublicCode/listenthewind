@@ -14,5 +14,9 @@ namespace WebModel.Camp
         public string CampItemName { get; set; }
 
         public string CampItemIcon { get; set; }
+
+        public int CampItemSort { get; set; }
+
+        public int BasicID { get; set; }
     }
 }

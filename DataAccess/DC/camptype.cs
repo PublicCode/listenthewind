@@ -21,6 +21,8 @@ namespace DataAccess.DC
 
         public string CampTypeName { get; set; }
 
+        public int BasicID { get; set; }
+
         long ILoggedEntity.Id
         {
             get { return CampTypeID; }
