@@ -63,7 +63,16 @@ namespace DataAccessLayer
             //camp campInDB = dc.camps.FirstOrDefault(c => c.CampID == CampID);
             return campInDB;
         }
-
+        public List<string> GetListOfReserveForPile(int PileId)
+        {
+            var ret = new List<string>();
+            var listOfReserve = dc.campreservedates.Where(m => m.CampPileID == PileId).Select(m=>m.CampReserveDate).ToList();
+            foreach (DateTime dt in listOfReserve)
+            {
+                ret.Add(dt.ToShortDateString());
+            }
+            return ret;
+        }
         public campModel GetCamp(int CampID,DateTime? dt)
         {
             int userid = 1;

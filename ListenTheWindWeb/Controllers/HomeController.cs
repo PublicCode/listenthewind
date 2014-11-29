@@ -75,10 +75,11 @@ namespace AdestoSolution.Controllers
             return bizLogic.CampCollect(CampID);
         }
 
-        public ActionResult CampBook(int CampID)
+        public ActionResult CampBook(int CampID, int PileID)
         {
             campModel campmodel = bizLogic.GetCamp(CampID, null);
             ViewBag.CampInfo = JsonConvert.SerializeObject(campmodel);
+            ViewBag.PileID = PileID;
             return View("~/Views/Home/CampBook.cshtml");
         }
         public ActionResult ComingSoon()
@@ -91,9 +92,10 @@ namespace AdestoSolution.Controllers
             IHomeManager homeManager = new HomeManager();
             return homeManager.GetNewNumber(TypeName,strFirstChar);
         }
-        //public ActionResult GetClient()
-        //{
-
-        //}
+        public ActionResult getReservedDateForPile(int PileId)
+        {
+            IHomeManager homeManager = new HomeManager();
+            return Json(homeManager.GetListOfReserveForPile(PileId));
+        }
     }
 }

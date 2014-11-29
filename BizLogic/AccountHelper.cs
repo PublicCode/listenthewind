@@ -22,6 +22,12 @@ namespace BizLogic
             return IAccount.GetUserByName(userName);
         }
 
+        public User GetUserByID(int id)
+        {
+            IAccountManager IAccount = new AccountManager();
+            return IAccount.GetUserById(id);
+        }
+
 
         public string GetCurrentUserName()
         {

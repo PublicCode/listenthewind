@@ -43,5 +43,9 @@ namespace BizLogic
                  return "已经添加收藏";
              }
          }
+         public List<string> getListOfReserveDate(int PileId)
+         {
+             return homeBase.GetListOfReserveForPile(PileId);
+         }
     }
 }

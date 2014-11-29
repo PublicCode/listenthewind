@@ -7,31 +7,46 @@
     <div class="container" id="ng-value" ng-controller="CampBookCtrl">
 		<h1 class="tit4">在线预订</h1>
         <div class="detail-con clear">
-            <div class="detail-left detail-lr clear">
-                <div class="flexslider3">
+            <div class="detail-left">
+                <div class="flexslider2">
                     <ul class="slides">
-                        <li><a href="#"><img src="../../UploadImg/Camp/d_bn1.jpg"/></a></li>
-                        <li><a href="#"><img src="../../UploadImg/Camp/d_bn2.jpg"/></a></li>
-                        <li><a href="#"><img src="../../UploadImg/Camp/d_bn3.jpg"/></a></li>
-                        <li><a href="#"><img src="../../UploadImg/Camp/d_bn4.jpg"/></a></li>
+                        <li ng-repeat="campphoto in camp.ModelListcampphoto"><img src="../../UploadImg/Camp/{{campphoto.CampPhoteFile}}"/></li>
+                       
                     </ul>
+                </div>
+                <div class="more-con">
+                	<h2><img src="../../Content/images/h2_1.png"/></h2>
+                    <div class="scrollPic-con">
+                    	<a href="#" class="more-link">查看全部相片</a>
+                        <a href="javascript:void(0)" class="pic-btn" id="left_but">左</a>
+                        <a href="javascript:void(0)" class="pic-btn" id="right_but">右</a>
+                        <ul id="pic">
+                            <li><a href="#"><img src="../../Content/images/more_img1.jpg"/></a></li>
+                            <li><a href="#"><img src="../../Content/images/more_img2.jpg"/></a></li>
+                            <li><a href="#"><img src="../../Content/images/more_img3.jpg"/></a></li>
+                            <li><a href="#"><img src="../../Content/images/more_img4.jpg"/></a></li>
+                            <li><a href="#"><img src="../../Content/images/more_img5.jpg"/></a></li>
+                            <li><a href="#"><img src="../../Content/images/more_img6.jpg"/></a></li>
+                        </ul>
+                    </div>
+                </div>
                 </div>
                 <div class="detail-right">
                     <div class="price">
-                        <div class="basic" id="service" data-average="12" data-id="2"></div>
-                        <h1>听风编号:108<strong>天目湖山水园</strong></h1>
-                        <h2>Tianmu lake mountain and water garden</h2>
-                        <div class="rmb">￥:300.00</div>
-                        <div class="through">原价￥：600</div>
-                        <div class="tf-ts ">
-                            <h3>听风特色</h3>
-                            <div class="tf-ts-con">
-                                <a href="#"><img src="../../Content/images/ts_icon1.jpg"/></a><a href="#"><img src="../../Content/images/ts_icon2.jpg"/></a><a href="#"><img src="../../Content/images/ts_icon2.jpg"/></a><a href="#"><img src="../../Content/images/ts_icon2.jpg"/></a><a href="#"><img src="../../Content/images/ts_icon2.jpg"/></a><a href="#"><img src="../../Content/images/ts_icon2.jpg"/></a>
-                            </div>
+                       <div class="x-bg-con"><div style="width:25%"></div></div><!--百分比调整星级-->
+                        <h1>听风编号:{{camp.CampNum}}<strong>{{camp.CampName}}</strong></h1>
+                        @*<h2>Tianmu lake mountain and water garden</h2>*@
+                        <div class="rmb">￥:{{camp.PilePrice}}</div>
+                       <div class="tf-ts">
+                    	<h3>听风特色</h3>
+                        <div class="tf-ts-con">
+                            <span ng-repeat="campitem in camp.ModelListcampitem">
+                        	    <img title="{{campitem.CampItemName}}" src="../../Content/images/{{campitem.CampItemIcon}}"/>
+                            </span>
                         </div>
                     </div>
+                    </div>
                  </div>
-             </div>
              <div class="detail-left detail-lr clear">
              	<h2 class="h-tit1">填写客户信息</h2>
                 <div class="book-con">
@@ -39,10 +54,10 @@
                     <div class="book-txt clear">
                     	<ul class="cw">
                         	<li class="clear">
-                            	<span>登 录 邮 箱：ado****14@hotmail.com</span><a class="or" href="#">修改邮箱</a>
+                            	<span>登 录 邮 箱：{{userInfo.Mail}}</span><a class="or" href="#">修改邮箱</a>
                             </li>
                             <li class="clear">
-                            	<span>手 机 号 码： 138****8879<a class="dengl" href="#">更换号码</a></span><a class="or" href="#">解绑手机</a>
+                            	<span>手 机 号 码： {{userInfo.Mobile}}<a class="dengl" href="#">更换号码</a></span><a class="or" href="#">解绑手机</a>
                             </li>
                             <li class="clear">
                             	<span>上 次 登 录： 2014年09月19日 12:25:20</span><a class="or" href="#">(不是您登录的？请点击这里)</a>
@@ -54,9 +69,6 @@
                  <div class="book-con">
                 	<h3></h3>
                      <div class="cal-kalendae" id="calendarpick"></div>
-                    <div class="xbx">
-                    	<img src="../../Content/images/xbx.jpg"/>
-                    </div>
                 </div>
                 <h2 class="h-tit3">便利设施选择</h2>
                  <div class="book-con">
@@ -116,21 +128,15 @@
                             	便利设施:<a href="#">更多相关自选&gt;&gt;&gt;</a>
                             </div>
                             <ul>
-                            	<li class="rd rdc">
-                                	<span>烧烤器具：</span><em>烤肉架：￥100;</em><em>烤肉架：￥100;</em><em>烤肉架：￥100;</em>
-                                </li>
-                                <li class="rd rdc">
-                                	<span>水果园：</span><em>草莓：￥100;</em><em>草莓：￥100;</em><em>草莓：￥100;</em>
-                                </li>
-                                 <li class="rd rdc">
-                                	<span>水果园：</span><em>草莓：￥100;</em><em>草莓：￥100;</em><em>草莓：￥100;</em>
+                            	<li ng-repeat="campprice in camp.ModelListcampprice" style="background:none">
+                                	<input type="checkbox" ng-model ="campprice.Checked"/><span>{{campprice.ItemName}}：</span><em>{{campprice.ItemName}}：￥{{campprice.ItemPrice}};</em>
                                 </li>
                                 <li>
                                 	<textarea>输入你需求备注：</textarea>
                                 </li>
                             </ul>
                         </div>
-                        <input type="button"  ng-click="bookcamp();" value="Click"/>
+                        <input type="button"  ng-click="bookcamp();" value="预定"/>
                     </div>
                 </div>
              </div>
@@ -138,6 +144,7 @@
     </div>
 <script>
     t2v_CampDetail.CampInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.CampInfo));
+    t2v_CampDetail.PileId = @Html.Raw(JsonConvert.SerializeObject(ViewBag.PileID));
     angular.element(document).ready(function () {
         angular.bootstrap($('body'), ['SO']);
         $('.flexslider2').flexslider({
