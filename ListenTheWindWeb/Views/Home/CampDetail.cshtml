@@ -136,19 +136,19 @@
             </div>
         </div>
     </div>
-    <div id="divSelPile" class="modal hide">
+    <div id="divSelPile" class="modal hide" style="display:block">
         <div class="modal-header" style="background-color: #9E9500;">
             <div style="text-align: left; font-weight: bold;">
-                <button type="button" style="float: right" class="DeleteLine" data-dismiss="modal">
-                    &nbsp;
+                <button type="button" style="float: right; padding:0 10px" class="DeleteLine" data-dismiss="modal">
+                    X
                 </button>
                 <span style="font-size: 18px;">选择桩号 &nbsp;&nbsp;&nbsp;</span>
             </div>
         </div>
         <div id="divSelPileContent">
-            <div style="width: 95%; height: 95%;">
+            <div style="width: 95%; height: 350px; overflow:hidden; padding:10px">
                 <span ng-repeat="camppile in camp.ModelListcamppile">
-                    <input type="button" value="{{camppile.PileNumber}}" ng-disabled="!camppile.Flag" ng-click="LinkToCampBook(camppile.PileID);" />
+                    <input class="SelPileBtn" type="button" value="{{camppile.PileNumber}}" ng-disabled="!camppile.Flag" ng-click="LinkToCampBook(camppile.PileID);" />
                 </span>
             </div>
         </div>
