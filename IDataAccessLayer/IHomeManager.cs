@@ -14,5 +14,6 @@ namespace IDataAccessLayer
         campModel GetCamp(int CampID, DateTime? dt);
         bool CheckCampCollect(int CampID);
         string AddCampCollect(int CampID);
+        List<string> GetListOfReserveForPile(int PileId);
     }
 }

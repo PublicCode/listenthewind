@@ -46,7 +46,7 @@ namespace HDS.QMS.Controllers
                     //get user 
                     DataAccess.DC.User user = accountHelper.GetUserByName(model.UserName);
                     HttpContext.Response.Cookies.Add(new HttpCookie("UserName",model.UserName));
-                    HttpContext.Response.Cookies.Add(new HttpCookie("UserID", user.ID.ToString()));
+                    HttpContext.Response.Cookies.Add(new HttpCookie("UserID", user.UserID.ToString()));
 
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
@@ -161,6 +161,11 @@ namespace HDS.QMS.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+        public ActionResult getClientInfo(int id)
+        {
+            AccountHelper accountHelper = new AccountHelper();
+            return Json(accountHelper.GetUserByID(id));
         }
 
         //

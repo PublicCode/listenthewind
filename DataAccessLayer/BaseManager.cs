@@ -79,7 +79,7 @@ namespace DataAccessLayer
             var @now = DateTime.UtcNow;
 
             if (user == null)
-                user = new User { DisplayName = "anonymous user" };
+                user = new User { Name = "anonymous user" };
             var ChangeTracker = dc.ChangeTracker;
             var entitiesToAdd = new List<ILoggedEntity>(ChangeTracker.Entries<ILoggedEntity>().Count());
 
@@ -106,7 +106,7 @@ namespace DataAccessLayer
                                     //If entity state is add then add it and get the ID back
                                     int res = dc.SaveChanges();
                                     var ls = new List<string>();
-                                    ls.Add(string.Format(templAdd, user.DisplayName, now.ToString("yyyy/MM/dd H:mm:ss")));
+                                    ls.Add(string.Format(templAdd, user.Name, now.ToString("yyyy/MM/dd H:mm:ss")));
                                     ls.AddRange(entry.CurrentValues.PropertyNames.Select(p => string.Format(templAddProperty, p,entry.CurrentValues[p])));
                                     var changeList = from c in entry.CurrentValues.PropertyNames select c;
                                     entitiesToAdd.Add(entry.Entity);
@@ -122,8 +122,8 @@ namespace DataAccessLayer
                                             OID = entry.Entity.Id.ToString(),
                                             OperationType = entry.Entity.LoggedType,
                                             OperationInfo = string.Format(saveType, entry.Entity.LoggedType),
-                                            OperationUserName = user.DisplayName,
-                                            OperationUserID = user.ID,
+                                            OperationUserName = user.Name,
+                                            OperationUserID = user.UserID,
                                             OperationDetails = new List<UserOperationDetail>()
                                         };
                                     }
@@ -135,7 +135,7 @@ namespace DataAccessLayer
                             case EntityState.Modified:
                                 {
                                     var ls = new List<string>();
-                                    ls.Add(string.Format(templUpdate, user.DisplayName, now.ToString("yyyy/MM/dd H:mm:ss")));
+                                    ls.Add(string.Format(templUpdate, user.Name, now.ToString("yyyy/MM/dd H:mm:ss")));
                                     saveType = saveType == "" ? "Updated {0}" : saveType;
                                     var changeList = from c in entry.CurrentValues.PropertyNames
                                                      where entry.OriginalValues[c] == null ? entry.CurrentValues[c] != null : !entry.OriginalValues[c].Equals(entry.CurrentValues[c])
@@ -156,8 +156,8 @@ namespace DataAccessLayer
                                             CreationTime = now,
                                             OperationType = entry.Entity.LoggedType,
                                             OperationInfo = string.Format(saveType, entry.Entity.LoggedType),
-                                            OperationUserName = user.DisplayName,
-                                            OperationUserID = user.ID,
+                                            OperationUserName = user.Name,
+                                            OperationUserID = user.UserID,
                                             OperationDetails = new List<UserOperationDetail>()
                                         };
                                     }
@@ -197,8 +197,8 @@ namespace DataAccessLayer
                                             CreationTime = now,
                                             OperationType = entry.Entity.LoggedType,
                                             OperationInfo = string.Format("Deleted {0}", entry.Entity.LoggedType),
-                                            OperationUserName = user.DisplayName,
-                                            OperationUserID = user.ID,
+                                            OperationUserName = user.Name,
+                                            OperationUserID = user.UserID,
                                             OperationDetails = new List<UserOperationDetail>()
                                         };
                                     }

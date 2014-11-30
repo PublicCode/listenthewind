@@ -2,5 +2,6 @@
 var t2v_CampDetail = {
 
     CampInfo: "",
+    PileId: 0,
     
 }

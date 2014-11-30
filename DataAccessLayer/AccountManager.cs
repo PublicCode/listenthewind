@@ -26,8 +26,8 @@ namespace DataAccessLayer
         {
             var user = new User();
             dcObj = DCLoader.GetMyDC();
-            user = dcObj.Users.FirstOrDefault(c => c.UserName== userName && c.ActiveFlag == 1);
-            if (user != null && user.PassWord == passWord)
+            user = dcObj.Users.FirstOrDefault(c => c.UserName== userName);
+            if (user != null && user.Pwd == passWord)
             {
                 if (!fromMobile)
                     return 1;
@@ -37,7 +37,7 @@ namespace DataAccessLayer
             else
             {
                 user = dcObj.Users.FirstOrDefault(c => c.UserName == userName);
-                if (user != null && user.PassWord == passWord)
+                if (user != null && user.Pwd == passWord)
                 {
                     return 2;
                 }
@@ -59,7 +59,8 @@ namespace DataAccessLayer
 
         public User GetUserById(int id)
         {
-            var user = dcObj.Users.FirstOrDefault(u=>u.ID == id);
+            dcObj = DCLoader.GetMyDC();
+            var user = dcObj.Users.FirstOrDefault(u=>u.UserID == id);
             return user;
         }
 
@@ -67,7 +68,7 @@ namespace DataAccessLayer
         {
             User user = new User();
             dcObj = DCLoader.GetMyDC();
-            user = dcObj.Users.FirstOrDefault(u => u.Email == strEmail);
+            user = dcObj.Users.FirstOrDefault(u => u.Mail == strEmail);
             return user;
         }
 
@@ -102,8 +103,8 @@ namespace DataAccessLayer
                 int intCurrentUserID = int.Parse(GetCurrentUserID());
                 User user = new User();
                 dcObj = DCLoader.GetMyDC();
-                user = dcObj.Users.FirstOrDefault(c => c.ID == intCurrentUserID);
-                return user.DisplayName;
+                user = dcObj.Users.FirstOrDefault(c => c.UserID == intCurrentUserID);
+                return user.Name;
             }
             else
             {
