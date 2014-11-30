@@ -47,5 +47,10 @@ namespace BizLogic
          {
              return homeBase.GetListOfReserveForPile(PileId);
          }
+
+         public string SaveReserve(List<DateTime> SelectedDate, List<int> SelectedItemId, int CampID, int PileID)
+         {
+             return homeBase.SaveReserve(SelectedDate, SelectedItemId, CampID, PileID);
+         }
     }
 }

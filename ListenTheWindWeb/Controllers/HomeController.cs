@@ -97,5 +97,10 @@ namespace AdestoSolution.Controllers
             IHomeManager homeManager = new HomeManager();
             return Json(homeManager.GetListOfReserveForPile(PileId));
         }
+
+        public string SaveReserve(List<DateTime> SelectedDate, List<int> SelectedItemId, int CampID, int PileID)
+        {
+            return bizLogic.SaveReserve(SelectedDate, SelectedItemId, CampID, PileID);
+        }
     }
 }

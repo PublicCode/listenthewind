@@ -36,12 +36,17 @@
             if(v.Checked)
                 selectedItem.push(v.CampPriceID);
         });
-        t2v_util.t2vconfirm.showConfirm("确定预定选择的项目?", function () {
-            $http.post(SiteRoot + "/SaveReserve", { SelectedDate: picked, SelectedItemId: selectedItem }).success(function (data, status, headers, config) {
-                
+        if (picked == "")
+        {
+            alert("请选择日期");
+            return false;
+        }
+        //t2v_util.t2vconfirm.showConfirm("确定预定选择的项目?", function () {
+        $http.post(SiteRoot + "/SaveReserve", { SelectedDate: picked.split(','), SelectedItemId: selectedItem, CampID: $scope.camp.CampID, PileID: t2v_CampDetail.PileId }).success(function (data, status, headers, config) {
+            alert(data);
             }).error(function (data, status, headers, config) {
                 alert('error');
             });
-        }, function () { }, "HDS");
+        //}, function () { }, "HDS");
     };
 }]);

@@ -41,6 +41,11 @@ namespace DataAccess.DC
 
         public DateTime? PayTime { get; set; }
 
+        [ForeignKey("CampReserveID")]
+        public virtual ICollection<campreserveatt> Listcampreserveatt { get; set; }
+        [ForeignKey("CampReserveID")]
+        public virtual ICollection<campreservedate> Listcampreservedate { get; set; }
+
         long ILoggedEntity.Id
         {
             get { return CampReserveID; }

@@ -317,5 +317,62 @@ namespace DataAccessLayer
                 return ex.Message;
             }
         }
+
+        public string SaveReserve(List<DateTime> SelectedDate, List<int> SelectedItemId, int CampID, int PileID)
+        {
+            try
+            {
+
+                DC dc = DCLoader.GetMyDC();
+                int userid = 1;
+                camp campDB = GetSingleCamp(CampID);
+                campreserve campres = new campreserve();
+                campres.CampID = CampID;
+                campres.UserID = userid;
+                campres.CampPileID = PileID;
+                campres.PilePrice = campDB.PilePrice;
+                campres.Discount = 0;
+                campres.FinalPilePrice = campres.PilePrice - campres.Discount;
+                campres.Days = SelectedDate.Count;
+                campres.PilePriceAmt = campres.FinalPilePrice * campres.Days;
+                campres.ReserveStatus = "1";
+                campres.Createtime = DateTime.Now;
+
+                if (SelectedItemId != null)
+                {
+                    campres.Listcampreserveatt = new List<campreserveatt>();
+                    foreach (int PriceItemid in SelectedItemId)
+                    {
+                        campprice camppriceDB = campDB.Listcampprice.FirstOrDefault(c => c.CampPriceID == PriceItemid);
+                        campreserveatt campresatt = new campreserveatt();
+                        campresatt.CampItemID = PriceItemid;
+                        campresatt.CampItemName = camppriceDB.ItemName;
+                        campresatt.CampItemUnitPrice = camppriceDB.ItemPrice;
+                        campresatt.CampItemDiscount = 0;
+                        campresatt.CampItemFinalPrice = campresatt.CampItemUnitPrice - campresatt.CampItemDiscount;
+                        campresatt.Qty = 1;
+                        campresatt.CampItemPriceAmt = campresatt.Qty * campresatt.CampItemFinalPrice;
+                        campres.Listcampreserveatt.Add(campresatt);
+                    }
+                }
+
+                campres.Listcampreservedate = new List<campreservedate>();
+                foreach (DateTime ReserveDate in SelectedDate)
+                {
+                    campreservedate campresdate = new campreservedate();
+                    campresdate.CampPileID = PileID;
+                    campresdate.CampID = CampID;
+                    campresdate.CampReserveDate = ReserveDate;
+                    campres.Listcampreservedate.Add(campresdate);
+                }
+                dc.campreserves.Add(campres);
+                dc.SaveChanges();
+                return "添加预约成功";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
     }
 }
