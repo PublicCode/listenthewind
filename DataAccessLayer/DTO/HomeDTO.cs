@@ -40,5 +40,6 @@ namespace DataAccessLayer.DTO
         public List<int> SpecialContents { get; set; }
         public List<int> CampType { get; set; }
         public List<int> HostLang { get; set; }
+        public string KeyContent { get; set; }
     }
 }

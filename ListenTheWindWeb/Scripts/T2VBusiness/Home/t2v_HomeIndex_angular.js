@@ -23,7 +23,6 @@ soNgModule.controller("CampListCtrl", ['$scope', '$routeParams', '$http', functi
     $scope.cp = $scope.obj.rows;
     $scope.basicdata = JSON.parse(t2v_HomeIndex.bdInfo);
 
-
     $scope.hi = JSON.parse(t2v_HomeIndex.hiInfo);
     $scope.searchInfo = $scope.obj.searchInfo;
     $scope.refreshLocCity = function () {
@@ -94,6 +93,11 @@ soNgModule.controller("CampListCtrl", ['$scope', '$routeParams', '$http', functi
                 hostLangs.push($(k).attr("selValue"));
         });
         $scope.obj.searchInfo.HostLang = hostLangs;
+
+        $scope.obj.searchInfo.LocationID = $scope.myLoc == undefined ? 0 : $scope.myLoc.LocationID;
+
+        $scope.obj.searchInfo.PriceStart = $("#amount").val().split('-')[0].replace("￥", "") * 1;
+        $scope.obj.searchInfo.PriceEnd = $("#amount").val().split('-')[1].replace("￥", "") * 1;
         $.ajax({
             url: SiteRoot + "/AjaxCampList",
             type: 'POST',

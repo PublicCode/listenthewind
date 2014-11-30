@@ -30,11 +30,12 @@
                 <div class="input-select clear">
                     <div class="sel-fl" style="width: 300px">
                         <label>入营时间:</label>
-                        <div class="time-input">
-                            <input type="text" id="datepicker1" value="" class="datepicker" ng-model="searchInfo.JoinCampDate" placeholder="请选择城市"/>
+                        <div class="select-bg">
+                            <input type="text" id="datepicker1" class="datepicker" ng-model="searchInfo.JoinCampDate" placeholder="请选择城市"/>
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
         <div class="ch-list">
@@ -92,7 +93,7 @@
             </div>
         </div>
         <div class="search_ft">
-            <input type="text" id="srch2" value="请输入您要搜索的关键字" />
+            <input type="text" ng-model="obj.searchInfo.KeyContent" value="请输入您要搜索的关键字" />
             <a href="#" ng-click="Search()">搜索</a>
         </div>
     </div>
@@ -120,9 +121,10 @@
                 <div class="chl-avt">
                     <img src="../../Content/images/avt.png" />
                 </div>
-                <a href="/Home/CampDetail?CampID=1&&da={{}}" class="chl-btn">查看更多信息</a>
+                <a href="/Home/CampDetail?CampID=1&&dt={{searchInfo.JoinCampDate}}" class="chl-btn">查看更多信息</a>
             </li>
         </ul>
+        <div style='text-align: center; padding:100px; border:1px solid #D9D9D9; background-color:#f8f8f8;' ng-show="cp.length == 0"><span style='font-family: Verdana; font-size: 20px; font-weight: bold; color: #666'>没有结果</span></div>
         <p id="page"></p>
     </div>
 </div>

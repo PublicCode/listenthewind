@@ -63,9 +63,9 @@ namespace AdestoSolution.Controllers
             var lst = hoManger.GetCampList(info, page, limit);
             return Json(lst, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult CampDetail(int CampID)
+        public ActionResult CampDetail(int CampID, DateTime? dt)
         {
-            campModel campmodel = bizLogic.GetCamp(CampID,null);
+            campModel campmodel = bizLogic.GetCamp(CampID, dt);
             ViewBag.CampInfo = JsonConvert.SerializeObject(campmodel);
             return View("~/Views/Home/CampDetail.cshtml");
         }

@@ -230,18 +230,31 @@ namespace DataAccessLayer
             }
             if (info.SpecialContents != null)
             {
-                var campitemids = string.Join(",", info.SpecialContents);
-                sql += " and CampID in (select distinct CampID from campitem where BasicID in (" + campitemids + "))";
+                if (info.SpecialContents.Count > 0)
+                {
+                    var campitemids = string.Join(",", info.SpecialContents);
+                    sql += " and CampID in (select distinct CampID from campitem where BasicID in (" + campitemids + "))";
+                }
             }
-            if (info.CampType != null)
+            if (info.SpecialContents != null)
             {
-                var camptypeids = string.Join(",", info.CampType);
-                sql += " and CampID in (select distinct CampID from camptype where BasicID in (" + camptypeids + "))";
+                if (info.CampType.Count > 0)
+                {
+                    var camptypeids = string.Join(",", info.CampType);
+                    sql += " and CampID in (select distinct CampID from camptype where BasicID in (" + camptypeids + "))";
+                }
             }
-            if (info.HostLang != null)
+            if (info.SpecialContents != null)
             {
-                var hostsLangids = string.Join(",", info.HostLang);
-                sql += " and CampID in (select CampID from CampHost where camphostid in (select distinct camphostid from CampHostLanguage where BasicID in (" + hostsLangids + ")))";
+                if (info.HostLang.Count > 0)
+                {
+                    var hostsLangids = string.Join(",", info.HostLang);
+                    sql += " and CampID in (select CampID from CampHost where camphostid in (select distinct camphostid from CampHostLanguage where BasicID in (" + hostsLangids + ")))";
+                }
+            }
+            if (!string.IsNullOrEmpty(info.KeyContent))
+            {
+                sql += " and (CampName like '%" + info.KeyContent + "%' or CampIntro like '%" + info.KeyContent + "%')";
             }
             var camIds = dc.Database.SqlQuery<int>(sql).ToList();
             var lstEF = dc.camps.Include("Listcampitem").Where(c => camIds.Contains(c.CampID));

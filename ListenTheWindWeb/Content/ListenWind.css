@@ -687,11 +687,12 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .choice-left .ch-list .ch-top .kq{ width:39px;height:37px; background:url(images/kq_c.png) no-repeat; position:absolute;right:0;top:0; overflow:hidden; text-indent:-99em}
 .choice-left .ch-list .ch-top .kq-c{ background:url(images/kq.png) no-repeat}
 .choice-left .ch-list .ch-con{border:1px #d8d9d9 solid; border-top:0; background:#f8f8f8; padding:14px 0 0 24px}
-.choice-left .ch-list .ch-con .sel-fl{ width:138px; float:left}
+.choice-left .ch-list .ch-con .sel-fl{ width:138px; float:left }
 .choice-left .ch-list .ch-con .sel-fl label{ display:block;color:#000; margin-bottom:3px}
 .choice-left .ch-list .ch-con .input-select{ margin-bottom:9px;}
-.choice-left .ch-list .ch-con .sel-fl .select-bg{ width:112px;height:35px; border-radius:4px;border:1px #e3e4e8 solid; float:left}
-.choice-left .ch-list .ch-con .sel-fl .select-bg select{width:112px;height:35px; cursor:pointer; z-index:1}
+.choice-left .ch-list .ch-con .sel-fl .select-bg{ width:112px;height:35px; border-radius:4px; border:1px #e3e4e8 solid; float:left}
+.choice-left .ch-list .ch-con .sel-fl .select-bg input{width:111px;height:34px; cursor:pointer; border:0 }
+.choice-left .ch-list .ch-con .sel-fl .select-bg select{width:112px;height:35px; cursor:pointer; padding:0; position:relative; top:0;left:0}
 .choice-left .ch-list .ch-con .sel-fl .dy{width:46px; margin-left:8px; background:#fff}
 .choice-left .ch-list .ch-con .sel-fl .dy select{width:46px;}
 .choice-left .ch-list .ch-con .slider-txt{ position:relative;left:-17px; margin-bottom:16px}
