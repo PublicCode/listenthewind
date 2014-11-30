@@ -641,12 +641,12 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .detail-con .detail-right .price .rmb{color:#ffa540; font-size:28px;color:#ffa540; font-weight:bold; margin-bottom:10px}
 .detail-con .detail-right .price .through{text-decoration:line-through;color:#a09f9e; font-size:14px; margin-left:5px; margin-bottom:20px}
 .tab-con{ margin-bottom:20px}
-.tab-con .tab-nav{ width:534px;height:34px; background:url(images/tab_tit_bg.jpg) no-repeat; position:relative; margin-bottom:20px}
+.tab-con .tab-nav{ width:534px;height:34px; background:url(images/tab_tit_bg.jpg) no-repeat; position:relative; margin-bottom:10px}
 .tab-con .tab-nav a{ float:left; width:112px;height:34px; line-height:34px;color:#b9bcc6; font-size:12px; font-weight:bold; text-align:center;  margin-right: 25px;}
 .tab-con .tab-nav a:hover{ text-decoration:none}
 .tab-con .tab-nav a.crr{ background:url(images/tab_crr_bg.jpg) no-repeat;color:#ffa744}
-.tab-con .tab-box{ min-height:130px; background:url(images/tab-bot.jpg) center bottom no-repeat; padding:0 0 35px 0}
-.tab-con .tab-box .tab-p{min-height:130px; position:relative}
+.tab-con .tab-box{ min-height:130px; background:url(images/tab-bot.jpg) center bottom no-repeat; padding:0 0 15px 0}
+.tab-con .tab-box .tab-p{min-height:337px; position:relative}
 .tab-con .tab-box p{ padding:0 25px; line-height:24px}
 .tab-con .tab-box .xin-pp{ position:absolute;right:0;bottom:-10px; width:148px;}
 .tab-con .tab-box .xin-pp a:hover{ text-decoration:none}
@@ -665,6 +665,7 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .comment-con .comment-list .cl-right strong{ display:block; font-size:16px;color:#000}
 .comment-con .comment-list .cl-right em{ display:block; font-size:12px;color:#908f8f; margin-bottom:3px}
 .comment-con .comment-list .cl-right p{ margin-bottom:10px}
+.comment-con .comment-list .cl-right .replay { margin:0 10px 15px; border:1px solid #d8d8d8; background-color:#f8f8f8; padding:5px 0 0 15px }
 .detail-con .detail-right .tf-ts{ margin:0 0 55px 7px; width:377px;}
 .detail-con .detail-right .tf-ts .tf-ts-con{width:377px;border-top:1px #e8e8e8 solid;border-bottom:1px #e8e8e8 solid;height:40px; margin-bottom:35px}
 .detail-con .detail-right .tf-ts .tf-ts-con a{ margin-right:8px; position:relative;top:4px}
@@ -675,7 +676,7 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .detail-con .detail-right .yz-con{margin:0 auto; width:358px; background:url(images/yz_bottom_bg.png) center bottom no-repeat; padding:0 0 10px 0;border-left:1px #f9f9f9 solid;border-right:1px #f9f9f9 solid; min-height:64px;}
 .detail-con .detail-right .yz-con .yz-nav{height:23px; background:#f7f8fa; border-radius:4px 4px 0 0;}
 .detail-con .detail-right .yz-con .yz-nav a{ float:left; font-size:12px; width:75px;height:22px; line-height:22px; background:url(images/yz_nav_bg.png) no-repeat;color:#ffa743; text-align:center}
-.detail-con .detail-right .yz-con .yz-txt{ padding:10px 10px}
+.detail-con .detail-right .yz-con .yz-txt{ padding:10px; letter-spacing:2px;}
 .detail-con .detail-right .yz-con .xin-pp{ position:absolute;right:10px;bottom:5px; width:148px;}
 .detail-con .detail-right .yz-con .xin-pp a:hover{ text-decoration:none}
 .detail-con .detail-right .yz-con .xin-pp .xin{ background:url(images/axin.png) 0 2px no-repeat; float:left;color:#99a3b1; padding:0 0 0 23px; margin-right:22px;}
