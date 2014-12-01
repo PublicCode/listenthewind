@@ -31,6 +31,8 @@ namespace WebModel.Camp
 
         public string CampIntro { get; set; }
 
+        public string CampLOD { get; set; }
+
         public int? Active { get; set; }
 
         public DateTime? CreateTime { get; set; }

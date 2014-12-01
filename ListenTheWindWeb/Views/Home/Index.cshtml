@@ -7,53 +7,30 @@
         <div class="home-top clear">
             @using (Html.BeginForm("ReleaseNote", "Home"))
             {
-            <div class="home-set">
+            <div class="home-set" style="margin-right:8px">
                 <label>城市</label>
                 <div class="select-con sel-cs">
                     <select ng-model="myCity" ng-options="city.CityName for city in hi" required >
                     </select>
                 </div>
             </div>
-            <div class="home-set">
+            <div class="home-set" style="margin-right:8px">
                 <label>地区</label>
                 <div class="select-con sel-cs" id="home-city">
                     <select ng-model="myLoc" ng-options="lo.LocationName for lo in myCity.Locations" placeholder="请选择地区">
                     </select>
                 </div>
             </div>
-            <div class="home-set">
+            <div class="home-set" style="margin-right:8px">
                 <label>入营时间：</label>
                 <div class="time-input">
                     <input type="text" id="datepicker1" class="datepicker" value="" placeholder="请选择城市"/>
                 </div>
             </div>
-            <div class="home-set">
-                <label>退营日期：</label>
-                <div class="time-input">
-                    <input type="text" id="datepicker2" value="" readonly disabled="disabled" />
-                </div>
-            </div>
-            <div class="home-number">
-                <label>成人：</label>
-                <div class="select-con sel-number">
-                    <select>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-            </div>
-            <div class="home-number">
-                <label>儿童：</label>
-                <div class="select-con sel-number">
-                    <select>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+            <div class="home-set" style="margin-right:8px">
+                <label>营地等级：</label>
+                <div class="select-con sel-cs">
+                    <select ng-model="myLOD" ng-options="lo.DataName for lo in ba" placeholder="请选择地区">
                     </select>
                 </div>
             </div>
@@ -101,6 +78,7 @@
 </div>
 <script type="text/javascript">
     t2v_HomeIndex.hiInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.CityInfo));
+    t2v_HomeIndex.baInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.BasicData));
     angular.element(document).ready(function () {
         angular.bootstrap($('body'), ['SO']);
     });

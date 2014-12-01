@@ -53,3 +53,5 @@ campitem          CampItemSort         int              2014.11.29
 basicdatacollect  DataIcon             varchar(100)     2014.11.29
 basicdatacollect  DataSort             int				2014.11.29       
 campitem		  BasicID			   int				2014.11.29
+
+camp			  CampLOD			   varchar(60)      2014.12.01

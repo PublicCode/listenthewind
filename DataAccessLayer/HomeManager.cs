@@ -9,7 +9,6 @@ using ComLib.SmartLinq;
 using ComLib.SmartLinq.Energizer.JqGrid;
 using WebModel.Camp;
 using ComLib.Extension;
-using DataAccessLayer.DTO;
 
 namespace DataAccessLayer
 {
@@ -190,18 +189,18 @@ namespace DataAccessLayer
 
             return campmodel;
         }
-        public List<CityDTO> GetCitys()
+        public List<CityModel> GetCitys()
         {
             DC dc = DCLoader.GetMyDC();
             var lstEF = dc.Citys.ToList();
-            var lstDTO = new List<CityDTO>();
+            var lstDTO = new List<CityModel>();
             foreach (var info in lstEF)
             {
-                var dto = new CityDTO
+                var dto = new CityModel
                 {
                     CityID = info.CityID,
                     CityName = info.CityName,
-                    Locations = dc.CityLocations.Where(c => c.CityID == info.CityID).ToList().Select(c => CityLocationDTO.FromEFToDTO(c)).ToList()
+                    Locations = dc.CityLocations.Where(c => c.CityID == info.CityID).ToList().Select(c => CityLocationModel.FromEFToDTO(c)).ToList()
                 };
                 lstDTO.Add(dto);
             }
@@ -212,7 +211,7 @@ namespace DataAccessLayer
             DC dc = DCLoader.GetMyDC();
             return dc.basicdatacollects.ToList();
         }
-        public object GetCampList(CampListSeachDTO info, int page, int limit)
+        public object GetCampList(CampListSeachModel info, int page, int limit)
         {
             DC dc = DCLoader.GetMyDC();
             string sql = "select CampID from Camp where 1=1";
@@ -227,6 +226,10 @@ namespace DataAccessLayer
             if (info.PriceStart != null)
             {
                 sql += " and pileprice >=" + info.PriceStart + " and pileprice <= " + info.PriceEnd;
+            }
+            if (!string.IsNullOrEmpty(info.CampLOD))
+            {
+                sql += " and camplod = '" + info.CampLOD + "'";
             }
             if (info.SpecialContents != null)
             {
@@ -261,7 +264,7 @@ namespace DataAccessLayer
             return GetCampListObj(lstEF, page, limit, info);
         }
 
-        public object GetCampListObj(IEnumerable<camp> lstEF, int page, int limit, CampListSeachDTO info)
+        public object GetCampListObj(IEnumerable<camp> lstEF, int page, int limit, CampListSeachModel info)
         {
             IEnumerable<camp> res = lstEF;
             if (page > 0)

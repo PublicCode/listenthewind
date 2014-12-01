@@ -16,5 +16,8 @@ namespace IDataAccessLayer
         string AddCampCollect(int CampID);
         List<string> GetListOfReserveForPile(int PileId);
         string SaveReserve(List<DateTime> SelectedDate, List<int> SelectedItemId, int CampID, int PileID);
+        List<CityModel> GetCitys();
+        object GetCampList(CampListSeachModel info, int page, int limit);
+        List<basicdatacollect> GetBasicData();
     }
 }

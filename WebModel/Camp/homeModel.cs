@@ -4,25 +4,27 @@ using System.Linq;
 using System.Text;
 using DataAccess.DC;
 
-namespace DataAccessLayer.DTO
+namespace WebModel.Camp
 {
-    public class HomeDTO
+    public class homeModel
     {
 
     }
-    public class CityDTO
+    public class CityModel
     {
         public int CityID { get; set; }
         public string CityName { get; set; }
-        public List<CityLocationDTO> Locations { get; set; }
+        public List<CityLocationModel> Locations { get; set; }
     }
-    public class CityLocationDTO
+    public class CityLocationModel
     {
         public int LocationID { get; set; }
         public string LocationName { get; set; }
         public int CityID { get; set; }
-        public static CityLocationDTO FromEFToDTO(CityLocation ef) {
-            var dto = new CityLocationDTO {
+        public static CityLocationModel FromEFToDTO(CityLocation ef)
+        {
+            var dto = new CityLocationModel
+            {
                 LocationID = ef.LocationID,
                 LocationName = ef.LocationName,
                 CityID = ef.CityID
@@ -30,11 +32,12 @@ namespace DataAccessLayer.DTO
             return dto;
         }
     }
-    public class CampListSeachDTO
+    public class CampListSeachModel
     {
         public int LocationID { get; set; }
         public string JoinCampDate { get; set; }
         public DateTime DBJoinCampDate { get { return string.IsNullOrEmpty(JoinCampDate) ? DateTime.Now : Convert.ToDateTime(JoinCampDate); } }
+        public string CampLOD { get; set; }
         public int? PriceStart { get; set; }
         public int? PriceEnd { get; set; }
         public List<int> SpecialContents { get; set; }

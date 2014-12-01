@@ -14,24 +14,22 @@ using DataAccessLayer;
 using IDataAccessLayer;
 using Newtonsoft.Json;
 using WebModel.Camp;
-using DataAccessLayer.DTO;
 
 namespace AdestoSolution.Controllers
 {
     public class HomeController : T2VController
     {
         HomeBizLogic bizLogic;
-        HomeManager hoManger;
         public HomeController()
         {
             bizLogic = new HomeBizLogic();
-            hoManger = new HomeManager();
         }
 
         [Authorize]
         public ActionResult Index()
         {
-            ViewBag.CityInfo = JsonConvert.SerializeObject(hoManger.GetCitys());
+            ViewBag.CityInfo = JsonConvert.SerializeObject(bizLogic.GetCitys());
+            ViewBag.BasicData = JsonConvert.SerializeObject(bizLogic.GetBasicData());
             return View();
         }
         /// <summary>
@@ -48,19 +46,19 @@ namespace AdestoSolution.Controllers
         {
             string strParam = Request.Form["param"];
 
-            var info = new CampListSeachDTO { LocationID = Convert.ToInt32(strParam.Split('/')[0]), JoinCampDate = strParam.Split('/')[1] };
-            var lst = hoManger.GetCampList(info, 1, 12);
+            var info = new CampListSeachModel { LocationID = Convert.ToInt32(strParam.Split('/')[0]), JoinCampDate = strParam.Split('/')[1], CampLOD = strParam.Split('/')[2] };
+            var lst = bizLogic.GetCampList(info, 1, 12);
             ViewBag.lstInfo = JsonConvert.SerializeObject(lst);
-            ViewBag.CityInfo = JsonConvert.SerializeObject(hoManger.GetCitys());
-            ViewBag.BasicData = JsonConvert.SerializeObject(hoManger.GetBasicData());
+            ViewBag.CityInfo = JsonConvert.SerializeObject(bizLogic.GetCitys());
+            ViewBag.BasicData = JsonConvert.SerializeObject(bizLogic.GetBasicData());
             return View("~/Views/Home/CampList.cshtml");
         }
         public ActionResult AjaxCampList(string searchInfo, int page, int limit)
         {
             var js = new System.Web.Script.Serialization.JavaScriptSerializer();
-            var info = js.Deserialize<CampListSeachDTO>(searchInfo);
+            var info = js.Deserialize<CampListSeachModel>(searchInfo);
 
-            var lst = hoManger.GetCampList(info, page, limit);
+            var lst = bizLogic.GetCampList(info, page, limit);
             return Json(lst, JsonRequestBehavior.AllowGet);
         }
         public ActionResult CampDetail(int CampID, DateTime? dt)

@@ -71,6 +71,7 @@
     <Compile Include="Camp\camppileModel.cs" />
     <Compile Include="Camp\camppriceModel.cs" />
     <Compile Include="Camp\camptypeModel.cs" />
+    <Compile Include="Camp\homeModel.cs" />
     <Compile Include="Col\colModel.cs" />
     <Compile Include="CustomerType\CustomerTypeModel.cs" />
     <Compile Include="MailFail\MailFailModel.cs" />
