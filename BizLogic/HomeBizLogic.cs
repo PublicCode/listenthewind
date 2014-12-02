@@ -6,6 +6,7 @@ using DataAccessLayer;
 using IDataAccessLayer;
 using DataAccess.DC;
 using WebModel.Camp;
+using ComLib.Extension;
 
 namespace BizLogic
 {
@@ -64,6 +65,18 @@ namespace BizLogic
         public List<basicdatacollect> GetBasicData()
         {
             return homeBase.GetBasicData();
+        }
+        public List<basidatacollectforcampModel> GetBasicDataForCamp()
+        {
+            var basicData = homeBase.GetBasicData();
+            var listOfBasicDataForCamp = new List<basidatacollectforcampModel>();
+            foreach (basicdatacollect basic in basicData)
+            {
+                basidatacollectforcampModel basicModal = new basidatacollectforcampModel();
+                ModelConverter.Convert<basicdatacollect, basidatacollectforcampModel>(basic, basicModal);
+                listOfBasicDataForCamp.Add(basicModal);
+            }
+            return listOfBasicDataForCamp;
         }
     }
 }

@@ -28,7 +28,8 @@
         alert('error');
     });
     
-    
+    $scope.basicdata = JSON.parse(t2v_CampDetail.BasicData);
+
     $scope.bookcamp = function () {
         var picked = $scope.selectedDate;
         var selectedItem = [];

@@ -78,6 +78,14 @@ namespace AdestoSolution.Controllers
             campModel campmodel = bizLogic.GetCamp(CampID, null);
             ViewBag.CampInfo = JsonConvert.SerializeObject(campmodel);
             ViewBag.PileID = PileID;
+            var listOfBasic = bizLogic.GetBasicDataForCamp();
+            foreach (campitemModel itemModel in campmodel.ModelListcampitem)
+            { 
+               var basicModel =  listOfBasic.FirstOrDefault(m=>m.DataName == itemModel.CampItemName.ToLower());
+               if (basicModel != null)
+                    basicModel.Checked =true;
+            }
+            ViewBag.BasicData = JsonConvert.SerializeObject(listOfBasic);
             return View("~/Views/Home/CampBook.cshtml");
         }
         public ActionResult ComingSoon()
