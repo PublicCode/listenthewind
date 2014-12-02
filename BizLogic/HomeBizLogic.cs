@@ -65,5 +65,10 @@ namespace BizLogic
         {
             return homeBase.GetBasicData();
         }
+
+        public string SaveComments(campcommentModel campCommentModel)
+        {
+            return homeBase.SaveComments(campCommentModel);
+        }
     }
 }

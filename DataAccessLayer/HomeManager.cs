@@ -72,6 +72,26 @@ namespace DataAccessLayer
             }
             return ret;
         }
+
+        public string SaveComments(campcommentModel campCommentModel)
+        {
+            try
+            {
+                DC dc = DCLoader.GetMyDC();
+                campcomment campcommentDB = new campcomment();
+                ModelConverter.Convert<campcommentModel, campcomment>(campCommentModel, campcommentDB);
+                campcommentDB.CommentTime = DateTime.Now;
+                dc.campcomments.Add(campcommentDB);
+                dc.SaveChanges();
+                return "添加评论成功！";
+
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
         public campModel GetCamp(int CampID,DateTime? dt)
         {
             int userid = 1;
