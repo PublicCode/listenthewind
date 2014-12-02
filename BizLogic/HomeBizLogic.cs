@@ -66,6 +66,11 @@ namespace BizLogic
         {
             return homeBase.GetBasicData();
         }
+
+        public string SaveComments(campcommentModel campCommentModel)
+        {
+            return homeBase.SaveComments(campCommentModel);
+        }
         public List<basidatacollectforcampModel> GetBasicDataForCamp()
         {
             var basicData = homeBase.GetBasicData();
