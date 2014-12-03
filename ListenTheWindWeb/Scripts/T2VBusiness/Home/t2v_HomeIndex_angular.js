@@ -32,6 +32,16 @@ soNgModule.controller("CampListCtrl", ['$scope', '$routeParams', '$http', functi
     };
     $scope.refreshLocCity();
 
+    $scope.bindLOD = function () {
+        angular.forEach($scope.basicdata, function (v, k) {
+            if (v.DataName == $scope.obj.searchInfo.CampLOD)
+            {
+                $scope.myLOD = v;
+            }
+        });
+    };
+    $scope.bindLOD();
+
     $scope.predicate = '+CampItemSort';
 
     $scope.updatePage = function () {
@@ -93,6 +103,7 @@ soNgModule.controller("CampListCtrl", ['$scope', '$routeParams', '$http', functi
 
         $scope.obj.searchInfo.PriceStart = $("#amount").val().split('-')[0].replace("￥", "") * 1;
         $scope.obj.searchInfo.PriceEnd = $("#amount").val().split('-')[1].replace("￥", "") * 1;
+        $scope.obj.searchInfo.CampLOD = $scope.myLOD == null ? "" : $scope.myLOD.DataName;
         $.ajax({
             url: SiteRoot + "/AjaxCampList",
             type: 'POST',

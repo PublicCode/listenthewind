@@ -640,6 +640,20 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .detail-con .detail-right .price h2{ font-size:14px; margin-bottom:20px}
 .detail-con .detail-right .price .rmb{color:#ffa540; font-size:28px;color:#ffa540; font-weight:bold; margin-bottom:10px}
 .detail-con .detail-right .price .through{text-decoration:line-through;color:#a09f9e; font-size:14px; margin-left:5px; margin-bottom:20px}
+
+
+.detail-con .detail-right .price .x-bg-con h1,
+.detail-con .detail-right .price .x-bg-con h2,
+.detail-con .detail-right .price .x-bg-con h3,
+.detail-con .detail-right .price .x-bg-con h4,
+.detail-con .detail-right .price .x-bg-con h5{ height:18px; background:url(images/x_bgc.png) no-repeat; display:block; margin-left:0px; float:left;}
+.detail-con .detail-right .price .x-bg-con h1 { width:20%; }
+.detail-con .detail-right .price .x-bg-con h2 { width:40%; }
+.detail-con .detail-right .price .x-bg-con h3 { width:60%; }
+.detail-con .detail-right .price .x-bg-con h4 { width:80%; }
+.detail-con .detail-right .price .x-bg-con h5 { width:100%; }
+
+
 .tab-con{ margin-bottom:20px}
 .tab-con .tab-nav{ width:534px;height:34px; background:url(images/tab_tit_bg.jpg) no-repeat; position:relative; margin-bottom:10px}
 .tab-con .tab-nav a{ float:left; width:112px;height:34px; line-height:34px;color:#b9bcc6; font-size:12px; font-weight:bold; text-align:center;  margin-right: 25px;}
@@ -691,9 +705,9 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .choice-left .ch-list .ch-con .sel-fl{ width:138px; float:left }
 .choice-left .ch-list .ch-con .sel-fl label{ display:block;color:#000; margin-bottom:3px}
 .choice-left .ch-list .ch-con .input-select{ margin-bottom:9px;}
-.choice-left .ch-list .ch-con .sel-fl .select-bg{ width:112px;height:35px; border-radius:4px; border:1px #e3e4e8 solid; float:left}
-.choice-left .ch-list .ch-con .sel-fl .select-bg input{width:111px;height:34px; cursor:pointer; border:0 }
-.choice-left .ch-list .ch-con .sel-fl .select-bg select{width:112px;height:35px; cursor:pointer; padding:0; position:relative; top:0;left:0}
+.choice-left .ch-list .ch-con .sel-fl .select-bg{ width:112px;height:28px; border-radius:4px; border:1px #e3e4e8 solid; float:left}
+.choice-left .ch-list .ch-con .sel-fl .select-bg input{width:111px;height:27px; cursor:pointer; border:0 }
+.choice-left .ch-list .ch-con .sel-fl .select-bg select{width:112px;height:28px; cursor:pointer; padding:0; position:relative; top:0;left:0}
 .choice-left .ch-list .ch-con .sel-fl .dy{width:46px; margin-left:8px; background:#fff}
 .choice-left .ch-list .ch-con .sel-fl .dy select{width:46px;}
 .choice-left .ch-list .ch-con .slider-txt{ position:relative;left:-17px; margin-bottom:16px}
@@ -714,7 +728,16 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .choice-right .chl-list li h3{ margin-left:10px;color:#ffa540; float:left; font-size:16px}
 .choice-right .chl-list li .chl-jg{ margin-bottom:5px}
 .choice-right .chl-list li .chl-jg .x-bg-con{width:100px;height:18px; background:url(images/x_bg.png) no-repeat; float:left; position:relative;top:0px; margin-left:10px}
-.choice-right .chl-list li .chl-jg .x-bg-con div{height:18px; background:url(images/x_bgc.png) no-repeat;}
+.choice-right .chl-list li .chl-jg .x-bg-con h1,
+.choice-right .chl-list li .chl-jg .x-bg-con h2,
+.choice-right .chl-list li .chl-jg .x-bg-con h3,
+.choice-right .chl-list li .chl-jg .x-bg-con h4,
+.choice-right .chl-list li .chl-jg .x-bg-con h5{ height:18px; background:url(images/x_bgc.png) no-repeat; display:block; margin-left:0px; float:left;}
+.choice-right .chl-list li .chl-jg .x-bg-con h1 { width:20%; }
+.choice-right .chl-list li .chl-jg .x-bg-con h2 { width:40%; }
+.choice-right .chl-list li .chl-jg .x-bg-con h3 { width:60%; }
+.choice-right .chl-list li .chl-jg .x-bg-con h4 { width:80%; }
+.choice-right .chl-list li .chl-jg .x-bg-con h5 { width:100%; }
 .choice-right .chl-list li .chl-txt{height:42px;border-top:1px #f2f2f4 solid;border-bottom:1px #f2f2f4 solid; margin:0 5px; line-height:16px; line-height:20px; padding:3px 5px}
 .choice-right .chl-list li .chl-icon{ position:absolute;left:10px;bottom:10px;}
 .choice-right .chl-list li .chl-icon a{ margin-right:5px; float:left}
@@ -999,5 +1022,6 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 #page .pc { width:34px; height:34px; cursor:pointer; display:inline-block;  }
 #page strong .pc { border:0; width:34px; height:34px; line-height:34px; display:inline-block;  }
 
-.SelPileBtn { display:block; float:left; padding:7px 14px; background-color:#f3f3f3; border:1px solid #e3e3e3; cursor:pointer; margin-right:10px; }
+.SelPileBtn { display:block; float:left; width:115px; padding:7px 0; background-color:#f3f3f3; border:1px solid #e3e3e3; cursor:pointer; margin:5px 0 5px 10px; }
 .SelPileBtn:hover { background-color:#eeeeee; }
+.MoreCommenContent { line-height:140% }

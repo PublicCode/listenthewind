@@ -21,6 +21,11 @@
         $('#divSelPile').modal('show');
     };
 
+    $scope.ShowMoreCommenScreen = function () {
+        $("#divMoreCommenScreen").css("left", screen.width / 2 - 60).css("height", "400px").css("width", "800px");
+        $('#divMoreCommenScreen').modal('show');
+    };
+
     $scope.LinkToCampBook = function (PileID) {
         window.location.href = "/Home/CampBook?PileID=" + PileID + "&CampID=" + $scope.camp.CampID;
     };

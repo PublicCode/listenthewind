@@ -445,20 +445,29 @@ soNgModule.filter('fromNow', function () {
 })
 .filter('ellipsis15', function () {
     return function (str) {
-        if (!str)
-            return str;
+        if (!str) return str;
 
-        var splitted = str.split(' ');
-        var res;
-        if (splitted.length > 30) {
-            res = splitted.slice(0, 29).join(' ') + '...';
-        } else {
-            res = splitted.join(' ');
-        }
-        if (res.length > 150) {
-            res = res.substring(0, 147) + '...';
+        var res = "";
+        if (str.length > 31) {
+            res = str.substring(0, 30) + '...';
         }
         return res;
+    }
+})
+.filter('toCampLevel', function () {
+    return function (txt) {
+        var strHtml = "";
+        if (txt * 1 == 1)
+            strHtml += "<h1>&nbsp;</h1>";
+        else if (txt * 1 == 2)
+            strHtml += "<h2>&nbsp;</h2>";
+        else if (txt * 1 == 3)
+            strHtml += "<h3>&nbsp;</h3>";
+        else if (txt * 1 == 4)
+            strHtml += "<h4>&nbsp;</h4>";
+        else if (txt * 1 == 5)
+            strHtml += "<h5>&nbsp;</h5>";
+        return strHtml;
     }
 })
 .filter('nl2p', function () {

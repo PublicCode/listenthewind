@@ -28,14 +28,20 @@
                     </div>
                 </div>
                 <div class="input-select clear">
-                    <div class="sel-fl" style="width: 300px">
+                    <div class="sel-fl">
                         <label>入营时间:</label>
                         <div class="select-bg">
                             <input type="text" id="datepicker1" class="datepicker" ng-model="searchInfo.JoinCampDate" placeholder="请选择城市"/>
                         </div>
                     </div>
+                    <div class="sel-fl">
+                        <label>营地等级:</label>
+                        <div class="select-bg">
+                            <select ng-model="myLOD" ng-options="lo.DataName for lo in basicdata | filter: 'camplod'" placeholder="请选择地区">
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                
             </div>
         </div>
         <div class="ch-list">
@@ -84,7 +90,7 @@
                 <h2>营地类型</h2>
                 <a href="javascript:;" class="kq">开启关闭</a>
             </div>
-            <div class="ch-con" style="padding: 14px 0 0 12px">
+            <div class="ch-con" style="padding:14px 0 0 12px">
                 <ul class="dxuan clear">
                     <li ng-repeat="info in basicdata | filter: 'hostlang'">
                         <input type="checkbox" class="hostlang" selValue="{{info.BasicDataCollectID}}" />{{ info.DataName }}
@@ -106,12 +112,12 @@
                 <h2>{{ info.CampName }}</h2>
                 <div class="chl-jg clear">
                     <h3 >￥:{{info.PilePrice}}</h3>
-                    <div class="x-bg-con">
-                        <div style="width: 25%"></div>
+                    <div class="x-bg-con" ng-bind-html="info.CampLevel | toCampLevel">
+
                     </div>
                 </div>
                 <div class="chl-txt">
-                    {{ info.CampIntro }}
+                    <span ng-bind="info.CampIntro | ellipsis15" title="{{info.CampIntro}}"></span>
                 </div>
                 <div class="chl-icon clear">
                     <a href="#" ng-repeat="campitem in info.Listcampitem | orderBy:predicate">
