@@ -6,6 +6,7 @@ using DataAccessLayer;
 using IDataAccessLayer;
 using DataAccess.DC;
 using WebModel.Camp;
+using ComLib.Extension;
 
 namespace BizLogic
 {
@@ -48,9 +49,9 @@ namespace BizLogic
             return homeBase.GetListOfReserveForPile(PileId);
         }
 
-        public string SaveReserve(List<DateTime> SelectedDate, List<int> SelectedItemId, int CampID, int PileID)
+        public string SaveReserve(List<DateTime> SelectedDate, List<camppriceModel> listOfCampPrice, int CampID, int PileID)
         {
-            return homeBase.SaveReserve(SelectedDate, SelectedItemId, CampID, PileID);
+            return homeBase.SaveReserve(SelectedDate, listOfCampPrice, CampID, PileID);
         }
 
         public List<CityModel> GetCitys()
@@ -64,6 +65,23 @@ namespace BizLogic
         public List<basicdatacollect> GetBasicData()
         {
             return homeBase.GetBasicData();
+        }
+
+        public string SaveComments(campcommentModel campCommentModel)
+        {
+            return homeBase.SaveComments(campCommentModel);
+        }
+        public List<basidatacollectforcampModel> GetBasicDataForCamp()
+        {
+            var basicData = homeBase.GetBasicData();
+            var listOfBasicDataForCamp = new List<basidatacollectforcampModel>();
+            foreach (basicdatacollect basic in basicData)
+            {
+                basidatacollectforcampModel basicModal = new basidatacollectforcampModel();
+                ModelConverter.Convert<basicdatacollect, basidatacollectforcampModel>(basic, basicModal);
+                listOfBasicDataForCamp.Add(basicModal);
+            }
+            return listOfBasicDataForCamp;
         }
     }
 }

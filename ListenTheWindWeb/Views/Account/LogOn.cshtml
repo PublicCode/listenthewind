@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Sign In";
     var returnUrl = Request.QueryString["returnUrl"] ?? ViewBag.ReturnUrl as string ?? "";
+    Layout = null;
 }
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/Vendor/jquery-1.7.2.min.js")" type="text/javascript"></script>

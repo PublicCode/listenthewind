@@ -75,51 +75,9 @@
                 	<h3></h3>
                     <div class="book-list clear">
                     	<div class="book-left">
-                        	<ul>
-                            	<li class="rd rdc">
-                                	<span>WIFI</span>
-                                </li>
-                                <li class="rd rdc">
-                                	<span>早餐</span>
-                                </li>
-                                <li class="w">
-                                	<span>垂钓</span>
-                                </li>
-                                <li class="rd rdc">
-                                	<span>烧烤器具</span>
-                                </li>
-                                <li class="rd rdc">
-                                	<span>儿童乐园</span>
-                                </li>
-                                <li class="w">
-                                	<span>著名景点</span>
-                                </li>
-                                <li class="rd rdc">
-                                	<span>洗衣机</span>
-                                </li>
-                                <li class="rd rdc">
-                                	<span>允许携带宠物</span>
-                                </li>
-                                <li class="rd rdc">
-                                	<span>草莓园</span>
-                                </li>
-                                <li class="w">
-                                	<span>西瓜园</span>
-                                </li>
-                                <li class="rd rdc">
-                                	<span>桃园</span>
-                                </li>
-                                <li class="w">
-                                	<span>油菜花园</span>
-                                </li>
-                                <li class="rd rdc">
-                                	<span>现代农场</span>
-                                </li>
-                                <li class="w">
-                                	<span>有机农产品供给</span>
-                                </li>
-                                <li class="rd rdc">
-                                	<span>E4E自行车</span>
+                        	<ul class="dxuan clear">
+                                <li ng-repeat="info in basicdata | filter: 'campitem'">
+                                    <input type="checkbox" class="campitem" ng-checked="info.Checked" disabled ="disabled"/>{{ info.DataName }}
                                 </li>
                             </ul>
                         </div>
@@ -129,7 +87,7 @@
                             </div>
                             <ul>
                             	<li ng-repeat="campprice in camp.ModelListcampprice" style="background:none">
-                                	<input type="checkbox" ng-model ="campprice.Checked"/><span>{{campprice.ItemName}}：</span><em>{{campprice.ItemName}}：￥{{campprice.ItemPrice}};</em>
+                                	<input type="checkbox" ng-model ="campprice.Checked"/><span>{{campprice.ItemName}} - <em>价格：￥{{campprice.ItemPrice}};</em><em>数量：<input type="text" ng-model ="campprice.Qty"/></em>
                                 </li>
                                 <li>
                                 	<textarea>输入你需求备注：</textarea>
@@ -145,6 +103,7 @@
 <script>
     t2v_CampDetail.CampInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.CampInfo));
     t2v_CampDetail.PileId = @Html.Raw(JsonConvert.SerializeObject(ViewBag.PileID));
+    t2v_CampDetail.BasicData = @Html.Raw(JsonConvert.SerializeObject(ViewBag.BasicData));
     angular.element(document).ready(function () {
         angular.bootstrap($('body'), ['SO']);
         $('.flexslider2').flexslider({

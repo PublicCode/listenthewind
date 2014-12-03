@@ -28,13 +28,14 @@
         alert('error');
     });
     
-    
+    $scope.basicdata = JSON.parse(t2v_CampDetail.BasicData);
+
     $scope.bookcamp = function () {
         var picked = $scope.selectedDate;
         var selectedItem = [];
         angular.forEach($scope.camp.ModelListcampprice, function(v){
             if(v.Checked)
-                selectedItem.push(v.CampPriceID);
+                selectedItem.push({ CampPriceID: v.CampPriceID, Qty: v.Qty });
         });
         if (picked == "")
         {
@@ -42,7 +43,7 @@
             return false;
         }
         //t2v_util.t2vconfirm.showConfirm("确定预定选择的项目?", function () {
-        $http.post(SiteRoot + "/SaveReserve", { SelectedDate: picked.split(','), SelectedItemId: selectedItem, CampID: $scope.camp.CampID, PileID: t2v_CampDetail.PileId }).success(function (data, status, headers, config) {
+        $http.post(SiteRoot + "/SaveReserve", { SelectedDate: picked.split(','), Camp: $scope.camp, PileID: t2v_CampDetail.PileId }).success(function (data, status, headers, config) {
             alert(data);
             }).error(function (data, status, headers, config) {
                 alert('error');
