@@ -31,32 +31,23 @@ namespace HDS.QMS.Controllers
 
         // POST: /Account/LogOn
         [HttpPost]
-        public ActionResult LogOn(LogOnModel model, string returnUrl)
+        public ActionResult LogOn(string UserName, string Pwd, string returnUrl)
         {
             Session.RemoveAll();
             AccountHelper accountHelper = new AccountHelper();
             ViewBag.ReturnUrl = string.IsNullOrEmpty(returnUrl) ? (Request["returnUrl"] ?? "") : returnUrl;
             if (ModelState.IsValid)
             {
-                int returnResut = accountHelper.UserLogon(model.UserName, model.Password);
+                int returnResut = accountHelper.UserLogon(UserName, Pwd);
                 if (returnResut ==1)
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                     Session["ReleaseNoteFlag"] = false;
                     //get user 
-                    DataAccess.DC.User user = accountHelper.GetUserByName(model.UserName);
-                    HttpContext.Response.Cookies.Add(new HttpCookie("UserName",model.UserName));
+                    DataAccess.DC.User user = accountHelper.GetUserByName(UserName);
+                    HttpContext.Response.Cookies.Add(new HttpCookie("UserName",UserName));
                     HttpContext.Response.Cookies.Add(new HttpCookie("UserID", user.UserID.ToString()));
-
-                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
-                    {
-                        return Redirect(ViewBag.ReturnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    Session["user"] = user;
+                    return Json("Login Sucess");
                 }
                 else if (returnResut == 2)
                 {

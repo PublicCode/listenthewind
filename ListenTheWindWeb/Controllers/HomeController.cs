@@ -104,9 +104,10 @@ namespace AdestoSolution.Controllers
             return Json(homeManager.GetListOfReserveForPile(PileId));
         }
 
-        public string SaveReserve(List<DateTime> SelectedDate, List<int> SelectedItemId, int CampID, int PileID)
+        public string SaveReserve(List<DateTime> SelectedDate, campModel Camp, int PileID)
         {
-            return bizLogic.SaveReserve(SelectedDate, SelectedItemId, CampID, PileID);
+            List<camppriceModel> listOfCampPrice = Camp.ModelListcampprice;
+            return bizLogic.SaveReserve(SelectedDate, listOfCampPrice, Camp.CampID, PileID);
         }
     }
 }

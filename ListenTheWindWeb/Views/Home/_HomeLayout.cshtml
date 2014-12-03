@@ -1,6 +1,7 @@
 ﻿@using System.Configuration;
 @using Web.Energizer.User
 @{
+    var user = UserHelper.CurrentUser;
     var controller = ViewData["controller"] ?? Request.RequestContext.RouteData.Values["controller"].ToString();
     var action = ViewData["action"] ?? Request.RequestContext.RouteData.Values["action"].ToString();
     var full = controller + "_" + action;
@@ -62,16 +63,21 @@
         <div class="header clear">
             <a href="#" class="logo">
                 <img src="../../Content/images/logo.jpg" /></a>
+        @if (user != null)
+        { 
             <div class="login-con">
-                <div class="w-login" style="display: none">
-                    <!--未登录-->
-                    <a href="#">注册</a><a href="#">登录</a><a href="#">帮助</a>
-                </div>
-                <div class="y-login">
-                    <!--登录-->
-                    <a href="#">兜兜</a><a href="#" class="sign-out">退出</a>
-                </div>
+                        <text>欢迎 <strong>@(string.IsNullOrEmpty(user.Name) ? user.UserName : user.Name)</strong>!
+                        &nbsp;<a href="@Url.Action("LogOff", "Account")">
+                        登出</a> </text>
             </div>
+        }
+        else
+        {
+                <div class="login-con">
+                <a href="#logonModal" data-toggle="modal">登录</a> 
+                    <div class="modal hide" id="logonModal">@Html.Partial("~/Views/Account/LogOn.cshtml", new ViewDataDictionary())</div>
+                </div>
+        }
             <div class="language">
                 <div class="select-con sel-lg">
                     <select style="width:55px">
@@ -178,6 +184,7 @@
             </div>
         </div>
     </div>
+    <div></div>
     <!--底部结束-->
     <script>
         $(function () {

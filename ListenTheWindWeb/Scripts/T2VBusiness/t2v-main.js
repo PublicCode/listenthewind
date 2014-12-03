@@ -25,6 +25,23 @@ var t2v_main = {
             onkeydown = window.BackSpace;
         }
     },
+    Login: function () {
+        $.ajax({
+            type: "Post",
+            url: "/Account/LogOn",
+            async: true,
+            data: { UserName: $("#UserName").val(), Pwd : $("#Pwd").val(), returnUrl: '' },
+            beforeSend: function (xhr) {
+                $("#divLeftMenu").html("<img src ='App_Themes/Default/Images/loading.gif' alt='loading'  />");
+            },
+            success: function (response) {
+                window.location.reload();
+            },
+            error: function (xml, status) {
+                $("#divLeftMenu").html(xml.responseText);
+            }
+        });
+    },
     GetExplorerType: function () {
         if (navigator.userAgent.indexOf("MSIE") != -1) {
             return "ie";

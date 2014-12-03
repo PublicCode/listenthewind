@@ -9,6 +9,7 @@ using ComLib.SmartLinq;
 using ComLib.SmartLinq.Energizer.JqGrid;
 using WebModel.Camp;
 using ComLib.Extension;
+using Newtonsoft.Json;
 
 namespace DataAccessLayer
 {
@@ -341,11 +342,10 @@ namespace DataAccessLayer
             }
         }
 
-        public string SaveReserve(List<DateTime> SelectedDate, List<int> SelectedItemId, int CampID, int PileID)
+        public string SaveReserve(List<DateTime> SelectedDate, List<camppriceModel> SelectedItem, int CampID, int PileID)
         {
             try
             {
-
                 DC dc = DCLoader.GetMyDC();
                 int userid = 1;
                 camp campDB = GetSingleCamp(CampID);
@@ -361,21 +361,24 @@ namespace DataAccessLayer
                 campres.ReserveStatus = "1";
                 campres.Createtime = DateTime.Now;
 
-                if (SelectedItemId != null)
+                if (SelectedItem != null)
                 {
                     campres.Listcampreserveatt = new List<campreserveatt>();
-                    foreach (int PriceItemid in SelectedItemId)
+                    foreach (camppriceModel campPrice in SelectedItem)
                     {
-                        campprice camppriceDB = campDB.Listcampprice.FirstOrDefault(c => c.CampPriceID == PriceItemid);
-                        campreserveatt campresatt = new campreserveatt();
-                        campresatt.CampItemID = PriceItemid;
-                        campresatt.CampItemName = camppriceDB.ItemName;
-                        campresatt.CampItemUnitPrice = camppriceDB.ItemPrice;
-                        campresatt.CampItemDiscount = 0;
-                        campresatt.CampItemFinalPrice = campresatt.CampItemUnitPrice - campresatt.CampItemDiscount;
-                        campresatt.Qty = 1;
-                        campresatt.CampItemPriceAmt = campresatt.Qty * campresatt.CampItemFinalPrice;
-                        campres.Listcampreserveatt.Add(campresatt);
+                        if (campPrice.Checked)
+                        {
+                            campprice camppriceDB = campDB.Listcampprice.FirstOrDefault(c => c.CampPriceID == campPrice.CampPriceID);
+                            campreserveatt campresatt = new campreserveatt();
+                            campresatt.CampItemID = campPrice.CampPriceID;
+                            campresatt.CampItemName = camppriceDB.ItemName;
+                            campresatt.CampItemUnitPrice = camppriceDB.ItemPrice;
+                            campresatt.CampItemDiscount = 0;
+                            campresatt.CampItemFinalPrice = campresatt.CampItemUnitPrice - campresatt.CampItemDiscount;
+                            campresatt.Qty = campPrice.Qty;
+                            campresatt.CampItemPriceAmt = campresatt.Qty * campresatt.CampItemFinalPrice;
+                            campres.Listcampreserveatt.Add(campresatt);
+                        }
                     }
                 }
 

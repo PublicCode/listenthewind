@@ -49,9 +49,9 @@ namespace BizLogic
             return homeBase.GetListOfReserveForPile(PileId);
         }
 
-        public string SaveReserve(List<DateTime> SelectedDate, List<int> SelectedItemId, int CampID, int PileID)
+        public string SaveReserve(List<DateTime> SelectedDate, List<camppriceModel> listOfCampPrice, int CampID, int PileID)
         {
-            return homeBase.SaveReserve(SelectedDate, SelectedItemId, CampID, PileID);
+            return homeBase.SaveReserve(SelectedDate, listOfCampPrice, CampID, PileID);
         }
 
         public List<CityModel> GetCitys()
