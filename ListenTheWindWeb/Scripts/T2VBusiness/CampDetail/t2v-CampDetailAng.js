@@ -27,7 +27,7 @@
     };
 
     $scope.LinkToCampBook = function (PileID) {
-        window.location.href = "/Home/CampBook?PileID=" + PileID + "&CampID=" + $scope.camp.CampID;
+        window.location.href = "/Home/CampBook?PileID=" + PileID + "&CampID=" + $scope.camp.CampID + "&BookDate=" + $scope.camp.paramDate;
     };
     $scope.CampCollect = function () {
         $http({

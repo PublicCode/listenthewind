@@ -64,6 +64,7 @@ namespace AdestoSolution.Controllers
         public ActionResult CampDetail(int CampID, DateTime? dt)
         {
             campModel campmodel = bizLogic.GetCamp(CampID, dt);
+            campmodel.paramDate = dt;
             ViewBag.CampInfo = JsonConvert.SerializeObject(campmodel);
             return View("~/Views/Home/CampDetail.cshtml");
         }
@@ -73,9 +74,9 @@ namespace AdestoSolution.Controllers
             return bizLogic.CampCollect(CampID);
         }
 
-        public ActionResult CampBook(int CampID, int PileID)
+        public ActionResult CampBook(int CampID, int PileID, DateTime? BookDate)
         {
-            campModel campmodel = bizLogic.GetCamp(CampID, null);
+            campModel campmodel = bizLogic.GetCamp(CampID, BookDate);
             ViewBag.CampInfo = JsonConvert.SerializeObject(campmodel);
             ViewBag.PileID = PileID;
             var listOfBasic = bizLogic.GetBasicDataForCamp();
