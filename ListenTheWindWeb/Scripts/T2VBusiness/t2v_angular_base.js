@@ -451,6 +451,9 @@ soNgModule.filter('fromNow', function () {
         if (str.length > 31) {
             res = str.substring(0, 30) + '...';
         }
+        else {
+            res = str;
+        }
         return res;
     }
 })
