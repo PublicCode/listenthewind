@@ -77,7 +77,17 @@ soNgModule.controller("CampListCtrl", ['$scope', '$routeParams', '$http', functi
             }
         });
     };
+    $scope.myLoc = [];
     $scope.Search = function () {
+        var locId = $scope.myLoc.LocationID;
+        var date = $("#datepicker1").val();
+        if (locId == undefined) {
+            locId = 0;
+        }
+
+        $scope.obj.searchInfo.LocationID = locId;
+        $scope.obj.searchInfo.JoinCampDate = date;
+
         var specialContents = [];
         $(".campitem").each(function (v, k) {
             if ($(k).prop("checked"))

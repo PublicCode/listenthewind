@@ -39,6 +39,8 @@ namespace WebModel.Camp
 
         public DateTime? ModifyTime { get; set; }
 
+        public DateTime? paramDate { get; set; }
+
         public virtual List<campcommentModel> ModelListcampcomment { get; set; }
         public virtual List<camphostModel> ModelListcamphost { get; set; }
         public virtual List<campitemModel> ModelListcampitem { get; set; }
