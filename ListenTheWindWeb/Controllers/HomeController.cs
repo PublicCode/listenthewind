@@ -73,7 +73,7 @@ namespace AdestoSolution.Controllers
             return bizLogic.CampCollect(CampID);
         }
 
-        public ActionResult CampBook(int CampID, int PileID)
+        public ActionResult CampBook(int CampID, int PileID, DateTime? dt)
         {
             campModel campmodel = bizLogic.GetCamp(CampID, null);
             ViewBag.CampInfo = JsonConvert.SerializeObject(campmodel);
@@ -85,6 +85,8 @@ namespace AdestoSolution.Controllers
                if (basicModel != null)
                     basicModel.Checked =true;
             }
+            if (dt != null)
+                ViewBag.DefaultDate = dt.Value;
             ViewBag.BasicData = JsonConvert.SerializeObject(listOfBasic);
             return View("~/Views/Home/CampBook.cshtml");
         }
