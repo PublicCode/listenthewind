@@ -46,3 +46,13 @@ body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
 .flexslider3 .flex-direction-nav li a.flex-prev{left:0px;background:url(images/prev2.png) center center no-repeat;}
 .flexslider3 .flex-direction-nav li a.flex-next{right:0px;background:url(images/next2.png) center center no-repeat;}
 
+.flexslider4{position:relative;height:95px; width:530px;overflow:hidden; float:left} /*background:url(images/loading.gif) 50% no-repeat;*/
+.flexslider4 .slides{position:relative;z-index:1;}
+.flexslider4 .slides li{height:82px}
+
+.flexslider4 img{ max-width:none; display:block; margin:0 auto}
+.flexslider4 a{ display:block; width:100%;height:85px;}
+.flexslider4 .flex-direction-nav{position:absolute;z-index:3;width:100%;top:30%;}
+.flexslider4 .flex-direction-nav li a{display:block;width:31px;height:26px;overflow:hidden;cursor:pointer;position:absolute; text-indent:-99em}
+.flexslider4 .flex-direction-nav li a.flex-prev{left:0px;background:url(images/prev2.png) center center no-repeat;}
+.flexslider4 .flex-direction-nav li a.flex-next{right:0px;background:url(images/next2.png) center center no-repeat;}
