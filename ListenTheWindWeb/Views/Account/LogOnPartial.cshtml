@@ -3,30 +3,25 @@
 @{
     ViewBag.Title = "Log On";
 }
-<div class="divLoginBody">
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <td style="width: 450px;">
-                    @Html.TextBoxFor(m => m.UserName, new { @class = "loginTBox watermark", @watermark = "User Name", @title = "User name in system" })
-                    <br />
-                    @Html.ValidationMessageFor(m => m.UserName)
-                    <br />
-                    <br />
-                    @Html.PasswordFor(m => m.Pwd, new { @class = "loginTBox watermark", @watermark = "Password", @title = "Password in system" })
-                    <br />
-                    @Html.ValidationMessageFor(m => m.Pwd)
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" style="color: #FF0000; font-weight: normal;">
-                    @Html.ValidationSummary(true, "")
-                </td>
-            </tr>
-            <tr>
-                <td style="text-align: right; padding-right: 40px;">
-                    <input type="submit" value="Sign In" class="SinInBtn" onclick ="t2v_main.Login()"/>
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
+<div class="modal-header clear">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+    <h3 style="float: left; display: block">登录听风帐号</h3>
+</div>
+<div class="modal-body">
+    <div>
+        @Html.TextBoxFor(m => m.UserName, new { @class = "loginTBox watermark", @watermark = "请输入用户名", @title = "请输入用户名" })
+        <br />
+        @Html.ValidationMessageFor(m => m.UserName)
+        @Html.PasswordFor(m => m.Pwd, new { @class = "loginTBox watermark", @watermark = "请输入密码", @title = "请输入密码" })
+        <br />
+        @Html.ValidationMessageFor(m => m.Pwd)
+    </div>
+    <div style="color: #FF0000; font-weight: normal;">
+        @Html.ValidationSummary(true, "")
+    </div>
+    <div>
+        <input type="submit" value="登 录" class="SinInBtn" onclick="t2v_main.Login()" />
+    </div>
+</div>
+<div class="modal-footer">
 </div>

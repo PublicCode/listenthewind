@@ -55,7 +55,7 @@
     <script src="@Url.Content("~/Scripts/Vendor/angular/angular.min.js") " type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Vendor/angular/angular-sanitize.min.js") " type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/T2VBusiness/t2v_angular_base.js")" type="text/javascript"></script>
-   
+
 </head>
 <body>
 
@@ -63,24 +63,24 @@
         <div class="header clear">
             <a href="#" class="logo">
                 <img src="../../Content/images/logo.jpg" /></a>
-        @if (user != null)
-        { 
-            <div class="login-con">
-                        <text>欢迎 <strong>@(string.IsNullOrEmpty(user.Name) ? user.UserName : user.Name)</strong>!
+            @if (user != null)
+            { 
+                <div class="login-con">
+                    <text>欢迎 <strong>@(string.IsNullOrEmpty(user.Name) ? user.UserName : user.Name)</strong>!
                         &nbsp;<a href="@Url.Action("LogOff", "Account")">
                         登出</a> </text>
-            </div>
-        }
-        else
-        {
-                <div class="login-con">
-                <a href="#logonModal" data-toggle="modal">登录</a> 
-                    <div class="modal hide" id="logonModal">@Html.Partial("~/Views/Account/LogOn.cshtml", new ViewDataDictionary())</div>
                 </div>
-        }
+            }
+            else
+            {
+                <div class="login-con">
+                    <a href="#logonModal" data-toggle="modal">登录</a>
+                    <div class="modal hide" id="logonModal" style="width:320px">@Html.Partial("~/Views/Account/LogOn.cshtml", new ViewDataDictionary())</div>
+                </div>
+            }
             <div class="language">
                 <div class="select-con sel-lg">
-                    <select style="width:55px">
+                    <select style="width: 55px">
                         <option>CN</option>
                         <option>EN</option>
                     </select>
