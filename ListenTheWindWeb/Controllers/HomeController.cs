@@ -74,6 +74,12 @@ namespace AdestoSolution.Controllers
             return bizLogic.CampCollect(CampID);
         }
 
+        public object SaveComment(int CampID, string CommentCon)
+        {
+            var lst = bizLogic.SaveComment(CampID, CommentCon);
+            return JsonNet(lst);
+        }
+
         public ActionResult CampBook(int CampID, int PileID, DateTime? BookDate)
         {
             campModel campmodel = bizLogic.GetCamp(CampID, BookDate);
@@ -93,6 +99,8 @@ namespace AdestoSolution.Controllers
         {
             return View("~/Views/shared/ComingSoon.cshtml");
         }
+
+        
 
         public string GetNewNumber(string TypeName,string strFirstChar)
         {

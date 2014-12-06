@@ -443,6 +443,20 @@ soNgModule.filter('fromNow', function () {
             }
         }
 })
+    .filter('commentNumber', function () {
+        return function (comments, num) {
+            var newcomments = [];
+            var count = 0;
+            angular.forEach(comments, function (comment) {
+                if (count < num) {
+                    newcomments.push(comment);
+                    count++;
+                }
+            });
+
+            return newcomments;
+        }
+    })
 .filter('ellipsis15', function () {
     return function (str) {
         if (!str) return str;

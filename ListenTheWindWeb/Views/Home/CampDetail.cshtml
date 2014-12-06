@@ -47,7 +47,7 @@
                 <h2>用户评论</h2>
                 <div class="comment-list">
                     <ul>
-                        <li class="clear" ng-repeat="campcom in camp.ModelListcampcomment">
+                        <li class="clear" ng-repeat="campcom in camp.ModelListcampcomment | commentNumber : 2">
                             <div class="cl-left">
                                 <a href="#">
                                     <img src="../../Content/images/u_img1.png" /></a>
@@ -66,9 +66,12 @@
                     <a ng-click="ShowMoreCommenScreen();">查看更多评论&gt;&gt;&gt;</a>
                 </div>
                 <div class="textarea-con">
-                    <a name="box2"></a>
-                    <textarea>Message</textarea>
-                    <a href="#" class="f-btn">发布评论</a>
+                    <ng-form name="commentform" novalidate>
+                        <a name="box2"></a>
+                        <textarea name="content" id="commentcon" placeholder="请添加评论" required></textarea>
+                        <span class="error" ng-show="commentform.content.$error.required && SaveFlag"> Content is required. </span> 
+                        <a  class="f-btn" ng-click="SaveComment()">发布评论</a>
+                    </ng-form>
                 </div>
             </div>
         </div>
