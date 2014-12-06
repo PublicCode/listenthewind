@@ -78,14 +78,6 @@
                     <div class="modal hide" id="logonModal" style="width:320px">@Html.Partial("~/Views/Account/LogOn.cshtml", new ViewDataDictionary())</div>
                 </div>
             }
-            <div class="language">
-                <div class="select-con sel-lg">
-                    <select style="width: 55px">
-                        <option>CN</option>
-                        <option>EN</option>
-                    </select>
-                </div>
-            </div>
         </div>
         <div class="banner"></div>
         @RenderBody()
@@ -195,7 +187,7 @@
                 max: 10000,
                 min: 0,
                 range: true,
-                values: [315, 4800],
+                values: [0, 1000],
                 slide: function (event, ui) {
                     $("#amount").val("￥" + ui.values[0] + " - ￥" + ui.values[1]);
                 }
