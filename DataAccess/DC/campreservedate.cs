@@ -21,6 +21,7 @@ namespace DataAccess.DC
         public int CampID { get; set; }
         public DateTime? CampReserveDate { get; set; }
 
+        public campreserve myReserve { get; set; }
         
 
         long ILoggedEntity.Id

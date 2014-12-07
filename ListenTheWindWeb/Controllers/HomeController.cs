@@ -86,8 +86,8 @@ namespace AdestoSolution.Controllers
                if (basicModel != null)
                     basicModel.Checked =true;
             }
-            if (dt != null)
-                ViewBag.DefaultDate = dt.Value;
+            if (BookDate != null)
+                ViewBag.DefaultDate = BookDate.Value;
             ViewBag.BasicData = JsonConvert.SerializeObject(listOfBasic);
             return View("~/Views/Home/CampBook.cshtml");
         }
@@ -104,7 +104,7 @@ namespace AdestoSolution.Controllers
         public ActionResult getReservedDateForPile(int PileId)
         {
             IHomeManager homeManager = new HomeManager();
-            return Json(homeManager.GetListOfReserveForPile(PileId));
+            return Json(homeManager.GetListOfReserveForPile(PileId, 1));
         }
 
         public string SaveReserve(List<DateTime> SelectedDate, campModel Camp, int PileID)

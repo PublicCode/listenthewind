@@ -35,7 +35,7 @@ namespace DataAccess.DC
 
         public decimal? PilePriceAmt { get; set; }
 
-        public string ReserveStatus { get; set; }
+        public int ReserveStatus { get; set; }
 
         public DateTime? Createtime { get; set; }
 

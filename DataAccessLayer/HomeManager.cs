@@ -63,10 +63,10 @@ namespace DataAccessLayer
             //camp campInDB = dc.camps.FirstOrDefault(c => c.CampID == CampID);
             return campInDB;
         }
-        public List<string> GetListOfReserveForPile(int PileId)
+        public List<string> GetListOfReserveForPile(int PileId, int userID)
         {
             var ret = new List<string>();
-            var listOfReserve = dc.campreservedates.Where(m => m.CampPileID == PileId).Select(m=>m.CampReserveDate).ToList();
+            var listOfReserve = dc.campreservedates.Where(m => m.CampPileID == PileId && (m.myReserve.ReserveStatus == 2 || m.myReserve.UserID == userID)).Select(m => m.CampReserveDate).ToList();
             foreach (DateTime dt in listOfReserve)
             {
                 ret.Add(dt.ToShortDateString());
@@ -175,7 +175,7 @@ namespace DataAccessLayer
                     {
                         campreserve camprese = dc.campreserves.FirstOrDefault(c => c.CampReserveID == reserdate.CampReserveID);
                         //已交款 或者未交款但是自己已经预约这天的 少个验证 用户是否登陆
-                        if (camprese.ReserveStatus == "2" || camprese.UserID == userid)
+                        if (camprese.ReserveStatus == 2 || camprese.UserID == userid)
                         {
                             camppilemodel.Flag = false;
                         }
@@ -358,7 +358,7 @@ namespace DataAccessLayer
                 campres.FinalPilePrice = campres.PilePrice - campres.Discount;
                 campres.Days = SelectedDate.Count;
                 campres.PilePriceAmt = campres.FinalPilePrice * campres.Days;
-                campres.ReserveStatus = "1";
+                campres.ReserveStatus = 1;
                 campres.Createtime = DateTime.Now;
 
                 if (SelectedItem != null)

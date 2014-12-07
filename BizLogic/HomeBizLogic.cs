@@ -44,9 +44,9 @@ namespace BizLogic
                 return "已经添加收藏";
             }
         }
-        public List<string> getListOfReserveDate(int PileId)
+        public List<string> getListOfReserveDate(int PileId, int userId)
         {
-            return homeBase.GetListOfReserveForPile(PileId);
+            return homeBase.GetListOfReserveForPile(PileId, userId);
         }
 
         public string SaveReserve(List<DateTime> SelectedDate, List<camppriceModel> listOfCampPrice, int CampID, int PileID)
