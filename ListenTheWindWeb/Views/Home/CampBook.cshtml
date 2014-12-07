@@ -8,43 +8,36 @@
 		<h1 class="tit4">在线预订</h1>
         <div class="detail-con clear">
             <div class="detail-left">
-                <div class="flexslider2">
-                    <ul class="slides">
-                        <li ng-repeat="campphoto in camp.ModelListcampphoto"><img src="../../UploadImg/Camp/{{campphoto.CampPhoteFile}}"/></li>
-                       
-                    </ul>
-                </div>
-                <div class="more-con">
-                	<h2><img src="../../Content/images/h2_1.png"/></h2>
-                    <div class="scrollPic-con">
-                    	<a href="#" class="more-link">查看全部相片</a>
-                        <a href="javascript:void(0)" class="pic-btn" id="left_but">左</a>
-                        <a href="javascript:void(0)" class="pic-btn" id="right_but">右</a>
-                        <ul id="pic">
-                            <li><a href="#"><img src="../../Content/images/more_img1.jpg"/></a></li>
-                            <li><a href="#"><img src="../../Content/images/more_img2.jpg"/></a></li>
-                            <li><a href="#"><img src="../../Content/images/more_img3.jpg"/></a></li>
-                            <li><a href="#"><img src="../../Content/images/more_img4.jpg"/></a></li>
-                            <li><a href="#"><img src="../../Content/images/more_img5.jpg"/></a></li>
-                            <li><a href="#"><img src="../../Content/images/more_img6.jpg"/></a></li>
+                <div class="clear">
+                    <div id="slider" class="flexslider2">
+                        <ul class="slides">
+                            <li ng-repeat="campphoto in camp.ModelListcampphoto">
+                                <img src="../../UploadImg/Camp/{{campphoto.CampPhoteFile}}" /></li>
+                        </ul>
+                    </div>
+                    <div id="carousel" class="flexslider4">
+                        <ul class="slides">
+                            <li ng-repeat="campphoto in camp.ModelListcampphoto" style="margin-right:5px">
+                                <img style="width:123px; height:81px" src="../../UploadImg/Camp/{{campphoto.CampPhoteFile}}" /></li>
                         </ul>
                     </div>
                 </div>
                 </div>
                 <div class="detail-right">
                     <div class="price">
-                       <div class="x-bg-con"><div style="width:25%"></div></div><!--百分比调整星级-->
-                        <h1>听风编号:{{camp.CampNum}}<strong>{{camp.CampName}}</strong></h1>
+                       <div class="x-bg-con" ng-bind-html="camp.CampLevel | toCampLevel"></div>
+                        <!--百分比调整星级-->
+                        <h1 style="margin-bottom: 15px;">听风编号:{{camp.CampNum}}<strong>{{camp.CampName}}</strong></h1>
                         @*<h2>Tianmu lake mountain and water garden</h2>*@
-                        <div class="rmb">￥:{{camp.PilePrice}}</div>
-                       <div class="tf-ts">
-                    	<h3>听风特色</h3>
-                        <div class="tf-ts-con">
-                            <span ng-repeat="campitem in camp.ModelListcampitem">
-                        	    <img title="{{campitem.CampItemName}}" src="../../Content/images/{{campitem.CampItemIcon}}"/>
-                            </span>
+                        <div class="rmb" style="line-height: 200%">￥:{{camp.PilePrice}}</div>
+                        <div class="tf-ts" style="padding: 15px 0 10px">
+                            <h3 style="line-height: 24px;">听风特色</h3>
+                            <div class="tf-ts-con" style="margin-bottom: 40px; padding-top: 15px">
+                                <span ng-repeat="campitem in camp.ModelListcampitem">
+                                    <img title="{{campitem.CampItemName}}" src="../../Content/images/{{campitem.CampItemIcon}}" />
+                                </span>
+                            </div>
                         </div>
-                    </div>
                     </div>
                  </div>
              <div class="detail-left detail-lr clear">
@@ -103,12 +96,24 @@
     t2v_CampDetail.BasicData = @Html.Raw(JsonConvert.SerializeObject(ViewBag.BasicData));
     angular.element(document).ready(function () {
         angular.bootstrap($('body'), ['SO']);
-        $('.flexslider2').flexslider({
+        $('#carousel').flexslider({
             animation: "slide",
-            directionNav: true,
-            pauseOnAction: false,
-            slideshow: true,
-            slideshowSpeed: 5000,
+            controlNav: false,
+            animationLoop: false,
+            slideshow: false,
+            itemWidth: 125,
+            itemMargin: 5,
+            asNavFor: '#slider'
+        });
+
+        $('#slider').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            slideshow: false,
+            sync: "#carousel",
+            start: function(slider){
+            }
         });
         
         $("#service").jRating({
@@ -116,21 +121,6 @@
             length: 5,
         });
     });
-
-    scr1();
-        function scr1(){
-            scrollPic_01 = new ScrollPic();
-            scrollPic_01.scrollContId = "pic"; //图片容器ID
-            scrollPic_01.arrLeftId = "left_but"; //左按钮ID
-            scrollPic_01.arrRightId = "right_but"; //右按钮ID
-            scrollPic_01.frameWidth = 532; //图片容器宽度
-            scrollPic_01.pageWidth = 133; //每张图片宽度
-            scrollPic_01.speed = 10; //移动速度(单位毫秒，越小越快)
-            scrollPic_01.space = 10; //每次移动像素(单位px，越大越快)
-            scrollPic_01.autoPlay = false; //自动播放
-            scrollPic_01.autoPlayTime = 3; //自动播放间隔时间(秒)
-            scrollPic_01.initialize(); //初始化
-        }
 </script>
 
 
