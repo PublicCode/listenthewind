@@ -74,22 +74,43 @@ namespace DataAccessLayer
             return ret;
         }
 
-        public string SaveComments(campcommentModel campCommentModel)
+        public object SaveComments(int CampID, string CommentCon)
         {
             try
             {
                 DC dc = DCLoader.GetMyDC();
                 campcomment campcommentDB = new campcomment();
-                ModelConverter.Convert<campcommentModel, campcomment>(campCommentModel, campcommentDB);
+                campcommentDB.CampID = CampID;
+                campcommentDB.CommentCon = CommentCon;
+                campcommentDB.UserID = 1;//需要修改
+                campcommentDB.UserName = "sdfsdf";//需要修改
                 campcommentDB.CommentTime = DateTime.Now;
                 dc.campcomments.Add(campcommentDB);
                 dc.SaveChanges();
-                return "添加评论成功！";
+
+                List<campcomment> listdb = dc.campcomments.Where(c => c.CampID == CampID).OrderByDescending(c => c.CommentTime).ToList();
+
+                List<campcommentModel> list = new List<campcommentModel>();
+
+                foreach (campcomment campcomInDB in listdb)
+                {
+                    campcommentModel campcommentmodel = new campcommentModel();
+                    ModelConverter.Convert<campcomment, campcommentModel>(campcomInDB, campcommentmodel);
+                    list.Add(campcommentmodel);
+                }
+                return new
+                {
+                    content = "添加评论成功！",
+                    campcomments = list
+                };
 
             }
             catch (Exception ex)
             {
-                return ex.Message;
+                return new
+                {
+                    content = ex.Message
+                };
             }
         }
 

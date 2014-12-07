@@ -30,7 +30,10 @@ namespace BizLogic
 
         public campModel GetCamp(int CampID, DateTime? dt)
         {
-            return homeBase.GetCamp(CampID, dt);
+            //return homeBase.GetCamp(CampID, dt);
+            campModel campmodel = homeBase.GetCamp(CampID, dt);
+            campmodel.ModelListcampcomment = campmodel.ModelListcampcomment.OrderByDescending(c => c.CommentTime).ToList();
+            return campmodel;
         }
 
         public string CampCollect(int CampID)
@@ -67,9 +70,9 @@ namespace BizLogic
             return homeBase.GetBasicData();
         }
 
-        public string SaveComments(campcommentModel campCommentModel)
+        public object SaveComment(int CampID, string CommentCon)
         {
-            return homeBase.SaveComments(campCommentModel);
+            return homeBase.SaveComments(CampID, CommentCon);
         }
         public List<basidatacollectforcampModel> GetBasicDataForCamp()
         {

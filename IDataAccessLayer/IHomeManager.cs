@@ -19,6 +19,6 @@ namespace IDataAccessLayer
         List<CityModel> GetCitys();
         object GetCampList(CampListSeachModel info, int page, int limit);
         List<basicdatacollect> GetBasicData();
-        string SaveComments(campcommentModel campCommentModel);
+        object SaveComments(int CampID, string CommentCon);
     }
 }

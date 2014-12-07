@@ -29,6 +29,32 @@
     $scope.LinkToCampBook = function (PileID) {
         window.location.href = "/Home/CampBook?PileID=" + PileID + "&CampID=" + $scope.camp.CampID + "&BookDate=" + $scope.camp.paramDate;
     };
+    $scope.SaveFlag = false;
+    $scope.commentcon = "";
+    $scope.SaveComment = function () {
+        if ($scope.commentform.$valid == false) {
+            $scope.SaveFlag = true;
+            return;
+        }
+
+        $http({
+            method: 'post',
+            url: '/Home/SaveComment',
+            data: { CampID: $scope.camp.CampID, CommentCon: $scope.commentcon }
+        }).success(function (data) {
+            alert(data.content);
+            $scope.commentcon = '';
+            if (data.campcomments != undefined)
+            {
+                $scope.camp.ModelListcampcomment = data.campcomments;
+            }
+        }).error(function (d, s, h, c) {
+            alert("error");
+            // TODO: Show something like "Username or password invalid."
+        });
+    };
+    
+
     $scope.CampCollect = function () {
         $http({
             method: 'post',
