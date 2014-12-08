@@ -487,6 +487,7 @@ a {
 	color: #000;
 	text-decoration: none;
 	outline: none;
+    cursor:pointer;
 }
 a:hover {
 	text-decoration: underline;
@@ -673,7 +674,7 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .comment-con .ck-comment{height:23px; background:#f6f8fa; text-align:center; line-height:23px; margin-bottom:11px;}
 .comment-con .ck-comment a{color:#3f4040; text-decoration:none}
 .comment-con .textarea-con textarea{ display:block; background:#f6f6f6; overflow:hidden;border:1px #e0e0e0 solid;height:116px; width:505px;overflow-x: hidden;overflow-y: auto;word-wrap: break-word;line-height: 18px;outline: none;resize: none; padding:11px; font-size:14px; margin-bottom:14px;}
-.comment-con .textarea-con .f-btn{ float:right; width:74px;height:25px; line-height:25px;color:#fff; text-align:center; background:#191f4e}
+.comment-con .textarea-con .f-btn{ float:right; width:74px;height:25px; line-height:25px;color:#fff; text-align:center; background:#191f4e; cursor:pointer; }
 .comment-con .comment-list .cl-left img{ display:block;}
 .comment-con .comment-list .cl-right{ margin-left:123px;}
 .comment-con .comment-list .cl-right strong{ display:block; font-size:16px;color:#000}
@@ -1025,3 +1026,4 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .SelPileBtn { display:block; float:left; width:115px; padding:7px 0; background-color:#f3f3f3; border:1px solid #e3e3e3; cursor:pointer; margin:5px 0 5px 10px; }
 .SelPileBtn:hover { background-color:#eeeeee; }
 .MoreCommenContent { line-height:140% }
+.error { color:#ff0000 }
