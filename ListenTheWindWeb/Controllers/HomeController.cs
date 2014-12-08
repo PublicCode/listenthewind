@@ -94,6 +94,8 @@ namespace AdestoSolution.Controllers
             }
             if (BookDate != null)
                 ViewBag.DefaultDate = BookDate.Value;
+            else
+                ViewBag.DefaultDate = DateTime.Now;
             ViewBag.BasicData = JsonConvert.SerializeObject(listOfBasic);
             return View("~/Views/Home/CampBook.cshtml");
         }

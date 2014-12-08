@@ -17,7 +17,7 @@
             months: 3,
             mode: 'multiple',
             blackout: data,
-            selected: function () { alert(this.getSelected()) },
+            selected: t2v_CampDetail.DefaultDate,
             subscribe: {
                 'change': function (date, action) {
                     $scope.selectedDate = this.getSelected();

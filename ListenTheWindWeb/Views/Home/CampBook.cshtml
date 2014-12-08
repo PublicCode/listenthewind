@@ -94,6 +94,7 @@
     t2v_CampDetail.CampInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.CampInfo));
     t2v_CampDetail.PileId = @Html.Raw(JsonConvert.SerializeObject(ViewBag.PileID));
     t2v_CampDetail.BasicData = @Html.Raw(JsonConvert.SerializeObject(ViewBag.BasicData));
+    t2v_CampDetail.DefaultDate = @Html.Raw(JsonConvert.SerializeObject(ViewBag.DefaultDate));
     angular.element(document).ready(function () {
         angular.bootstrap($('body'), ['SO']);
         $('#carousel').flexslider({
