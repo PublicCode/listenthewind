@@ -139,13 +139,23 @@
             </div>
         </div>
         <div id="divMoreCommenContent">
-            <div style="width: 750px; height: 330px; overflow: hidden; padding: 5px">
-                <div class="cl-right">
-                    <b>Admin</b>
-                    <br />
-                    <em>2014年11月19日 49:32</em>
-                    <br />
-                    <p>adfaasdfasdfasdfdsfad</p>
+            <div style="width: 750px; height: 330px; overflow: hidden; padding: 5px" class="comment-con">
+                <div class="comment-list">
+                    <ul>
+                        <li class="clear" ng-repeat="campcom in camp.ModelListcampcomment | commentNumber : 2">
+                            <div class="cl-left">
+                                <a href="#">
+                                    <img src="../../Content/images/u_img1.png" /></a>
+                            </div>
+                            <div class="cl-right">
+                                <strong>{{campcom.UserName}}</strong>
+                                <em>{{campcom.CommentTime|  date:'yyyy年MM月dd日 hh:mm'}}</em>
+                                <p>{{campcom.CommentCon}}</p>
+                                <div class="replay" ng-show="campcom.CommentRes.length > 0">回复<p>{{campcom.CommentRes}}</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
