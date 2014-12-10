@@ -17,13 +17,18 @@
                     <div class="sel-fl">
                         <label>城市:</label>
                         <div class="select-bg">
-                            <select ng-model="myCity" ng-options="city.CityName for city in hi"></select>
+                            <select ng-model="myCity" ng-options="city.CityName for city in hi" style="color:#333">
+                                <option style="display:none; color:gray" value="" disabled selected>请选择城市</option>
+
+                            </select>
                         </div>
                     </div>
                     <div class="sel-fl">
                         <label>地区:</label>
                         <div class="select-bg">
-                            <select ng-model="myLoc" ng-options="lo.LocationName for lo in myCity.Locations" placeholder="请选择地区"></select>
+                            <select ng-model="myLoc" ng-options="lo.LocationName for lo in myCity.Locations" required style="color:#333">
+                                <option style="display:none; color:gray" value="" disabled selected>请选择地区</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -37,7 +42,8 @@
                     <div class="sel-fl">
                         <label>营地等级:</label>
                         <div class="select-bg">
-                            <select ng-model="myLOD" ng-options="lo.DataName for lo in basicdata | filter: 'camplod'" placeholder="请选择地区">
+                            <select ng-model="myLOD" ng-options="lo.DataName for lo in basicdata | filter: 'camplod'" style="color:#333">
+                                <option style="display:none; color:gray" value="" disabled selected>请选择营地等级</option>
                             </select>
                         </div>
                     </div>

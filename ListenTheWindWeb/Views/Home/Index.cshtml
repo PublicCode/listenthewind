@@ -13,27 +13,30 @@
             <div class="home-set" style="margin-right:8px">
                 <label>城市</label>
                 <div class="select-con sel-cs">
-                    <select ng-model="myCity" ng-options="city.CityName for city in hi" required >
+                    <select ng-model="myCity" ng-options="city.CityName for city in hi" required style="color:#333">
+                        <option style="display:none; color:gray" value="" disabled selected>请选择城市</option>
                     </select>
                 </div>
             </div>
             <div class="home-set" style="margin-right:8px">
                 <label>地区</label>
                 <div class="select-con sel-cs" id="home-city">
-                    <select ng-model="myLoc" ng-options="lo.LocationName for lo in myCity.Locations" placeholder="请选择地区">
+                    <select ng-model="myLoc" ng-options="lo.LocationName for lo in myCity.Locations" style="color:#333">
+                        <option style="display:none; color:gray" value="" disabled selected>请选择地区</option>
                     </select>
                 </div>
             </div>
             <div class="home-set" style="margin-right:8px">
                 <label>入营时间：</label>
                 <div class="time-input">
-                    <input type="text" id="datepicker1" class="datepicker" value="" placeholder="请选择城市"/>
+                    <input type="text" id="datepicker1" class="datepicker" value="" placeholder="请入营时间"/>
                 </div>
             </div>
             <div class="home-set" style="margin-right:8px">
                 <label>营地等级：</label>
                 <div class="select-con sel-cs">
-                    <select ng-model="myLOD" ng-options="lo.DataName for lo in ba" placeholder="请选择地区">
+                    <select ng-model="myLOD" ng-options="lo.DataName for lo in ba" style="color:#333">
+                        <option style="display:none; color:gray" value="" disabled selected>请选择营地等级</option>
                     </select>
                 </div>
             </div>
