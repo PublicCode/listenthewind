@@ -76,15 +76,18 @@
                         </div>
                         <div class="book-right">
                         	<div class="br-top">
+                                <a href="#" class="campBookReserve"  ng-click="bookcamp();">预 定</a>
                             	便利设施:
                             </div>
-                            <ul>
-                            	<li ng-repeat="campprice in camp.ModelListcampprice" style="background:none">
-                                	<input type="checkbox" ng-model ="campprice.Checked"/><span>{{campprice.ItemName}} - <em>价格：￥{{campprice.ItemPrice}};</em><em>数量：<input type="text" ng-model ="campprice.Qty"/></em>
-                                </li>
-                            </ul>
+                            <div class="book_campprice">
+                                <ul>
+                            	    <li ng-repeat="campprice in camp.ModelListcampprice" style="background:none">
+                                	    <input type="checkbox" ng-model ="campprice.Checked"/><span>{{campprice.ItemName}}</span> - <em>价格：￥{{campprice.ItemPrice}};</em><em>数量：<input type="text" ng-model ="campprice.Qty"/></em>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <input type="button"  ng-click="bookcamp();" value="预定"/>
+                        
                     </div>
                 </div>
              </div>

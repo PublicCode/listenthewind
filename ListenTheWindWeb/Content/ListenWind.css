@@ -1027,3 +1027,7 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .SelPileBtn:hover { background-color:#eeeeee; }
 .MoreCommenContent { line-height:140% }
 .error { color:#ff0000 }
+.campBookReserve { display:block; position:absolute; right:65px; margin-top:-5px; padding:2px 20px; color:#fff!important; background-color:#ffa745; font-weight:bold }
+.book_campprice { height:145px; overflow:auto; overflow-x:hidden; overflow-y:auto; }
+.book_campprice span { display:inline-block; min-width:60px; max-width:80px; padding:0; margin-left:10px!important; }
+.book_campprice input[type="text"] { width:50px }
