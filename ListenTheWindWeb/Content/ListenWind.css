@@ -1031,3 +1031,34 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .book_campprice { height:145px; overflow:auto; overflow-x:hidden; overflow-y:auto; }
 .book_campprice span { display:inline-block; min-width:60px; max-width:80px; padding:0; margin-left:10px!important; }
 .book_campprice input[type="text"] { width:50px }
+
+.self-kalendae { text-align:center; height:295px !important; }
+.self-kalendae .kalendae { background-color:#fff!important; }
+.self-kalendae .k-calendar { height:155px!important; }
+.self-kalendae .k-separator { background:#fff!important;  }
+
+.self-kalendae .k-btn-next-month,
+.self-kalendae .k-btn-previous-month,
+.self-kalendae .k-btn-next-year,
+.self-kalendae .k-btn-previous-year {
+	display:none!important;
+}
+
+.k-first-month,
+.k-middle-month,
+.k-last-month { width:275px!important; }
+
+.self-kalendae .k-title,
+.self-kalendae .k-header,
+.self-kalendae .k-days { width:274px!important; display:block; overflow:visible!important; }
+
+.self-kalendae .k-title { height:39px!important; }
+.self-kalendae .k-caption { height:39px!important; background:#191f4e; text-align:center; line-height:39px!important; color:#fff; display:block }
+
+.self-kalendae .k-header { height:39px!important; background:#ffa540; text-align:center; line-height:39px!important; display:block }
+.self-kalendae .k-header span { width:36px!important; color:#fff!important; text-align:center!important; }
+.self-kalendae .k-days { height:175px!important; background:#fff; text-align:center; line-height:30px!important; display:block; overflow:hidden!important; }
+.self-kalendae .k-days span { width:32px!important; line-height:30px!important; border:0!important; border-radius:0!important; -moz-border-radius:0!important; -webkit-border-radius: 0!important; color:#000!important; height:auto!important; display:block; text-align:center!important; }
+.self-kalendae .k-days span.k-out-of-month { color:#999!important; }
+
+.self-kalendae span.k-selected { background:#ffa540!important; color:#fff!important; text-decoration:none!important; }
