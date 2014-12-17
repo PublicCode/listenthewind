@@ -4,11 +4,14 @@
     $scope.myLoc = [];
     $scope.SearchCamp = function () {
         var locId = $scope.myLoc.LocationID;
+
         var date = $("#datepicker1").val();
+
         if (locId == undefined) {
             locId = 0;
         }
         var lod = $scope.myLOD == null ? "" : $scope.myLOD.DataName;
+
         $("#param").val(locId + "/" + date + "/" + lod);
     };
 }]);

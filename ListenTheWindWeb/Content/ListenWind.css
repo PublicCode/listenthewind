@@ -1041,7 +1041,9 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .self-kalendae .k-btn-previous-month,
 .self-kalendae .k-btn-next-year,
 .self-kalendae .k-btn-previous-year {
-	display:none!important;
+	/*display:none!important;*/
+    color:#fff !important;
+    line-height:140%!important;
 }
 
 .k-first-month,
@@ -1060,5 +1062,7 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .self-kalendae .k-days { height:175px!important; background:#fff; text-align:center; line-height:30px!important; display:block; overflow:hidden!important; }
 .self-kalendae .k-days span { width:32px!important; line-height:30px!important; border:0!important; border-radius:0!important; -moz-border-radius:0!important; -webkit-border-radius: 0!important; color:#000!important; height:auto!important; display:block; text-align:center!important; }
 .self-kalendae .k-days span.k-out-of-month { color:#999!important; }
+.self-kalendae .k-days span.k-in-month { color:#999!important; }
+.self-kalendae .k-days span.k-active { color:#000!important; }
 
 .self-kalendae span.k-selected { background:#ffa540!important; color:#fff!important; text-decoration:none!important; }
