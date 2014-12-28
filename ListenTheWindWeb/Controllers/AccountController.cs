@@ -11,6 +11,7 @@ using Handler;
 using System.Configuration;
 using DataAccess.DC;
 using WebModel.Account;
+using Newtonsoft.Json;
 
 
 namespace HDS.QMS.Controllers
@@ -204,6 +205,31 @@ namespace HDS.QMS.Controllers
                 default:
                     return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
             }
+        }
+        #endregion
+
+        #region 20141228
+        [HttpPost]
+        public string UserLogOn(string strJson)
+        {
+            var js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            var info = js.Deserialize<UserModel>(strJson);
+            Session.RemoveAll();
+            AccountHelper accountHelper = new AccountHelper();
+            if (ModelState.IsValid)
+            {
+                int returnResut = accountHelper.UserLogon(info.UserName, info.Pwd);
+                if (returnResut == 1)
+                {
+                    DataAccess.DC.User user = accountHelper.GetUserByName(info.UserName);
+                    Session["user"] = user;
+                }
+                else
+                {
+                    info.errUserName = true;
+                }
+            }
+            return JsonConvert.SerializeObject(info); ;
         }
         #endregion
     }

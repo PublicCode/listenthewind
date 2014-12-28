@@ -297,6 +297,8 @@
     <Content Include="Content\images\d_bn2.jpg" />
     <Content Include="Content\images\d_bn3.jpg" />
     <Content Include="Content\images\d_bn4.jpg" />
+    <Content Include="Content\images\f_close.png" />
+    <Content Include="Content\images\f_err.png" />
     <Content Include="Content\images\gz-img1.jpg" />
     <Content Include="Content\images\gzk.jpg" />
     <Content Include="Content\images\gzs.jpg" />

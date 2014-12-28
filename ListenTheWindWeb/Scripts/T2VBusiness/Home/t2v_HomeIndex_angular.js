@@ -1,4 +1,25 @@
-﻿soNgModule.controller("HomeIndexCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+﻿soNgModule.controller("BodyCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+    $scope.bdUL = JSON.parse(t2v_HomeIndex.ulInfo);
+    $scope.bdShowLayout = function (id) {
+        $("#tm").css("display", "");
+        $("#" + id).css("display", "");
+    };
+    $scope.bgActionLogin = function () {
+        $.ajax({
+            url: SiteRoot + "/Account/UserLogOn",
+            type: 'POST',
+            data: { strJson: JSON.stringify($scope.bdUL) },
+            async: true,
+            success: function (data) {
+                $scope.bdUL = JSON.parse(data);
+                $scope.$apply();
+                alert("Doing Now");
+            }
+        });
+    };
+}]);
+
+soNgModule.controller("HomeIndexCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
     $scope.hi = JSON.parse(t2v_HomeIndex.hiInfo);
     $scope.ba = JSON.parse(t2v_HomeIndex.baInfo).filter(function (e) { return e.DataType == "camplod"; });
     $scope.myLoc = [];
