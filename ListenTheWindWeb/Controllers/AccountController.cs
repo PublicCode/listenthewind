@@ -12,6 +12,7 @@ using System.Configuration;
 using DataAccess.DC;
 using WebModel.Account;
 using Newtonsoft.Json;
+using ComLib.Extension;
 
 
 namespace HDS.QMS.Controllers
@@ -216,20 +217,39 @@ namespace HDS.QMS.Controllers
             var info = js.Deserialize<UserModel>(strJson);
             Session.RemoveAll();
             AccountHelper accountHelper = new AccountHelper();
-            if (ModelState.IsValid)
+
+            int returnResut = accountHelper.UserLogon(info.UserName, info.Pwd);
+            if (returnResut == 1)
             {
-                int returnResut = accountHelper.UserLogon(info.UserName, info.Pwd);
-                if (returnResut == 1)
-                {
-                    DataAccess.DC.User user = accountHelper.GetUserByName(info.UserName);
-                    Session["user"] = user;
-                }
-                else
-                {
-                    info.errUserName = true;
-                }
+                DataAccess.DC.User user = accountHelper.GetUserByName(info.UserName);
+                user.Pwd = "";
+                Session["user"] = user;
+                ModelConverter.Convert<User, UserModel>(user, info);
             }
+            else if (returnResut == 2)
+            {
+                info.errPwd = true;
+                info.errUserName = false;
+            }
+            else if (returnResut == 3)
+            {
+                info.errPwd = false;
+                info.errUserName = true;
+            }
+            info.Pwd = "";
             return JsonConvert.SerializeObject(info); ;
+        }
+        [HttpPost]
+        public string UserLogOff()
+        {
+            try {
+                Session.RemoveAll();
+                return true.ToString();
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
         }
         #endregion
     }

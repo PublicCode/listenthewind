@@ -1,8 +1,17 @@
 ﻿soNgModule.controller("BodyCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+    $scope.initUL = { UserID: 0, UserName: "", errUserName: false, Pwd: "", errPwd: false, Mobile: "" };
     $scope.bdUL = JSON.parse(t2v_HomeIndex.ulInfo);
     $scope.bdShowLayout = function (id) {
         $("#tm").css("display", "");
         $("#" + id).css("display", "");
+    };
+    $scope.close_userLogin = function () {
+        $("#tm").css("display", "none");
+        $("#bd_userLogin").css("display", "none");
+        if ($scope.bdUL.UserID == 0)
+        {
+            $scope.bdUL = angular.copy($scope.initUL);
+        }
     };
     $scope.bgActionLogin = function () {
         $.ajax({
@@ -12,8 +21,26 @@
             async: true,
             success: function (data) {
                 $scope.bdUL = JSON.parse(data);
+                if ($scope.bdUL.UserID > 0) {
+                    $scope.close_userLogin();
+                }
                 $scope.$apply();
-                alert("Doing Now");
+            }
+        });
+    };
+    $scope.bdLogOff = function () {
+        $.ajax({
+            url: SiteRoot + "/Account/UserLogOff",
+            type: 'POST',
+            data: { },
+            async: true,
+            success: function (data) {
+                if (data == "True") {
+                    $scope.bdUL = angular.copy($scope.initUL);
+                    $scope.$apply();
+                }
+                else
+                    alert(data);
             }
         });
     };

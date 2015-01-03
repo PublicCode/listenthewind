@@ -36,13 +36,13 @@
                 <a href="#" class="logo">
                     <img src="../../Content/images/logo.jpg" /></a>
                 <div class="login-con">
-                    <div class="w-login">
+                    <div class="w-login" ng-show="bdUL.UserID == 0">
                         <!--未登录-->
                         <a href="#">注册</a><a href="#" ng-click="bdShowLayout('bd_userLogin')">登录</a><a href="#">帮助</a>
                     </div>
-                    <div class="y-login" style="display: none">
+                    <div class="y-login" ng-hide="bdUL.UserID == 0">
                         <!--登录-->
-                        <a href="#">兜兜</a><a href="#" class="sign-out">退出</a>
+                        <a href="#" ng-bind="bdUL.UserName"></a><a href="#" ng-click="bdLogOff()" class="sign-out">退出</a>
                     </div>
                 </div>
             </div>
@@ -151,7 +151,7 @@
         <!--透明遮罩层-->
         <!--登陆浮层开始-->
         <div class="xb_userLogin" id="bd_userLogin" style="display: none; height:310px">
-            <a href="javascript:void(0)" class="f_close">关闭</a>
+            <a href="javascript:void(0)" ng-click="close_userLogin()" class="f_close">关闭</a>
             <h3>用户登陆</h3>
             <div class="show">
                 <ul>

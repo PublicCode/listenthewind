@@ -19,7 +19,7 @@ namespace Web.Energizer.User
                 if (user != null)
                 {
 
-                    
+
                     return user;
                 }
 
