@@ -2,6 +2,7 @@
     $scope.initUL = { UserID: 0, UserName: "", errUserName: false, Pwd: "", errPwd: false, Mobile: "" };
     $scope.bdUL = JSON.parse(t2v_HomeIndex.ulInfo);
     $scope.bdShowLayout = function (id) {
+        $("#bd_userRegister").css("display", "none");
         $("#tm").css("display", "");
         $("#" + id).css("display", "");
     };
@@ -44,6 +45,8 @@
             }
         });
     };
+
+    $scope.bdULReg = { UserName: '', errUserName: false, Pwd: '', RePwd: '', Email:'', };
 }]);
 
 soNgModule.controller("HomeIndexCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
