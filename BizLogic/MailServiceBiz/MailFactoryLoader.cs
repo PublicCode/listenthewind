@@ -39,6 +39,11 @@ namespace BizLogic.MailServiceBiz
             MailServiceFactory mailservice = GetMyMailService();
             mailservice.Send((MailObject)mailObj);
         }
+        public static void Send_Mail(object mailObj)
+        {
+            MailServiceFactory mailservice = GetMyMailService();
+            mailservice.Send_Mail((MailObject)mailObj);
+        }
         public static void SendEmailNewThread(List<MailObject> mailObjs)
         {
             foreach (MailObject mailObj in mailObjs)

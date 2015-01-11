@@ -1,14 +1,16 @@
 ﻿soNgModule.controller("BodyCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
-    $scope.initUL = { UserID: 0, UserName: "", errUserName: false, Pwd: "", errPwd: false, Mobile: "" };
+    $scope.initUL = { UserID: 0, UserName: "", errUserName: false, Pwd: "", RePwd: '', errPwd: false, Email: '', Mobile: "" };
     $scope.bdUL = JSON.parse(t2v_HomeIndex.ulInfo);
     $scope.bdShowLayout = function (id) {
-        $("#bd_userRegister").css("display", "none");
+        $(".xb_userLogin").css("display", "none");
+        $(".f_pop_tk").css("display", "none");
+        $(".cz_p_d").css("display", "none");
         $("#tm").css("display", "");
         $("#" + id).css("display", "");
     };
     $scope.close_userLogin = function () {
         $("#tm").css("display", "none");
-        $("#bd_userLogin").css("display", "none");
+        $(".xb_userLogin").css("display", "none");
         if ($scope.bdUL.UserID == 0)
         {
             $scope.bdUL = angular.copy($scope.initUL);
@@ -46,7 +48,61 @@
         });
     };
 
-    $scope.bdULReg = { UserName: '', errUserName: false, Pwd: '', RePwd: '', Email:'', };
+    $scope.bdULReg = angular.copy($scope.initUL);
+    $scope.bgActionReg = function () {
+        if ($scope.bdULReg.Pwd != $scope.bdULReg.RePwd || $scope.bdULReg.errUserName)
+            return;
+        $.ajax({
+            url: SiteRoot + "/Account/UserRegister",
+            type: 'POST',
+            data: { strJson: JSON.stringify($scope.bdULReg) },
+            async: true,
+            success: function (data) {
+                if (data.success) {
+                    $scope.bdUL = data.data;
+                    $scope.bdULReg = angular.copy($scope.initUL);
+                }
+                else
+                    $scope.bdULReg = data.data;
+                if ($scope.bdUL.UserID > 0) {
+                    $scope.close_userLogin();
+                }
+                $scope.$apply();
+            }
+        });
+    };
+
+    $scope.initULResetPws = { ResetEmail: '', errResetEmail: false, MailServer: '' };
+    $scope.bdULResetPws = angular.copy($scope.initULResetPws);
+    $scope.SendResetUrl = function () {
+        if (!$scope.bdULResetPws.errResetEmail)
+        {
+            $.ajax({
+                url: SiteRoot + "/Account/UserResetPws",
+                type: 'POST',
+                data: { email: $.trim($scope.bdULResetPws.ResetEmail) },
+                async: true,
+                success: function (data) {
+                    if (data.success) {
+                        $scope.bdULResetPws.mailServer = data.mailServer;
+                        $("#reset_pas").css("display", "none");
+                        $("#send_suc").css("display", "");
+                    }
+                    else {
+                        $scope.bdULResetPws.errResetEmail = true;
+                        if (data.mailServer != "")
+                            alert("从2006年11月16日163新注册用户,无法使用SMTP pop3收发邮件，如测试此功能请使用06年以前申请的邮箱");
+                    }
+                    $scope.$apply();
+                }
+            });
+        }
+    };
+    $scope.GoesToTargetMail = function () {
+        if ($scope.bdULResetPws.mailServer != "") {
+            window.open("http://" + $scope.bdULResetPws.mailServer);
+        }
+    };
 }]);
 
 soNgModule.controller("HomeIndexCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {

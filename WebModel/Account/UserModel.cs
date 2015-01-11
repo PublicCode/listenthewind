@@ -12,6 +12,8 @@ namespace WebModel.Account
         public bool errUserName { get; set; }
         public string Pwd { get; set; }
         public bool errPwd { get; set; }
+        public string RePwd { get; set; }
         public string Mobile { get; set; }
+        public string Email { get; set; }
     }
 }

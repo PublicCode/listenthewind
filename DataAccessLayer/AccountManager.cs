@@ -104,5 +104,20 @@ namespace DataAccessLayer
                 return string.Empty;
             }
         }
+
+        public User CreateUser(User uInfo)
+        {
+            dcObj = DCLoader.GetMyDC();
+            dcObj.Users.Add(uInfo);
+            dcObj.SaveChanges();
+            return uInfo;
+        }
+        public void UpdatePwd(string email, string pwd)
+        {
+            dcObj = DCLoader.GetMyDC();
+            var info = dcObj.Users.FirstOrDefault(c => c.Mail == email);
+            info.Pwd = pwd;
+            dcObj.SaveChanges();
+        }
     }
 }

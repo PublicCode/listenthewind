@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Configuration;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 using System.Web.Security;
-
 using BizLogic;
-using Handler;
-using System.Configuration;
-using DataAccess.DC;
-using WebModel.Account;
-using Newtonsoft.Json;
+using BizLogic.MailServiceBiz;
 using ComLib.Extension;
-
+using ComLib.Mail;
+using DataAccess.DC;
+using Newtonsoft.Json;
+using WebModel.Account;
 
 namespace HDS.QMS.Controllers
 {
@@ -237,7 +234,7 @@ namespace HDS.QMS.Controllers
                 info.errUserName = true;
             }
             info.Pwd = "";
-            return JsonConvert.SerializeObject(info); ;
+            return JsonConvert.SerializeObject(info);
         }
         [HttpPost]
         public string UserLogOff()
@@ -251,6 +248,83 @@ namespace HDS.QMS.Controllers
                 return ex.Message.ToString();
             }
         }
+        [HttpPost]
+        public ActionResult UserRegister(string strJson)
+        {
+            var js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            var info = js.Deserialize<UserModel>(strJson);
+            var createFlag = false;
+            Session.RemoveAll();
+            AccountHelper accountHelper = new AccountHelper();
+
+            var uInfo = accountHelper.GetUserByName(info.UserName);
+            if (uInfo == null)
+            {
+                uInfo = new User
+                {
+                    UserName = info.UserName,
+                    Pwd = info.Pwd,
+                    Mail = info.Email,
+                    CreateTime = DateTime.Now,
+                    Name = info.UserName
+                };
+                uInfo = accountHelper.CreateUser(uInfo);
+                createFlag = true;
+                ModelConverter.Convert<User, UserModel>(uInfo, info); 
+            }
+            else
+            {
+                info.errUserName = true;
+            }
+            info.Pwd = string.Empty;
+            info.RePwd = string.Empty;
+            return Json(new { success = createFlag, data = info }, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult UserResetPws(string email)
+        {
+            AccountHelper accountHelper = new AccountHelper();
+
+            var uInfo = accountHelper.GetUserByEmail(email);
+            try
+            {
+                if (uInfo != null)
+                {
+                    var pwd = GetNewPassword();
+                    var mInfo = new MailObject
+                    {
+                        MailReceiver = email,
+                        MailBody = "您的新密码为:" + pwd,
+                        MailSubject = "修改听风用户密码",
+                        MailSender = ConfigurationManager.AppSettings["username"].ToString()
+                    };
+                    BizLogic.MailServiceBiz.MailFactoryLoader.Send_Mail(mInfo);
+                    accountHelper.UpdatePwd(email, pwd);
+                    return Json(new { success = true, mailServer = "mail." + email.Split('@')[1].ToString() }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                    return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, mailServer = ex.Message.ToString() }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        private static string GetNewPassword()
+        {
+            string allchars = "!@#$%ABCDEFGHIJKLMNOPQRSTUVXYZ ";
+            StringBuilder sb = new StringBuilder(8);
+            Random rand = new Random();
+            for (int i = 0; i < 2; i++)
+            {
+                sb.Append(allchars[rand.Next(11, allchars.Length)]);
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                sb.Append(allchars[rand.Next(10)]);
+            }
+            return sb.ToString();
+        } 
         #endregion
     }
 }

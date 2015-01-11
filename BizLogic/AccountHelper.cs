@@ -47,5 +47,22 @@ namespace BizLogic
             IAccountManager IAccount = new AccountManager();
             return IAccount.GetCurrentDisplayName();
         }
+
+        public User CreateUser(User uInfo)
+        {
+            IAccountManager IAccount = new AccountManager();
+            return IAccount.CreateUser(uInfo);
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            IAccountManager IAccount = new AccountManager();
+            return IAccount.GetUserByEmail(email);
+        }
+        public void UpdatePwd(string email, string pwd)
+        {
+            IAccountManager IAccount = new AccountManager();
+            IAccount.UpdatePwd(email, pwd);
+        }
     }
 }
