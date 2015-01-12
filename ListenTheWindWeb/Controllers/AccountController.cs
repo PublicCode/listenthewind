@@ -214,6 +214,12 @@ namespace HDS.QMS.Controllers
         {
             var js = new System.Web.Script.Serialization.JavaScriptSerializer();
             var info = js.Deserialize<UserModel>(strJson);
+            if (Session["ValidateCode"].ToString() != info.ValidCode)
+            {
+                info.errValidCode = true;
+                return JsonConvert.SerializeObject(info);
+            }
+
             Session.RemoveAll();
             AccountHelper accountHelper = new AccountHelper();
 

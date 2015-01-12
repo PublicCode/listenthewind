@@ -1,5 +1,5 @@
 ﻿soNgModule.controller("BodyCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
-    $scope.initUL = { UserID: 0, UserName: "", errUserName: false, Pwd: "", RePwd: '', errPwd: false, Email: '', Mobile: "" };
+    $scope.initUL = { UserID: 0, UserName: "", errUserName: false, Pwd: "", RePwd: '', errPwd: false, Email: '', Mobile: "", ValidCode:'', errValidCode: false };
     $scope.bdUL = JSON.parse(t2v_HomeIndex.ulInfo);
     $scope.bdShowLayout = function (id) {
         $(".xb_userLogin").css("display", "none");

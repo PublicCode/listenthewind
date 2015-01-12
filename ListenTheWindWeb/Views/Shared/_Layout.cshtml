@@ -31,7 +31,7 @@
 
 </head>
 <body>
-    @*<img id="valiCode" style="cursor: pointer;" src="../Account/GetValidateCode" alt="验证码" />*@
+    @**@
     <div id="body-value" ng-controller="BodyCtrl">
         <div class="wrap">
             <div class="header clear">
@@ -152,7 +152,7 @@
         <div id="tm" style="display: none"></div>
         <!--透明遮罩层-->
         <!--登陆浮层开始-->
-        <div class="xb_userLogin" id="bd_userLogin" style="display: none; height: 310px">
+        <div class="xb_userLogin" id="bd_userLogin" style="display: none; height: 330px">
             <a href="javascript:void(0)" ng-click="close_userLogin()" class="f_close">关闭</a>
             <h3>用户登陆</h3>
             <div class="show">
@@ -165,6 +165,11 @@
                         <label class="t1">密　码：</label><input type="password" class="txt1" maxlength="20" ng-model="bdUL.Pwd" required>
                         <span class="err" ng-show="bdUL.errPwd">
                             <img src="@Url.Content("~/Content/images/f_err.png")" />你输入的密码有误</span></li>
+                    <li>
+                        <label class="t1">验证码：</label><input type="text" class="txt2" maxlength="5" ng-model="bdUL.ValidCode" required>
+                            <a href="#" class="code"><img id="valiCode" style="cursor: pointer;" src="../Account/GetValidateCode" alt="验证码" /></a>
+                        <span class="err" ng-show="bdUL.errValidCode">
+                            <img src="@Url.Content("~/Content/images/f_err.png")" />验证码错误</span></li>
                     <li class="btn">
                         <input type="button" value="登陆" ng-click="bgActionLogin()"></li>
                 </ul>
@@ -348,9 +353,9 @@
                 })
             });
             t2v_HomeIndex.ulInfo = @Html.Raw(JsonConvert.SerializeObject(UserHelper.getCurrentUser));
-            //$("#valiCode").bind("click", function() {
-            //    this.src = "../Account/GetValidateCode?time=" + (new Date()).getTime();
-            //});
+            $("#valiCode").bind("click", function() {
+                this.src = "../Account/GetValidateCode?time=" + (new Date()).getTime();
+            });
         </script>
     </div>
 </body>
