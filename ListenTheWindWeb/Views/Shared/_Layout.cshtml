@@ -28,8 +28,10 @@
     <script src="@Url.Content("~/Scripts/dcm.validate.js") " type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/Vendor/jquery.flexslider.js") " type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/T2VBusiness/Home/t2v_HomeIndex.js")" type="text/javascript"></script>
+
 </head>
 <body>
+    @*<img id="valiCode" style="cursor: pointer;" src="../Account/GetValidateCode" alt="验证码" />*@
     <div id="body-value" ng-controller="BodyCtrl">
         <div class="wrap">
             <div class="header clear">
@@ -346,6 +348,9 @@
                 })
             });
             t2v_HomeIndex.ulInfo = @Html.Raw(JsonConvert.SerializeObject(UserHelper.getCurrentUser));
+            //$("#valiCode").bind("click", function() {
+            //    this.src = "../Account/GetValidateCode?time=" + (new Date()).getTime();
+            //});
         </script>
     </div>
 </body>

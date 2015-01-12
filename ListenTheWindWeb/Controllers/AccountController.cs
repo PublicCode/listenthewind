@@ -11,6 +11,8 @@ using ComLib.Mail;
 using DataAccess.DC;
 using Newtonsoft.Json;
 using WebModel.Account;
+using IDataAccessLayer;
+using DataAccessLayer;
 
 namespace HDS.QMS.Controllers
 {
@@ -324,7 +326,16 @@ namespace HDS.QMS.Controllers
                 sb.Append(allchars[rand.Next(10)]);
             }
             return sb.ToString();
-        } 
+        }
+
+        public ActionResult GetValidateCode()
+        {
+            IValidateCodeManager iCode = new ValidateCodeManager();
+            string code = iCode.CreateValidateCode(5);
+            Session["ValidateCode"] = code;
+            byte[] bytes = iCode.CreateValidateGraphic(code);
+            return File(bytes, @"image/jpeg");
+        }
         #endregion
     }
 }
