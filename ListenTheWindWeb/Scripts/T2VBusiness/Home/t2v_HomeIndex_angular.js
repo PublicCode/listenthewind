@@ -17,6 +17,7 @@
         }
     };
     $scope.bgActionLogin = function () {
+        SiteRoot = SiteRoot.split('/')[0];
         $.ajax({
             url: SiteRoot + "/Account/UserLogOn",
             type: 'POST',
@@ -32,6 +33,7 @@
         });
     };
     $scope.bdLogOff = function () {
+        SiteRoot = SiteRoot.split('/')[0];
         $.ajax({
             url: SiteRoot + "/Account/UserLogOff",
             type: 'POST',
@@ -52,6 +54,7 @@
     $scope.bgActionReg = function () {
         if ($scope.bdULReg.Pwd != $scope.bdULReg.RePwd || $scope.bdULReg.errUserName)
             return;
+        SiteRoot = SiteRoot.split('/')[0];
         $.ajax({
             url: SiteRoot + "/Account/UserRegister",
             type: 'POST',
@@ -77,6 +80,7 @@
     $scope.SendResetUrl = function () {
         if (!$scope.bdULResetPws.errResetEmail)
         {
+            SiteRoot = SiteRoot.split('/')[0];
             $.ajax({
                 url: SiteRoot + "/Account/UserResetPws",
                 type: 'POST',
