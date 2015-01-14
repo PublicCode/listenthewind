@@ -222,6 +222,7 @@
     <Compile Include="Controllers\ExportController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Energizer\CommHelper.cs" />
     <Compile Include="Energizer\SignalRs\MappingProgressConnection.cs" />
     <Compile Include="Energizer\SignalRs\MappingProgressHub.cs" />
@@ -299,6 +300,10 @@
     <Content Include="Content\images\d_bn4.jpg" />
     <Content Include="Content\images\f_close.png" />
     <Content Include="Content\images\f_err.png" />
+    <Content Include="Content\images\f_gb.png" />
+    <Content Include="Content\images\f_gbc.png" />
+    <Content Include="Content\images\f_l_bg.png" />
+    <Content Include="Content\images\f_n_bg.png" />
     <Content Include="Content\images\gz-img1.jpg" />
     <Content Include="Content\images\gzk.jpg" />
     <Content Include="Content\images\gzs.jpg" />
@@ -800,6 +805,7 @@
     <Content Include="Views\Home\CampDetail.cshtml" />
     <Content Include="Views\Home\CampBook.cshtml" />
     <Content Include="Views\Home\_HomeLayout.cshtml" />
+    <Content Include="Views\User\UserPayBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
