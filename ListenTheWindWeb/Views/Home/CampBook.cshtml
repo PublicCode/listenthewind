@@ -59,9 +59,9 @@
                     </div>
                 </div>
                 <h2 class="h-tit2">可选入住信息</h2>
-                 <div class="book-con">
+                 <div class="book-con clear">
                 	<h3></h3>
-                     <div class="cal-kalendae" id="calendarpick"></div>
+                     <div class="cal-kalendae self-kalendae" id="calendarpick"></div>
                 </div>
                 <h2 class="h-tit3">便利设施选择</h2>
                  <div class="book-con">
@@ -76,15 +76,18 @@
                         </div>
                         <div class="book-right">
                         	<div class="br-top">
+                                <a href="#" class="campBookReserve"  ng-click="bookcamp();">预 定</a>
                             	便利设施:
                             </div>
-                            <ul>
-                            	<li ng-repeat="campprice in camp.ModelListcampprice" style="background:none">
-                                	<input type="checkbox" ng-model ="campprice.Checked"/><span>{{campprice.ItemName}} - <em>价格：￥{{campprice.ItemPrice}};</em><em>数量：<input type="text" ng-model ="campprice.Qty"/></em>
-                                </li>
-                            </ul>
+                            <div class="book_campprice">
+                                <ul>
+                            	    <li ng-repeat="campprice in camp.ModelListcampprice" style="background:none">
+                                	    <input type="checkbox" ng-model ="campprice.Checked"/><span>{{campprice.ItemName}}</span> - <em>价格：￥{{campprice.ItemPrice}};</em><em>数量：<input type="text" ng-model ="campprice.Qty"/></em>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <input type="button"  ng-click="bookcamp();" value="预定"/>
+                        
                     </div>
                 </div>
              </div>

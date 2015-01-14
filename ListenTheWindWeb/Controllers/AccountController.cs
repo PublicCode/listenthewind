@@ -1,17 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Configuration;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 using System.Web.Security;
-
 using BizLogic;
-using Handler;
-using System.Configuration;
+using BizLogic.MailServiceBiz;
+using ComLib.Extension;
+using ComLib.Mail;
 using DataAccess.DC;
+using Newtonsoft.Json;
 using WebModel.Account;
-
+using IDataAccessLayer;
+using DataAccessLayer;
 
 namespace HDS.QMS.Controllers
 {
@@ -204,6 +205,142 @@ namespace HDS.QMS.Controllers
                 default:
                     return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
             }
+        }
+        #endregion
+
+        #region 20141228
+        [HttpPost]
+        public string UserLogOn(string strJson)
+        {
+            var js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            var info = js.Deserialize<UserModel>(strJson);
+            if (Session["ValidateCode"].ToString() != info.ValidCode)
+            {
+                info.errValidCode = true;
+                return JsonConvert.SerializeObject(info);
+            }
+
+            Session.RemoveAll();
+            AccountHelper accountHelper = new AccountHelper();
+
+            int returnResut = accountHelper.UserLogon(info.UserName, info.Pwd);
+            if (returnResut == 1)
+            {
+                DataAccess.DC.User user = accountHelper.GetUserByName(info.UserName);
+                user.Pwd = "";
+                Session["user"] = user;
+                ModelConverter.Convert<User, UserModel>(user, info);
+            }
+            else if (returnResut == 2)
+            {
+                info.errPwd = true;
+                info.errUserName = false;
+            }
+            else if (returnResut == 3)
+            {
+                info.errPwd = false;
+                info.errUserName = true;
+            }
+            info.Pwd = "";
+            return JsonConvert.SerializeObject(info);
+        }
+        [HttpPost]
+        public string UserLogOff()
+        {
+            try {
+                Session.RemoveAll();
+                return true.ToString();
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
+        [HttpPost]
+        public ActionResult UserRegister(string strJson)
+        {
+            var js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            var info = js.Deserialize<UserModel>(strJson);
+            var createFlag = false;
+            Session.RemoveAll();
+            AccountHelper accountHelper = new AccountHelper();
+
+            var uInfo = accountHelper.GetUserByName(info.UserName);
+            if (uInfo == null)
+            {
+                uInfo = new User
+                {
+                    UserName = info.UserName,
+                    Pwd = info.Pwd,
+                    Mail = info.Email,
+                    CreateTime = DateTime.Now,
+                    Name = info.UserName
+                };
+                uInfo = accountHelper.CreateUser(uInfo);
+                createFlag = true;
+                ModelConverter.Convert<User, UserModel>(uInfo, info); 
+            }
+            else
+            {
+                info.errUserName = true;
+            }
+            info.Pwd = string.Empty;
+            info.RePwd = string.Empty;
+            return Json(new { success = createFlag, data = info }, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult UserResetPws(string email)
+        {
+            AccountHelper accountHelper = new AccountHelper();
+
+            var uInfo = accountHelper.GetUserByEmail(email);
+            try
+            {
+                if (uInfo != null)
+                {
+                    var pwd = GetNewPassword();
+                    var mInfo = new MailObject
+                    {
+                        MailReceiver = email,
+                        MailBody = "您的新密码为:" + pwd,
+                        MailSubject = "修改听风用户密码",
+                        MailSender = ConfigurationManager.AppSettings["username"].ToString()
+                    };
+                    BizLogic.MailServiceBiz.MailFactoryLoader.Send_Mail(mInfo);
+                    accountHelper.UpdatePwd(email, pwd);
+                    return Json(new { success = true, mailServer = "mail." + email.Split('@')[1].ToString() }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                    return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, mailServer = ex.Message.ToString() }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        private static string GetNewPassword()
+        {
+            string allchars = "!@#$%ABCDEFGHIJKLMNOPQRSTUVXYZ ";
+            StringBuilder sb = new StringBuilder(8);
+            Random rand = new Random();
+            for (int i = 0; i < 2; i++)
+            {
+                sb.Append(allchars[rand.Next(11, allchars.Length)]);
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                sb.Append(allchars[rand.Next(10)]);
+            }
+            return sb.ToString();
+        }
+
+        public ActionResult GetValidateCode()
+        {
+            IValidateCodeManager iCode = new ValidateCodeManager();
+            string code = iCode.CreateValidateCode(5);
+            Session["ValidateCode"] = code;
+            byte[] bytes = iCode.CreateValidateGraphic(code);
+            return File(bytes, @"image/jpeg");
         }
         #endregion
     }

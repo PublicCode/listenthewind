@@ -29,7 +29,7 @@ namespace ComLib.Mail
         }
         public MailServiceFactory(string hostName, int sendPort, int post, string useSSL, string userName, string password)
         {
-            this.HostName = hostName; this.SendPort = SendPort; this.Post = post; this.UseSSL = useSSL; this.UserName = userName; this.Password = password;
+            this.HostName = hostName; this.SendPort = sendPort; this.Post = post; this.UseSSL = useSSL; this.UserName = userName; this.Password = password;
         }
         /// <summary>
         /// Function to send email.
@@ -41,7 +41,7 @@ namespace ComLib.Mail
             {
                 SmtpClient smtp = new SmtpClient(HostName, SendPort);
                 MailMessage message = new MailMessage();
-                mailObj.MailBCC = "Faye.Gu@t2vsoft.com";
+                //mailObj.MailBCC = "Faye.Gu@t2vsoft.com";
                 message.IsBodyHtml = true;
                 message.From = new MailAddress(mailObj.MailSender);
                 if (!string.IsNullOrEmpty(mailObj.MailAttachment))
@@ -85,7 +85,6 @@ namespace ComLib.Mail
                             message.CC.Add(new MailAddress(mailObj.MailCC));
                         }
                     }
-                    
                 }
                 if (mailObj.MailBCC != null)
                 {
@@ -96,7 +95,7 @@ namespace ComLib.Mail
                 message.Body = mailObj.MailBody;
                 //ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(ValidateServerCertificate);
                 smtp.Credentials = new NetworkCredential(this.UserName, this.Password);
-                smtp.EnableSsl = true;
+                smtp.EnableSsl = false;
                 smtp.Timeout = 300000;
                 smtp.Send(message);
                 smtp.Dispose();
@@ -104,7 +103,7 @@ namespace ComLib.Mail
             }
             catch (Exception ex)
             {
-                //throw ex;
+                throw ex;
             }
         }
         public bool Read()
@@ -127,6 +126,48 @@ namespace ComLib.Mail
                     Message msg = client.GetMessage(messageItem);
                 }
                 return true;
+            }
+        }
+        public void Send_Mail(MailObject mailObj)
+        {
+            try
+            {
+                System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(HostName);
+
+                MailAddress from = new MailAddress(UserName, UserName, Encoding.UTF8);
+
+                MailAddress to = new MailAddress(mailObj.MailReceiver, mailObj.MailReceiver, Encoding.UTF8);
+
+                MailMessage message = new MailMessage(from, to);
+
+                message.Subject = mailObj.MailSubject;
+                message.SubjectEncoding = Encoding.UTF8;
+                message.IsBodyHtml = true;
+                message.Body = mailObj.MailBody;
+                message.BodyEncoding = Encoding.UTF8;
+
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                message.BodyEncoding = System.Text.Encoding.UTF8;
+                message.IsBodyHtml = false;
+
+                client.EnableSsl = false;
+
+                client.UseDefaultCredentials = false;
+                string username = UserName;
+                string passwd = Password;
+
+                NetworkCredential myCredentials = new NetworkCredential(username, passwd);
+                client.Credentials = myCredentials;
+
+                client.Timeout = 300000;
+                client.Send(message);
+                client.Dispose();
+                message.Dispose();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

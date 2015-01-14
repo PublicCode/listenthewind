@@ -82,6 +82,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -97,6 +99,7 @@
     <Compile Include="HomeManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportManager.cs" />
+    <Compile Include="ValidateCodeManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ComLib\ComLib.csproj">

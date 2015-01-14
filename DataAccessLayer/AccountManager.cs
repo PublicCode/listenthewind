@@ -21,7 +21,7 @@ namespace DataAccessLayer
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="passWord"></param>
-        /// <returns>1:ok,2:user not active,3:no user</returns>
+        /// <returns>1:ok,2:pwd error,3:no user</returns>
         public int ValidateUser(string userName, string passWord, bool fromMobile = false)
         {
             var user = new User();
@@ -34,18 +34,11 @@ namespace DataAccessLayer
                 else
                     return 4;
             }
-            else
+            else if (user != null)
             {
-                user = dcObj.Users.FirstOrDefault(c => c.UserName == userName);
-                if (user != null && user.Pwd == passWord)
-                {
-                    return 2;
-                }
-                else
-                {
-                    return 3;
-                }
+                return 2;
             }
+            return 3;
         }
         
         public User GetUserByName(string userName)
@@ -110,6 +103,21 @@ namespace DataAccessLayer
             {
                 return string.Empty;
             }
+        }
+
+        public User CreateUser(User uInfo)
+        {
+            dcObj = DCLoader.GetMyDC();
+            dcObj.Users.Add(uInfo);
+            dcObj.SaveChanges();
+            return uInfo;
+        }
+        public void UpdatePwd(string email, string pwd)
+        {
+            dcObj = DCLoader.GetMyDC();
+            var info = dcObj.Users.FirstOrDefault(c => c.Mail == email);
+            info.Pwd = pwd;
+            dcObj.SaveChanges();
         }
     }
 }

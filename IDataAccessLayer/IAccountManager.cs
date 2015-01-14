@@ -19,5 +19,11 @@ namespace IDataAccessLayer
         string GetCurrentDisplayName();
 
         User GetUserById(int id);
+
+        User CreateUser(User uInfo);
+
+        User GetUserByEmail(string email);
+
+        void UpdatePwd(string email, string pwd);
     }
 }

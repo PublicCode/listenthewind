@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using DataAccess.DC;
 using DataAccessLayer;
+using Newtonsoft.Json;
 
 namespace Web.Energizer.User
 {
@@ -18,7 +19,7 @@ namespace Web.Energizer.User
                 if (user != null)
                 {
 
-                    
+
                     return user;
                 }
 
@@ -28,6 +29,18 @@ namespace Web.Energizer.User
                 {
                 }
                 return user;
+            }
+        }
+        public static string getCurrentUser
+        {
+            get
+            {
+                var user = HttpContext.Current.Session["User"] as DataAccess.DC.User;
+                if (user != null)
+                {
+                    return JsonConvert.SerializeObject(user);
+                }
+                return JsonConvert.SerializeObject(new WebModel.Account.UserModel());
             }
         }
     }
