@@ -155,26 +155,40 @@
         <div class="xb_userLogin" id="bd_userLogin" style="display: none; height: 330px">
             <a href="javascript:void(0)" ng-click="close_userLogin()" class="f_close">关闭</a>
             <h3>用户登陆</h3>
+            <form name="formLogOn" novalidate>
             <div class="show">
                 <ul>
                     <li>
-                        <label class="t1">用户名：</label><input type="text" class="txt1" maxlength="50" ng-model="bdUL.UserName" required>
+                        <label class="t1">用户名：</label>
+                        <input type="text" class="txt1" name="UserName" maxlength="50" ng-model="bdUL.UserName" required>
                         <span class="err" ng-show="bdUL.errUserName">
-                            <img src="@Url.Content("~/Content/images/f_err.png")" />你输入的用户名未注册</span></li>
+                            <img src="@Url.Content("~/Content/images/f_err.png")" />你输入的用户名未注册</span>
+                        <span class="err" ng-show="logOnFlag && formLogOn.UserName.$error.required">
+                            <img src="@Url.Content("~/Content/images/f_err.png")" />请输入用户名</span></li>
                     <li>
-                        <label class="t1">密　码：</label><input type="password" class="txt1" maxlength="20" ng-model="bdUL.Pwd" required>
+                        <label class="t1">密　码：</label>
+                        <input type="password" class="txt1" name="Pwd" maxlength="20" ng-model="bdUL.Pwd" required>
                         <span class="err" ng-show="bdUL.errPwd">
-                            <img src="@Url.Content("~/Content/images/f_err.png")" />你输入的密码有误</span></li>
+                            <img src="@Url.Content("~/Content/images/f_err.png")" />你输入的密码有误</span>
+                        <span class="err" ng-show="logOnFlag && formLogOn.Pwd.$error.required">
+                            <img src="@Url.Content("~/Content/images/f_err.png")" />请输入密码</span></li>
                     <li>
-                        <label class="t1">验证码：</label><input type="text" class="txt2" maxlength="5" ng-model="bdUL.ValidCode" required>
-                            <a href="#" class="code"><img id="valiCode" style="cursor: pointer;" src="../Account/GetValidateCode" alt="验证码" /></a>
+                        <label class="t1">验证码：</label>
+                        <input type="text" class="txt2" maxlength="5" name="ValidCode" ng-model="bdUL.ValidCode" required>
+                        <a href="#" class="code">
+                            <img id="valiCode" style="cursor: pointer;" src="/Account/GetValidateCode" alt="验证码" />
+                        </a>
                         <span class="err" ng-show="bdUL.errValidCode">
-                            <img src="@Url.Content("~/Content/images/f_err.png")" />验证码错误</span></li>
+                            <img src="@Url.Content("~/Content/images/f_err.png")" />验证码错误</span>
+                        <span class="err" ng-show="logOnFlag && formLogOn.ValidCode.$error.required">
+                            <img src="@Url.Content("~/Content/images/f_err.png")" />验证码错误</span>
+                    </li>
                     <li class="btn">
                         <input type="button" value="登陆" ng-click="bgActionLogin()"></li>
                 </ul>
                 <p><a href="#" ng-click="bdShowLayout('reset_pas')">忘记密码</a>|<a href="#" ng-click="bdShowLayout('bd_userRegister')">免费注册</a></p>
             </div>
+            </form>
             <div class="fx" style="display: none">
                 <h4>使用其他登陆账号：</h4>
                 <p>

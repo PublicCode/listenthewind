@@ -16,8 +16,12 @@
             $scope.bdUL = angular.copy($scope.initUL);
         }
     };
+    $scope.logOnFlag = false;
     $scope.bgActionLogin = function () {
         SiteRoot = SiteRoot.split('/')[0];
+        $scope.logOnFlag = true;
+        if ($scope.formLogOn.$invalid)
+            return;
         $.ajax({
             url: SiteRoot + "/Account/UserLogOn",
             type: 'POST',
@@ -28,6 +32,7 @@
                 if ($scope.bdUL.UserID > 0) {
                     $scope.close_userLogin();
                 }
+                $scope.logOnFlag = false;
                 $scope.$apply();
             }
         });
