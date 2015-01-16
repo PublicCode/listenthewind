@@ -342,6 +342,11 @@ namespace HDS.QMS.Controllers
             byte[] bytes = iCode.CreateValidateGraphic(code);
             return File(bytes, @"image/jpeg");
         }
+        public bool CheckUserSession() {
+            if (Session["user"] == null)
+                return false;
+            return true;
+        }
         #endregion
     }
 }

@@ -349,7 +349,7 @@
                         <img src="@Url.Content("~/Content/images/f_err.png")" />你输入的E-mail格式有误</span>
                     <span class="err" ng-show="bdULResetPws.errResetEmail">你输入的用户名未注册</span>
                 </div>
-                <input type="button" class="button" ng-disabled="formResetPwd.$invalid" value="发送重置链接" ng-click="SendResetUrl()" />
+                <input type="button" class="button" ng-disabled="formResetPwd.$invalid" value="发送重置链接" ng-click="sendResetUrl()" />
             </form>
         </div>
         <!--12/20更新发送成功开始-->
@@ -359,7 +359,7 @@
             <p>
                 重设密码已经成功发送到你的邮箱，请点击进行查看，谢谢关注。
             </p>
-            <input type="button" class="button" value="去往我的邮箱" ng-click="GoesToTargetMail()" />
+            <input type="button" class="button" value="去往我的邮箱" ng-click="goesToTargetMail()" />
         </div>
         <script type="text/javascript">
             $(document).ready(function () {
