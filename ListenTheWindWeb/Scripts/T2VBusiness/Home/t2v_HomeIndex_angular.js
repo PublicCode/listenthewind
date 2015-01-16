@@ -56,8 +56,10 @@
     };
 
     $scope.bdULReg = angular.copy($scope.initUL);
+    $scope.regFlag = false;
     $scope.bgActionReg = function () {
-        if ($scope.bdULReg.Pwd != $scope.bdULReg.RePwd || $scope.bdULReg.errUserName)
+        $scope.regFlag = true;
+        if ($scope.formReg.$invalid || $scope.bdULReg.Pwd != $scope.bdULReg.RePwd)
             return;
         SiteRoot = SiteRoot.split('/')[0];
         $.ajax({
@@ -75,6 +77,7 @@
                 if ($scope.bdUL.UserID > 0) {
                     $scope.close_userLogin();
                 }
+                $scope.regFlag = false;
                 $scope.$apply();
             }
         });
