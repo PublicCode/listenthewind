@@ -298,6 +298,8 @@
     <Content Include="Content\images\d_bn2.jpg" />
     <Content Include="Content\images\d_bn3.jpg" />
     <Content Include="Content\images\d_bn4.jpg" />
+    <Content Include="Content\images\f_ck.png" />
+    <Content Include="Content\images\f_ckc.png" />
     <Content Include="Content\images\f_close.png" />
     <Content Include="Content\images\f_err.png" />
     <Content Include="Content\images\f_gb.png" />
@@ -327,6 +329,7 @@
     <Content Include="Scripts\ListenWind\scrollPic.js" />
     <Content Include="Scripts\ListenWind\slider.js" />
     <Content Include="Scripts\ListenWind\widget.js" />
+    <Content Include="Scripts\T2VBusiness\Camp\CampOrderSammary.js" />
     <Content Include="Scripts\T2VBusiness\Home\t2v_HomeIndex.js" />
     <Content Include="Scripts\T2VBusiness\Home\t2v_HomeIndex_angular.js" />
     <Content Include="Scripts\Vendor\flexslider\flexslider.css" />
@@ -806,6 +809,7 @@
     <Content Include="Views\Home\CampBook.cshtml" />
     <Content Include="Views\Home\_HomeLayout.cshtml" />
     <Content Include="Views\User\UserPayBook.cshtml" />
+    <Content Include="Views\User\UserUnpaid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

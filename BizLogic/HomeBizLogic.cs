@@ -86,5 +86,32 @@ namespace BizLogic
             }
             return listOfBasicDataForCamp;
         }
+        public List<campreserveModel> GetListOfReserve(int statusId, DateTime? dateFrom = null, DateTime? dateTo = null)
+        {
+            var res = homeBase.GetReserve(statusId);
+            List<campreserveModel> listOfReserve = new List<campreserveModel>();
+            foreach (campreserve reserve in res)
+            {
+                campreserveModel reserveModel = new campreserveModel();
+                
+                ModelConverter.Convert<campreserve, campreserveModel>(reserve,reserveModel);
+                reserveModel.campInfo = new campInfoModel();
+                reserveModel.campInfo.CampId = reserve.ReservePile.CampID;
+                reserveModel.campInfo.CampName = reserve.ReservePile.MyCamp.CampName;
+                reserveModel.campInfo.PileID = reserve.ReservePile.PileID;
+                reserveModel.campInfo.PileNumber  = reserve.ReservePile.PileNumber;
+                reserveModel.Listcampreserveatt = new List<campreserveattModel>();
+                reserveModel.TotalAmt = reserve.PilePriceAmt.Value;
+                foreach(campreserveatt att in reserve.Listcampreserveatt)
+                {
+                    campreserveattModel attModel = new campreserveattModel();
+                    ModelConverter.Convert<campreserveatt, campreserveattModel>(att, attModel);
+                    reserveModel.Listcampreserveatt.Add(attModel);
+                    reserveModel.TotalAmt += att.CampItemPriceAmt.Value;
+                }
+                listOfReserve.Add(reserveModel);
+            }
+            return listOfReserve;
+        }
     }
 }

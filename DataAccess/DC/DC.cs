@@ -94,10 +94,10 @@ namespace DataAccess.DC
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             //modelBuilder.Entity<Quote>().HasOptional(c => c.MyPartner);
             //.WithMany(c=>c.Quotes).HasForeignKey(c=>c.PartnerId);
-            //modelBuilder.Entity<Permission>()
-            //    .HasRequired(c => c.User)
-            //    .WithMany(c => c.QuoteLine)
-            //    .HasForeignKey(c => c.QuoteID);
+            modelBuilder.Entity<campreserve>()
+                .HasRequired(c => c.ReservePile)              
+                .WithMany(t=> t.listOfReserve)
+                .HasForeignKey(c => c.CampPileID);
 
         }
 

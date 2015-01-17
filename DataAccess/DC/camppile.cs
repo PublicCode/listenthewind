@@ -25,6 +25,9 @@ namespace DataAccess.DC
 
         public int? Active { get; set; }
 
+        public virtual camp MyCamp { get; set; }
+        public virtual ICollection<campreserve> listOfReserve { get; set; }
+
         long ILoggedEntity.Id
         {
             get { return PileID; }

@@ -2,171 +2,65 @@
 @{
     Layout = "~/Views/Home/_HomeLayout.cshtml";
 }
+<script src="@Url.Content("~/Scripts/T2VBusiness/Camp/CampOrderSammary.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/T2VBusiness/CampDetail/t2v-CampDetail.js")" type="text/javascript"></script>
 <div class="container">
-		<h1 class="tit3">个人信息</h1>
-    	<div class="w890 clear">
-        	<div class="info-left">
-            	<div class="user-top">
-                	<div class="user-avt">
-                    	<img src="../../Content/images/avt1.jpg"/>
-                    </div>
-                    <h2>听风用户名</h2>
-                    <div class="f_sh">
-                    	风客身份
-                    </div>
-                    <div class="user-btn">
-                    	<a href="#" class="user-btn">头像修改</a>
-                    </div>
-                    <div class="user-btn">
-                    	<a href="#" class="user-btn">我的收藏</a>
-                    </div>
-                  
+    <h1 class="tit3">个人信息</h1>
+    <div class="w890 clear">
+        <div class="info-left">
+            <div class="user-top">
+                <div class="user-avt">
+                    <img src="../../Content/images/avt1.jpg" />
                 </div>
-                <div class="user-ver">
-                	<h2>验证项</h2>
-                    <ul>
-                    	<li class="crr"><span id="ver1">风客身份证已验证</span></li>
-                        <li class="crr"><span id="ver2">听风客身份未验证</span></li>
-                        <li><span id="ver3">听风贵宾身份未验证</span></li><!-- 添加crr选中-->
-                    </ul>
+                <h2>听风用户名</h2>
+                <div class="f_sh">
+                    风客身份
                 </div>
-                <div class="user-link">
-                	<h2>快速链接</h2>
-                    <ul>
-                    	<li><a href="#">我的点评</a></li>
-                        <li><a href="#">听风指南</a></li>
-                        <li><a href="#">其他预留</a></li><!-- 添加crr选中-->
-                    </ul>
+                <div class="user-btn">
+                    <a href="#" class="user-btn">头像修改</a>
                 </div>
+                <div class="user-btn">
+                    <a href="#" class="user-btn">我的收藏</a>
+                </div>
+
             </div>
-            <div class="info-right">
-            	<div class="info-nav">
-                	<a href="#" id="nav1" class="current">我的订单</a><a href="#" id="nav2">消息通知</a><a href="#" id="nav4">个人资料</a><a href="#" id="nav5">支付管理</a><a href="#" id="nav3">我的积分</a>
-                </div>
-                <div class="f_dd_con">
-                	<div class="f_dd_tab">
-                       <div class="f_dd_tab_bg">
-                       		<ul>
-                                <li><a href="#" class="crr">待付款</a></li>
-                                <li><a href="#">已付款</a></li>
-                                <li><a href="#">已完成</a></li>
-                        	</ul>
-                       </div>
-                    </div>
-                	<div class="f_dd_cet clear g_dd_cet">
-                    	<div class="f_dd_qx clear">
-                        	<div class="f_dd_qx_ck crr">全选</div><button class="f_btns">合并付款</button><div class="g_hb">合计付款金额：<em>￥30008</em></div>
-                        </div>
-                        <div class="f_dd_lt">
-                        	<ul>
-                            	<li>
-                                	<div class="f_dd_lt_top clear">
-                                    	<div class="f_dd_tit">
-                                        	<div class="csk crr"></div>
-                                            <div class="f_dd_lt_con">
-                                            	<span>订单编号：12345678900</span><span>下单时间：2014年11月10日</span>
-                                                <a href="#" class="g_qx">取消订单</a>
-                                            </div>
-                                        </div>
-                                        <button class="f_btns">订单详情</button>
-                                    </div>
-                                    <div class="f_dd_lt_sw clear">
-                                    	<div class="f_sw_left">
-                                        	<img src="../../Content/images/more_img1.jpg"/>
-                                        </div>
-                                        <div class="f_sw_right">
-                                        	<div class="f_sw_tit"><span>听风编号108：天目湖山水园</span><span>合计金额：￥3888</span> <div class="f_sw_state">支付状态：待付款</div></div>
-                                            <div class="f_sw_time clear">
-                                            	<label class="g_w_con">备注备注备注备注备注备注备注备注备注备注</label>
-            
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="f_btns f_btns_pos">订单支付</button>
-                                </li>
-                                <li>
-                                	<div class="f_dd_lt_top clear">
-                                    	<div class="f_dd_tit">
-                                        	<div class="csk crr"></div>
-                                            <div class="f_dd_lt_con">
-                                            	<span>订单编号：12345678900</span><span>下单时间：2014年11月10日</span><a href="#" class="g_qx">取消订单</a>
-                                            </div>
-                                        </div>
-                                        <button class="f_btns">订单详情</button>
-                                    </div>
-                                    <div class="f_dd_lt_sw clear">
-                                    	<div class="f_sw_left">
-                                        	<img src="../../Content/images/more_img1.jpg"/>
-                                        </div>
-                                        <div class="f_sw_right">
-                                        	<div class="f_sw_tit"><span>听风编号108：天目湖山水园</span><span>合计金额：￥3888</span> <div class="f_sw_state">支付状态：待付款</div></div>
-                                            <div class="f_sw_time clear">
-                                            	<label class="g_w_con">备注备注备注备注备注备注备注备注备注备注</label>
-            
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="f_btns f_btns_pos">订单支付</button>
-                                </li>
-                                <li>
-                                	<div class="f_dd_lt_top clear">
-                                    	<div class="f_dd_tit">
-                                        	<div class="csk crr"></div>
-                                            <div class="f_dd_lt_con">
-                                            	<span>订单编号：12345678900</span><span>下单时间：2014年11月10日</span><a href="#" class="g_qx">取消订单</a>
-                                            </div>
-                                        </div>
-                                        <button class="f_btns">订单详情</button>
-                                    </div>
-                                    <div class="f_dd_lt_sw clear">
-                                    	<div class="f_sw_left">
-                                        	<img src="../../Content/images/more_img1.jpg"/>
-                                        </div>
-                                        <div class="f_sw_right">
-                                        	<div class="f_sw_tit"><span>听风编号108：天目湖山水园</span><span>合计金额：￥3888</span> <div class="f_sw_state">支付状态：待付款</div></div>
-                                            <div class="f_sw_time clear">
-                                            	<label class="g_w_con">备注备注备注备注备注备注备注备注备注备注</label>
-            
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="f_btns f_btns_pos">订单支付</button>
-                                </li>
-                                <li>
-                                <div class="f_dd_lt_top clear">
-                                    	<div class="f_dd_tit">
-                                        	<div class="csk crr"></div>
-                                            <div class="f_dd_lt_con">
-                                            	<span>订单编号：12345678900</span><span>下单时间：2014年11月10日</span><a href="#" class="g_qx">取消订单</a>
-                                            </div>
-                                        </div>
-                                        <button class="f_btns">订单详情</button>
-                                    </div>
-                                <div class="f_dd_lt_sw clear">
-                                    	<div class="f_sw_left">
-                                        	<img src="../../Content/images/more_img1.jpg"/>
-                                        </div>
-                                        <div class="f_sw_right">
-                                        	<div class="f_sw_tit"><span>听风编号108：天目湖山水园</span><span>合计金额：￥3888</span> <div class="f_sw_state">支付状态：待付款</div></div>
-                                            <div class="f_sw_time clear">
-                                            	<label class="g_w_con">备注备注备注备注备注备注备注备注备注备注</label>
-            
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button class="f_btns f_btns_pos">订单支付</button>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="page_con">
-                        	<div class="last">上一页</div><a href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#" class="crr">4</a><a href="#">5</a><a href="#">6</a><a href="#">7</a><a href="#">8</a><span>...</span><a href="#">21</a><div class="next">下一页</div>
-                        </div>
-                    </div>
-                </div>
-                
+            <div class="user-ver">
+                <h2>验证项</h2>
+                <ul>
+                    <li class="crr"><span id="ver1">风客身份证已验证</span></li>
+                    <li class="crr"><span id="ver2">听风客身份未验证</span></li>
+                    <li><span id="ver3">听风贵宾身份未验证</span></li>
+                    <!-- 添加crr选中-->
+                </ul>
+            </div>
+            <div class="user-link">
+                <h2>快速链接</h2>
+                <ul>
+                    <li><a href="#">我的点评</a></li>
+                    <li><a href="#">听风指南</a></li>
+                    <li><a href="#">其他预留</a></li>
+                    <!-- 添加crr选中-->
+                </ul>
             </div>
         </div>
-                 
-        
+        <div class="info-right">
+            <div class="info-nav">
+                <a href="#" id="nav1" class="current">我的订单</a><a href="#" id="nav2">消息通知</a><a href="#" id="nav4">个人资料</a><a href="#" id="nav5">支付管理</a><a href="#" id="nav3">我的积分</a>
+            </div>
+            <div class="f_dd_con">
+                <div class="f_dd_tab">
+                    <div class="f_dd_tab_bg">
+                        <ul>
+                            <li><a href="javascript:void(0)" class="crr" onclick="t2v_CampOrders.showUnpaid()">待付款</a></li>
+                            <li><a href="javascript:void(0)">已付款</a></li>
+                            <li><a href="javascript:void(0)">已完成</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="f_dd_cet clear g_dd_cet" id="divContent">
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>

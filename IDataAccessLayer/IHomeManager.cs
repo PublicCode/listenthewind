@@ -20,5 +20,6 @@ namespace IDataAccessLayer
         object GetCampList(CampListSeachModel info, int page, int limit);
         List<basicdatacollect> GetBasicData();
         object SaveComments(int CampID, string CommentCon);
+        IQueryable<campreserve> GetReserve(int statusId = 0);
     }
 }

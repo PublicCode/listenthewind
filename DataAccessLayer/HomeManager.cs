@@ -421,5 +421,18 @@ namespace DataAccessLayer
                 return ex.Message;
             }
         }
+        public IQueryable<campreserve> GetReserve(int statusId = 0)
+        { 
+            if(statusId !=0)
+            {
+                var res = dc.campreserves.Include("ReservePile").Include("Listcampreserveatt").Include("ReservePile.MyCamp").Where(c => c.ReserveStatus == statusId);
+                return res;
+            }
+            else
+            {
+                var res = dc.campreserves.Include("ReservePile").Include("Listcampreserveatt");
+                return res;
+            }
+        }
     }
 }

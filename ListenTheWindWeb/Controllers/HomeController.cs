@@ -122,5 +122,14 @@ namespace AdestoSolution.Controllers
             List<camppriceModel> listOfCampPrice = Camp.ModelListcampprice;
             return bizLogic.SaveReserve(SelectedDate, listOfCampPrice, Camp.CampID, PileID);
         }
+        public ActionResult UnpiadView()
+        {
+            return PartialView("~/Views/User/UserUnpaid.cshtml");
+        }
+        public ActionResult GetAllOrders(int statusId)
+        {
+            var listOfReserve = bizLogic.GetListOfReserve(statusId);
+            return Json(listOfReserve);
+        }
     }
 }
