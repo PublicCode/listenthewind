@@ -16,8 +16,12 @@
             $scope.bdUL = angular.copy($scope.initUL);
         }
     };
+    $scope.logOnFlag = false;
     $scope.bgActionLogin = function () {
         SiteRoot = SiteRoot.split('/')[0];
+        $scope.logOnFlag = true;
+        if ($scope.formLogOn.$invalid)
+            return;
         $.ajax({
             url: SiteRoot + "/Account/UserLogOn",
             type: 'POST',
@@ -28,6 +32,7 @@
                 if ($scope.bdUL.UserID > 0) {
                     $scope.close_userLogin();
                 }
+                $scope.logOnFlag = false;
                 $scope.$apply();
             }
         });
@@ -51,8 +56,10 @@
     };
 
     $scope.bdULReg = angular.copy($scope.initUL);
+    $scope.regFlag = false;
     $scope.bgActionReg = function () {
-        if ($scope.bdULReg.Pwd != $scope.bdULReg.RePwd || $scope.bdULReg.errUserName)
+        $scope.regFlag = true;
+        if ($scope.formReg.$invalid || $scope.bdULReg.Pwd != $scope.bdULReg.RePwd)
             return;
         SiteRoot = SiteRoot.split('/')[0];
         $.ajax({
@@ -70,6 +77,7 @@
                 if ($scope.bdUL.UserID > 0) {
                     $scope.close_userLogin();
                 }
+                $scope.regFlag = false;
                 $scope.$apply();
             }
         });
@@ -77,7 +85,7 @@
 
     $scope.initULResetPws = { ResetEmail: '', errResetEmail: false, MailServer: '' };
     $scope.bdULResetPws = angular.copy($scope.initULResetPws);
-    $scope.SendResetUrl = function () {
+    $scope.sendResetUrl = function () {
         if (!$scope.bdULResetPws.errResetEmail)
         {
             SiteRoot = SiteRoot.split('/')[0];
@@ -95,18 +103,45 @@
                     else {
                         $scope.bdULResetPws.errResetEmail = true;
                         if (data.mailServer != "")
-                            alert("从2006年11月16日163新注册用户,无法使用SMTP pop3收发邮件，如测试此功能请使用06年以前申请的邮箱");
+                            alert(data.mailServer);
                     }
                     $scope.$apply();
                 }
             });
         }
     };
-    $scope.GoesToTargetMail = function () {
+    $scope.goesToTargetMail = function () {
         if ($scope.bdULResetPws.mailServer != "") {
             window.open("http://" + $scope.bdULResetPws.mailServer);
         }
     };
+
+    $scope.checkUserStatus = function () {
+        if ($scope.bdUL.UserID == 0) {
+            alert("请先登录用户!");
+            return false;
+        }
+        else {
+            var flag = false;
+            SiteRoot = SiteRoot.split('/')[0];
+            $.ajax({
+                url: SiteRoot + "/Account/CheckUserSession",
+                type: 'POST',
+                async: false,
+                success: function (data) {
+                    if (data)
+                        flag = data;
+                    else {
+                        alert("用户登录信息过期，请重新登录！");
+                        $scope.bdUL = angular.copy($scope.initUL);
+                    }
+                    $scope.$apply();
+                }
+            });
+            return flag;
+        }
+    };
+    $scope.getNow = new Date().getFullYear() + "-" + new Date().getMonth() + 1 + "-" + new Date().getDate();
 }]);
 
 soNgModule.controller("HomeIndexCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {

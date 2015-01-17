@@ -15,6 +15,13 @@ namespace DataAccessLayer
 {
     public class HomeManager : BaseManager, IHomeManager
     {
+        protected User _user;
+        public HomeManager(User user)
+        {
+            _user = user;
+        }
+        public HomeManager()
+        { }
         public string GetNewNumber(string TypeName, string strFirstChar)
         {
             DC dc = DCLoader.GetNewDC();
@@ -82,8 +89,8 @@ namespace DataAccessLayer
                 campcomment campcommentDB = new campcomment();
                 campcommentDB.CampID = CampID;
                 campcommentDB.CommentCon = CommentCon;
-                campcommentDB.UserID = 1;//需要修改
-                campcommentDB.UserName = "sdfsdf";//需要修改
+                campcommentDB.UserID = _user.UserID;//需要修改
+                campcommentDB.UserName = _user.UserName;//需要修改
                 campcommentDB.CommentTime = DateTime.Now;
                 dc.campcomments.Add(campcommentDB);
                 dc.SaveChanges();
@@ -116,7 +123,7 @@ namespace DataAccessLayer
 
         public campModel GetCamp(int CampID,DateTime? dt)
         {
-            int userid = 1;
+            int userid = _user.UserID;
 
             campModel campmodel = new campModel();
             camp campInDb = GetSingleCamp(CampID);
@@ -331,7 +338,7 @@ namespace DataAccessLayer
         public bool CheckCampCollect(int CampID)
         {
             DC dc = DCLoader.GetMyDC();
-            int userid = 1;
+            int userid = _user.UserID;
             campcollect coll = dc.campcollects.FirstOrDefault(c => c.UserID == userid && c.CampID == CampID);
             if (coll == null)
             {
@@ -348,7 +355,7 @@ namespace DataAccessLayer
             try
             {
                 DC dc = DCLoader.GetMyDC();
-                int userid = 1;
+                int userid = _user.UserID;
                 campcollect coll = new campcollect();
                 coll.CampID = CampID;
                 coll.UserID = userid;
@@ -368,7 +375,7 @@ namespace DataAccessLayer
             try
             {
                 DC dc = DCLoader.GetMyDC();
-                int userid = 1;
+                int userid = _user.UserID;
                 camp campDB = GetSingleCamp(CampID);
                 campreserve campres = new campreserve();
                 campres.CampID = CampID;

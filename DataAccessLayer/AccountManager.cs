@@ -61,7 +61,7 @@ namespace DataAccessLayer
         {
             User user = new User();
             dcObj = DCLoader.GetMyDC();
-            user = dcObj.Users.FirstOrDefault(u => u.Mail == strEmail);
+            user = dcObj.Users.FirstOrDefault(u => u.Email == strEmail);
             return user;
         }
 
@@ -115,7 +115,7 @@ namespace DataAccessLayer
         public void UpdatePwd(string email, string pwd)
         {
             dcObj = DCLoader.GetMyDC();
-            var info = dcObj.Users.FirstOrDefault(c => c.Mail == email);
+            var info = dcObj.Users.FirstOrDefault(c => c.Email == email);
             info.Pwd = pwd;
             dcObj.SaveChanges();
         }

@@ -84,14 +84,21 @@
                 @*<div class="through">原价￥：600</div>*@
                 <div class="tf-ts" style="padding: 15px 0 10px">
                     <h3 style="line-height: 24px;">听风特色</h3>
-                    <div class="tf-ts-con" style="margin-bottom: 40px; padding-top: 15px">
-                        <span ng-repeat="campitem in camp.ModelListcampitem">
+                    <div class="tf-ts-con clear">
+                        <div class="book-left">
+                            <ul>
+                                <li class="rd rdc" ng-repeat="campitem in camp.ModelListcampitem">
+                                    <span ng-bind="campitem.CampItemName"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        @*<span ng-repeat="campitem in camp.ModelListcampitem">
                             <a href="#">
                                 <img title="{{campitem.CampItemName}}" src="../../Content/images/{{campitem.CampItemIcon}}" /></a>
-                        </span>
+                        </span>*@
                     </div>
                     <div class="pr-submit clear">
-                        <a ng-click="ShowPileScreen();" style="margin-right: 36px;">在线预定</a><a ng-click="CampCollect();" style="">收藏保存</a>
+                        <a ng-click="ShowPileScreen();" style="margin-right: 36px; background:#2f3443">在线预定</a><a ng-click="CampCollect();" style="">收藏保存</a>
                     </div>
                 </div>
                 <div class="yz_introduction">

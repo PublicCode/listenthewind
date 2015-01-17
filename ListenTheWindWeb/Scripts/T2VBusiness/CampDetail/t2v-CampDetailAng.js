@@ -17,8 +17,10 @@
     $scope.InitMap();
 
     $scope.ShowPileScreen = function () {
-        $("#divSelPile").css("left", screen.width / 2 - 60).css("height", "400px").css("width", "800px");
-        $('#divSelPile').modal('show');
+        if ($scope.checkUserStatus()) {
+            $("#divSelPile").css("left", screen.width / 2 - 60).css("height", "400px").css("width", "800px");
+            $('#divSelPile').modal('show');
+        }
     };
 
     $scope.ShowMoreCommenScreen = function () {
@@ -56,16 +58,18 @@
     
 
     $scope.CampCollect = function () {
-        $http({
-            method: 'post',
-            url: '/Home/CampCollect',
-            data: { CampID: $scope.camp.CampID}
-        }).success(function (data) {
-            alert(data);
-        }).error(function (d, s, h, c) {
-            alert("error");
-            // TODO: Show something like "Username or password invalid."
-        });
+        if ($scope.checkUserStatus()) {
+            $http({
+                method: 'post',
+                url: '/Home/CampCollect',
+                data: { CampID: $scope.camp.CampID }
+            }).success(function (data) {
+                alert(data);
+            }).error(function (d, s, h, c) {
+                alert("error");
+                // TODO: Show something like "Username or password invalid."
+            });
+        }
     };
     
 }]);
