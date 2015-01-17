@@ -18,17 +18,12 @@ namespace Web.Energizer.User
                 var user = HttpContext.Current.Session["User"] as DataAccess.DC.User;
                 if (user != null)
                 {
-
-
                     return user;
                 }
-
-
-                if (HttpContext.Current.Session["User"] == null &&
-                    HttpContext.Current.User.Identity.IsAuthenticated)
+                else
                 {
+                    return null;
                 }
-                return user;
             }
         }
         public static string getCurrentUser

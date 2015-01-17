@@ -207,7 +207,7 @@
                             <img src="@Url.Content("~/Content/images/f_err.png")" />验证码错误</span>
                         <span class="err" ng-show="logOnFlag && formLogOn.ValidCode.$error.required">
                             <img src="@Url.Content("~/Content/images/f_err.png")" />验证码错误</span>
-                    </li>
+                        <input type="hidden" id="hfValidateCode" value="@ViewBag.ValidateCode" /></li>
                     <li class="btn">
                         <input type="button" value="登陆" ng-click="bgActionLogin()"></li>
                 </ul>

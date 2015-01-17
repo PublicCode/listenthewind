@@ -260,6 +260,17 @@ t2v_util.valid = {
     RemoveHtml: function (str) {
         return str.replace(/<\/?[^>]*>/g, '');
     },
+    IntOnBlur: function (obj) {
+        var v = $(obj).val().Trim();
+        if (v != "") {
+            if (v.substring(0, 1) == 0 || t2v_util.valid.IsPlusInteger(v)) {
+                $(obj).val("0");
+            }
+        }
+        else {
+            $(obj).val("0");
+        }
+    },
 };
 t2v_util.culture = {
     SetCookie: function (language) {

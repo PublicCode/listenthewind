@@ -14,6 +14,7 @@ using DataAccessLayer;
 using IDataAccessLayer;
 using Newtonsoft.Json;
 using WebModel.Camp;
+using WebModel.Account;
 
 namespace AdestoSolution.Controllers
 {
@@ -22,7 +23,7 @@ namespace AdestoSolution.Controllers
         HomeBizLogic bizLogic;
         public HomeController()
         {
-            bizLogic = new HomeBizLogic();
+            bizLogic = new HomeBizLogic(UserHelper.CurrentUser);
         }
 
         [Authorize]
@@ -95,7 +96,7 @@ namespace AdestoSolution.Controllers
             if (BookDate != null)
                 ViewBag.DefaultDate = BookDate.Value;
             else
-                ViewBag.DefaultDate = DateTime.Now;
+                ViewBag.DefaultDate = "";
             ViewBag.BasicData = JsonConvert.SerializeObject(listOfBasic);
             return View("~/Views/Home/CampBook.cshtml");
         }

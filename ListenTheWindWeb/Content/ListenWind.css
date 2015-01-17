@@ -1161,7 +1161,7 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .f_dd_tab li a.crr{ background:url(images/f_tab_bgc.png) no-repeat; line-height: 37px;color:#ffa540;top: -4px;}
 .f_dd_top{ background:#fff;  top: -10px; position:relative; padding:28px 0 13px 0; }
 .f_dd_top .f_gw .gw-date .time-input {
-    background:#fff url(../images/icon3.png) 95% 16px no-repeat;
+    background:#fff url(images/icon3.png) 95% 16px no-repeat;
     border: 1px solid #dbdada;
     border-radius: 4px;
     float: left;
@@ -1228,7 +1228,7 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 }
 .mess-list .f_dd_lt_sw .f_sw_right {
     margin-left: 86px;
-	background:url(../images/f_line.png) 0 bottom no-repeat;
+	background:url(images/f_line.png) 0 bottom no-repeat;
 	padding:0 0 30px 0;
 }
 .mess-list li{ margin-bottom:30px}
@@ -1266,7 +1266,7 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .f_avt_img_con strong{ float:left; margin-left:9px}
 .f_avt_img_con .f_avt_img_btn{ float:left;height:116px}
 .f_avt_img_con .f_avt_img_btn .f_avt_img_top{ width:170px;height:94px; background:#c0c1c0; margin-bottom:4px}
-.f_sl{ width:252px;height:225px; position:absolute;right:40px;top:0; background:url(../images/f_sl.jpg) no-repeat}
+.f_sl{ width:252px;height:225px; position:absolute;right:40px;top:0; background:url(images/f_sl.jpg) no-repeat}
 .f_wlz{ margin-right:10px}
 .info-right .info-dd-list .input-content .input-list-txt li .sel-fl .select-bg span.f_yx{color:#abadb3}
 .info-right .info-dd-list .input-content .input-list-txt li span strong{ margin-right:10px}
@@ -1280,10 +1280,10 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .f_mo_hd .f_mo_bc{width:141px;height:29px; float:left; background:#ffa540; text-align:center; line-height:29px;color:#fff; font-size:14px; margin-left:32px}
 .detail-con .detail-right .tf-ts .tf-ts-con { height:auto; padding:10px 0 0 0}
 .detail-con .detail-right .tf-ts .tf-ts-con li.rdc {
-    background: url(../images/rddc.png) 0 5px no-repeat;
+    background: url(images/rddc.png) 0 5px no-repeat;
 }
 .detail-con .detail-right .tf-ts .tf-ts-con li {
-    background: url(../images/rdd.png) 0 5px no-repeat;
+    background: url(images/rdd.png) 0 5px no-repeat;
     float: left;
     padding: 0 0 10px;
     width: 121px;
@@ -1299,11 +1299,11 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .f_bl{ width:930px}
 .f_bl .pop-con{ padding:0 0; clear:both; margin-bottom:50px}
 .f_bl .pop-con h3{height:34px; background:#fdebd7; line-height:34px; font-size:16px;color:#2f3443; text-indent:10px; position:relative}
-.f_bl .pop-con h3 .gzs{ width:35px;height:34px; position:absolute;right:0;top:0; overflow:hidden; text-indent:-99em; background:url(../images/gzs.jpg) no-repeat}
-.f_bl .pop-con h3 .gzs.gzk{ background:url(../images/gzk.jpg) no-repeat}
+.f_bl .pop-con h3 .gzs{ width:35px;height:34px; position:absolute;right:0;top:0; overflow:hidden; text-indent:-99em; background:url(images/gzs.jpg) no-repeat}
+.f_bl .pop-con h3 .gzs.gzk{ background:url(images/gzk.jpg) no-repeat}
 .f_bl .pop-con li{ width: 216px;height:244px;border:1px #e8e8e8 solid; float:left;padding:9px 0 0 0; margin:0 10px 0 0; background:#fff; position:relative;}
 .f_bl .pop-con li.os{ background:#fdebd7}
-.f_bl .pop-con li .btm{ width:220px; background:url(../images/btm.png); position:absolute;top: 54px;left: 90px; padding:11px; z-index:1}
+.f_bl .pop-con li .btm{ width:220px; background:url(images/btm.png); position:absolute;top: 54px;left: 90px; padding:11px; z-index:1}
 .f_bl .pop-con li .btm dt{ margin-bottom:10px;color:#191f4e}
 .f_bl .pop-con li .btm dd{ margin-bottom:10px;color:#000}
 .f_bl .pop-con .gz-con{ background:#f0f0f0; padding:14px 0 16px 0}
@@ -1330,7 +1330,7 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .f_bl .pop-con .f_nur .f_i{ float:left; margin-left:17px;}
 .f_bl .pop-con .f_nur .f_nur_txt{ float:left; display:block; width:70px;height:30px; text-align:right; font-size:16px; padding:0 10px 0 0 }
 .f_bl .f_tk{ margin-left:55px; margin-bottom:86px; font-size:14px; background:url(images/f_ck.png) 0 3px no-repeat; padding:0 0 0 24px}
-.f_bl .f_tk.c{background:url(../images/f_ckc.png) 0 3px no-repeat; }
+.f_bl .f_tk.c{background:url(images/f_ckc.png) 0 3px no-repeat; }
 .f_bl .f_tk a{ text-decoration:underline}
 .f_bl .pop-con .f_sm_list li {   width: 130px;height:170px; margin: 0 22px 0 0;}
 .f_bl .pop-con .f_sm_list li .gz-img{ height: 88px; margin-left: 7px;}

@@ -14,9 +14,9 @@ namespace BizLogic
     {
         private IHomeManager homeBase;
 
-        public HomeBizLogic()
+        public HomeBizLogic(User user = null)
         {
-            homeBase = new HomeManager();
+            homeBase = new HomeManager(user);
         }
 
         public string GetNewNumber(string TypeName, string strFirstChar)

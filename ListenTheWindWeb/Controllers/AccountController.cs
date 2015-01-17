@@ -154,11 +154,11 @@ namespace HDS.QMS.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-        public ActionResult getClientInfo(int id)
-        {
-            AccountHelper accountHelper = new AccountHelper();
-            return Json(accountHelper.GetUserByID(id));
-        }
+        //public ActionResult getClientInfo(int id)
+        //{
+        //    AccountHelper accountHelper = new AccountHelper();
+        //    return Json(accountHelper.GetUserByID(id));
+        //}
 
         //
         // GET: /Account/ChangePasswordSuccess
@@ -214,7 +214,7 @@ namespace HDS.QMS.Controllers
         {
             var js = new System.Web.Script.Serialization.JavaScriptSerializer();
             var info = js.Deserialize<UserModel>(strJson);
-            if (Session["ValidateCode"].ToString() != info.ValidCode)
+            if (Session["ValidateCode"] == null || Session["ValidateCode"].ToString() != info.ValidCode)
             {
                 info.errValidCode = true;
                 return JsonConvert.SerializeObject(info);
@@ -272,7 +272,7 @@ namespace HDS.QMS.Controllers
                 {
                     UserName = info.UserName,
                     Pwd = info.Pwd,
-                    Mail = info.Email,
+                    Email = info.Email,
                     CreateTime = DateTime.Now,
                     Name = info.UserName
                 };

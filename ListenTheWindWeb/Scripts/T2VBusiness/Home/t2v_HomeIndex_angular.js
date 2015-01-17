@@ -141,6 +141,7 @@
             return flag;
         }
     };
+    $scope.getNow = new Date().getFullYear() + "-" + new Date().getMonth() + 1 + "-" + new Date().getDate();
 }]);
 
 soNgModule.controller("HomeIndexCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {

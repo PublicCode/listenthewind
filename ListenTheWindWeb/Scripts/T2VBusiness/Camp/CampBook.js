@@ -1,14 +1,15 @@
 ﻿soNgModule.controller("CampBookCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
     $scope.selectedDate = "";
+    $scope.selectedDateCount = 0;
     if (t2v_CampDetail.CampInfo) {
         $scope.camp = JSON.parse(t2v_CampDetail.CampInfo);
     }
-    $http.post(SiteRoot + "/../Account/getClientInfo", { id: 1 }).success(function (data, status, headers, config) {
-        //re order the config
-        $scope.userInfo = data;
-    }).error(function (data, status, headers, config) {
-        alert('error');
-    });
+    //$http.post(SiteRoot + "/../Account/getClientInfo", { id: 1 }).success(function (data, status, headers, config) {
+    //    //re order the config
+    //    $scope.userInfo = data;
+    //}).error(function (data, status, headers, config) {
+    //    alert('error');
+    //});
     //Get reserved date for Pile
     $http.post(SiteRoot + "/getReservedDateForPile", { PileId: t2v_CampDetail.PileId }).success(function (data, status, headers, config) {
         //re order the config
@@ -21,6 +22,9 @@
             subscribe: {
                 'change': function (date, action) {
                     $scope.selectedDate = this.getSelected();
+                    $scope.selectedDateCount = $scope.selectedDate == "" ? 0 : $scope.selectedDate.split(',').length;
+                    $scope.getTotalCampPrice();
+                    $scope.$apply();
                 }
             },
         });
@@ -30,11 +34,23 @@
     
     $scope.basicdata = JSON.parse(t2v_CampDetail.BasicData);
 
+    $scope.totalCampPrice = 0;
+    $scope.getTotalCampPrice = function () {
+        $scope.totalCampPrice = 0;
+        angular.forEach($scope.camp.ModelListcampprice, function (v) {
+            if (v.Qty > 0)
+                $scope.totalCampPrice += v.ItemPrice * v.Qty;
+        });
+        $scope.$apply();
+    };
+
     $scope.bookcamp = function () {
+        if (!$scope.checkUserStatus)
+            return false;
         var picked = $scope.selectedDate;
         var selectedItem = [];
         angular.forEach($scope.camp.ModelListcampprice, function(v){
-            if(v.Checked)
+            if (v.Qty > 0)
                 selectedItem.push({ CampPriceID: v.CampPriceID, Qty: v.Qty });
         });
         if (picked == "")
