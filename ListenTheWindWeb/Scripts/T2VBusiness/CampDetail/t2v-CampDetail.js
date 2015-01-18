@@ -26,4 +26,16 @@ var t2v_CampOrders = {
             }
         });
     },
+    showUserCollect: function () {
+        $.ajax({
+            url: "/User/UserCollection",
+            type: 'post',
+            data: {},
+            beforeSend: function () {
+            },
+            success: function (data, status, jqXhr) {
+                $("#divUserContent").html(data);
+            }
+        });
+    },
 }

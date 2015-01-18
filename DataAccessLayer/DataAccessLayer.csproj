@@ -99,6 +99,7 @@
     <Compile Include="HomeManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportManager.cs" />
+    <Compile Include="UserManager.cs" />
     <Compile Include="ValidateCodeManager.cs" />
   </ItemGroup>
   <ItemGroup>
