@@ -813,6 +813,7 @@
     <Content Include="Views\User\UserPayBook.cshtml" />
     <Content Include="Views\User\UserUnpaid.cshtml" />
     <Content Include="Views\User\UserCollection.cshtml" />
+    <Content Include="Views\User\UserIntegral.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

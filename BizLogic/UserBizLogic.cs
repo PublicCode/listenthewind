@@ -28,5 +28,15 @@ namespace BizLogic
         {
             return userBase.DeleteCampCollect(CampID);
         }
+
+        public object GetIntegralList(int page, int limit)
+        {
+            return userBase.GetIntegralList(page, limit);
+        }
+
+        public int GetUseIntegralNumber()
+        {
+            return userBase.GetUseIntegralNumber() * -1;
+        }
     }
 }

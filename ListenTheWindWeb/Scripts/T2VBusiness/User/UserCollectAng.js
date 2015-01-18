@@ -41,3 +41,51 @@
         });
     };
 }]);
+
+soNgModule.controller("UserIntegralCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+
+    if (UserCollect.IntegralList) {
+        $scope.IntegralList = JSON.parse(UserCollect.IntegralList);
+    }
+
+    $scope.LogOutTran = function () {
+        if (!$scope.IntegralList.loginflag) {
+            window.location.href = "/Home/Index";
+        }
+    };
+
+    $scope.UsedIntegralSum = UserCollect.UsedIntegralSum;
+    $scope.LogOutTran();
+
+    $scope.prePage = function () {
+        if ($scope.IntegralList.page == 1) {
+            return;
+        }
+        var page = $scope.IntegralList.page - 1;
+        $scope.getPageRecords(page);
+    };
+
+    $scope.nextPage = function () {
+        if ($scope.IntegralList.page == $scope.IntegralList.total) {
+            return;
+        }
+        var page = $scope.IntegralList.page + 1;
+        $scope.getPageRecords(page);
+    };
+
+    $scope.getPageRecords = function (page) {
+        $http({
+            method: 'post',
+            url: '/User/GetIntegralList',
+            data: { page: page, limit: 20 }
+        }).success(function (data) {
+            $scope.IntegralList = data;
+            $scope.LogOutTran();
+        }).error(function (d, s, h, c) {
+            alert("error");
+            // TODO: Show something like "Username or password invalid."
+        });
+    };
+
+}]);
+

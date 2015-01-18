@@ -55,6 +55,8 @@ namespace DataAccess.DC
         public DbSet<CityLocation> CityLocations { get; set; }
 
         public DbSet<basicdatacollect> basicdatacollects { get; set; }
+        public DbSet<UserIntegralHistory> UserIntegralHistorys { get; set; }
+        
 
         public override int SaveChanges()
         {

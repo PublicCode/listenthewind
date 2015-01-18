@@ -38,4 +38,17 @@ var t2v_CampOrders = {
             }
         });
     },
+
+    showUserUserIntegral: function () {
+        $.ajax({
+            url: "/User/UserIntegral",
+            type: 'post',
+            data: {},
+            beforeSend: function () {
+            },
+            success: function (data, status, jqXhr) {
+                $("#divUserContent").html(data);
+            }
+        });
+    },
 }

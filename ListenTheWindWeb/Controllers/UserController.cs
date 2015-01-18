@@ -46,7 +46,19 @@ namespace HDS.QMS.Controllers
         {
             return bizLogic.DeleteCampCollect(CampID);
         }
+
+        public ActionResult UserIntegral()
+        {
+            ViewBag.UsedIntegralSum = JsonConvert.SerializeObject(bizLogic.GetUseIntegralNumber());
+            ViewBag.UserIntegralList = JsonConvert.SerializeObject(bizLogic.GetIntegralList(1,20));
+            return View();
+        }
+
         
 
+        public object GetIntegralList(int page, int limit)
+        {
+            return JsonConvert.SerializeObject(bizLogic.GetIntegralList(page, limit));
+        }
     }
 }

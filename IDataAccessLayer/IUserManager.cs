@@ -11,5 +11,7 @@ namespace IDataAccessLayer
     {
         object GetCampCollectByUser();
         string DeleteCampCollect(int CampID);
+        object GetIntegralList(int page, int limit);
+        int GetUseIntegralNumber();
     }
 }

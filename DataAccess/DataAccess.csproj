@@ -119,6 +119,7 @@
     <Compile Include="DC\Role.cs" />
     <Compile Include="DC\TableNumberEnt.cs" />
     <Compile Include="DC\User.cs" />
+    <Compile Include="DC\UserIntegralHistory.cs" />
     <Compile Include="DC\UserOperationDetail.cs" />
     <Compile Include="DC\UserOperationLog.cs" />
     <Compile Include="ILoggedEntity.cs" />

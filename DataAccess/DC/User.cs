@@ -51,6 +51,8 @@ namespace DataAccess.DC
         /// </summary>
         public string Mobile { get; set; }
 
+        public string UserIntegral { get; set; }
+
         /// <summary>
         /// CreateDate
         /// </summary>

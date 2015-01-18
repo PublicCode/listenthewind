@@ -55,6 +55,19 @@ basicdatacollect  DataSort             int				2014.11.29
 campitem		  BasicID			   int				2014.11.29
 
 camp			  CampLOD			   varchar(60)      2014.12.01
-
+user              UserIntegral         int              2015.01.18    
 
 campreserveatt CampItemName change to varchar(100) 2015-01-17
+
+2015.01.18    
+CREATE TABLE `userintegralhistory` (
+  `UserIntegralHistoryID` int(11) NOT NULL AUTO_INCREMENT,
+  `IntegralInfo` varchar(200) DEFAULT NULL,
+  `SpentIntegral` int(11) DEFAULT NULL,
+  `CampID` int(11) DEFAULT NULL,
+  `CampReserveID` int(11) DEFAULT NULL,
+  `AdminID` int(11) DEFAULT NULL,
+  `UserID` int(11) DEFAULT NULL,
+  `HappenedDateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`UserIntegralHistoryID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

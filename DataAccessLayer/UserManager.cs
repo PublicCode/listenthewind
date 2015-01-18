@@ -69,6 +69,65 @@ namespace DataAccessLayer
             }
         }
 
+        public int GetUseIntegralNumber()
+        {
+            DC dc = DCLoader.GetMyDC();
+            int? num = 0;
+            if (_user != null)
+            {
+                num = dc.UserIntegralHistorys.Where(c => c.UserID == _user.UserID && c.SpentIntegral < 0).Sum(c=>c.SpentIntegral);
+            }
+            return (num.HasValue ? num.Value : 0);
+        }
+
+        public object GetIntegralList(int page, int limit)
+        {
+            DC dc = DCLoader.GetMyDC();
+            IEnumerable<UserIntegralHistory> lstEF = null;
+            bool userflag = true;
+            if (_user == null)
+            {
+                userflag = false;
+            }
+            else
+            {
+                lstEF = dc.UserIntegralHistorys.Where(c => c.UserID == _user.UserID).OrderByDescending(c=>c.HappenedDateTime);
+            }
+
+            return GetIntegralListObj(lstEF, page, limit, userflag);
+        }
+
+        public object GetIntegralListObj(IEnumerable<UserIntegralHistory> lstEF, int page, int limit, bool userflag)
+        {
+            if (userflag)
+            {
+                IEnumerable<UserIntegralHistory> res = lstEF;
+                if (page > 0)
+                {
+                    int skipPages = page - 1;
+                    res = lstEF.Skip(skipPages * limit);
+                }
+                if (limit > 0)
+                {
+                    res = res.Take(limit);
+                }
+                int count = lstEF.Count();
+                return new
+                {
+                    total = limit > 0 ? Math.Ceiling((double)count / limit) : 1,
+                    page = page,
+                    records = count,
+                    rows = res.ToList(),
+                    loginflag = userflag
+                };
+            }
+            return new
+            {
+                userflag = userflag
+            };
+            
+        }
+
 
     }
 }

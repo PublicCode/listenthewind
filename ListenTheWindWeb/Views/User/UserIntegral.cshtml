@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+@using Newtonsoft.Json
+<div class="f_dd_con f_dd_con_lw"  id="ng-value" ng-controller="UserIntegralCtrl">
+                	<h3 class="f_igl_tit">积分管理</h3>
+                    <div class="f_igl_txt">
+                        <span>当前积分：{{bdUL.UserIntegral}}</span><span>已使用积分：{{UsedIntegralSum}}</span>
+                    </div>
+                	<div class="f_dd_cet clear">
+                        <div class="f_dd_lt">
+                        	<table>
+                                <tr class="f_dd_tit">
+                                    <td>兑换编号</td>
+                                    <td>兑换内容</td>
+                                    <td>积分数值</td>
+                                    <td>消费详细</td>
+                                    <td>兑换时间</td>
+                                </tr>
+                                <tr ng-repeat="row in IntegralList.rows">
+                                    <td>{{row.UserIntegralHistoryID}}</td>
+                                    <td>{{row.IntegralInfo}}</td>
+                                    <td>{{row.SpentIntegral}}</td>
+                                    <td><a ng-show="row.CampID != null">消费详细</a></td>
+                                    <td>{{row.HappenedDateTime | date:'yyyy年MM月dd日'}}</td>
+                                </tr>
+                        	</table>
+                        </div>
+                        <div class="page_con" ng-show ="IntegralList.records > 0">
+                        	共{{IntegralList.records}}记录 {{IntegralList.page}}/{{IntegralList.total}}页 <div class="last" ng-click="prePage();">上一页</div><div class="next" ng-click="nextPage()">下一页</div>
+                        </div>
+                    </div>
+                </div>
+<script type="text/javascript">
+    UserCollect.IntegralList = @Html.Raw(JsonConvert.SerializeObject(ViewBag.UserIntegralList));
+    UserCollect.UsedIntegralSum = @Html.Raw(JsonConvert.SerializeObject(ViewBag.UsedIntegralSum));
+    angular.element(document).ready(function () {
+        angular.bootstrap($('body'), ['SO']);
+    });
+</script>
