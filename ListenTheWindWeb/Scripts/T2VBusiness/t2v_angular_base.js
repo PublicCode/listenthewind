@@ -8,7 +8,7 @@ Function.prototype.clone = function () {
     return temp;
 };
 
-var soNgModule = angular.module('SO', ['ngSanitize']);
+var soNgModule = angular.module('SO', ['ngSanitize', 'angularFileUpload']);
 
 soNgModule.directive('watermark', function () {
     return {

@@ -239,6 +239,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Handler\Encryp.cs" />
+    <Compile Include="Handler\UploadHandler.ashx.cs">
+      <DependentUpon>UploadHandler.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UploadProcess.ashx.cs">
       <DependentUpon>UploadProcess.ashx</DependentUpon>
@@ -338,8 +341,19 @@
     <Content Include="Scripts\Vendor\angular-tools\pagination\dirPagination.tpl.html" />
     <Content Include="Scripts\Vendor\angular-tools\pagination\paginate-anything.html" />
     <Content Include="Scripts\Vendor\angular-tools\pagination\paginate-anything.js" />
+    <Content Include="Scripts\Vendor\angular\angular.min1.2.26.js" />
     <Content Include="Scripts\Vendor\flexslider\flexslider.css" />
     <Content Include="Scripts\Vendor\flexslider\jquery.flexslider.js" />
+    <Content Include="Scripts\Vendor\jquery-2.1.1.js" />
+    <Content Include="Scripts\Vendor\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\Vendor\ng-file-upload\angular-file-upload-html5-shim.js" />
+    <Content Include="Scripts\Vendor\ng-file-upload\angular-file-upload-html5-shim.min.js" />
+    <Content Include="Scripts\Vendor\ng-file-upload\angular-file-upload-shim.js" />
+    <Content Include="Scripts\Vendor\ng-file-upload\angular-file-upload-shim.min.js" />
+    <Content Include="Scripts\Vendor\ng-file-upload\angular-file-upload.js" />
+    <Content Include="Scripts\Vendor\ng-file-upload\angular-file-upload.min.js" />
+    <Content Include="Scripts\Vendor\ng-file-upload\FileAPI.flash.swf" />
+    <Content Include="Scripts\Vendor\ng-file-upload\FileAPI.min.js" />
     <Content Include="UploadImg\Camp\d_bn1.jpg" />
     <Content Include="UploadImg\Camp\d_bn2.jpg" />
     <Content Include="UploadImg\Camp\d_bn3.jpg" />
@@ -781,6 +795,7 @@
     <Content Include="Scripts\Vendor\watermark\jquery.watermark.js" />
     <Content Include="UpdateBrowser.htm" />
     <Content Include="UploadImg\Camp\index.htm" />
+    <Content Include="UploadImg\User\HtmlPage1.html" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -822,6 +837,11 @@
     <Content Include="Views\User\UserIntegral.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Scripts\Vendor\ng-file-upload\.bower.json" />
+    <Content Include="Scripts\Vendor\ng-file-upload\bower.json" />
+    <Content Include="Scripts\Vendor\ng-file-upload\LICENSE" />
+    <Content Include="Scripts\Vendor\ng-file-upload\README.md" />
+    <Content Include="Views\User\UserHeaderImg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -897,6 +917,7 @@
     <Content Include="Scripts\Vendor\JqueryUploadify\UploadFile.ashx" />
     <Content Include="DownLoadData\Template\postemplate.xlsx" />
     <Content Include="DownLoadData\Template\quotetemplate.xlsx" />
+    <Content Include="Handler\UploadHandler.ashx" />
     <None Include="Scripts\Vendor\JqueryUploadify\uploadify.fla" />
     <Content Include="Views\Shared\InnerTopBar.cshtml" />
     <Content Include="Views\Admin\User.cshtml" />

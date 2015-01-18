@@ -54,6 +54,32 @@ namespace HDS.QMS.Controllers
             return View();
         }
 
+        public ActionResult UserHeaderImg()
+        {
+            return View();
+        }
+
+        public string SaveHeadImg()
+        {
+            string savePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UpLoadPath"]) + "User";
+            string strTemp = string.Empty;
+            try
+            {
+                using (var inputStream = Request.Files.Count > 0 ? Request.Files[0].InputStream : Request.InputStream)
+                {
+                    using (var flieStream = new FileStream(savePath + @"\" + DateTime.Now.Ticks.ToString() + ".jpg", FileMode.Create))
+                    {
+                        inputStream.CopyTo(flieStream);
+                    }
+                }
+                return "1";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         
 
         public object GetIntegralList(int page, int limit)
