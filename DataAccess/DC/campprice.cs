@@ -26,6 +26,8 @@ namespace DataAccess.DC
         public string ItemUnit { get; set; }
         public decimal? ItemPrice { get; set; }
 
+        public string ItemImage { get; set; }
+
         long ILoggedEntity.Id
         {
             get { return CampPriceID; }

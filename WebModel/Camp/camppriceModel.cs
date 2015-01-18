@@ -15,6 +15,7 @@ namespace WebModel.Camp
 
         public string ItemUnit { get; set; }
         public decimal? ItemPrice { get; set; }
+        public string ItemImage { get; set; }
         public int Qty { get; set; }
         public bool Checked { get; set; }
     }

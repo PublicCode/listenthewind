@@ -55,7 +55,8 @@ basicdatacollect  DataSort             int				2014.11.29
 campitem		  BasicID			   int				2014.11.29
 
 camp			  CampLOD			   varchar(60)      2014.12.01
-user              UserIntegral         int              2015.01.18    
+user              UserIntegral         int              2015.01.18  
+campprice		  ItemImage			   varchar(50)	    2015.01.18
 
 campreserveatt CampItemName change to varchar(100) 2015-01-17
 
