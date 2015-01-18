@@ -15,12 +15,12 @@
         map.enableScrollWheelZoom(true);
     }
     $scope.InitMap();
-
+    //Not sure why check user stasus function didn't finish
     $scope.ShowPileScreen = function () {
-        //if ($scope.checkUserStatus()) {
+        if ($scope.checkUserStatus()) {
             $("#divSelPile").css("left", screen.width / 2 - 60).css("height", "400px").css("width", "800px");
             $('#divSelPile').modal('show');
-        //}
+        }
     };
 
     $scope.ShowMoreCommenScreen = function () {
