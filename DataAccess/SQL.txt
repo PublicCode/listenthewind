@@ -58,3 +58,8 @@ camp			  CampLOD			   varchar(60)      2014.12.01
 
 
 campreserveatt CampItemName change to varchar(100) 2015-01-17
+
+cancelreserve
+ID	int	11	0	0	-1	0	0	0		0					-1	0 自增长
+CampReserveID	int	11	0	-1	0	0	0	0		0					0	0
+CancelledOn	datetime	0	0	-1	0	0	0	0		0					0	0

@@ -51,9 +51,9 @@
                 <div class="f_dd_tab">
                     <div class="f_dd_tab_bg">
                         <ul>
-                            <li><a href="javascript:void(0)" class="crr" onclick="t2v_CampOrders.showUnpaid()">待付款</a></li>
-                            <li><a href="javascript:void(0)">已付款</a></li>
-                            <li><a href="javascript:void(0)">已完成</a></li>
+                            <li><a href="javascript:void(0)" id="unpiadlink" class="crr" onclick="t2v_CampOrders.showUnpaid()">待付款</a></li>
+                            <li><a href="javascript:void(0)" id="paidlink" class="" onclick="t2v_CampOrders.showPaid()">已付款</a></li>
+                            <li><a href="javascript:void(0)" id="copletedlink" class="" onclick="t2v_CampOrders.showCompleted()">已完成</a></li>
                         </ul>
                     </div>
                 </div>
@@ -64,3 +64,8 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        t2v_CampOrders.showUnpaid();
+    });
+</script>

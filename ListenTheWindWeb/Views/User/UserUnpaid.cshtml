@@ -11,7 +11,7 @@
                         <div class="csk {{reserve.Choosed}}" data-ng-click="checkmyself(reserve)"></div>
                         <div class="f_dd_lt_con">
                             <span>订单编号：{{reserve.ordernumber}}</span><span>下单时间：{{reserve.CreateOn}}</span>
-                            <a href="#" class="g_qx">取消订单</a>
+                            <a href="#" class="g_qx" data-ng-click="deleteReserve(reserve.CampReserveID)">取消订单</a>
                         </div>
                     </div>
                     <button class="f_btns" data-ng-click="showDetail(reserve)">订单详情</button>
@@ -72,5 +72,7 @@
 <script type="text/javascript">
     angular.element(document).ready(function () {
         angular.bootstrap($('body'), ['SO']);
+        var $scope = angular.element($("#ng-value")[0]).scope();
+        $scope.getAllBooked();
     });
 </script>

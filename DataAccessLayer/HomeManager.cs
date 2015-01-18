@@ -428,6 +428,56 @@ namespace DataAccessLayer
                 return ex.Message;
             }
         }
+
+        public string AddCancelRequest(int CampReserveID)
+        {
+            try
+            {
+                DC dc = DCLoader.GetMyDC();
+                int userid = _user.UserID;
+                campreserve reserve = dc.campreserves.FirstOrDefault(m => m.CampReserveID == CampReserveID);
+                //Change status to 4 cancel request.
+                reserve.ReserveStatus = 4;
+                cancelreserve cancelRequest = new cancelreserve();
+                cancelRequest.CampReserveID = CampReserveID;
+                cancelRequest.CancelledOn = DateTime.Now;
+                dc.Cancels.Add(cancelRequest);
+                dc.SaveChanges();
+                return "提交成功";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+        public string CancelOrder(int CampReserveID)
+        {
+            try
+            {
+                DC dc = DCLoader.GetMyDC();
+                int userid = _user.UserID;
+                var reserveDates = dc.campreservedates.Where(m => m.CampReserveID == CampReserveID);
+                var reserveAtt = dc.campreserveatts.Where(m => m.CampReserveID == CampReserveID);
+                var reserve = dc.campreserves.FirstOrDefault(m => m.CampReserveID == CampReserveID);
+                foreach (campreservedate date in reserveDates)
+                {
+                    dc.campreservedates.Remove(date);
+                }
+
+                foreach (campreserveatt attr in reserveAtt)
+                {
+                    dc.campreserveatts.Remove(attr);
+                }
+
+                dc.campreserves.Remove(reserve);
+                dc.SaveChanges();
+                return "Cancelled";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
         public IQueryable<campreserve> GetReserve(int statusId = 0)
         { 
             if(statusId !=0)

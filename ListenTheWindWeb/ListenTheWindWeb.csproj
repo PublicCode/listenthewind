@@ -332,6 +332,10 @@
     <Content Include="Scripts\T2VBusiness\Camp\CampOrderSammary.js" />
     <Content Include="Scripts\T2VBusiness\Home\t2v_HomeIndex.js" />
     <Content Include="Scripts\T2VBusiness\Home\t2v_HomeIndex_angular.js" />
+    <Content Include="Scripts\Vendor\angular-tools\pagination\dirPagination.js" />
+    <Content Include="Scripts\Vendor\angular-tools\pagination\dirPagination.tpl.html" />
+    <Content Include="Scripts\Vendor\angular-tools\pagination\paginate-anything.html" />
+    <Content Include="Scripts\Vendor\angular-tools\pagination\paginate-anything.js" />
     <Content Include="Scripts\Vendor\flexslider\flexslider.css" />
     <Content Include="Scripts\Vendor\flexslider\jquery.flexslider.js" />
     <Content Include="UploadImg\Camp\d_bn1.jpg" />
@@ -810,6 +814,8 @@
     <Content Include="Views\Home\_HomeLayout.cshtml" />
     <Content Include="Views\User\UserPayBook.cshtml" />
     <Content Include="Views\User\UserUnpaid.cshtml" />
+    <Content Include="Views\User\UserPaid.cshtml" />
+    <Content Include="Views\User\UserCompleted.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

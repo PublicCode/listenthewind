@@ -16,12 +16,45 @@ var t2v_CampBook = new function() {
 var t2v_CampOrders = {
     showUnpaid: function () {
         $.ajax({
-            url: "/Home/UnpiadView",
+            url: "/Home/UnpaidView",
             type: 'post',
             data: {},
             beforeSend: function () {
             },
             success: function (data, status, jqXhr) {
+                $("#unpiadlink").addClass("crr");
+                $("#copletedlink").removeClass("crr");
+                $("#paidlink").removeClass("crr");
+                $("#divContent").html(data);
+            }
+        });
+    },
+    showPaid: function () {
+        $.ajax({
+            url: "/Home/PaidView",
+            type: 'post',
+            data: {},
+            beforeSend: function () {
+            },
+            success: function (data, status, jqXhr) {
+                $("#paidlink").addClass("crr");
+                $("#unpiadlink").removeClass("crr");
+                $("#copletedlink").removeClass("crr");
+                $("#divContent").html(data);
+            }
+        });
+    },
+    showCompleted: function () {
+        $.ajax({
+            url: "/Home/CompletedView",
+            type: 'post',
+            data: {},
+            beforeSend: function () {
+            },
+            success: function (data, status, jqXhr) {
+                $("#copletedlink").addClass("crr");
+                $("#unpiadlink").removeClass("crr");
+                $("#paidlink").removeClass("crr");
                 $("#divContent").html(data);
             }
         });

@@ -32,7 +32,7 @@ soNgModule.directive('datepicker', function () {
         require: 'ngModel',
         link: function (scope, element, attrs, ngModelCtrl) {
             $(function () {
-                element.addClass('datefield');
+                //element.addClass('datefield');
                 element.datepicker({
                     dateFormat: 'yy-mm-dd',
                     onSelect: function (date) {

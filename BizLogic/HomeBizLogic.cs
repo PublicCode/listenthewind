@@ -86,9 +86,23 @@ namespace BizLogic
             }
             return listOfBasicDataForCamp;
         }
-        public List<campreserveModel> GetListOfReserve(int statusId, DateTime? dateFrom = null, DateTime? dateTo = null)
+        public List<campreserveModel> GetListOfReserve(int statusId, DateTime? dateFrom, DateTime? dateTo)
         {
             var res = homeBase.GetReserve(statusId);
+            if (statusId == 2 )
+            {
+                if (dateFrom != null)
+                    res = res.Where(c => c.PayTime > dateFrom);
+                if(dateTo !=null)
+                    res = res.Where(c => c.PayTime < dateTo);
+            }
+            else if (statusId == 3)
+            {
+                if (dateFrom != null)
+                    res = res.Where(c => c.FinishedOn > dateFrom);
+                if (dateTo != null)
+                    res = res.Where(c => c.FinishedOn < dateTo);
+            }
             List<campreserveModel> listOfReserve = new List<campreserveModel>();
             foreach (campreserve reserve in res)
             {
@@ -112,6 +126,14 @@ namespace BizLogic
                 listOfReserve.Add(reserveModel);
             }
             return listOfReserve;
+        }
+        public string CancelRequest(int CampReserveID)
+        {
+           return  homeBase.AddCancelRequest(CampReserveID);
+        }
+        public string CancelOrder(int CampReserveID)
+        {
+            return homeBase.CancelOrder(CampReserveID);
         }
     }
 }

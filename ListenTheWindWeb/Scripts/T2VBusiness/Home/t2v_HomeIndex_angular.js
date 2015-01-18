@@ -23,7 +23,7 @@
         if ($scope.formLogOn.$invalid)
             return;
         $.ajax({
-            url: SiteRoot + "/Account/UserLogOn",
+            url:  "/Account/UserLogOn",
             type: 'POST',
             data: { strJson: JSON.stringify($scope.bdUL) },
             async: true,
@@ -40,7 +40,7 @@
     $scope.bdLogOff = function () {
         SiteRoot = SiteRoot.split('/')[0];
         $.ajax({
-            url: SiteRoot + "/Account/UserLogOff",
+            url: "/Account/UserLogOff",
             type: 'POST',
             data: { },
             async: true,
