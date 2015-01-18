@@ -78,7 +78,9 @@
                 <div class="g_ds_list clear">
                     <ul>
                         <li class="clear" ng-repeat="campprice in camp.ModelListcampprice">
-                            <div class="g_ls_img"></div>
+                            <div class="g_ls_img">
+                                <img src="../../UploadImg/Camp/{{campprice.ItemImage}}" style="width:80px; height:80px;" alt=""/>
+                            </div>
                             <div class="g_ls_right">
                                 <div class="g_ls_tit">
                                     {{campprice.ItemName}}
