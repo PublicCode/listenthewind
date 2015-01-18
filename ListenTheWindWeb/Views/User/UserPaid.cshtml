@@ -1,0 +1,109 @@
+﻿<div id="ng-value" ng-controller="CampSammaryCtrl">
+    <div class="f_dd_top clear">
+        <div class="f_gw">
+            <div class="gw-date">
+                <label>过往订单</label>
+                <div class="time-input">
+                    <input type="text" id="datepicker1" data-ng-model="searchpara.From" x-datepicker  value="YY/MM/DD" />
+                </div>
+                <div class="time-input">
+                    <input type="text" id="datepicker2" data-ng-model="searchpara.To" x-datepicker   value="YY/MM/DD" />
+                </div>
+                <button class="f_btns f_btns_pos" data-ng-click="searchpassed(searchpara.From, searchpara.To)">查询</button>
+            </div>
+        </div>
+    </div>
+    <div class="f_dd_lt">
+        <ul>
+            <li ng-repeat="reserve in pagedItems[currentPage]">
+                <div class="f_dd_lt_top clear">
+                    <div class="f_dd_tit">
+                        <div class="f_dd_lt_con">
+                            <span>订单编号：{{reserve.ordernumber}}</span><span>下单时间：{{reserve.CreateOn}}</span>
+                        </div>
+                    </div>
+                    <button class="f_btns" data-ng-click="showDetail(reserve)">订单详情</button>
+                </div>
+                <div class="f_dd_lt_sw clear">
+                    <div class="f_sw_left">
+                        <img src="../../Content/images/more_img1.jpg" />
+                    </div>
+                    <div class="f_sw_right">
+                        <div class="f_sw_tit">
+                            <span>听风编号{{reserve.campInfo.CampId}}：{{reserve.campInfo.CampName}}:{{reserve.campInfo.PileNumber}}</span><span>合计金额：￥{{reserve.TotalAmt}}</span>
+                            <div class="f_sw_state">支付状态：已付款</div>
+                        </div>
+                        <div class="f_sw_time clear">
+                            <label class="g_w_con">备注备注备注备注备注备注备注备注备注备注</label>
+
+                        </div>
+                    </div>
+                </div>
+                <button class="f_btns f_btns_pos" data-ng-click="askRefund(reserve.CampReserveID)">退款申请</button>
+            </li>
+            <li >
+                    <div class="pagination pull-right">
+                            <ul>
+                                <li ng-class="{disabled: currentPage == 0}">
+                                    <a href ng-click="prevPage()">前一页</a>
+                                </li>
+                                <li ng-repeat="n in range(pagedItems.length)"
+                                    ng-class="{active: n == currentPage}"
+                                ng-click="setPage()">
+                                    <a href ng-bind="n + 1">1</a>
+                                </li>
+                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                                    <a href ng-click="nextPage()">后一页</a>
+                                </li>
+                            </ul>
+                        </div>
+            </li>
+        </ul>
+    </div>
+    <div id="divOrderDetail" class="modal hide">
+        <div class="modal-header" style="background-color: #9E9500;">
+            <div style="text-align: left; font-weight: bold;">
+                <button type="button" style="float: right; padding: 0 10px" class="DeleteLine" data-dismiss="modal">
+                    X
+                </button>
+                <span style="font-size: 18px;">订单详情 &nbsp;&nbsp;</span>
+            </div>
+        </div>
+        <div>
+            <div style="width: 750px; height: 330px; overflow: hidden; padding: 5px" class="comment-con">
+                <div class="comment-list" style="overflow: auto; height: 300px;">
+                    <ul>
+                        <li>
+                            <div>
+                                听风编号：{{currentreserve.campInfo.CampId}}
+                                            <br />
+                                听风营名：{{currentreserve.campInfo.CampName}}
+                                            <br />
+                                营内桩号：{{currentreserve.campInfo.PileNumber}}
+                            </div>
+                        </li>
+                        <li class="clear" style="min-height: 20px" data-ng-repeat="att in currentreserve.Listcampreserveatt">
+                            <em>{{att.CampItemName}}: 价格￥{{att.CampItemUnitPrice}} 数量 {{att.Qty}} 总金额 ￥{{att.CampItemPriceAmt}}</em><br />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cz_p_d modal hide" id="send_suc" style="height: 208px;"><!--提交成功-->
+	    <a href="javascript:void(0)" class="f_close">关闭</a>
+        <h3>提交成功</h3>
+        <p>
+		    已经提交成功，稍后会有客服人员与你联系确认事宜，请耐心等待。
+	    </p>
+        <input type="button" class="button" value="确认"/>
+</div>
+</div>
+
+<script type="text/javascript">
+    angular.element(document).ready(function () {
+        angular.bootstrap($('body'), ['SO']);
+        var $scope = angular.element($("#ng-value")[0]).scope();
+        $scope.getAllPaid();
+    });
+</script>

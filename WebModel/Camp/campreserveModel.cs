@@ -8,7 +8,7 @@ namespace WebModel.Camp
     public class campreserveModel
     {
 
-        public string ordernumber { get { return this.CampReserveID.ToString().PadLeft(4, '0'); } }
+        public string ordernumber { get { return this.CampReserveID.ToString().PadLeft(9, '0'); } }
 
         public int CampReserveID { get; set; }
 

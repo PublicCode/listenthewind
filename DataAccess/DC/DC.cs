@@ -53,6 +53,7 @@ namespace DataAccess.DC
         public DbSet<Role> Roles { get; set; }
         public DbSet<City> Citys { get; set; }
         public DbSet<CityLocation> CityLocations { get; set; }
+        public DbSet<cancelreserve> Cancels { get; set; }
 
         public DbSet<basicdatacollect> basicdatacollects { get; set; }
         public DbSet<UserIntegralHistory> UserIntegralHistorys { get; set; }

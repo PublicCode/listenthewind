@@ -123,14 +123,34 @@ namespace AdestoSolution.Controllers
             List<camppriceModel> listOfCampPrice = Camp.ModelListcampprice;
             return bizLogic.SaveReserve(SelectedDate, listOfCampPrice, Camp.CampID, PileID);
         }
-        public ActionResult UnpiadView()
+        public ActionResult UnpaidView()
         {
             return PartialView("~/Views/User/UserUnpaid.cshtml");
         }
-        public ActionResult GetAllOrders(int statusId)
+        public ActionResult GetAllOrders(int statusId, DateTime? from, DateTime? to)
         {
-            var listOfReserve = bizLogic.GetListOfReserve(statusId);
+            var listOfReserve = bizLogic.GetListOfReserve(statusId, from, to);
             return Json(listOfReserve);
+        }
+        public ActionResult PaidView()
+        {
+            return PartialView("~/Views/User/UserPaid.cshtml");
+        }
+        public ActionResult CompletedView()
+        {
+            return PartialView("~/Views/User/UserCompleted.cshtml");
+        }
+        public ActionResult CancelRequest(int CampReserveID)
+        {
+            if (UserHelper.CurrentUser == null)
+                return Json("SessionOut");
+            return Json(bizLogic.CancelRequest(CampReserveID));
+        }
+        public ActionResult CancelOrder(int CampReserveID)
+        {
+            if (UserHelper.CurrentUser == null)
+                return Json("SessionOut");
+            return Json(bizLogic.CancelOrder(CampReserveID));
         }
     }
 }
