@@ -4,6 +4,8 @@
 }
 <script src="@Url.Content("~/Scripts/T2VBusiness/Camp/CampOrderSammary.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/T2VBusiness/CampDetail/t2v-CampDetail.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/T2VBusiness/User/UserCollect.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/T2VBusiness/User/UserCollectAng.js")" type="text/javascript"></script>
 <div class="container">
     <h1 class="tit3">个人信息</h1>
     <div class="w890 clear">
@@ -20,7 +22,7 @@
                     <a href="#" class="user-btn">头像修改</a>
                 </div>
                 <div class="user-btn">
-                    <a href="#" class="user-btn">我的收藏</a>
+                    <a href="javascript:void(0)" class="user-btn" onclick="t2v_CampOrders.showUserCollect()">我的收藏</a>
                 </div>
 
             </div>
@@ -47,7 +49,7 @@
             <div class="info-nav">
                 <a href="#" id="nav1" class="current">我的订单</a><a href="#" id="nav2">消息通知</a><a href="#" id="nav4">个人资料</a><a href="#" id="nav5">支付管理</a><a href="#" id="nav3">我的积分</a>
             </div>
-            <div class="f_dd_con">
+            <div class="f_dd_con" id="divUserContent">
                 <div class="f_dd_tab">
                     <div class="f_dd_tab_bg">
                         <ul>

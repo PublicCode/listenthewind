@@ -70,6 +70,7 @@
     <Compile Include="IExportManager.cs" />
     <Compile Include="IHomeManager.cs" />
     <Compile Include="IReportManager.cs" />
+    <Compile Include="IUserManager.cs" />
     <Compile Include="IValidateCodeManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

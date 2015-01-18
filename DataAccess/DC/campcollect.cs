@@ -27,6 +27,7 @@ namespace DataAccess.DC
         {
             get { return CampCollectID; }
         }
+
         /// <summary>
         /// This field is used for link operation history summary and detail.
         /// </summary>

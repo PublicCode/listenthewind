@@ -332,6 +332,8 @@
     <Content Include="Scripts\T2VBusiness\Camp\CampOrderSammary.js" />
     <Content Include="Scripts\T2VBusiness\Home\t2v_HomeIndex.js" />
     <Content Include="Scripts\T2VBusiness\Home\t2v_HomeIndex_angular.js" />
+    <Content Include="Scripts\T2VBusiness\User\UserCollect.js" />
+    <Content Include="Scripts\T2VBusiness\User\UserCollectAng.js" />
     <Content Include="Scripts\Vendor\angular-tools\pagination\dirPagination.js" />
     <Content Include="Scripts\Vendor\angular-tools\pagination\dirPagination.tpl.html" />
     <Content Include="Scripts\Vendor\angular-tools\pagination\paginate-anything.html" />
@@ -814,6 +816,7 @@
     <Content Include="Views\Home\_HomeLayout.cshtml" />
     <Content Include="Views\User\UserPayBook.cshtml" />
     <Content Include="Views\User\UserUnpaid.cshtml" />
+    <Content Include="Views\User\UserCollection.cshtml" />
     <Content Include="Views\User\UserPaid.cshtml" />
     <Content Include="Views\User\UserCompleted.cshtml" />
   </ItemGroup>
