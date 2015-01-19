@@ -10,21 +10,19 @@
         }
     };
     $scope.LogOutTran();
-    
+
     $scope.predicate = '+CampItemSort';
 
     $scope.DeleteCampCollect = function (index) {
-        if (!confirm("确认删除营地收藏？"))
-        {
+        if (!confirm("确认删除营地收藏？")) {
             return;
         }
         $http({
             method: 'post',
             url: '/User/DeleteCampCollect',
-            data: { CampID: $scope.campcollectobj.campcollect[index].CampID}
+            data: { CampID: $scope.campcollectobj.campcollect[index].CampID }
         }).success(function (data) {
-            if (data == "-1")
-            {
+            if (data == "-1") {
                 alert("session失效，请重新登陆！")
                 window.location.href = "/Home/Index";
             }
@@ -42,9 +40,46 @@
     };
 }]);
 
-soNgModule.controller("UserHeaderCtrl", ['$scope', '$routeParams', '$http', '$location',  function ($scope, $routeParams, $http, $location) {
+soNgModule.controller("UserHeaderCtrl", ['$scope', '$routeParams', '$http', '$location', function ($scope, $routeParams, $http, $location) {
     $scope.photoname = '';
-    
+
+    $scope.fileUpload = function () {
+        $("#fine-uploader-left").fineUploader({
+            request: {
+                endpoint: SiteRoot + '/UserFileUpload'
+            },
+            params: {},
+            multiple: false
+        }).on('validate', function (id, fileName) {
+        }).on('complete', function (event, id, fileName, responseJSON) {
+            if (fileName != false.toString()) {
+                $scope.photoname = responseJSON.fileName;
+                $("#fine-uploader-left").html("");
+                $scope.fileUpload();
+                $scope.$apply();
+            }
+            else
+                alert("附件上传失败！");
+        });
+    };
+    $scope.fileUpload();
+
+    $scope.SaveUserPhoto = function () {
+        if ($scope.photoname == "")
+            return;
+        $http({
+            method: 'post',
+            url: SiteRoot + '/SaveUserPhotos',
+            data: { tmpFileName: $scope.photoname }
+        }).success(function (data) {
+            if (data == "True") {
+                alert("保存成功！");
+                $scope.photoname = ""
+            }
+        }).error(function (d, s, h, c) {
+            alert("error");
+        });
+    };
     //if (UserCollect.campcollectobj) {
     //    $scope.campcollectobj = JSON.parse(UserCollect.campcollectobj);
     //}

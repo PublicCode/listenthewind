@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Web.Energizer.User;
-using Handler;
-using BizLogic;
-using DataAccess.DC;
-using T2VSoft.MVC.Core;
-using System.Configuration;
 using System.IO;
-using DataAccessLayer;
-using IDataAccessLayer;
+using System.Web.Mvc;
+using BizLogic;
 using Newtonsoft.Json;
+using T2VSoft.MVC.Core;
+using Web.Energizer.User;
+
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Linq;
+using System.Text;
 
 namespace HDS.QMS.Controllers
 {
@@ -59,28 +57,38 @@ namespace HDS.QMS.Controllers
             return View();
         }
 
-        public string SaveHeadImg()
+        public ActionResult UserFileUpload()
         {
-            string savePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UpLoadPath"]) + "User";
+            string savePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UpLoadPath"]) + "TempFile";
             string strTemp = string.Empty;
+            var fileName = DateTime.Now.Ticks.ToString() + ".jpg";
             try
             {
                 using (var inputStream = Request.Files.Count > 0 ? Request.Files[0].InputStream : Request.InputStream)
                 {
-                    using (var flieStream = new FileStream(savePath + @"\" + DateTime.Now.Ticks.ToString() + ".jpg", FileMode.Create))
+                    using (var flieStream = new FileStream(savePath + @"\" + fileName, FileMode.Create))
                     {
                         inputStream.CopyTo(flieStream);
                     }
                 }
-                return "1";
             }
             catch (Exception ex)
             {
+                return Json(new { success = false }, "text/plain");
                 throw ex;
             }
+            return Json(new { success = true, fileName = fileName }, "text/plain");
         }
+        public string SaveUserPhotos(string tmpFileName)
+        {
+            string savePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UpLoadPath"]);
+            var oFile = savePath + "TempFile\\" + tmpFileName;
+            var nFile = savePath + "User\\" + tmpFileName;
+            System.IO.File.Move(oFile, nFile);
 
-        
+            bizLogic.SaveUserHeadPhoto(tmpFileName);
+            return true.ToString();
+        }
 
         public object GetIntegralList(int page, int limit)
         {

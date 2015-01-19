@@ -1440,3 +1440,11 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .g_ds_list ul li .g_ls_sl div{ margin-bottom:10px}
 .g_ds_list ul li .g_ls_sl div a{ font-size:18px; font-weight:bold; position:relative;top:3px}
 .g_ds_list ul li .g_ls_sl div input{ width:63px; background:#ffffff; font-size:14px; text-align:right; padding:0 5px 0 0;height:21px; margin:0 2px; line-height:23px;border:1px #c4c3c3 solid}
+
+.saveuserattach {
+    background-image:url('img/saveattach.png');
+    width:140px;
+    height:30px;
+    border:0;
+    cursor:pointer;
+}

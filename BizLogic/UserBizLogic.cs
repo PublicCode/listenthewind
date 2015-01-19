@@ -38,5 +38,10 @@ namespace BizLogic
         {
             return userBase.GetUseIntegralNumber() * -1;
         }
+
+        public void SaveUserHeadPhoto(string fileName)
+        {
+            userBase.SaveUserHeadPhoto(fileName);
+        }
     }
 }

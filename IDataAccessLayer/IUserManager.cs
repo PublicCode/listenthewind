@@ -13,5 +13,6 @@ namespace IDataAccessLayer
         string DeleteCampCollect(int CampID);
         object GetIntegralList(int page, int limit);
         int GetUseIntegralNumber();
+        void SaveUserHeadPhoto(string fileName);
     }
 }

@@ -2,19 +2,20 @@
     Layout = null;
 }
 
-<div class="f_dd_con f_dd_con_lw"  id="ng-value" ng-controller="UserHeaderCtrl">
-                	<h3 class="f_igl_tit">头像修改</h3>
-                   	<div class="f_mo_hd clear">
-                    	<div class="f_mo_hd_tit">请选择jpg、gif格式，小于2M的图片（使用高质量图片，可生成高清头像）</div>
-                        <div class="f_mo_hd_img">
-                        	<span class="f_mo_hd_tips">选择一张本地的图片编辑后上传为头像</span>
-                            <img ng-src="../../UploadImg/User/{{photoname}}" ng-show="photoname != ''" />
-                        </div>
-                         <a class="btn_addPic" href="javascript:void(0);" ng-file-select="onFileSelect($files)" data-multiple="false"><span>上传照片</span> </a>
-                        <a class="f_mo_bc" ng-click="SaveHeaderImg();">保存</a> 
-                    </div>
-                	
-                </div>
+<div class="f_dd_con f_dd_con_lw" id="ng-value" ng-controller="UserHeaderCtrl">
+    <h3 class="f_igl_tit">头像修改</h3>
+    <div class="f_mo_hd clear">
+        <div class="f_mo_hd_tit">请选择jpg、gif格式，小于2M的图片（使用高质量图片，可生成高清头像）</div>
+        <div class="f_mo_hd_img">
+            <span class="f_mo_hd_tips" ng-show="photoname == ''">选择一张本地的图片编辑后上传为头像</span>
+            <img ng-src="../../UploadImg/TempFile/{{photoname}}" ng-show="photoname != ''" />
+        </div>
+        <div id="fine-uploader-left" style="float:left; width:140px; height:30px; overflow:hidden;margin-right:25px"></div>
+        &nbsp;
+        <input type="button" class="saveuserattach" value="&nbsp;" ng-click="SaveUserPhoto()" />
+    </div>
+
+</div>
 <script type="text/javascript">
     angular.element(document).ready(function () {
         angular.bootstrap($('body'), ['SO']);

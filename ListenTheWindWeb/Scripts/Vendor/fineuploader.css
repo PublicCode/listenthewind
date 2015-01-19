@@ -10,15 +10,15 @@
     text-align: center;
 }
 .qq-upload-button {
-    background-image:url('Images/plus.png');
+    background-image:url('Images/uploadattach.png');
     position:relative;
-    width:48px;
-    height:48px;
+    width:140px;
+    height:30px;
     display:inline-block;
 }
 
 .qq-upload-button-hover {
-    background-image:url('Images/plus-hover.png');
+    background-image:url('Images/uploadattach.png');
 }
 
 .qq-upload-button-focus {

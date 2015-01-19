@@ -58,6 +58,8 @@ namespace DataAccess.DC
         /// </summary>
         public DateTime? CreateTime { get; set; }
 
+        public string HeadPhoto { get; set; }
+
 
         long ILoggedEntity.Id
         {

@@ -10,6 +10,7 @@ using ComLib.SmartLinq.Energizer.JqGrid;
 using WebModel.Camp;
 using ComLib.Extension;
 using Newtonsoft.Json;
+using System.IO;
 
 namespace DataAccessLayer
 {
@@ -19,6 +20,10 @@ namespace DataAccessLayer
         public UserManager(User user)
         {
             _user = user;
+        }
+
+        public void aa() {
+            File.Move("C:\\Test.txt", "D:\\Test.txt");
         }
 
         public object GetCampCollectByUser()
@@ -128,6 +133,11 @@ namespace DataAccessLayer
             
         }
 
-
+        public void SaveUserHeadPhoto(string fileName)
+        {
+            var u = dc.Users.FirstOrDefault(c => c.UserID == _user.UserID);
+            u.HeadPhoto = fileName;
+            dc.SaveChanges();
+        }
     }
 }

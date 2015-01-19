@@ -315,6 +315,7 @@
     <Content Include="Content\images\h2_3.jpg" />
     <Content Include="Content\images\ph2_1.jpg" />
     <Content Include="Content\images\yz_img1.jpg" />
+    <Content Include="Content\img\saveattach.png" />
     <Content Include="Content\ListenWind.css" />
     <Content Include="Content\style.css" />
     <Content Include="Scripts\ListenWind\city.js" />
@@ -341,6 +342,7 @@
     <Content Include="Scripts\Vendor\angular\angular.min1.2.26.js" />
     <Content Include="Scripts\Vendor\flexslider\flexslider.css" />
     <Content Include="Scripts\Vendor\flexslider\jquery.flexslider.js" />
+    <Content Include="Scripts\Vendor\Images\uploadattach.png" />
     <Content Include="Scripts\Vendor\jquery-2.1.1.js" />
     <Content Include="Scripts\Vendor\jquery-2.1.1.min.js" />
     <Content Include="Scripts\Vendor\ng-file-upload\angular-file-upload-html5-shim.js" />
@@ -843,6 +845,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="UploadImg\TempFile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
