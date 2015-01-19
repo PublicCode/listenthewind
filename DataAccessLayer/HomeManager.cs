@@ -482,12 +482,12 @@ namespace DataAccessLayer
         { 
             if(statusId !=0)
             {
-                var res = dc.campreserves.Include("ReservePile").Include("Listcampreserveatt").Include("ReservePile.MyCamp").Where(c => c.ReserveStatus == statusId);
+                var res = dc.campreserves.Include("ReservePile").Include("Listcampreserveatt").Include("ReservePile.MyCamp").Where(c => c.ReserveStatus == statusId && c.UserID == _user.UserID);
                 return res;
             }
             else
             {
-                var res = dc.campreserves.Include("ReservePile").Include("Listcampreserveatt");
+                var res = dc.campreserves.Include("ReservePile").Include("Listcampreserveatt").Where(c=>c.UserID == _user.UserID);
                 return res;
             }
         }

@@ -51,5 +51,7 @@ namespace WebModel.Camp
         public string CampName {get;set;}
         public int PileID {get;set;}
         public string PileNumber {get;set;}
+        public string CampPhoto { get; set; }
+        public string CampIntro { get; set; }
     }
 }
