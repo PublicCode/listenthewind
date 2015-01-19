@@ -1,5 +1,5 @@
 ﻿<div id="ng-value" ng-controller="CampSammaryCtrl">
-    <div class="f_dd_qx clear">
+    <div class="f_dd_qx clear" data-ng-show="booked.length > 1">
         <div class='f_dd_qx_ck {{checkedall}}' data-ng-click="checkall()">全选</div>
         <button class="f_btns" ng-click="payall()">合并付款</button><div class="g_hb">合计付款金额：<em>{{totalAmt}}</em></div>
     </div>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="f_dd_lt_sw clear">
                     <div class="f_sw_left">
-                        <img src="../../Content/images/more_img1.jpg" />
+                        <img src="../../UploadImg/Camp/{{reserve.campInfo.CampPhoto}}" />
                     </div>
                     <div class="f_sw_right">
                         <div class="f_sw_tit">
@@ -26,7 +26,7 @@
                             <div class="f_sw_state">支付状态：待付款</div>
                         </div>
                         <div class="f_sw_time clear">
-                            <label class="g_w_con">备注备注备注备注备注备注备注备注备注备注</label>
+                            <span ng-bind="reserve.campInfo.CampIntro | ellipsis15" title="{{reserve.campInfo.CampIntro}}"></span>
 
                         </div>
                     </div>

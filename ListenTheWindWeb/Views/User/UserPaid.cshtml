@@ -15,7 +15,7 @@
     </div>
     <div class="f_dd_lt">
         <ul>
-            <li ng-repeat="reserve in pagedItems[currentPage]">
+            <li ng-repeat="reserve in paid">
                 <div class="f_dd_lt_top clear">
                     <div class="f_dd_tit">
                         <div class="f_dd_lt_con">
@@ -26,7 +26,7 @@
                 </div>
                 <div class="f_dd_lt_sw clear">
                     <div class="f_sw_left">
-                        <img src="../../Content/images/more_img1.jpg" />
+                        <img src="../../UploadImg/Camp/{{reserve.campInfo.CampPhoto}}" />
                     </div>
                     <div class="f_sw_right">
                         <div class="f_sw_tit">
@@ -34,7 +34,7 @@
                             <div class="f_sw_state">支付状态：已付款</div>
                         </div>
                         <div class="f_sw_time clear">
-                            <label class="g_w_con">备注备注备注备注备注备注备注备注备注备注</label>
+                            <span ng-bind="reserve.campInfo.CampIntro | ellipsis15" title="{{reserve.campInfo.CampIntro}}"></span>
 
                         </div>
                     </div>
@@ -42,20 +42,8 @@
                 <button class="f_btns f_btns_pos" data-ng-click="askRefund(reserve.CampReserveID)">退款申请</button>
             </li>
             <li >
-                    <div class="pagination pull-right">
-                            <ul>
-                                <li ng-class="{disabled: currentPage == 0}">
-                                    <a href ng-click="prevPage()">前一页</a>
-                                </li>
-                                <li ng-repeat="n in range(pagedItems.length)"
-                                    ng-class="{active: n == currentPage}"
-                                ng-click="setPage()">
-                                    <a href ng-bind="n + 1">1</a>
-                                </li>
-                                <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
-                                    <a href ng-click="nextPage()">后一页</a>
-                                </li>
-                            </ul>
+                        <div class="page_con" ng-show ="totalPages > 1">
+                        	共{{totalRecord}}记录 {{currentPage}}/{{totalPages}}页 <div class="last" ng-click="prevPage();">上一页</div><div class="next" ng-click="nextPage()">下一页</div>
                         </div>
             </li>
         </ul>

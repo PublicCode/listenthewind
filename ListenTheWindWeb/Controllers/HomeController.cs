@@ -127,9 +127,11 @@ namespace AdestoSolution.Controllers
         {
             return PartialView("~/Views/User/UserUnpaid.cshtml");
         }
-        public ActionResult GetAllOrders(int statusId, DateTime? from, DateTime? to)
+        public ActionResult GetAllOrders(int statusId, DateTime? from, DateTime? to, int page, int limit)
         {
-            var listOfReserve = bizLogic.GetListOfReserve(statusId, from, to);
+            if (UserHelper.CurrentUser == null)
+                return Json("SessionOut");
+            var listOfReserve = bizLogic.GetListOfReserve(statusId, from, to, page, limit);
             return Json(listOfReserve);
         }
         public ActionResult PaidView()

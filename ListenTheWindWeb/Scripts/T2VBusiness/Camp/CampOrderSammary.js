@@ -12,10 +12,16 @@
         $http({
             method: 'post',
             url: '/Home/GetAllOrders',
-            data: { statusId: 1 }
+            data: { statusId: 1, page:1, limit:1000000 }
         }).success(function (data) {
-            $scope.booked = data;
-            $scope.pagefor = "Unpaid";
+            if (data == "\"SessionOut\"") {
+                alert("Session失效，将返回首页");
+                window.location.href = "/";
+            }
+            else {
+                $scope.booked = data.rows;
+                $scope.pagefor = "Unpaid";
+            }
         }).error(function (d, s, h, c) {
             alert("error");
             // TODO: Show something like "Username or password invalid."
@@ -25,12 +31,19 @@
         $http({
             method: 'post',
             url: '/Home/GetAllOrders',
-            data: { statusId: 2, from: from, to: to }
+            data: { statusId: 2, from: from, to: to, page: $scope.currentPage, limit: $scope.itemsPerPage }
         }).success(function (data) {
-            $scope.paid = data;
-            $scope.items = data;
-            $scope.pagefor = "Paid";
-            $scope.search();
+            if (data == "\"SessionOut\"") {
+                alert("Session失效，将返回首页");
+                window.location.href = "/";
+            }
+            else {
+                $scope.paid = data.rows;
+                $scope.pagefor = "Paid";
+                $scope.currentPage = data.page;
+                $scope.totalPages = data.total;
+                $scope.totalRecord = data.records;
+            }
         }).error(function (d, s, h, c) {
             alert("error");
             // TODO: Show something like "Username or password invalid."
@@ -40,12 +53,19 @@
         $http({
             method: 'post',
             url: '/Home/GetAllOrders',
-            data: { statusId: 3, from: from, to: to }
+            data: { statusId: 3, from: from, to: to, page: $scope.currentPage, limit: $scope.itemsPerPage }
         }).success(function (data) {
-            $scope.completed = data;
-            $scope.pagefor = "Completed";
-            $scope.items = data;
-            $scope.search();
+            if (data == "\"SessionOut\"") {
+                alert("Session失效，将返回首页");
+                window.location.href = "/";
+            }
+            else {
+                $scope.completed = data.rows;
+                $scope.pagefor = "Completed";
+                $scope.currentPage = data.page;
+                $scope.totalPages = data.total;
+                $scope.totalRecord = data.records;
+            }
         }).error(function (d, s, h, c) {
             alert("error");
             // TODO: Show something like "Username or password invalid."
@@ -95,7 +115,7 @@
             data: { CampReserveID: CampReserveID }
         }).success(function (data) {
             if (data == "\"SessionOut\"") {
-                alert("Session失效，请返回");
+                alert("Session失效，将返回首页");
                 window.location.href = "/";
             }
             else {
@@ -114,7 +134,7 @@
             data: { CampReserveID: CampReserveID }
         }).success(function (data) {
             if (data == "\"SessionOut\"") {
-                alert("Session失效，请返回");
+                alert("Session失效，将返回首页");
                 window.location.href = "/";
             }
             else {
@@ -131,93 +151,31 @@
     *****************************************/
    // $scope.sortingOrder = sortingOrder;
     $scope.reverse = false;
-    $scope.filteredItems = [];
-    $scope.groupedItems = [];
     $scope.itemsPerPage = 4;
     $scope.pagedItems = [];
-    $scope.currentPage = 0;
-
-    var searchMatch = function (haystack, needle) {
-        if (!needle) {
-            return true;
-        }
-        return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
-    };
-
-    // init the filtered items
-    $scope.search = function () {
-        $scope.filteredItems = $filter('filter')($scope.items, function (item) {
-            for (var attr in item) {
-                if (searchMatch(item[attr], $scope.query))
-                    return true;
-            }
-            return false;
-        });
-        // take care of the sorting order
-        if ($scope.sortingOrder !== '') {
-            $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sortingOrder, $scope.reverse);
-        }
-        $scope.currentPage = 0;
-        // now group by pages
-        $scope.groupToPages();
-    };
-
-    // calculate page in place
-    $scope.groupToPages = function () {
-        $scope.pagedItems = [];
-
-        for (var i = 0; i < $scope.filteredItems.length; i++) {
-            if (i % $scope.itemsPerPage === 0) {
-                $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)] = [$scope.filteredItems[i]];
-            } else {
-                $scope.pagedItems[Math.floor(i / $scope.itemsPerPage)].push($scope.filteredItems[i]);
-            }
-        }
-    };
-
-    $scope.range = function (start, end) {
-        var ret = [];
-        if (!end) {
-            end = start;
-            start = 0;
-        }
-        for (var i = start; i < end; i++) {
-            ret.push(i);
-        }
-        return ret;
-    };
+    $scope.currentPage = 1;
+    $scope.totalPages = 0;
+    $scope.totalRecord = 0;
+    
 
     $scope.prevPage = function () {
         if ($scope.currentPage > 0) {
             $scope.currentPage--;
         }
+        if ($scope.pagefor == "Paid")
+            $scope.getAllPaid($scope.searchpara.From, $scope.searchpara.To);
+        else if ($scope.pagefor == "Completed")
+            $scope.getAllCompleted($scope.searchpara.From, $scope.searchpara.To);
+
     };
 
     $scope.nextPage = function () {
-        if ($scope.currentPage < $scope.pagedItems.length - 1) {
+        if ($scope.currentPage < $scope.totalPages) {
             $scope.currentPage++;
         }
-    };
-
-    $scope.setPage = function () {
-        $scope.currentPage = this.n;
-    };
-
-    // change sorting order
-    $scope.sort_by = function (newSortingOrder) {
-        if ($scope.sortingOrder == newSortingOrder)
-            $scope.reverse = !$scope.reverse;
-
-        $scope.sortingOrder = newSortingOrder;
-
-        // icon setup
-        $('th i').each(function () {
-            // icon reset
-            $(this).removeClass().addClass('icon-sort');
-        });
-        if ($scope.reverse)
-            $('th.' + new_sorting_order + ' i').removeClass().addClass('icon-chevron-up');
-        else
-            $('th.' + new_sorting_order + ' i').removeClass().addClass('icon-chevron-down');
+        if ($scope.pagefor == "Paid")
+            $scope.getAllPaid($scope.searchpara.From, $scope.searchpara.To);
+        else if ($scope.pagefor == "Completed")
+            $scope.getAllCompleted($scope.searchpara.From, $scope.searchpara.To);
     };
 }]);

@@ -7,6 +7,8 @@ using IDataAccessLayer;
 using DataAccess.DC;
 using WebModel.Camp;
 using ComLib.Extension;
+using ComLib.SmartLinq.Energizer.JqGrid;
+using ComLib.HTTPResultHelpers;
 
 namespace BizLogic
 {
@@ -86,7 +88,7 @@ namespace BizLogic
             }
             return listOfBasicDataForCamp;
         }
-        public List<campreserveModel> GetListOfReserve(int statusId, DateTime? dateFrom, DateTime? dateTo)
+        public object GetListOfReserve(int statusId, DateTime? dateFrom, DateTime? dateTo, int currentPageIndex, int pageSize)
         {
             var res = homeBase.GetReserve(statusId);
             if (statusId == 2 )
@@ -114,6 +116,8 @@ namespace BizLogic
                 reserveModel.campInfo.CampName = reserve.ReservePile.MyCamp.CampName;
                 reserveModel.campInfo.PileID = reserve.ReservePile.PileID;
                 reserveModel.campInfo.PileNumber  = reserve.ReservePile.PileNumber;
+                reserveModel.campInfo.CampPhoto = reserve.ReservePile.MyCamp.CampPhoto;
+                reserveModel.campInfo.CampIntro = reserve.ReservePile.MyCamp.CampIntro;
                 reserveModel.Listcampreserveatt = new List<campreserveattModel>();
                 reserveModel.TotalAmt = reserve.PilePriceAmt.Value;
                 foreach(campreserveatt att in reserve.Listcampreserveatt)
@@ -125,7 +129,7 @@ namespace BizLogic
                 }
                 listOfReserve.Add(reserveModel);
             }
-            return listOfReserve;
+            return listOfReserve.ToJqGridObject(currentPageIndex, pageSize);
         }
         public string CancelRequest(int CampReserveID)
         {
