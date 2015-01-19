@@ -239,9 +239,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Handler\Encryp.cs" />
-    <Compile Include="Handler\UploadHandler.ashx.cs">
-      <DependentUpon>UploadHandler.ashx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UploadProcess.ashx.cs">
       <DependentUpon>UploadProcess.ashx</DependentUpon>
@@ -917,7 +914,6 @@
     <Content Include="Scripts\Vendor\JqueryUploadify\UploadFile.ashx" />
     <Content Include="DownLoadData\Template\postemplate.xlsx" />
     <Content Include="DownLoadData\Template\quotetemplate.xlsx" />
-    <Content Include="Handler\UploadHandler.ashx" />
     <None Include="Scripts\Vendor\JqueryUploadify\uploadify.fla" />
     <Content Include="Views\Shared\InnerTopBar.cshtml" />
     <Content Include="Views\Admin\User.cshtml" />

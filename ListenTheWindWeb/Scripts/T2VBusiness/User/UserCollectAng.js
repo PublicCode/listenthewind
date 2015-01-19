@@ -42,56 +42,9 @@
     };
 }]);
 
-soNgModule.controller("UserHeaderCtrl", ['$scope', '$routeParams', '$http', '$location', '$upload', function ($scope, $routeParams, $http, $location, $upload) {
+soNgModule.controller("UserHeaderCtrl", ['$scope', '$routeParams', '$http', '$location',  function ($scope, $routeParams, $http, $location) {
     $scope.photoname = '';
-    $scope.onFileSelect = function ($files) {
-        var allowedMime = ['image/jpg', 'image/jpeg', 'image/gif'];
-        var file = $files[0];//audio/mpeg name size type
-        var fileValid = false;
-        allowedMime.forEach(function (v) {
-            if (file.type === v) {
-                fileValid = true;
-            }
-        });
-        if (fileValid) {
-            $scope.photo = file;
-            $scope.photoFormatFlag = true;
-            // Only proceed if the selected file is an image
-            if (/^image/.test(file.type)) {
-                // Create a new instance of the FileReader
-                var reader = new FileReader();
-                // Read the local file as a DataURL
-                reader.readAsDataURL(file);
-                // When loaded, set image data as background of div
-                reader.onloadend = function () {
-                    $scope.photoname = this.result;
-                }
-
-            }
-        }
-        else {
-            $scope.photoFormatFlag = false;
-            $scope.photo = {};
-        }
-    };
-
-    $scope.SaveHeaderImg = function () {
-        alert("sdf");
-        $upload.upload({
-            url: '/User/SaveHeadImg', //upload.php script, node.js route, or servlet url
-            method: 'POST',
-            data: {
-            },
-            file: $scope.photo,
-        }).progress(function (evt) {
-            //$("#progressbarforpic").progressbar({
-            //    value: Math.min(100, parseInt(100.0 * evt.loaded / evt.total))
-            //});
-        }).success(function (data, status, headers, config) {
-        }).error(function (d, s, h, c) {
-            alert("error");
-        });
-    };
+    
     //if (UserCollect.campcollectobj) {
     //    $scope.campcollectobj = JSON.parse(UserCollect.campcollectobj);
     //}
