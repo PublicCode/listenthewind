@@ -44,7 +44,7 @@
         $scope.$apply();
     };
 
-    $scope.bookcamp = function () {
+    $scope.bookcamp = function (flag) {
         if (!$scope.checkUserStatus)
             return false;
         var picked = $scope.selectedDate;
@@ -61,6 +61,12 @@
         //t2v_util.t2vconfirm.showConfirm("确定预定选择的项目?", function () {
         $http.post(SiteRoot + "/SaveReserve", { SelectedDate: picked.split(','), Camp: $scope.camp, PileID: t2v_CampDetail.PileId }).success(function (data, status, headers, config) {
             alert(data);
+            if (flag == "1") {
+                window.location.href = "/Home/CampDetail?CampID=" + $scope.camp.CampID;
+            }
+            else {
+
+            }
             }).error(function (data, status, headers, config) {
                 alert('error');
             });

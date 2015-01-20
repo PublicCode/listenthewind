@@ -12,9 +12,10 @@
         <div class="info-left">
             <div class="user-top">
                 <div class="user-avt">
-                    <img src="../../Content/images/avt1.jpg" />
+                    @*<img ng-src="../../UploadImg/User/{{bdUL.HeadPhoto}}" />*@
+                    <img id="userheaderimg" />
                 </div>
-                <h2>听风用户名</h2>
+                <h2>{{bdUL.UserName}}</h2>
                 <div class="f_sh">
                     风客身份
                 </div>
@@ -47,7 +48,7 @@
         </div>
         <div class="info-right">
             <div class="info-nav">
-                <a href="#" id="nav1" class="current">我的订单</a><a href="javascript:void(0)" id="nav2" onclick="t2v_CampOrders.showUserInfo()">个人资料</a><a href="javascript:void(0)" id="nav3" onclick="t2v_CampOrders.showUserUserIntegral()">我的积分</a>
+                <a href="/User/UserPayBook" id="nav1" class="current">我的订单</a><a href="javascript:void(0)" id="nav2" onclick="t2v_CampOrders.showUserInfo()">个人资料</a><a href="javascript:void(0)" id="nav3" onclick="t2v_CampOrders.showUserUserIntegral()">我的积分</a>
             </div>
             <div id="divUserContent">
                 <div class="f_dd_tab">

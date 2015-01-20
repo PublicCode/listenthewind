@@ -123,7 +123,11 @@ namespace DataAccessLayer
 
         public campModel GetCamp(int CampID,DateTime? dt)
         {
-            int userid = _user.UserID;
+            int userid = 0;
+            if (_user != null)
+            {
+                userid = _user.UserID;
+            }
 
             campModel campmodel = new campModel();
             camp campInDb = GetSingleCamp(CampID);
