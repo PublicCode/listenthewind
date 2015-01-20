@@ -306,6 +306,7 @@
     <Content Include="Content\images\f_gbc.png" />
     <Content Include="Content\images\f_l_bg.png" />
     <Content Include="Content\images\f_n_bg.png" />
+    <Content Include="Content\images\f_sl.jpg" />
     <Content Include="Content\images\gz-img1.jpg" />
     <Content Include="Content\images\gzk.jpg" />
     <Content Include="Content\images\gzs.jpg" />
@@ -841,6 +842,7 @@
     <Content Include="Scripts\Vendor\ng-file-upload\LICENSE" />
     <Content Include="Scripts\Vendor\ng-file-upload\README.md" />
     <Content Include="Views\User\UserHeaderImg.cshtml" />
+    <Content Include="Views\User\UserInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

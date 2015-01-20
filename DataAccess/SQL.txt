@@ -57,6 +57,15 @@ campitem		  BasicID			   int				2014.11.29
 camp			  CampLOD			   varchar(60)      2014.12.01
 user              UserIntegral         int              2015.01.18  
 campprice		  ItemImage			   varchar(50)	    2015.01.18
+user              MailFlag             int              2015.01.18  
+user              MobileFlag           int              2015.01.18  
+user              IDNumberFlag         int              2015.01.18  
+user              IDNumber             varchar(20)      2015.01.19
+user              IDNumberImg1         varchar(200)     2015.01.19 
+user              IDNumberImg2         varchar(200)     2015.01.19  
+
+
+
 
 campreserveatt CampItemName change to varchar(100) 2015-01-17
 

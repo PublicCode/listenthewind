@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using WebModel.Account;
 
 namespace HDS.QMS.Controllers
 {
@@ -39,6 +40,14 @@ namespace HDS.QMS.Controllers
             ViewBag.CampCollectByUser = JsonConvert.SerializeObject(bizLogic.GetCampCollectByUser());
             return View();
         }
+
+        public ActionResult UserInfo()
+        {
+            ViewBag.UserAllInfo = JsonConvert.SerializeObject(bizLogic.GetUserAllInfo());
+            return View();
+        }
+
+        
 
         public string DeleteCampCollect(int CampID)
         {
@@ -90,9 +99,64 @@ namespace HDS.QMS.Controllers
             return true.ToString();
         }
 
+        public string saveIDNumberInfo(UserModel userModel)
+        {
+            string savePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UpLoadPath"]);
+            if (userModel.IDNumberImg1.IndexOf("TempFile") > -1)
+            {
+                var oFile = savePath + userModel.IDNumberImg1;
+                var nFile = savePath + "User\\" + userModel.IDNumberImg1.Replace("TempFile\\", "");
+                System.IO.File.Move(oFile, nFile);
+            }
+            if (userModel.IDNumberImg2.IndexOf("TempFile") > -1)
+            {
+                var oFile = savePath + userModel.IDNumberImg2;
+                var nFile = savePath + "User\\" + userModel.IDNumberImg2.Replace("TempFile\\", "");
+                System.IO.File.Move(oFile, nFile);
+            }
+
+            return bizLogic.saveIDNumberInfo(userModel);
+        }
+        
+
+        public string saveUserBasicInfo(UserModel userModel)
+        {
+            return bizLogic.saveUserBasicInfo(userModel);
+        }
+
+        public string saveUserAuthInfo(UserModel userModel)
+        {
+            return bizLogic.saveUserAuthInfo(userModel);
+        }
+
+        
+
         public object GetIntegralList(int page, int limit)
         {
             return JsonConvert.SerializeObject(bizLogic.GetIntegralList(page, limit));
+        }
+
+        public ActionResult UserIDNumFileUpload()
+        {
+            string savePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UpLoadPath"]) + "TempFile";
+            string strTemp = string.Empty;
+            var fileName = DateTime.Now.Ticks.ToString() + ".jpg";
+            try
+            {
+                using (var inputStream = Request.Files.Count > 0 ? Request.Files[0].InputStream : Request.InputStream)
+                {
+                    using (var flieStream = new FileStream(savePath + @"\" + fileName, FileMode.Create))
+                    {
+                        inputStream.CopyTo(flieStream);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false }, "text/plain");
+                throw ex;
+            }
+            return Json(new { success = true, fileName = "TempFile\\" + fileName }, "text/plain");
         }
     }
 }

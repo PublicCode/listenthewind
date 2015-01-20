@@ -167,6 +167,125 @@ soNgModule.controller("UserIntegralCtrl", ['$scope', '$routeParams', '$http', fu
 
 }]);
 
+soNgModule.controller("UserInfoCtrl", ['$scope', '$routeParams', '$http', '$location', function ($scope, $routeParams, $http, $location) {
+
+    if (UserCollect.UserAllInfoObj) {
+        $scope.UserAllInfoObj = JSON.parse(UserCollect.UserAllInfoObj);
+        if ($scope.UserAllInfoObj.usermodel.IDNumberImg2 != null)
+        {
+            $scope.UserAllInfoObj.usermodel.IDNumberImg2 = "User\\" + $scope.UserAllInfoObj.usermodel.IDNumberImg2;
+        }
+        if ($scope.UserAllInfoObj.usermodel.IDNumberImg1 != null) {
+            $scope.UserAllInfoObj.usermodel.IDNumberImg1 = "User\\" + $scope.UserAllInfoObj.usermodel.IDNumberImg1;
+        }
+    }
+
+    $scope.LogOutTran = function () {
+        if (!$scope.UserAllInfoObj.loginflag) {
+            window.location.href = "/Home/Index";
+        }
+    };
+    $scope.LogOutTran();
+    //$scope.photoname = '';
+
+    $scope.fileUpload = function () {
+        $("#fine-uploader-left1").fineUploader({
+            request: {
+                endpoint: SiteRoot + '/UserIDNumFileUpload'
+            },
+            params: {},
+            multiple: false
+        }).on('validate', function (id, fileName) {
+        }).on('complete', function (event, id, fileName, responseJSON) {
+            if (fileName != false.toString()) {
+                $scope.UserAllInfoObj.usermodel.IDNumberImg1 = responseJSON.fileName;
+                $("#fine-uploader-left1").html("");
+                $scope.fileUpload();
+                $scope.$apply();
+            }
+            else
+                alert("附件上传失败！");
+        });
+    };
+    $scope.fileUpload();
+
+    $scope.fileUpload2 = function () {
+        $("#fine-uploader-left2").fineUploader({
+            request: {
+                endpoint: SiteRoot + '/UserIDNumFileUpload'
+            },
+            params: {},
+            multiple: false
+        }).on('validate', function (id, fileName) {
+        }).on('complete', function (event, id, fileName, responseJSON) {
+            if (fileName != false.toString()) {
+                $scope.UserAllInfoObj.usermodel.IDNumberImg2 = responseJSON.fileName;
+                $("#fine-uploader-left2").html("");
+                $scope.fileUpload();
+                $scope.$apply();
+            }
+            else
+                alert("附件上传失败！");
+        });
+    };
+    $scope.fileUpload2();
+
+    $scope.saveUserBasicInfo = function () {
+        
+        if ($scope.checkUserStatus()) {
+            $http({
+                method: 'post',
+                url: '/User/saveUserBasicInfo',
+                data: $scope.UserAllInfoObj.usermodel,
+            }).success(function (data) {
+                if (data == "True") {
+                    alert("保存成功！");
+                    $scope.$apply();
+                }
+            }).error(function (d, s, h, c) {
+                alert("error");
+            });
+        }
+    };
+
+    $scope.saveUserAuthInfo = function () {
+
+        if ($scope.checkUserStatus()) {
+            $http({
+                method: 'post',
+                url: '/User/saveUserAuthInfo',
+                data: $scope.UserAllInfoObj.usermodel,
+            }).success(function (data) {
+                if (data == "True") {
+                    alert("保存成功！");
+                    $scope.$apply();
+                }
+            }).error(function (d, s, h, c) {
+                alert("error");
+            });
+        }
+    };
+
+    $scope.saveIDNumberInfo = function () {
+
+        if ($scope.checkUserStatus()) {
+            $http({
+                method: 'post',
+                url: '/User/saveIDNumberInfo',
+                data: $scope.UserAllInfoObj.usermodel,
+            }).success(function (data) {
+                if (data == "True") {
+                    alert("保存成功！");
+                    $scope.$apply();
+                }
+            }).error(function (d, s, h, c) {
+                alert("error");
+            });
+        }
+    };
+    
+}]);
+
 
 
 

@@ -11,6 +11,7 @@ using WebModel.Camp;
 using ComLib.Extension;
 using Newtonsoft.Json;
 using System.IO;
+using WebModel.Account;
 
 namespace DataAccessLayer
 {
@@ -138,6 +139,97 @@ namespace DataAccessLayer
             var u = dc.Users.FirstOrDefault(c => c.UserID == _user.UserID);
             u.HeadPhoto = fileName;
             dc.SaveChanges();
+        }
+
+        public string saveUserBasicInfo(UserModel userModel)
+        {
+            try
+            {
+                var u = dc.Users.FirstOrDefault(c => c.UserID == userModel.UserID);
+                u.Sex = userModel.Sex;
+                u.Birth = userModel.Birth;
+                u.Intro = userModel.Intro;
+                dc.SaveChanges();
+                return "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+
+        public string saveUserAuthInfo(UserModel userModel)
+        {
+            try
+            {
+                var u = dc.Users.FirstOrDefault(c => c.UserID == userModel.UserID);
+                if (!u.MailFlag.HasValue || u.MailFlag.Value == 0)
+                {
+                    u.Email = userModel.Email;
+                }
+                if (!u.MobileFlag.HasValue || u.MobileFlag.Value == 0)
+                {
+                    u.Mobile = userModel.Mobile;
+                }
+                dc.SaveChanges();
+                return "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+
+        public string saveIDNumberInfo(UserModel userModel)
+        {
+            try
+            {
+                var u = dc.Users.FirstOrDefault(c => c.UserID == userModel.UserID);
+                if (!u.IDNumberFlag.HasValue || u.IDNumberFlag.Value == 0)
+                {
+                    u.IDNumber = userModel.IDNumber;
+                    u.Name = userModel.Name;
+                    if (userModel.IDNumberImg1.IndexOf("TempFile") > -1)
+                    {
+                        u.IDNumberImg1 = userModel.IDNumberImg1.Replace("TempFile\\", "");
+                    }
+                    if (userModel.IDNumberImg2.IndexOf("TempFile") > -1)
+                    {
+                        u.IDNumberImg2 = userModel.IDNumberImg2.Replace("TempFile\\", "");
+                    }
+                    dc.SaveChanges();
+                }
+                return "True";
+            }
+            catch (Exception ex)
+            {
+                return "False";
+            }
+        }
+
+        public object GetUserAllInfo()
+        {
+            bool flag = true;
+            UserModel usermodel = new UserModel();
+            if (_user == null)
+            {
+                flag = false;
+            }
+            else
+            {
+                User user = dc.Users.FirstOrDefault(c => c.UserID == _user.UserID);
+                if (user != null)
+                {
+                    ModelConverter.Convert<User, UserModel>(user, usermodel);
+                }
+            
+            }
+
+            return new
+            {
+                usermodel = usermodel,
+                loginflag = flag
+            };
         }
     }
 }

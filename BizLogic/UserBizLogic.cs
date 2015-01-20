@@ -7,6 +7,7 @@ using IDataAccessLayer;
 using DataAccess.DC;
 using WebModel.Camp;
 using ComLib.Extension;
+using WebModel.Account;
 
 namespace BizLogic
 {
@@ -42,6 +43,28 @@ namespace BizLogic
         public void SaveUserHeadPhoto(string fileName)
         {
             userBase.SaveUserHeadPhoto(fileName);
+        }
+
+        public string saveUserBasicInfo(UserModel userModel)
+        {
+            return userBase.saveUserBasicInfo(userModel);
+        }
+
+        public string saveUserAuthInfo(UserModel userModel)
+        {
+            return userBase.saveUserAuthInfo(userModel);
+        }
+
+        public string saveIDNumberInfo(UserModel userModel)
+        {
+            return userBase.saveIDNumberInfo(userModel);
+        }
+
+        
+
+        public object GetUserAllInfo()
+        {
+            return userBase.GetUserAllInfo();
         }
     }
 }

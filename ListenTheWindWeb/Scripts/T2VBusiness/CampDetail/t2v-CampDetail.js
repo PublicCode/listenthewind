@@ -97,4 +97,17 @@ var t2v_CampOrders = {
             }
         });
     },
+    showUserInfo: function () {
+        $.ajax({
+            url: "/User/UserInfo",
+            type: 'post',
+            data: {},
+            beforeSend: function () {
+            },
+            success: function (data, status, jqXhr) {
+                $("#divUserContent").html(data);
+            }
+        });
+    }
+    
 }
