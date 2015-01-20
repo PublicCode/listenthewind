@@ -486,7 +486,7 @@ namespace DataAccessLayer
         { 
             if(statusId !=0)
             {
-                var res = dc.campreserves.Include("ReservePile").Include("Listcampreserveatt").Include("ReservePile.MyCamp").Where(c => c.ReserveStatus == statusId && c.UserID == _user.UserID);
+                var res = dc.campreserves.Include("ReservePile").Include("Listcampreserveatt").Include("Listcampreservedate").Include("ReservePile.MyCamp").Where(c => c.ReserveStatus == statusId && c.UserID == _user.UserID);
                 return res;
             }
             else

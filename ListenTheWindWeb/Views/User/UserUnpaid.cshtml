@@ -47,12 +47,28 @@
             </div>
         </div>
         <div>
-            <div style="width: 750px; height: 330px; overflow: hidden; padding: 5px" class="comment-con">
-                <div class="comment-list" style="overflow: auto; height: 300px;">
-                    <h1 style="margin-bottom: 15px;">听风营名:<strong>{{currentreserve.campInfo.CampName}}</strong></h1>
-                    <h1 style="margin-bottom: 15px;">营内桩号:<strong>{{currentreserve.campInfo.PileNumber}}</strong></h1>
-                    <div class="clear" style="min-height: 20px" data-ng-repeat="att in currentreserve.Listcampreserveatt">
-                        <em>{{att.CampItemName}}: 价格￥{{att.CampItemUnitPrice}} 数量 {{att.Qty}} 总金额 ￥{{att.CampItemPriceAmt}}</em><br />
+            <div style="width: 750px; height: 330px; overflow: hidden; padding: 5px; margin:0 auto;" class="comment-con">
+                <div class="comment-list" style="overflow: auto; overflow-x:hidden; height: 300px;">
+                    <table cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td style="width:272px">
+                                <img src="../../UploadImg/Camp/{{currentreserve.campInfo.CampPhoto}}" alt="" style="width:270px" />
+                            </td>
+                            <td style="vertical-align:top; padding:2px 10px;">
+                                <h1 style="margin-bottom: 15px; font-size:18px; color:#000">听风营名:&nbsp; <strong>{{currentreserve.campInfo.CampName}}</strong></h1>
+                                <h1 style="margin-bottom: 15px; font-size:18px; color:#000">营内桩号:&nbsp; <strong>{{currentreserve.campInfo.PileNumber}}</strong></h1>
+                                <h1 style="margin-bottom: 15px; font-size:18px; color:#000">选桩日起:&nbsp; <strong data-ng-repeat="dt in currentreserve.Listcampreservedate">
+                                    {{dt.CampReserveDateForDisplay}} &nbsp; </strong></h1>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <h2 class="h-tit3">便利设施选择</h2>
+                    <div class="clear orderdetail" data-ng-repeat="att in currentreserve.Listcampreserveatt">
+                        <b>{{att.CampItemName}}:</b>&nbsp; &nbsp; 
+                        <b>价格:</b> {{att.CampItemUnitPrice}}&nbsp; &nbsp; 
+                        <b>数量:</b> {{att.Qty}}&nbsp; &nbsp; 
+                        <b>总金额:</b> {{att.CampItemPriceAmt}}<br />
                     </div>
                 </div>
             </div>

@@ -127,6 +127,14 @@ namespace BizLogic
                     reserveModel.Listcampreserveatt.Add(attModel);
                     reserveModel.TotalAmt += att.CampItemPriceAmt.Value;
                 }
+                reserveModel.Listcampreservedate = new List<campreservedateModel>();
+                foreach (campreservedate date in reserve.Listcampreservedate)
+                {
+                    campreservedateModel dateModel = new campreservedateModel();
+                    ModelConverter.Convert<campreservedate, campreservedateModel>(date, dateModel);
+                    dateModel.CampReserveDateForDisplay = date.CampReserveDate == null ? string.Empty : date.CampReserveDate.Value.ToString("yyyy-MM-dd");
+                    reserveModel.Listcampreservedate.Add(dateModel);
+                }
                 listOfReserve.Add(reserveModel);
             }
             return listOfReserve.ToJqGridObject(currentPageIndex, pageSize);

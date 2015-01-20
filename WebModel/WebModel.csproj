@@ -73,6 +73,7 @@
     <Compile Include="Camp\camppileModel.cs" />
     <Compile Include="Camp\camppriceModel.cs" />
     <Compile Include="Camp\campreserveattModel.cs" />
+    <Compile Include="Camp\campreservedateModel.cs" />
     <Compile Include="Camp\campreserveModel.cs" />
     <Compile Include="Camp\camptypeModel.cs" />
     <Compile Include="Camp\homeModel.cs" />

@@ -38,6 +38,7 @@ namespace WebModel.Camp
         public DateTime? FinishedOn { get; set; }
 
         public List<campreserveattModel> Listcampreserveatt { get; set; }
+        public List<campreservedateModel> Listcampreservedate { get; set; }
         public virtual campInfoModel campInfo { get; set; }
 
         public string Choosed { get; set; }
