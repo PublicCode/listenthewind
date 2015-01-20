@@ -78,13 +78,13 @@
             </div>
         </div>
     </div>
-    <div class="cz_p_d modal hide" id="send_suc" style="height: 208px;"><!--提交成功-->
-	    <a href="javascript:void(0)" class="f_close">关闭</a>
+    <div class="cz_p_d modal hide" id="send_suc" style="height: 208px; z-index:1000000;"><!--提交成功-->
+	    <a href="javascript:void(0)" class="f_close" onclick="javascript:$('#send_suc').modal('hide')">关闭</a>
         <h3>提交成功</h3>
         <p>
 		    已经提交成功，稍后会有客服人员与你联系确认事宜，请耐心等待。
 	    </p>
-        <input type="button" class="button" value="确认"/>
+        <input type="button" class="button" value="确认" onclick="javascript:$('#send_suc').modal('hide')"/>
 </div>
 </div>
 

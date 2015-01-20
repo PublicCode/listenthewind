@@ -1266,7 +1266,7 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .f_avt_img_con strong{ float:left; margin-left:9px}
 .f_avt_img_con .f_avt_img_btn{ float:left;height:116px}
 .f_avt_img_con .f_avt_img_btn .f_avt_img_top{ width:170px;height:94px; background:#c0c1c0; margin-bottom:4px}
-.f_sl{ width:252px;height:225px; position:absolute;right:40px;top:0; background:url(images/f_sl.jpg) no-repeat}
+.f_sl{ width:252px;height:225px; position:absolute;right:40px;top:140px; background:url(images/f_sl.jpg) no-repeat}
 .f_wlz{ margin-right:10px}
 .info-right .info-dd-list .input-content .input-list-txt li .sel-fl .select-bg span.f_yx{color:#abadb3}
 .info-right .info-dd-list .input-content .input-list-txt li span strong{ margin-right:10px}
