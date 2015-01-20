@@ -2,6 +2,9 @@
     $scope.initUL = { UserID: 0, UserName: "", errUserName: false, Pwd: "", RePwd: '', errPwd: false, Email: '', Mobile: "", ValidCode:'', errValidCode: false };
     $scope.bdUL = JSON.parse(t2v_HomeIndex.ulInfo);
     $scope.bdShowLayout = function (id) {
+        if (id == "bd_userLogin") {
+            $("#valiCode").attr("src", "/Account/GetValidateCode?time=" + (new Date()).getTime());
+        }
         $(".xb_userLogin").css("display", "none");
         $(".f_pop_tk").css("display", "none");
         $(".cz_p_d").css("display", "none");
@@ -29,6 +32,10 @@
             async: true,
             success: function (data) {
                 $scope.bdUL = JSON.parse(data);
+                if ($scope.bdUL.errValidCode == true)
+                {
+                    $("#valiCode").attr("src", "/Account/GetValidateCode?time=" + (new Date()).getTime());
+                }
                 if ($scope.bdUL.UserID > 0) {
                     $scope.close_userLogin();
                 }
