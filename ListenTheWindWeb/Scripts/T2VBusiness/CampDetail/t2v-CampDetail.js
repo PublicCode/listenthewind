@@ -59,7 +59,12 @@ var t2v_CampOrders = {
             }
         });
     },
+    removeSelectedTabClass: function () {
+        $(".info-nav").find(".current").removeClass("current");
+
+    },
     showUserCollect: function () {
+        t2v_CampOrders.removeSelectedTabClass();
         $.ajax({
             url: "/User/UserCollection",
             type: 'post',
@@ -73,6 +78,8 @@ var t2v_CampOrders = {
     },
 
     showUserUserIntegral: function () {
+        t2v_CampOrders.removeSelectedTabClass();
+        $("#nav3").addClass("current");
         $.ajax({
             url: "/User/UserIntegral",
             type: 'post',
@@ -86,6 +93,7 @@ var t2v_CampOrders = {
     },
 
     showUserHeaderImg: function () {
+        t2v_CampOrders.removeSelectedTabClass();
         $.ajax({
             url: "/User/UserHeaderImg",
             type: 'post',
@@ -98,6 +106,8 @@ var t2v_CampOrders = {
         });
     },
     showUserInfo: function () {
+        t2v_CampOrders.removeSelectedTabClass();
+        $("#nav2").addClass("current");
         $.ajax({
             url: "/User/UserInfo",
             type: 'post',

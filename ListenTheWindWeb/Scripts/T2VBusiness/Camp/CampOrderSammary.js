@@ -8,6 +8,13 @@
     $scope.currentreserve = {};
     $scope.searchpara = {};
     $scope.items = [];
+    if ($scope.bdUL.HeadPhoto == null || $scope.bdUL.HeadPhoto == '') {
+        //$scope.bdUL.HeadPhoto = 'avt1.jpg';
+        $("#userheaderimg").attr("src", "../../UploadImg/User/avt1.jpg");
+    }
+    else {
+        $("#userheaderimg").attr("src", "../../UploadImg/User/" + $scope.bdUL.HeadPhoto);
+    }
     $scope.getAllBooked = function () {
         $http({
             method: 'post',

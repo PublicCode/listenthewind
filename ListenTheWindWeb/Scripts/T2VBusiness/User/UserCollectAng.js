@@ -74,6 +74,8 @@ soNgModule.controller("UserHeaderCtrl", ['$scope', '$routeParams', '$http', '$lo
         }).success(function (data) {
             if (data == "True") {
                 alert("保存成功！");
+                //$scope.$parent.bdUL.HeadPhoto = $scope.photoname;
+                $("#userheaderimg").attr("src", "../../UploadImg/User/" + $scope.photoname);
                 $scope.photoname = ""
             }
         }).error(function (d, s, h, c) {

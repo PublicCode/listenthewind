@@ -795,6 +795,7 @@
     <Content Include="Scripts\Vendor\watermark\jquery.watermark.js" />
     <Content Include="UpdateBrowser.htm" />
     <Content Include="UploadImg\Camp\index.htm" />
+    <Content Include="UploadImg\User\avt1.jpg" />
     <Content Include="UploadImg\User\HtmlPage1.html" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
