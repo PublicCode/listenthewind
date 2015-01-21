@@ -21,6 +21,7 @@ namespace IDataAccessLayer
         List<basicdatacollect> GetBasicData();
         object SaveComments(int CampID, string CommentCon);
         IQueryable<campreserve> GetReserve(int statusId = 0);
+        IQueryable<campreserve> GetReserveByReserveID(int campReserveID);
         string AddCancelRequest(int CampReserveID);
         string CancelOrder(int CampReserveID);
     }

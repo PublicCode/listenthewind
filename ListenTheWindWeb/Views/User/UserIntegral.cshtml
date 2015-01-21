@@ -2,35 +2,81 @@
     Layout = null;
 }
 @using Newtonsoft.Json
-<div class="f_dd_con f_dd_con_lw"  id="ng-value" ng-controller="UserIntegralCtrl">
-                	<h3 class="f_igl_tit">积分管理</h3>
-                    <div class="f_igl_txt">
-                        <span>当前积分：{{bdUL.UserIntegral}}</span><span>已使用积分：{{UsedIntegralSum}}</span>
+<div class="f_dd_con f_dd_con_lw" id="ng-value" ng-controller="UserIntegralCtrl">
+    <h3 class="f_igl_tit">积分管理</h3>
+    <div class="f_igl_txt">
+        <span>当前积分：{{bdUL.UserIntegral}}</span><span>已使用积分：{{UsedIntegralSum}}</span>
+    </div>
+    <div class="f_dd_cet clear">
+        <div class="f_dd_lt">
+            <table cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td>兑换编号</td>
+                    <td>兑换内容</td>
+                    <td>积分数值</td>
+                    <td>消费详细</td>
+                    <td>兑换时间</td>
+                </tr>
+                <tr ng-repeat="row in IntegralList.rows">
+                    <td>{{row.UserIntegralHistoryID}}</td>
+                    <td>{{row.IntegralInfo}}</td>
+                    <td>{{row.SpentIntegral}}</td>
+                    <td><a href="javascript:void(0)" style="color:blue;" ng-click="getCampReserve(row)" ng-show="row.CampID != null">[消费详细]</a></td>
+                    <td>{{row.HappenedDateTime | date:'yyyy年MM月dd日'}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="page_con" ng-show="IntegralList.records > 0">
+            <div class="last" ng-click="prePage()">上一页</div>
+            <div class="next" ng-click="nextPage()">下一页</div>
+            <a href="#">共{{IntegralList.records}}记录 {{IntegralList.page}}/{{IntegralList.total}}页</a>
+        </div>
+    </div>
+    <div id="divSalesDetail" class="modal hide">
+        <div class="modal-header" style="background-color: #9E9500;">
+            <div style="text-align: left; font-weight: bold;">
+                <button type="button" style="float: right; padding: 0 10px" class="DeleteLine" data-dismiss="modal">
+                    X
+                </button>
+                <span style="font-size: 18px;">订单详情 &nbsp;&nbsp;</span>
+            </div>
+        </div>
+        <div>
+            <div style="width: 750px; height: 330px; overflow: hidden; padding: 5px; margin:0 auto;" class="comment-con">
+                <div class="comment-list" style="overflow: auto; overflow-x:hidden; height: 300px;">
+                    <table cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td style="width:272px">
+                                <div style="width:270px; height:170px; overflow:hidden">
+                                    <img src="../../UploadImg/Camp/{{currentreserve.campInfo.CampPhoto}}" alt="" style="width:270px" />
+                                </div>
+                            </td>
+                            <td style="vertical-align:top; padding:2px 10px;">
+                                <h1 style="margin-bottom: 15px; font-size:18px; color:#000">听风营名:&nbsp; <strong>{{currentreserve.campInfo.CampName}}</strong></h1>
+                                <h1 style="margin-bottom: 15px; font-size:18px; color:#000">营内桩号:&nbsp; <strong>{{currentreserve.campInfo.PileNumber}}</strong></h1>
+                                <h1 style="margin-bottom: 15px; font-size:18px; color:#000">选桩日起:&nbsp; <strong data-ng-repeat="dt in currentreserve.Listcampreservedate">
+                                    {{dt.CampReserveDateForDisplay}} &nbsp; </strong></h1>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <h2 class="h-tit3">便利设施选择</h2>
+                    <div class="clear orderdetail" data-ng-repeat="att in currentreserve.Listcampreserveatt">
+                        <b>{{att.CampItemName}}:</b>&nbsp; &nbsp; 
+                        <b>价格:</b> {{att.CampItemUnitPrice}}&nbsp; &nbsp; 
+                        <b>数量:</b> {{att.Qty}}&nbsp; &nbsp; 
+                        <b>总金额:</b> {{att.CampItemPriceAmt}}<br />
                     </div>
-                	<div class="f_dd_cet clear">
-                        <div class="f_dd_lt">
-                        	<table>
-                                <tr class="f_dd_tit">
-                                    <td>兑换编号</td>
-                                    <td>兑换内容</td>
-                                    <td>积分数值</td>
-                                    <td>消费详细</td>
-                                    <td>兑换时间</td>
-                                </tr>
-                                <tr ng-repeat="row in IntegralList.rows">
-                                    <td>{{row.UserIntegralHistoryID}}</td>
-                                    <td>{{row.IntegralInfo}}</td>
-                                    <td>{{row.SpentIntegral}}</td>
-                                    <td><a ng-show="row.CampID != null">消费详细</a></td>
-                                    <td>{{row.HappenedDateTime | date:'yyyy年MM月dd日'}}</td>
-                                </tr>
-                        	</table>
-                        </div>
-                        <div class="page_con" ng-show ="IntegralList.records > 0">
-                        	共{{IntegralList.records}}记录 {{IntegralList.page}}/{{IntegralList.total}}页 <div class="last" ng-click="prePage();">上一页</div><div class="next" ng-click="nextPage()">下一页</div>
-                        </div>
+                    <div style="text-align:right; border-top:1px solid #ddd; padding-top:3px; margin-top:5px;">
+                        <b>听风营地合计：</b> {{currentreserve.PilePriceAmt}}
+                        <br />
+                        <b>总价合计：</b> {{currentreserve.TotalAmt}}
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
     UserCollect.IntegralList = @Html.Raw(JsonConvert.SerializeObject(ViewBag.UserIntegralList));
     UserCollect.UsedIntegralSum = @Html.Raw(JsonConvert.SerializeObject(ViewBag.UsedIntegralSum));
