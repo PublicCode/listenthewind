@@ -106,7 +106,7 @@
     };
     $scope.showDetail = function (reserve) {
         $scope.currentreserve = reserve;
-         $("#divOrderDetail").css("left", screen.width / 2 - 60).css("height", "400px").css("width", "800px");
+        $("#divOrderDetail").css("left", screen.width / 2 - 60).css("height", "500px").css("width", "800px");
         $('#divOrderDetail').modal('show');
     };
     $scope.searchpassed = function (from, to) {

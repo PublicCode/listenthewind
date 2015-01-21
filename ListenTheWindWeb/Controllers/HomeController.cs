@@ -104,9 +104,6 @@ namespace AdestoSolution.Controllers
         {
             return View("~/Views/shared/ComingSoon.cshtml");
         }
-
-        
-
         public string GetNewNumber(string TypeName,string strFirstChar)
         {
             IHomeManager homeManager = new HomeManager();
@@ -133,6 +130,12 @@ namespace AdestoSolution.Controllers
                 return Json("SessionOut");
             var listOfReserve = bizLogic.GetListOfReserve(statusId, from, to, page, limit);
             return Json(listOfReserve);
+        }
+        public ActionResult GetReserveByReserveID(int campReserveId) {
+            if (UserHelper.CurrentUser == null)
+                return Json("SessionOut");
+            var res = bizLogic.GetReserveByReserveID(campReserveId);
+            return Json(res);
         }
         public ActionResult PaidView()
         {

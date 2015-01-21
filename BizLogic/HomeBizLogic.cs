@@ -147,5 +147,39 @@ namespace BizLogic
         {
             return homeBase.CancelOrder(CampReserveID);
         }
+
+        public object GetReserveByReserveID(int campReserveID)
+        {
+            var reserve = homeBase.GetReserveByReserveID(campReserveID).SingleOrDefault();
+            var reserveModel = new campreserveModel();
+                
+            ModelConverter.Convert<campreserve, campreserveModel>(reserve,reserveModel);
+            reserveModel.campInfo = new campInfoModel();
+            reserveModel.campInfo.CampId = reserve.ReservePile.CampID;
+            reserveModel.campInfo.CampName = reserve.ReservePile.MyCamp.CampName;
+            reserveModel.campInfo.PileID = reserve.ReservePile.PileID;
+            reserveModel.campInfo.PileNumber  = reserve.ReservePile.PileNumber;
+            reserveModel.campInfo.CampPhoto = reserve.ReservePile.MyCamp.CampPhoto;
+            reserveModel.campInfo.CampIntro = reserve.ReservePile.MyCamp.CampIntro;
+            reserveModel.Listcampreserveatt = new List<campreserveattModel>();
+            reserveModel.TotalAmt = reserve.PilePriceAmt.Value;
+            foreach(campreserveatt att in reserve.Listcampreserveatt)
+            {
+                campreserveattModel attModel = new campreserveattModel();
+                ModelConverter.Convert<campreserveatt, campreserveattModel>(att, attModel);
+                reserveModel.Listcampreserveatt.Add(attModel);
+                reserveModel.TotalAmt += att.CampItemPriceAmt.Value;
+            }
+            reserveModel.Listcampreservedate = new List<campreservedateModel>();
+            foreach (campreservedate date in reserve.Listcampreservedate)
+            {
+                campreservedateModel dateModel = new campreservedateModel();
+                ModelConverter.Convert<campreservedate, campreservedateModel>(date, dateModel);
+                dateModel.CampReserveDateForDisplay = date.CampReserveDate == null ? string.Empty : date.CampReserveDate.Value.ToString("yyyy-MM-dd");
+                reserveModel.Listcampreservedate.Add(dateModel);
+            }
+
+            return reserveModel;
+        }
     }
 }

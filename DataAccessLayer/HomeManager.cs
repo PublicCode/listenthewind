@@ -495,5 +495,10 @@ namespace DataAccessLayer
                 return res;
             }
         }
+        public IQueryable<campreserve> GetReserveByReserveID(int campReserveID)
+        {
+            var res = dc.campreserves.Include("ReservePile").Include("Listcampreserveatt").Include("Listcampreservedate").Include("ReservePile.MyCamp").Where(c => c.CampReserveID == campReserveID && c.UserID == _user.UserID);
+            return res;
+        }
     }
 }

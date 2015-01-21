@@ -167,6 +167,28 @@ soNgModule.controller("UserIntegralCtrl", ['$scope', '$routeParams', '$http', fu
         });
     };
 
+    $scope.currentreserve = [];
+    $scope.getCampReserve = function (v) {
+        $scope.currentreserve = [];
+
+        $.ajax({
+            url: "/Home/GetReserveByReserveID",
+            type: 'post',
+            data: { campReserveId: v.CampReserveID },
+            beforeSend: function () {
+            },
+            success: function (data, status, jqXhr) {
+                if (data == "SessionOut") {
+                    alert("session失效，请重新登陆！")
+                    window.location.href = "/Home/Index";
+                }
+                $scope.currentreserve = data;
+                $scope.$apply();
+                $("#divSalesDetail").css("left", screen.width / 2 - 60).css("height", "500px").css("width", "800px");
+                $('#divSalesDetail').modal('show');
+            }
+        });
+    };
 }]);
 
 soNgModule.controller("UserInfoCtrl", ['$scope', '$routeParams', '$http', '$location', function ($scope, $routeParams, $http, $location) {
