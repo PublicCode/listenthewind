@@ -277,6 +277,8 @@ namespace HDS.QMS.Controllers
                     Name = info.UserName
                 };
                 uInfo = accountHelper.CreateUser(uInfo);
+                Session.RemoveAll();
+                Session["user"] = uInfo;
                 createFlag = true;
                 ModelConverter.Convert<User, UserModel>(uInfo, info); 
             }
