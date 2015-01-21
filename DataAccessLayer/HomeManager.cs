@@ -398,7 +398,7 @@ namespace DataAccessLayer
                     campres.Listcampreserveatt = new List<campreserveatt>();
                     foreach (camppriceModel campPrice in SelectedItem)
                     {
-                        if (campPrice.Checked)
+                        if (campPrice.Qty > 0)
                         {
                             campprice camppriceDB = campDB.Listcampprice.FirstOrDefault(c => c.CampPriceID == campPrice.CampPriceID);
                             campreserveatt campresatt = new campreserveatt();

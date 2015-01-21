@@ -197,6 +197,7 @@ namespace DataAccessLayer
                     {
                         u.IDNumberImg2 = userModel.IDNumberImg2.Replace("TempFile\\", "");
                     }
+                    u.IDNumberFlag = 0;
                     dc.SaveChanges();
                 }
                 return "True";
