@@ -55,6 +55,10 @@
                 if (data == "True") {
                     $scope.bdUL = angular.copy($scope.initUL);
                     $scope.$apply();
+                    if (document.location.href.indexOf("/User/UserPayBook") > -1)
+                    {
+                        window.location.href = "/";
+                    }
                 }
                 else
                     alert(data);
