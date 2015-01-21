@@ -245,7 +245,7 @@ soNgModule.controller("UserInfoCtrl", ['$scope', '$routeParams', '$http', '$loca
             if (fileName != false.toString()) {
                 $scope.UserAllInfoObj.usermodel.IDNumberImg2 = responseJSON.fileName;
                 $("#fine-uploader-left2").html("");
-                $scope.fileUpload();
+                $scope.fileUpload2();
                 $scope.$apply();
             }
             else
