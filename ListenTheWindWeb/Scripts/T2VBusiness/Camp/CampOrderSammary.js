@@ -123,25 +123,26 @@
         if ($scope.pagefor == "Completed")
             $scope.getAllCompleted(from, to);
     };
-    $scope.askRefund = function (CampReserveID) {
-        $('#send_suc').modal('show');
-        //$http({
-        //    method: 'post',
-        //    url: '/Home/CancelRequest',
-        //    data: { CampReserveID: CampReserveID }
-        //}).success(function (data) {
-        //    if (data == "\"SessionOut\"") {
-        //        alert("Session失效，将返回首页");
-        //        window.location.href = "/";
-        //    }
-        //    else {
-        //        $scope.getAllPaid($scope.searchpara.From, $scope.searchpara.To);
-        //        $('#send_suc').modal('show');
-        //    }
-        //}).error(function (d, s, h, c) {
-        //    alert("error");
-        //    // TODO: Show something like "Username or password invalid."
-        //});
+    $scope.askRefund = function (CampReserveID,index) {
+        //$('#send_suc').modal('show');
+        $http({
+            method: 'post',
+            url: '/Home/CancelRequest',
+            data: { CampReserveID: CampReserveID }
+        }).success(function (data) {
+            if (data == "\"SessionOut\"") {
+                alert("Session失效，将返回首页");
+                window.location.href = "/";
+            }
+            else {
+                //$scope.getAllPaid($scope.searchpara.From, $scope.searchpara.To);
+                $scope.paid.splice(index, 1);
+                $('#send_suc').modal('show');
+            }
+        }).error(function (d, s, h, c) {
+            alert("error");
+            // TODO: Show something like "Username or password invalid."
+        });
     };
     $scope.deleteReserve = function (CampReserveID) {
         $http({
