@@ -189,11 +189,11 @@ namespace DataAccessLayer
                 {
                     u.IDNumber = userModel.IDNumber;
                     u.Name = userModel.Name;
-                    if (userModel.IDNumberImg1.IndexOf("TempFile") > -1)
+                    if (userModel.IDNumberImg1 != null && userModel.IDNumberImg1.IndexOf("TempFile") > -1)
                     {
                         u.IDNumberImg1 = userModel.IDNumberImg1.Replace("TempFile\\", "");
                     }
-                    if (userModel.IDNumberImg2.IndexOf("TempFile") > -1)
+                    if (userModel.IDNumberImg2 != null && userModel.IDNumberImg2.IndexOf("TempFile") > -1)
                     {
                         u.IDNumberImg2 = userModel.IDNumberImg2.Replace("TempFile\\", "");
                     }

@@ -102,13 +102,13 @@ namespace HDS.QMS.Controllers
         public string saveIDNumberInfo(UserModel userModel)
         {
             string savePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UpLoadPath"]);
-            if (userModel.IDNumberImg1.IndexOf("TempFile") > -1)
+            if (userModel.IDNumberImg1 != null && userModel.IDNumberImg1.IndexOf("TempFile") > -1)
             {
                 var oFile = savePath + userModel.IDNumberImg1;
                 var nFile = savePath + "User\\" + userModel.IDNumberImg1.Replace("TempFile\\", "");
                 System.IO.File.Move(oFile, nFile);
             }
-            if (userModel.IDNumberImg2.IndexOf("TempFile") > -1)
+            if (userModel.IDNumberImg2 != null && userModel.IDNumberImg2.IndexOf("TempFile") > -1)
             {
                 var oFile = savePath + userModel.IDNumberImg2;
                 var nFile = savePath + "User\\" + userModel.IDNumberImg2.Replace("TempFile\\", "");
