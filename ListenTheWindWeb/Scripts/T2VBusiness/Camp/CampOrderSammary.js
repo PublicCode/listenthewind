@@ -15,6 +15,14 @@
     else {
         $("#userheaderimg").attr("src", "../../UploadImg/User/" + $scope.bdUL.HeadPhoto);
     }
+    $("#IDNumberTrue").removeClass("crr");
+    $("#IDNumberFlase").removeClass("crr");
+    if ($scope.bdUL.IDNumberFlag == 1) {
+        $("#IDNumberTrue").addClass("crr");
+    }
+    else {
+        $("#IDNumberFlase").addClass("crr");
+    }
     $scope.getAllBooked = function () {
         $http({
             method: 'post',
