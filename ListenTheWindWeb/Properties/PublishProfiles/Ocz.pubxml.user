@@ -57,7 +57,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/18/2014 22:00:05</publishTime>
     </File>
     <File Include="bin/HDS.QMS.dll">
-      <publishTime>01/21/2015 20:56:30</publishTime>
+      <publishTime>01/21/2015 20:58:30</publishTime>
     </File>
     <File Include="bin/ICSharpCode.SharpZipLib.dll">
       <publishTime>11/18/2014 22:00:05</publishTime>
@@ -2656,6 +2656,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="UploadImg/index.htm">
       <publishTime>12/12/2013 14:52:07</publishTime>
+    </File>
+    <File Include="UploadImg/TempFile/HtmlPage1.html">
+      <publishTime>01/21/2015 20:57:28</publishTime>
     </File>
     <File Include="UploadImg/User/avt1.jpg">
       <publishTime>01/20/2015 20:53:47</publishTime>

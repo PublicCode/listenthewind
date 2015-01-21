@@ -40,7 +40,7 @@ namespace DataAccess.DC
         [Display(Name = "Last Name")]
         public string Name { get; set; }
 
-        [Required]
+
         [Display(Name="Email")]
         [Column("Mail")]
         [RegularExpression(@"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$",ErrorMessage = "Invalid email format.")]
