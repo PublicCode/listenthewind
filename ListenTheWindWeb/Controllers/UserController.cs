@@ -96,6 +96,9 @@ namespace HDS.QMS.Controllers
             System.IO.File.Move(oFile, nFile);
 
             bizLogic.SaveUserHeadPhoto(tmpFileName);
+            DataAccess.DC.User user = Session["user"] as DataAccess.DC.User;
+            user.HeadPhoto = tmpFileName;
+            Session["user"] = user;
             return true.ToString();
         }
 
