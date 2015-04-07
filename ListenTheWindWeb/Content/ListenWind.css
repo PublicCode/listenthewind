@@ -1240,8 +1240,8 @@ body{font:12px/1.5 "Microsoft YaHei","宋体",sans-serif;color:#000;width:100%;h
 .f_dd_cet .f_dd_not{ padding:20px 0 30px 30px}
 .f_dd_lt li .f_btns_pos{ position:absolute;right:0;bottom:14px;width:60px; padding:3px 0}
 .f_dd_cet .page_con{ float:right; margin-top:10px}
-.page_con .last{ width:40px;height:25px; background:url(images/f_l_bg.png) no-repeat; text-align:center;color:#fff; margin-right:5px;}
-.page_con .next{ width:56px;height:25px; background:url(images/f_n_bg.png) no-repeat;text-align:center;color:#fff; margin-left:5px;}
+.page_con .last{ width:56px; height:25px; background:url(images/f_n_bg.png) top left no-repeat; text-align:center;color:#fff; margin-right:5px;}
+.page_con .next{ width:56px; height:25px; background:url(images/f_n_bg.png) top left no-repeat; text-align:center;color:#fff; margin-left:5px;}
 .page_con div{ float:left; cursor:pointer}
 .page_con a{ float:left;color:#a4a9ae; margin:0 6px}
 .page_con a.crr{color:#2f3443}

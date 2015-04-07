@@ -219,6 +219,7 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CampApprovalController.cs" />
     <Compile Include="Controllers\ExportController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
@@ -845,6 +846,7 @@
     <Content Include="Scripts\Vendor\ng-file-upload\README.md" />
     <Content Include="Views\User\UserHeaderImg.cshtml" />
     <Content Include="Views\User\UserInfo.cshtml" />
+    <Content Include="Views\CampApproval\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
