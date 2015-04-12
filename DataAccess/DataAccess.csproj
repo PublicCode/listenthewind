@@ -94,6 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DC\approvalcamp.cs" />
     <Compile Include="DC\basicdatacollect.cs" />
     <Compile Include="DC\campcollect.cs" />
     <Compile Include="DC\campcomment.cs" />

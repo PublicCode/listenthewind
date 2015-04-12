@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountManager.cs" />
+    <Compile Include="ApprovalCampManager.cs" />
     <Compile Include="BaseManager.cs" />
     <Compile Include="ExportManager.cs" />
     <Compile Include="HomeManager.cs" />
