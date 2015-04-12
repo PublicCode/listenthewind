@@ -64,9 +64,6 @@ user              IDNumber             varchar(20)      2015.01.19
 user              IDNumberImg1         varchar(200)     2015.01.19 
 user              IDNumberImg2         varchar(200)     2015.01.19  
 
-
-
-
 campreserveatt CampItemName change to varchar(100) 2015-01-17
 
 2015.01.18    
@@ -86,3 +83,206 @@ cancelreserve
 ID	int	11	0	0	-1	0	0	0		0					-1	0 自增长
 CampReserveID	int	11	0	-1	0	0	0	0		0					0	0
 CancelledOn	datetime	0	0	-1	0	0	0	0		0					0	0
+
+2015.04.12
+DROP TABLE IF EXISTS `approvalcamp`;
+CREATE TABLE `approvalcamp` (
+  `CampID` int(11) NOT NULL AUTO_INCREMENT,
+  `CampHostID` int(11) DEFAULT NULL,
+  `CampNum` varchar(20) DEFAULT NULL,
+  `CampName` varchar(20) DEFAULT NULL,
+  `CampLevel` int(11) DEFAULT NULL,
+  `LocID` int(11) DEFAULT NULL,
+  `PilePrice` decimal(10,2) DEFAULT NULL,
+  `CampAddress` varchar(100) DEFAULT NULL,
+  `Active` int(11) DEFAULT NULL,
+  `CreateTime` datetime DEFAULT NULL,
+  `ModifyTime` datetime DEFAULT NULL,
+  `CampIntro` varchar(255) DEFAULT NULL,
+  `Latitude` decimal(10,2) DEFAULT NULL,
+  `Longitude` decimal(10,2) DEFAULT NULL,
+  `CampPic` varchar(50) DEFAULT NULL,
+  `CampPhoto` varchar(100) DEFAULT NULL,
+  `CampLOD` varchar(60) DEFAULT NULL,
+  `CreateByID` int(11) DEFAULT NULL,
+  `CreateByName` varchar(50) DEFAULT NULL,
+  `ManagedByID` int(11) DEFAULT NULL,
+  `ManagedByName` varchar(50) DEFAULT NULL,
+  `RejectReason` varchar(255) DEFAULT NULL,
+  `ApprovalStatus` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`CampID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for approvalcampcollect
+-- ----------------------------
+DROP TABLE IF EXISTS `approvalcampcollect`;
+CREATE TABLE `approvalcampcollect` (
+  `CampCollectID` int(11) NOT NULL AUTO_INCREMENT,
+  `CampID` int(11) DEFAULT NULL,
+  `UserID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`CampCollectID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for approvalcampcomment
+-- ----------------------------
+DROP TABLE IF EXISTS `approvalcampcomment`;
+CREATE TABLE `approvalcampcomment` (
+  `CampCommentID` int(11) NOT NULL AUTO_INCREMENT,
+  `CampID` int(11) DEFAULT NULL,
+  `UserID` int(11) DEFAULT NULL,
+  `CommentCon` varchar(500) DEFAULT NULL,
+  `CommentRes` varchar(500) DEFAULT NULL,
+  `CommentTime` datetime DEFAULT NULL,
+  `ResponseTime` datetime DEFAULT NULL,
+  `UserName` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`CampCommentID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for approvalcamphost
+-- ----------------------------
+DROP TABLE IF EXISTS `approvalcamphost`;
+CREATE TABLE `approvalcamphost` (
+  `CampHostID` int(11) NOT NULL AUTO_INCREMENT,
+  `UserID` int(11) DEFAULT NULL,
+  `CampHostPhoto` varchar(50) DEFAULT NULL,
+  `CampHostIntro` varchar(500) DEFAULT NULL,
+  `Active` int(11) DEFAULT NULL,
+  `CampID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`CampHostID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for approvalcamphostlanguage
+-- ----------------------------
+DROP TABLE IF EXISTS `approvalcamphostlanguage`;
+CREATE TABLE `approvalcamphostlanguage` (
+  `CampHostLanguageID` int(11) NOT NULL AUTO_INCREMENT,
+  `CampHostID` int(11) DEFAULT NULL,
+  `Language` varchar(10) DEFAULT NULL,
+  `CampID` int(11) DEFAULT NULL,
+  `BasicID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`CampHostLanguageID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for approvalcampitem
+-- ----------------------------
+DROP TABLE IF EXISTS `approvalcampitem`;
+CREATE TABLE `approvalcampitem` (
+  `CampItemID` int(11) NOT NULL AUTO_INCREMENT,
+  `CampID` int(11) DEFAULT NULL,
+  `CampItemName` varchar(20) DEFAULT NULL,
+  `CampItemIcon` varchar(50) DEFAULT NULL,
+  `CampItemSort` int(11) DEFAULT NULL,
+  `BasicID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`CampItemID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for approvalcampphoto
+-- ----------------------------
+DROP TABLE IF EXISTS `approvalcampphoto`;
+CREATE TABLE `approvalcampphoto` (
+  `CampPhotoID` int(11) NOT NULL AUTO_INCREMENT,
+  `CampID` int(11) DEFAULT NULL,
+  `CampPhoteFile` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`CampPhotoID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for approvalcamppile
+-- ----------------------------
+DROP TABLE IF EXISTS `approvalcamppile`;
+CREATE TABLE `approvalcamppile` (
+  `PileID` int(11) NOT NULL AUTO_INCREMENT,
+  `CampID` int(11) DEFAULT NULL,
+  `PileNumber` varchar(20) DEFAULT NULL,
+  `Active` int(11) DEFAULT NULL,
+  PRIMARY KEY (`PileID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for approvalcampprice
+-- ----------------------------
+DROP TABLE IF EXISTS `approvalcampprice`;
+CREATE TABLE `approvalcampprice` (
+  `CampPriceID` int(11) NOT NULL AUTO_INCREMENT,
+  `CampID` int(11) DEFAULT NULL,
+  `ItemName` varchar(10) DEFAULT NULL,
+  `ItemUnit` varchar(10) DEFAULT NULL,
+  `ItemPrice` decimal(10,2) DEFAULT NULL,
+  `ItemImage` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`CampPriceID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for approvalcampreserve
+-- ----------------------------
+DROP TABLE IF EXISTS `approvalcampreserve`;
+CREATE TABLE `approvalcampreserve` (
+  `CampReserveID` int(11) NOT NULL AUTO_INCREMENT,
+  `CampID` int(11) DEFAULT NULL,
+  `UserID` int(11) DEFAULT NULL,
+  `CampPileID` int(11) DEFAULT NULL,
+  `PilePrice` decimal(10,2) DEFAULT NULL,
+  `Discount` decimal(10,2) DEFAULT NULL,
+  `FinalPilePrice` decimal(10,2) DEFAULT NULL,
+  `Days` int(10) DEFAULT NULL,
+  `PilePriceAmt` decimal(10,2) DEFAULT NULL,
+  `ReserveStatus` int(11) DEFAULT NULL,
+  `Createtime` datetime DEFAULT NULL,
+  `PayTime` datetime DEFAULT NULL,
+  `FinishedOn` datetime DEFAULT NULL,
+  PRIMARY KEY (`CampReserveID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for approvalcampreserveatt
+-- ----------------------------
+DROP TABLE IF EXISTS `approvalcampreserveatt`;
+CREATE TABLE `approvalcampreserveatt` (
+  `CampReserveAttID` int(11) NOT NULL AUTO_INCREMENT,
+  `CampReserveID` int(11) DEFAULT NULL,
+  `CampItemID` int(11) DEFAULT NULL,
+  `CampItemName` varchar(100) DEFAULT NULL,
+  `CampItemUnitPrice` decimal(10,2) DEFAULT NULL,
+  `CampItemDiscount` decimal(10,2) DEFAULT NULL,
+  `CampItemFinalPrice` decimal(10,2) DEFAULT NULL,
+  `Qty` int(11) DEFAULT NULL,
+  `CampItemPriceAmt` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`CampReserveAttID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for approvalcampreservedate
+-- ----------------------------
+DROP TABLE IF EXISTS `approvalcampreservedate`;
+CREATE TABLE `approvalcampreservedate` (
+  `CampReserveDateID` int(11) NOT NULL AUTO_INCREMENT,
+  `CampReserveID` int(11) DEFAULT NULL,
+  `CampPileID` int(11) DEFAULT NULL,
+  `CampID` int(11) DEFAULT NULL,
+  `CampReserveDate` date DEFAULT NULL,
+  PRIMARY KEY (`CampReserveDateID`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for approvalcamptype
+-- ----------------------------
+DROP TABLE IF EXISTS `approvalcamptype`;
+CREATE TABLE `approvalcamptype` (
+  `CampTypeID` int(11) NOT NULL AUTO_INCREMENT,
+  `CampID` int(11) DEFAULT NULL,
+  `CampTypeName` varchar(20) DEFAULT NULL,
+  `BasicID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`CampTypeID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- View structure for vapprovalcamp
+-- ----------------------------
+DROP VIEW IF EXISTS `vapprovalcamp`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `vapprovalcamp` AS SELECT CampID, CampName, RejectReason, CreateByID, CreateByName, ManagedByID, ManagedByName, ApprovalStatus FROM approvalcamp ;
