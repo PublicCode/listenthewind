@@ -15,6 +15,15 @@ namespace DataAccessLayer
 {
     public class ApprovalCampManager : BaseManager, IApprovalCampManager
     {
-
+        protected User _user;
+        public ApprovalCampManager(User user)
+        {
+            _user = user;
+        }
+        public ApprovalCampManager() { }
+        public IEnumerable<approvalcamplist> GetApprovalCampList()
+        {
+            return dc.approvalcamplists.AsQueryable();
+        }
     }
 }

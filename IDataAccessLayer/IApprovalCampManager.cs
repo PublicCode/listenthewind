@@ -9,6 +9,6 @@ namespace IDataAccessLayer
 {
     public interface IApprovalCampManager
     {
-
+        IEnumerable<approvalcamplist> GetApprovalCampList();
     }
 }

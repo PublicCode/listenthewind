@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountHelper.cs" />
+    <Compile Include="ApprovalCampBizLogic.cs" />
     <Compile Include="BaseBizLogic.cs" />
     <Compile Include="ExportBizLogic.cs" />
     <Compile Include="HomeBizLogic.cs" />

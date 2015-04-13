@@ -162,4 +162,15 @@ namespace WebModel.ApprovalCamp
         public string CampTypeName { get; set; }
         public int BasicID { get; set; }
     }
+    public class approvalcamplistModel
+    {
+        public int CampID { get; set; }
+        public string CampName { get; set; }
+        public string RejectReason { get; set; }
+        public int CreateByID { get; set; }
+        public string CreateByName { get; set; }
+        public int ManagedByID { get; set; }
+        public string ManagedByName { get; set; }
+        public int ApprovalStatus { get; set; }
+    }
 }

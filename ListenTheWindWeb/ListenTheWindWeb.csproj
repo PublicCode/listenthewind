@@ -332,6 +332,8 @@
     <Content Include="Scripts\ListenWind\scrollPic.js" />
     <Content Include="Scripts\ListenWind\slider.js" />
     <Content Include="Scripts\ListenWind\widget.js" />
+    <Content Include="Scripts\T2VBusiness\ApprovalCamp\ApprovalCamp.js" />
+    <Content Include="Scripts\T2VBusiness\ApprovalCamp\ApprovalCamp_Ang.js" />
     <Content Include="Scripts\T2VBusiness\Camp\CampOrderSammary.js" />
     <Content Include="Scripts\T2VBusiness\Home\t2v_HomeIndex.js" />
     <Content Include="Scripts\T2VBusiness\Home\t2v_HomeIndex_angular.js" />
