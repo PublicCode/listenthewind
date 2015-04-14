@@ -39,5 +39,8 @@ namespace BizLogic
                 rows = res.ToList()
             };
         }
+        public approvalcampModel GetCamp(int campID, DateTime? dt){
+            return appCampBase.GetCamp(campID, dt);
+        }
     }
 }

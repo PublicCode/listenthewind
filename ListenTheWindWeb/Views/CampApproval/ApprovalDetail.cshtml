@@ -1,0 +1,225 @@
+﻿@using Newtonsoft.Json
+@{
+    Layout = "~/Views/Home/_HomeLayout.cshtml";
+}
+<script src="@Url.Content("~/Scripts/T2VBusiness/ApprovalCamp/ApprovalCamp.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/T2VBusiness/ApprovalCamp/ApprovalCamp_Ang.js")" type="text/javascript"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=uofKCFZ42dto1pTurdaS08SW"></script>
+<script type="text/C#">
+    $(document).ready(function(){
+        $(".tab-nav a").click(function(){
+            var index = $(".tab-nav a").index(this);
+            $(this).addClass("crr").siblings().removeClass("crr")
+            $(".tab-box > div").eq(index).show().siblings().hide();
+			
+        });
+        $('#carousel').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            slideshow: false,
+            itemWidth: 125,
+            itemMargin: 5,
+            asNavFor: '#slider'
+        });
+
+        $('#slider').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            slideshow: false,
+            sync: "#carousel",
+            start: function(slider){
+            }
+        });
+    })
+</script>
+<div class="container" id="ng-value" ng-controller="ApprovalCampDetailCtrl">
+    <h1 class="tit1">听风营地</h1>
+    <div class="detail-con clear">
+        <div class="detail-left">
+            <div class="clear">
+                <div id="slider" class="flexslider2">
+                    <ul class="slides">
+                        <li ng-repeat="campphoto in camp.ModelListcampphoto">
+                            <img src="../../UploadImg/Camp/{{campphoto.CampPhoteFile}}" /></li>
+                    </ul>
+                </div>
+                <div id="carousel" class="flexslider4">
+                    <ul class="slides">
+                        <li ng-repeat="campphoto in camp.ModelListcampphoto" style="margin-right:5px">
+                            <img style="width:123px; height:81px" src="../../UploadImg/Camp/{{campphoto.CampPhoteFile}}" /></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-con">
+                <div class="tab-nav clear"><a href="javascript:void(0)" class="crr">描述</a><a href="javascript:void(0)">营地类型</a><a href="javascript:void(0)">听风桩位置</a><a href="javascript:void(0)" style="margin-right: 0">营地位置</a></div>
+                <div class="tab-box">
+                    <div class="tab-p">
+                        <p>{{camp.CampIntro}}</p>
+                    </div>
+                    <div class="tab-p" style="display: none">
+                        <p>
+                            <span ng-repeat="camptype in camp.ModelListcamptype">{{camptype.CampTypeName}},
+                            </span>
+                        </p>
+                    </div>
+                    <div class="tab-p" style="display: none">
+                        <img style="width: 530px; height: 330px; overflow: hidden" src="../../UploadImg/Camp/{{camp.CampPic}}" />
+                    </div>
+                    <div id="allmap" class="tab-p" style="display: none">
+                    </div>
+                </div>
+            </div>
+            <div class="comment-con">
+                <h2>用户评论</h2>
+                <div class="comment-list">
+                    <ul>
+                        <li class="clear" ng-repeat="campcom in camp.ModelListcampcomment | commentNumber : 2">
+                            <div class="cl-left">
+                                <a href="#">
+                                    <img src="../../Content/images/u_img1.png" /></a>
+                            </div>
+                            <div class="cl-right">
+                                <strong>{{campcom.UserName}}</strong>
+                                <em>{{campcom.CommentTime|  date:'yyyy年MM月dd日 hh:mm'}}</em>
+                                <p>{{campcom.CommentCon}}</p>
+                                <div class="replay" ng-show="campcom.CommentRes.length > 0">回复<p>{{campcom.CommentRes}}</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ck-comment" name="box2">
+                    <a ng-click="ShowMoreCommenScreen();">查看更多评论&gt;&gt;&gt;</a>
+                </div>
+                <div class="textarea-con">
+                    <ng-form name="commentform" novalidate unsaved-warning-form>
+                        <textarea name="commentcon" id="commentcon" ng-model="commentcon" placeholder="请填写评论" required></textarea>
+                        <span class="error" ng-show="commentform.commentcon.$error.required && SaveFlag"> Content is required. </span> 
+                        <a  class="f-btn" ng-click="SaveComment()">发布评论</a>
+                    </ng-form>
+                </div>
+            </div>
+        </div>
+        <div class="detail-right">
+            <div class="price">
+                <div class="x-bg-con" ng-bind-html="camp.CampLevel | toCampLevel"></div>
+                <h1 style="margin-bottom: 15px;">听风编号:{{camp.CampNum}}<strong>{{camp.CampName}}</strong></h1>
+                <div class="rmb" style="line-height: 200%">￥:{{camp.PilePrice}}</div>
+                <div class="tf-ts" style="padding: 15px 0 10px">
+                    <h3 style="line-height: 24px;">听风特色</h3>
+                    <div class="tf-ts-con clear">
+                        <div class="book-left">
+                            <ul>
+                                <li class="rd rdc" ng-repeat="campitem in camp.ModelListcampitem">
+                                    <span ng-bind="campitem.CampItemName"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="pr-submit clear">
+                        <a ng-click="ShowPileScreen();" style="margin-right: 36px; background:#2f3443">在线预定</a><a ng-click="CampCollect();" style="">收藏保存</a>
+                    </div>
+                </div>
+                <div class="yz_introduction">
+                    <h3>听风营长介绍</h3>
+                    <div class="yz-img">
+                        <img src="../../UploadImg/Camp/{{camp.ModelListcamphost[0].CampHostPhoto}}" />
+                    </div>
+                    <div class="yz-con">
+                        <div class="yz-nav">
+                            <a href="#">营长介绍</a>
+                        </div>
+                        <div class="yz-txt">
+                            <p>{{camp.ModelListcamphost[0].CampHostIntro}}</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="divSelPile" class="modal hide">
+        <div class="modal-header" style="background-color: #9E9500;">
+            <div style="text-align: left; font-weight: bold;">
+                <button type="button" style="float: right; padding: 0 10px" class="DeleteLine" data-dismiss="modal">
+                    X
+                </button>
+                <span style="font-size: 18px;">选择桩号 &nbsp;&nbsp;&nbsp;</span>
+            </div>
+        </div>
+        <div id="divSelPileContent">
+            <div style="width: 750px; height: 330px; overflow: hidden; padding: 5px">
+                <span ng-repeat="camppile in camp.ModelListcamppile">
+                    <input class="SelPileBtn" type="button" value="{{camppile.PileNumber}}" ng-disabled="!camppile.Flag" ng-click="LinkToCampBook(camppile.PileID);" />
+                </span>
+            </div>
+        </div>
+    </div>
+    <div id="divMoreCommenScreen" class="modal hide">
+        <div class="modal-header" style="background-color: #9E9500;">
+            <div style="text-align: left; font-weight: bold;">
+                <button type="button" style="float: right; padding: 0 10px" class="DeleteLine" data-dismiss="modal">
+                    X
+                </button>
+                <span style="font-size: 18px;">评论 &nbsp;&nbsp;</span>
+            </div>
+        </div>
+        <div id="divMoreCommenContent">
+            <div style="width: 750px; height: 330px; overflow: hidden; padding: 5px" class="comment-con">
+                <div class="comment-list" style="overflow:auto; height:300px;">
+                    <ul>
+                        <li class="clear" ng-repeat="campcom in camp.ModelListcampcomment">
+                            <div class="cl-left">
+                                <a href="#">
+                                    <img src="../../Content/images/u_img1.png" /></a>
+                            </div>
+                            <div class="cl-right">
+                                <strong>{{campcom.UserName}}</strong>
+                                <em>{{campcom.CommentTime|  date:'yyyy年MM月dd日 hh:mm'}}</em>
+                                <p>{{campcom.CommentCon}}</p>
+                                <div class="replay" ng-show="campcom.CommentRes.length > 0">回复<p>{{campcom.CommentRes}}</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        ApprovalCamp.CampInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.CampInfo));
+        angular.element(document).ready(function () {
+            angular.bootstrap($('body'), ['SO']);
+            $('#carousel').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: false,
+                slideshow: false,
+                itemWidth: 125,
+                itemMargin: 5,
+                asNavFor: '#slider'
+            });
+
+            $('#slider').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: false,
+                slideshow: false,
+                sync: "#carousel",
+                start: function(slider){
+                }
+            });
+        });
+        $(".tab-nav a").click(function(){
+            var index = $(".tab-nav a").index(this);
+            $(this).addClass("crr").siblings().removeClass("crr")
+            $(".tab-box > div").eq(index).show().siblings().hide();
+			
+        });
+    })
+</script>

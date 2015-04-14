@@ -31,3 +31,31 @@
         });
     };
 }]);
+
+soNgModule.controller("ApprovalCampDetailCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+    if (ApprovalCamp.CampInfo) {
+        $scope.camp = JSON.parse(ApprovalCamp.CampInfo);
+    }
+    $scope.InitMap = function () {
+        //map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+        var map = new BMap.Map("allmap");
+        var point = new BMap.Point($scope.camp.Latitude, $scope.camp.Longitude);
+        map.centerAndZoom(point, 12);
+        var marker = new BMap.Marker(point);  // 创建标注
+        map.addOverlay(marker);
+        map.enableScrollWheelZoom(true);
+    }
+    $scope.InitMap();
+    //Not sure why check user stasus function didn't finish
+    $scope.ShowPileScreen = function () {
+        if ($scope.checkUserStatus()) {
+            $("#divSelPile").css("left", screen.width / 2 - 60).css("height", "400px").css("width", "800px");
+            $('#divSelPile').modal('show');
+        }
+    };
+
+    $scope.ShowMoreCommenScreen = function () {
+        $("#divMoreCommenScreen").css("left", screen.width / 2 - 60).css("height", "400px").css("width", "800px");
+        $('#divMoreCommenScreen').modal('show');
+    };
+}]);

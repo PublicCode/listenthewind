@@ -35,5 +35,12 @@ namespace HDS.QMS.Controllers
         {
             return Json(new { data = bizLogic.GetApprovalCampLstModel(page, limit) }, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult ApprovalDetail(int campID, DateTime? dt)
+        {
+            var campmodel = bizLogic.GetCamp(campID, dt);
+            campmodel.paramDate = dt;
+            ViewBag.CampInfo = JsonConvert.SerializeObject(campmodel);
+            return View();
+        }
     }
 }

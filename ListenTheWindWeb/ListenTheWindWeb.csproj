@@ -849,6 +849,7 @@
     <Content Include="Views\User\UserHeaderImg.cshtml" />
     <Content Include="Views\User\UserInfo.cshtml" />
     <Content Include="Views\CampApproval\Index.cshtml" />
+    <Content Include="Views\CampApproval\ApprovalDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -24,6 +24,7 @@ namespace WebModel.ApprovalCamp
         public int? Active { get; set; }
         public DateTime? CreateTime { get; set; }
         public DateTime? ModifyTime { get; set; }
+        public DateTime? paramDate { get; set; }
 
         public virtual List<approvalcampcommentModel> ModelListcampcomment { get; set; }
         public virtual List<approvalcamphostModel> ModelListcamphost { get; set; }
