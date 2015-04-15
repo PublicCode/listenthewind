@@ -19,5 +19,7 @@ namespace IDataAccessLayer
         object GetUserAllInfo();
         string saveUserAuthInfo(UserModel userModel);
         string saveIDNumberInfo(UserModel userModel);
+
+        List<User> GetAllUserForList();
     }
 }

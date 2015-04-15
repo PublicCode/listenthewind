@@ -232,5 +232,10 @@ namespace DataAccessLayer
                 loginflag = flag
             };
         }
+        public List<User> GetAllUserForList()
+        {
+            List<User> userList = dc.Users.ToList();
+            return userList;
+        }
     }
 }
