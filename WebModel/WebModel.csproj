@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Account\AccountModel.cs" />
     <Compile Include="Account\UserModel.cs" />
+    <Compile Include="ApprovalCamp\approvalcampModel.cs" />
     <Compile Include="Camp\basidatacollectModel.cs" />
     <Compile Include="Camp\campcommentModel.cs" />
     <Compile Include="Camp\camphostlanguageModel.cs" />

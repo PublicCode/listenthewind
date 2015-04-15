@@ -47,7 +47,15 @@ namespace HDS.QMS.Controllers
             return View();
         }
 
-        
+        public ActionResult UserManagement()
+        {
+            return View();
+        }
+
+        public ActionResult GetAllUserList()
+        {
+            return Json(new { listOfUsers = bizLogic.GetAllUserForList() });
+        }
 
         public string DeleteCampCollect(int CampID)
         {

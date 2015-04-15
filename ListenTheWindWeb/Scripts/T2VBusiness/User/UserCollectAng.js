@@ -309,6 +309,21 @@ soNgModule.controller("UserInfoCtrl", ['$scope', '$routeParams', '$http', '$loca
     };
     
 }]);
+soNgModule.controller("UserManagementCtrl", ['$scope', '$routeParams', '$http', '$location', function ($scope, $routeParams, $http, $location) {
+    $scope.userList = [];
+    //$scope.photoname = '';
+    $scope.getAllUsers = function () {
+        $http({
+            method: 'post',
+            url: '/User/GetAllUserList'
+        }).success(function (data) {
+            $scope.userList = data.listOfUsers;
+        }).error(function (d, s, h, c) {
+            alert("error");
+        });
+    };
+    $scope.getAllUsers();
+}]);
 
 
 

@@ -28,6 +28,22 @@ namespace DataAccess.DC
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
         }
+
+        public DbSet<approvalcamp> approvalcamps { get; set; }
+        public DbSet<approvalcampcollect> approvalcampcollects { get; set; }
+        public DbSet<approvalcampcomment> approvalcampcomments { get; set; }
+        public DbSet<approvalcamphost> approvalcamphosts { get; set; }
+        public DbSet<approvalcamphostlanguage> approvalcamphostlanguages { get; set; }
+        public DbSet<approvalcampitem> approvalcampitems { get; set; }
+        public DbSet<approvalcampphoto> approvalcampphotos { get; set; }
+        public DbSet<approvalcamppile> approvalcamppiles { get; set; }
+        public DbSet<approvalcampprice> approvalcampprices { get; set; }
+        public DbSet<approvalcampreserve> approvalcampreserves { get; set; }
+        public DbSet<approvalcampreserveatt> approvalcampreserveatts { get; set; }
+        public DbSet<approvalcampreservedate> approvalcampreservedate { get; set; }
+        public DbSet<approvalcamptype> approvalcamptypes { get; set; }
+        public DbSet<approvalcamplist> approvalcamplists { get; set; }
+
         public DbSet<camp> camps { get; set; }
         public DbSet<campreservedate> campreservedates { get; set; }
         public DbSet<campcomment> campcomments { get; set; }

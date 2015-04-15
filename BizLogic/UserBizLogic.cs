@@ -66,5 +66,18 @@ namespace BizLogic
         {
             return userBase.GetUserAllInfo();
         }
+
+        public List<UserModel> GetAllUserForList()
+        {
+            List<User> userList = userBase.GetAllUserForList();
+            List<UserModel> userModelList = new List<UserModel>();
+            foreach(User user in userList)
+            {
+                UserModel model = new UserModel();
+                ModelConverter.Convert<User, UserModel>(user, model);
+                userModelList.Add(model);
+            }
+            return userModelList;
+        }
     }
 }
