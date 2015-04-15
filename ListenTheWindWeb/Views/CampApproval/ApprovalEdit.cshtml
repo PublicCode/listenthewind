@@ -27,18 +27,22 @@
                 <div class="tab-nav clear"><a href="javascript:void(0)" class="crr">描述</a><a href="javascript:void(0)">营地类型</a><a href="javascript:void(0)">听风桩位置</a><a href="javascript:void(0)" style="margin-right: 0">营地位置</a></div>
                 <div class="tab-box">
                     <div class="tab-p">
-                        <p>{{camp.CampIntro}}</p>
+                        <p><textarea ng-model="camp.CampIntro" class="inputtext02" style="width:99%" rows="10"></textarea></p>
                     </div>
                     <div class="tab-p" style="display: none">
-                        <p>
-                            <span ng-repeat="camptype in camp.ModelListcamptype">{{camptype.CampTypeName}},
-                            </span>
-                        </p>
+                        <ul>
+                            <li ng-repeat="camptype in camp.ModelListcamptype" style="float:left; width:130px">
+                                <input type="checkbox" ng-model="camptype.Checked" />&nbsp; &nbsp; &nbsp;
+                                <span ng-bind="camptype.CampTypeName"></span>
+                            </li>
+                        </ul>
                     </div>
                     <div class="tab-p" style="display: none">
                         <img style="width: 530px; height: 330px; overflow: hidden" src="../../UploadImg/Camp/{{camp.CampPic}}" />
                     </div>
                     <div id="allmap" class="tab-p" style="display: none">
+                        经度： <input type="text" ng-model="camp.Latitude" class="inputtext02" />&nbsp; 
+                        纬度： <input type="text" ng-model="camp.Longitude" class="inputtext02" />
                     </div>
                 </div>
             </div>
@@ -52,10 +56,13 @@
                                     <img src="../../Content/images/u_img1.png" /></a>
                             </div>
                             <div class="cl-right">
+                                <a href="javascript:void(0)" ng-click="deleteComment($index)" style="display:block; float:right">delete</a>
                                 <strong>{{campcom.UserName}}</strong>
                                 <em>{{campcom.CommentTime|  date:'yyyy年MM月dd日 hh:mm'}}</em>
                                 <p>{{campcom.CommentCon}}</p>
-                                <div class="replay" ng-show="campcom.CommentRes.length > 0">回复<p>{{campcom.CommentRes}}</p>
+                                <div class="replay" ng-show="campcom.CommentRes.length > 0">
+                                    <a style="display:block; float:right" ng-click="deleteCommentRes(campcom)">delete</a>
+                                    回复<p>{{campcom.CommentRes}}</p>
                                 </div>
                             </div>
                         </li>
@@ -68,24 +75,22 @@
         </div>
         <div class="detail-right">
             <div>
-                <a href="/CampApproval/ApprovalEdit?campID={{camp.CampID}}&&dt=''">编 &nbsp; 辑</a>
-                <input type="button" value="通 &nbsp; 过" class="" /> &nbsp;
-                <input type="button" value="拒 &nbsp; 绝" class="" /> &nbsp;
+                <input type="button" value="保 &nbsp; 存" ng-click="SaveApprovalCamp('saveBy2')" /> &nbsp;
+                <input type="button" value="提 &nbsp; 交" ng-click="SaveApprovalCamp('submitBy2')" /> &nbsp;
+                <input type="button" value="取 &nbsp; 消" />
             </div>
             <div class="price">
                 <div class="x-bg-con" ng-bind-html="camp.CampLevel | toCampLevel"></div>
-                <h1 style="margin-bottom: 15px;">听风编号:{{camp.CampNum}}<strong>{{camp.CampName}}</strong></h1>
-                <div class="rmb" style="line-height: 200%">￥:{{camp.PilePrice}}</div>
+                <h1 style="margin-bottom: 15px;">听风编号:{{camp.CampNum}}<strong><input type="text" ng-model="camp.CampName" class="inputtext02" /></strong></h1>
+                <div class="rmb" style="line-height: 200%">￥:<input type="text" ng-model="camp.PilePrice" class="inputtext02" /></div>
                 <div class="tf-ts" style="padding: 15px 0 10px">
                     <h3 style="line-height: 24px;">听风特色</h3>
                     <div class="tf-ts-con clear">
-                        <div class="book-left">
-                            <ul>
-                                <li class="rd rdc" ng-repeat="campitem in camp.ModelListcampitem">
-                                    <span ng-bind="campitem.CampItemName"></span>
-                                </li>
-                            </ul>
-                        </div>
+                        <ul>
+                            <li ng-repeat="campitem in camp.ModelListcampitem">
+                                <input type="checkbox" ng-model="campitem.Checked" /><span ng-bind="campitem.CampItemName"></span>
+                            </li>
+                        </ul>
                     </div>
                     <div class="pr-submit clear">
                         <a ng-click="ShowPileScreen();" style="margin-right: 36px; background:#2f3443">在线预定</a><a ng-click="CampCollect();" style="">收藏保存</a>
@@ -102,7 +107,6 @@
                         </div>
                         <div class="yz-txt">
                             <p>{{camp.ModelListcamphost[0].CampHostIntro}}</p>
-
                         </div>
                     </div>
                 </div>
@@ -145,10 +149,13 @@
                                     <img src="../../Content/images/u_img1.png" /></a>
                             </div>
                             <div class="cl-right">
+                                <a href="javascript:void(0)" ng-click="deleteComment($index)" style="display:block; float:right">delete</a>
                                 <strong>{{campcom.UserName}}</strong>
                                 <em>{{campcom.CommentTime|  date:'yyyy年MM月dd日 hh:mm'}}</em>
                                 <p>{{campcom.CommentCon}}</p>
-                                <div class="replay" ng-show="campcom.CommentRes.length > 0">回复<p>{{campcom.CommentRes}}</p>
+                                <div class="replay" ng-show="campcom.CommentRes.length > 0">
+                                    <a style="display:block; float:right" ng-click="deleteCommentRes(campcom)">delete</a>
+                                    回复<p>{{campcom.CommentRes}}</p>
                                 </div>
                             </div>
                         </li>

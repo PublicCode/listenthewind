@@ -850,6 +850,7 @@
     <Content Include="Views\User\UserInfo.cshtml" />
     <Content Include="Views\CampApproval\Index.cshtml" />
     <Content Include="Views\CampApproval\ApprovalDetail.cshtml" />
+    <Content Include="Views\CampApproval\ApprovalEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

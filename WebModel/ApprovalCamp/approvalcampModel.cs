@@ -25,6 +25,11 @@ namespace WebModel.ApprovalCamp
         public DateTime? CreateTime { get; set; }
         public DateTime? ModifyTime { get; set; }
         public DateTime? paramDate { get; set; }
+        public int? CreateByID { get; set; }
+        public string CreateByName { get; set; }
+        public int? ManagedByID { get; set; }
+        public string ManagedByName { get; set; }
+        public string ApprovalStatus { get; set; }
 
         public virtual List<approvalcampcommentModel> ModelListcampcomment { get; set; }
         public virtual List<approvalcamphostModel> ModelListcamphost { get; set; }
@@ -75,6 +80,7 @@ namespace WebModel.ApprovalCamp
         public string CampItemIcon { get; set; }
         public int CampItemSort { get; set; }
         public int BasicID { get; set; }
+        public bool Checked { get; set; }
     }
     public class approvalcampphotoModel
     {
@@ -162,6 +168,7 @@ namespace WebModel.ApprovalCamp
         public int CampID { get; set; }
         public string CampTypeName { get; set; }
         public int BasicID { get; set; }
+        public bool Checked { get; set; }
     }
     public class approvalcamplistModel
     {

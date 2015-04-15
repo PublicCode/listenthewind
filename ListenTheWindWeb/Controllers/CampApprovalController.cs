@@ -15,6 +15,7 @@ using IDataAccessLayer;
 using Newtonsoft.Json;
 using WebModel.Camp;
 using WebModel.Account;
+using WebModel.ApprovalCamp;
 
 namespace HDS.QMS.Controllers
 {
@@ -41,6 +42,21 @@ namespace HDS.QMS.Controllers
             campmodel.paramDate = dt;
             ViewBag.CampInfo = JsonConvert.SerializeObject(campmodel);
             return View();
+        }
+        public ActionResult ApprovalEdit(int campID, DateTime? dt)
+        {
+            var campmodel = bizLogic.GetCamp(campID, dt);
+            campmodel.paramDate = dt;
+            ViewBag.CampInfo = JsonConvert.SerializeObject(campmodel);
+            return View();
+        }
+        public ActionResult SaveApprovalCamp(approvalcampModel info, string ops)
+        {
+            if (ops == "submitBy2")
+            {
+                info.ApprovalStatus = "待审批";
+            }
+            return Json(new { campID = info.CampID });
         }
     }
 }

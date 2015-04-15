@@ -28,6 +28,11 @@ namespace DataAccess.DC
         public int? Active { get; set; }
         public DateTime? CreateTime { get; set; }
         public DateTime? ModifyTime { get; set; }
+        public int? CreateByID { get; set; }
+        public string CreateByName { get; set; }
+        public int? ManagedByID { get; set; }
+        public string ManagedByName { get; set; }
+        public string ApprovalStatus { get; set; }
 
         [ForeignKey("CampID")]
         public virtual ICollection<approvalcampcomment> Listapprovalcampcomment { get; set; }

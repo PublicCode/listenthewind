@@ -35,7 +35,7 @@
 soNgModule.controller("ApprovalCampDetailCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
     if (ApprovalCamp.CampInfo) {
         $scope.camp = JSON.parse(ApprovalCamp.CampInfo);
-    }
+    };
     $scope.InitMap = function () {
         //map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
         var map = new BMap.Map("allmap");
@@ -44,7 +44,7 @@ soNgModule.controller("ApprovalCampDetailCtrl", ['$scope', '$routeParams', '$htt
         var marker = new BMap.Marker(point);  // 创建标注
         map.addOverlay(marker);
         map.enableScrollWheelZoom(true);
-    }
+    };
     $scope.InitMap();
     //Not sure why check user stasus function didn't finish
     $scope.ShowPileScreen = function () {
@@ -59,3 +59,26 @@ soNgModule.controller("ApprovalCampDetailCtrl", ['$scope', '$routeParams', '$htt
         $('#divMoreCommenScreen').modal('show');
     };
 }]);
+
+soNgModule.controller("ApprovalCampEditCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
+    if (ApprovalCamp.CampInfo) {
+        $scope.camp = JSON.parse(ApprovalCamp.CampInfo);
+    };
+    $scope.SaveApprovalCamp = function (type) {
+        $http({
+            method: 'post',
+            url: '/CampApproval/SaveApprovalCamp',
+            data: { info: $scope.camp, ops: type }
+        }).success(function (data) {
+            window.location.href = "/CampApproval/ApprovalDetail?CampID=" + data.campID + "&dt=";
+        }).error(function (d, s, h, c) {
+            alert("error");
+        });
+    };
+    $scope.deleteComment = function (index) {
+        $scope.camp.ModelListcampcomment.splice(index, 1);
+    };
+    $scope.deleteCommentRes = function (model) {
+        model.CommentRes = "";
+    };
+}]); 

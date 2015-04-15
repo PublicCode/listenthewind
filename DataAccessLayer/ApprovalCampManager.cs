@@ -66,14 +66,28 @@ namespace DataAccessLayer
 
             campmodel.ModelListcampitem = new List<approvalcampitemModel>();
 
-            foreach (var campitemInDB in campInDb.Listapprovalcampitem)
+            var campItem = dc.basicdatacollects.Where(c => c.DataType == "campitem").ToList();
+            foreach (var item in campItem)
             {
                 var campitemmodel = new approvalcampitemModel();
-                ModelConverter.Convert<approvalcampitem, approvalcampitemModel>(campitemInDB, campitemmodel);
+                var ci = campInDb.Listapprovalcampitem.FirstOrDefault(c => c.BasicID == item.BasicDataCollectID);
+                if (ci != null)
+                {
+                    ModelConverter.Convert<approvalcampitem, approvalcampitemModel>(ci, campitemmodel);
+                    campitemmodel.Checked = true;
+                }
+                else
+                {
+                    campitemmodel.CampItemID = 0;
+                    campitemmodel.CampID = campInDb.CampID;
+                    campitemmodel.CampItemName = item.DataName;
+                    campitemmodel.CampItemIcon = item.DataIcon;
+                    campitemmodel.CampItemSort = (int)item.DataSort;
+                    campitemmodel.BasicID = item.BasicDataCollectID;
+                    campitemmodel.Checked = false;
+                }
                 campmodel.ModelListcampitem.Add(campitemmodel);
             }
-
-
             campmodel.ModelListcampphoto = new List<approvalcampphotoModel>();
 
             foreach (var campphotoInDB in campInDb.Listapprovalcampphoto)
@@ -134,11 +148,24 @@ namespace DataAccessLayer
             }
 
             campmodel.ModelListcamptype = new List<approvalcamptypeModel>();
-
-            foreach (var camptypeInDB in campInDb.Listapprovalcamptype)
+            var campType = dc.basicdatacollects.Where(c => c.DataType == "camptype").ToList();
+            foreach (var item in campType)
             {
                 var camptypemodel = new approvalcamptypeModel();
-                ModelConverter.Convert<approvalcamptype, approvalcamptypeModel>(camptypeInDB, camptypemodel);
+                var ci = campInDb.Listapprovalcamptype.FirstOrDefault(c => c.BasicID == item.BasicDataCollectID);
+                if (ci != null)
+                {
+                    ModelConverter.Convert<approvalcamptype, approvalcamptypeModel>(ci, camptypemodel);
+                    camptypemodel.Checked = true;
+                }
+                else
+                {
+                    camptypemodel.CampTypeID = 0;
+                    camptypemodel.CampID = campInDb.CampID;
+                    camptypemodel.CampTypeName = item.DataName;
+                    camptypemodel.BasicID = item.BasicDataCollectID;
+                    camptypemodel.Checked = false;
+                }
                 campmodel.ModelListcamptype.Add(camptypemodel);
             }
 
