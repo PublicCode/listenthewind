@@ -86,7 +86,16 @@
                 <input type="button" value="取 &nbsp; 消" ng-click="CancelApprovalCamp()" />
             </div>
             <div class="price">
-                <div class="x-bg-con" ng-bind-html="camp.CampLevel | toCampLevel"></div>
+                <div style="position:absolute;right:0;top:0;width:100px;height:18px;">
+                    营地等级
+                    <select ng-model="camp.CampLevel">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select></div>
                 <h1 style="margin-bottom: 15px;">听风编号:{{camp.CampNum}}<strong><input type="text" ng-model="camp.CampName" class="inputtext02" style="width:120px" /></strong></h1>
                 <div class="rmb" style="line-height: 200%">￥:<input type="text" ng-model="camp.PilePrice" class="inputtext02" /></div>
                 <div class="tf-ts" style="padding: 15px 0 10px">

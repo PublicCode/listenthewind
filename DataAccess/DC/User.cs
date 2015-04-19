@@ -36,7 +36,6 @@ namespace DataAccess.DC
         /// <summary>
         /// LastName
         /// </summary>
-        [Required]
         [Display(Name = "Last Name")]
         public string Name { get; set; }
 

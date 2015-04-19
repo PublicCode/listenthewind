@@ -8,6 +8,7 @@ using DataAccess.DC;
 using WebModel.Camp;
 using ComLib.Extension;
 using WebModel.Account;
+using WebModel.ApprovalCamp;
 
 namespace BizLogic
 {
@@ -60,24 +61,62 @@ namespace BizLogic
             return userBase.saveIDNumberInfo(userModel);
         }
 
+        public UserModel GetUserInfo(int userId)
+        {
+            User user = userBase.GetUserInfo(userId); 
+            UserModel userModel = new UserModel();
+            ModelConverter.Convert<User, UserModel>(user, userModel);
+            return userModel;
+        }
         
-
         public object GetUserAllInfo()
         {
             return userBase.GetUserAllInfo();
         }
 
-        public List<UserModel> GetAllUserForList()
+        public object GetAllUserForList(int page, int limit)
         {
-            List<User> userList = userBase.GetAllUserForList();
-            List<UserModel> userModelList = new List<UserModel>();
-            foreach(User user in userList)
+            return userBase.GetAllUserForList(page, limit);
+        }
+
+        public int CreateUser(UserModel userModel)
+        {
+            User user = new User();
+            ModelConverter.Convert<UserModel, User>(userModel, user);
+            return userBase.CreateUser(user);
+        }
+
+        public bool PassValidate(int userId)
+        {
+            return userBase.PassValidate(userId); 
+        }
+
+        public int  DeleteUser(int userId)
+        {
+            return userBase.DeleteUser(userId); 
+        }
+
+        public object GetAllCampList(int page, int limit)
+        {
+            return userBase.GetAllCampList(page, limit);
+        }
+
+        public List<UserModel> GetAllManagerList()
+        {
+            List<UserModel> managerList = new List<UserModel>();
+            var managerInDb = userBase.GetAllManagerList();
+            foreach(User user in managerInDb)
             {
-                UserModel model = new UserModel();
-                ModelConverter.Convert<User, UserModel>(user, model);
-                userModelList.Add(model);
+                UserModel userModel = new UserModel();
+                ModelConverter.Convert<User, UserModel>(user, userModel);
+                managerList.Add(userModel);
             }
-            return userModelList;
+            return managerList;
+        }
+
+        public int ChooseManager(approvalcampModel approvedCamp)
+        {
+            return userBase.ChooseManager(approvedCamp);
         }
     }
 }

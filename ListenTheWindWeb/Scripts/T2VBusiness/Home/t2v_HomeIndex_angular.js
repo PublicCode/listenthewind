@@ -136,7 +136,7 @@
             var flag = false;
             SiteRoot = SiteRoot.split('/')[0];
             $.ajax({
-                url: SiteRoot + "/Account/CheckUserSession",
+                url:  "/Account/CheckUserSession",
                 type: 'POST',
                 async: false,
                 success: function (data) {
