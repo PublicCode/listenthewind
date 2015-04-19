@@ -286,3 +286,5 @@ CREATE TABLE `approvalcamptype` (
 -- ----------------------------
 DROP VIEW IF EXISTS `vapprovalcamp`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `vapprovalcamp` AS SELECT CampID, CampName, RejectReason, CreateByID, CreateByName, ManagedByID, ManagedByName, ApprovalStatus FROM approvalcamp ;
+
+camp campitem campphoto camppile camptype表去自增ID
