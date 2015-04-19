@@ -253,7 +253,26 @@ soNgModule.controller("UserInfoCtrl", ['$scope', '$routeParams', '$http', '$loca
         });
     };
     $scope.fileUpload2();
-
+    $scope.createUser = function () {
+        if ($scope.checkUserStatus()) {
+            $http({
+                method: 'post',
+                url: '/User/CreateUser',
+                data: $scope.UserAllInfoObj.usermodel,
+            }).success(function (data) {
+                if (data.Code == "Success") {
+                    alert("保存成功！");
+                    $scope.UserAllInfoObj.usermodel.UserID = data;
+                    $scope.$apply();
+                }
+                else {
+                    alert(data.Message);
+                }
+            }).error(function (d, s, h, c) {
+                alert("error");
+            });
+        }
+    };
     $scope.saveUserBasicInfo = function () {
         
         if ($scope.checkUserStatus()) {
@@ -312,19 +331,155 @@ soNgModule.controller("UserInfoCtrl", ['$scope', '$routeParams', '$http', '$loca
 soNgModule.controller("UserManagementCtrl", ['$scope', '$routeParams', '$http', '$location', function ($scope, $routeParams, $http, $location) {
     $scope.userList = [];
     //$scope.photoname = '';
+    $scope.currentUser = {};
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = 4;
+    $scope.totalPages = 0;
+    $scope.totalRecord = 0;
     $scope.getAllUsers = function () {
         $http({
             method: 'post',
-            url: '/User/GetAllUserList'
+            url: '/User/GetAllUserList',
+            data: { page: $scope.currentPage, limit: $scope.itemsPerPage }
         }).success(function (data) {
-            $scope.userList = data.listOfUsers;
+            $scope.userList = data.listOfUsers.rows;
+            $scope.currentPage = data.listOfUsers.page;
+            $scope.totalPages = data.listOfUsers.total;
+            $scope.totalRecord = data.listOfUsers.records;
         }).error(function (d, s, h, c) {
             alert("error");
         });
     };
     $scope.getAllUsers();
+    $scope.prevPage = function () {
+        if ($scope.currentPage > 0) {
+            $scope.currentPage--;
+        }
+        $scope.getAllUsers();
+    };
+
+    $scope.nextPage = function () {
+        if ($scope.currentPage < $scope.totalPages) {
+            $scope.currentPage++;
+        }
+        $scope.getAllUsers();
+    };
+
+    $scope.validateUser = function ($index) {
+        $scope.currentUser = $scope.userList[$index];
+        $("#divValidateUser").css("left", screen.width / 2 - 60).css("height", "400px").css("width", "500px");
+        $('#divValidateUser').modal('show');
+    };
+    $scope.deleteUser = function ($index) {
+        if (!confirm("确认删除用户？")) {
+            return;
+        }
+        $scope.currentUser = $scope.userList[$index];
+        $http({
+            method: 'post',
+            url: '/User/DeleteUser',
+            data: { userId: $scope.currentUser.UserID }
+        }).success(function (data) {
+            if (data.Code == 'Sucess') {
+                $scope.userList.splice($scope.currentUser);
+            }
+            alert(data.Message);
+        }).error(function (d, s, h, c) {
+            alert("error");
+        });
+    };
+    $scope.passValidate = function (userId) {
+        $http({
+            method: 'post',
+            url: '/User/PassValidate',
+            data: { userId: userId }
+        }).success(function (data) {
+            if (data == 'true') {
+                alert("验证成功");
+            }
+        }).error(function (d, s, h, c) {
+            alert("error");
+        });
+    };
 }]);
 
+soNgModule.controller("AssignManagerForCampCtrl", ['$scope', '$routeParams', '$http', '$location', function ($scope, $routeParams, $http, $location) {
+    $scope.campList = [];
+    $scope.myManager = '';
+    $scope.currentCamp = {};
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = 4;
+    $scope.totalPages = 0;
+    $scope.totalRecord = 0;
+    $scope.getAllCamps = function () {
+        $http({
+            method: 'post',
+            url: '/User/GetAllCampList',
+            data: { page: $scope.currentPage, limit: $scope.itemsPerPage }
+        }).success(function (data) {
+            $scope.campList = data.listOfCamps.rows;
+            $scope.currentPage = data.listOfCamps.page;
+            $scope.totalPages = data.listOfCamps.total;
+            $scope.totalRecord = data.listOfCamps.records;
+        }).error(function (d, s, h, c) {
+            alert("error");
+        });
+    };
+    $scope.getAllManager = function () {
+        $http({
+            method: 'post',
+            url: '/User/GetAllManagerList'
+        }).success(function (data) {
+            $scope.managerList = data.managerList;
+        }).error(function (d, s, h, c) {
+            alert("error");
+        });
+    };
+    $scope.getAllCamps();
+    $scope.getAllManager();
+    $scope.prevPage = function () {
+        if ($scope.currentPage > 0) {
+            $scope.currentPage--;
+        }
+        $scope.getAllCamps();
+    };
+
+    $scope.nextPage = function () {
+        if ($scope.currentPage < $scope.totalPages) {
+            $scope.currentPage++;
+        }
+        $scope.getAllCamps();
+    };
+
+    $scope.assignManagerForCamp = function ($index) {
+        $scope.currentCamp = $scope.campList[$index];
+        $("#divCampAssign").css("left", screen.width / 2 - 60).css("height", "400px").css("width", "500px");
+        $('#divCampAssign').modal('show');
+    };
+    $scope.chooseThisManager = function () {
+        if (!confirm("确认选择此用户做为营地管理员？")) {
+            return;
+        }
+        else {
+            if ($scope.checkUserStatus()) {
+                $scope.currentCamp.ManagedByID = $scope.myManager.UserID;
+                $scope.currentCamp.ManagedByName = $scope.myManager.UserName;
+                $http({
+                    method: 'post',
+                    url: '/User/ChooseManager',
+                    data: $scope.currentCamp,
+                }).success(function (data) {
+                    if (data == "True") {
+                        alert("保存成功！");
+                        $scope.$apply();
+                    }
+                }).error(function (d, s, h, c) {
+                    alert("error");
+                });
+            }
+        }
+    };
+}]);
 
 
 

@@ -12,6 +12,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using WebModel.Account;
+using WebModel.ApprovalCamp;
 
 namespace HDS.QMS.Controllers
 {
@@ -29,7 +30,16 @@ namespace HDS.QMS.Controllers
         {
             return View();
         }
-
+        public ActionResult Edit(int userId)
+        {
+            UserModel userModel;
+            if (userId == 0)
+                userModel = new UserModel();
+            else
+                userModel = bizLogic.GetUserInfo(userId);
+            ViewBag.UserModel = JsonConvert.SerializeObject(new { usermodel = userModel, loginflag = true });
+            return View();
+        }
         public ActionResult UserPayBook()
         {
             return View();
@@ -46,17 +56,54 @@ namespace HDS.QMS.Controllers
             ViewBag.UserAllInfo = JsonConvert.SerializeObject(bizLogic.GetUserAllInfo());
             return View();
         }
-
+         [T2VAuthorize]
         public ActionResult UserManagement()
         {
             return View();
         }
-
-        public ActionResult GetAllUserList()
+        [T2VAuthorize]
+        public ActionResult GetAllUserList(int page, int limit)
         {
-            return Json(new { listOfUsers = bizLogic.GetAllUserForList() });
+            return Json(new { listOfUsers = bizLogic.GetAllUserForList(page, limit) });
+        }
+        [T2VAuthorize]
+        public ActionResult AssignManager()
+        {
+            return View();
+        }
+        [T2VAuthorize]
+        public ActionResult GetAllCampList(int page, int limit)
+        {
+            return Json(new { listOfCamps = bizLogic.GetAllCampList(page, limit) });
         }
 
+        [T2VAuthorize]
+        public ActionResult GetAllManagerList()
+        {
+            return Json(new { managerList = bizLogic.GetAllManagerList() });
+        }
+        [T2VAuthorize]
+        public ActionResult ChooseManager(approvalcampModel apprvedCamp)
+        {
+            return Json(new { Code = bizLogic.ChooseManager(apprvedCamp) });
+        }
+        public ActionResult PassValidate(int userId)
+        {
+            return Json(bizLogic.PassValidate(userId));
+        }
+        public ActionResult DeleteUser(int userId)
+        {
+            int res = bizLogic.DeleteUser(userId);
+            switch(res)
+            {
+                case 1:
+                    return Json(new { Code = "Sucess", Message = "删除成功." });
+                case 2:
+                    return Json(new { Code = "Fail", Message = "此用户有管理的营地，请重新分配营地管理员后删除." });
+                case 3: default:
+                    return Json(new { Code = "Fail", Message = "有异常，请联系管理员." });
+            }
+        }
         public string DeleteCampCollect(int CampID)
         {
             return bizLogic.DeleteCampCollect(CampID);
@@ -128,7 +175,16 @@ namespace HDS.QMS.Controllers
 
             return bizLogic.saveIDNumberInfo(userModel);
         }
-        
+        public ActionResult CreateUser(UserModel userModel)
+        {
+            int res = bizLogic.CreateUser(userModel);
+            if (res == -1)
+                return Json(new { Code = "Fail", Message = "用户名或邮箱已存在" });
+            else if (res>0)
+                return Json(new { Code = "Success", Message = "创建成功" });
+            else
+                return Json(new { Code = "Fail", Message = "程序错误" });
+        }
 
         public string saveUserBasicInfo(UserModel userModel)
         {

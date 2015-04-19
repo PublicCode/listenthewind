@@ -20,6 +20,19 @@ namespace IDataAccessLayer
         string saveUserAuthInfo(UserModel userModel);
         string saveIDNumberInfo(UserModel userModel);
 
-        List<User> GetAllUserForList();
+        object GetAllUserForList(int page, int limit);
+        User GetUserInfo(int userId);
+
+        int CreateUser(User user);
+
+        bool PassValidate(int userId);
+
+        int DeleteUser(int userId);
+
+        object GetAllCampList(int page, int limit);
+
+        List<User> GetAllManagerList();
+
+        int ChooseManager(WebModel.ApprovalCamp.approvalcampModel approvedCamp);
     }
 }

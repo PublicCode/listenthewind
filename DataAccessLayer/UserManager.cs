@@ -134,6 +134,59 @@ namespace DataAccessLayer
             
         }
 
+        public int CreateUser(User user)
+        {
+            var userCheck = dc.Users.FirstOrDefault(c=>c.UserName == user.UserName|| c.Email == user.Email);
+            if (userCheck != null)
+            {
+                return -1;
+            }
+            user.CreateTime = DateTime.Now;
+            dc.Users.Add(user);
+            dc.SaveChanges();
+            UserIntegralHistory newUserHistory = new UserIntegralHistory();
+            newUserHistory.UserID = user.UserID;
+            newUserHistory.HappenedDateTime = DateTime.Now;
+            newUserHistory.SpentIntegral = 500;
+            return user.UserID;
+        }
+        public bool PassValidate(int userId)
+        {
+            try
+            {
+                var user = dc.Users.FirstOrDefault(m => m.UserID == userId);
+                user.IDNumberFlag = 1;
+                dc.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        public int DeleteUser(int userId)
+        {
+            try
+            {
+                var campManaged = dc.approvalcamps.FirstOrDefault(c => c.ManagedByID == userId);
+                if (campManaged == null)
+                {
+                    var user = dc.Users.FirstOrDefault(m => m.UserID == userId);
+                    dc.Users.Remove(user);
+                    dc.SaveChanges();
+                    return 1;
+                }
+                else
+                {
+                    return 2;
+                }
+            }
+            catch (Exception ex)
+            {
+                return 3;
+            }
+        }
         public void SaveUserHeadPhoto(string fileName)
         {
             var u = dc.Users.FirstOrDefault(c => c.UserID == _user.UserID);
@@ -232,10 +285,74 @@ namespace DataAccessLayer
                 loginflag = flag
             };
         }
-        public List<User> GetAllUserForList()
+        public object GetAllUserForList(int page, int limit)
         {
-            List<User> userList = dc.Users.ToList();
-            return userList;
+            IEnumerable<User> lstEF = dc.Users;
+            IEnumerable<User> res = lstEF;
+             if (page > 0)
+            {
+                int skipPages = page - 1;
+                res = lstEF.Skip(skipPages * limit);
+            }
+            if (limit > 0)
+            {
+                res = res.Take(limit);
+            }
+            int count = lstEF.Count();
+            return new
+            {
+                total = limit > 0 ? Math.Ceiling((double)count / limit) : 1,
+                page = page,
+                records = count,
+                rows = res.ToList(),
+            };
+        }
+        public object GetAllCampList(int page, int limit)
+        {
+            IEnumerable<approvalcamp> lstEF = dc.approvalcamps;
+            IEnumerable<approvalcamp> res = lstEF;
+            if (page > 0)
+            {
+                int skipPages = page - 1;
+                res = lstEF.Skip(skipPages * limit);
+            }
+            if (limit > 0)
+            {
+                res = res.Take(limit);
+            }
+            int count = lstEF.Count();
+            return new
+            {
+                total = limit > 0 ? Math.Ceiling((double)count / limit) : 1,
+                page = page,
+                records = count,
+                rows = res.ToList(),
+            };
+        }
+        public List<User> GetAllManagerList()
+        {
+            var managerList = dc.Users.Where(m=>m.UserType != "0").ToList();
+            return managerList;
+        }
+        public int ChooseManager(WebModel.ApprovalCamp.approvalcampModel approvedCamp)
+        {
+            try
+            {
+                var campInDb = dc.approvalcamps.FirstOrDefault(m => m.CampID == approvedCamp.CampID);
+                campInDb.ManagedByID = approvedCamp.ManagedByID;
+                campInDb.ManagedByName = approvedCamp.ManagedByName;
+                dc.SaveChanges();
+                return 1;
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+        }
+        public User GetUserInfo(int userId)
+        {
+            User user = dc.Users.FirstOrDefault(c => c.UserID == userId);
+            return user;
         }
     }
 }
