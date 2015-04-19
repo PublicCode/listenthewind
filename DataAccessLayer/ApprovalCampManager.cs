@@ -30,7 +30,9 @@ namespace DataAccessLayer
             if (this._user.UserType == "2")
                 query = query.Where(c => c.CreateByID == this._user.UserID);
             else if (this._user.UserType == "3")
-                query = query.Where(c => c.ManagedByID == this._user.UserID);
+            {
+                query = query.Where(c => c.ManagedByID == this._user.UserID && c.ApprovalStatus == "待审批");
+            }
             return query;
         }
         #endregion
@@ -226,7 +228,7 @@ namespace DataAccessLayer
                             ModelConverter.Convert(nInfo, efInfo);
                             if (efInfo.CampCommentID > 0)
                             {
-                                var origAppCampComment = dc.approvalcampcomments.Where(c => c.CampCommentID == nInfo.CampCommentID).ToList();
+                                var origAppCampComment = dc.approvalcampcomments.FirstOrDefault(c => c.CampCommentID == nInfo.CampCommentID);
                                 if (origAppCampComment != null)
                                 {
                                     dc.Entry(origAppCampComment).CurrentValues.SetValues(efInfo);

@@ -69,14 +69,14 @@
         </div>
         <div class="detail-right">
             <div class="ApprovalBtns">
-                <input type="button" value="编 &nbsp; 辑" ng-click="GoToEdit()" /> &nbsp;
-                <input type="button" value="通 &nbsp; 过" ng-click="ApprovalCamp('submitBy3')" /> &nbsp;
-                <input type="button" value="拒 &nbsp; 绝" ng-click="ShowReject()" />
+                <input type="button" value="编 &nbsp; 辑" ng-show="bdUL.UserType == 2" ng-click="GoToEdit()" /> &nbsp;
+                <input type="button" value="通 &nbsp; 过" ng-show="bdUL.UserType == 3" ng-click="ApprovalCamp('submitBy3')" /> &nbsp;
+                <input type="button" value="拒 &nbsp; 绝" ng-show="bdUL.UserType == 3" ng-click="ShowReject()" />
             </div>
             <div class="price">
-                <div class="x-bg-con" ng-bind-html="camp.CampLevel | toCampLevel"></div>
-                <h1 style="margin-bottom: 15px;">听风编号:{{camp.CampNum}}<strong>{{camp.CampName}}</strong></h1>
-                <div class="rmb" style="line-height: 200%">￥:{{camp.PilePrice}}</div>
+                <h2 style="margin-bottom: 15px;">听风编号:{{camp.CampNum}} <strong>{{camp.CampName}}</strong></h2>
+                <h2>营地等级{{camp.CampLOD}}</h2>
+                <div class="rmb" style="line-height: 200%; font-size:12px">￥:{{camp.PilePrice}}</div>
                 <div class="tf-ts" style="padding: 15px 0 10px">
                     <h3 style="line-height: 24px;">听风特色</h3>
                     <div class="tf-ts-con clear">
