@@ -12,5 +12,8 @@ namespace IDataAccessLayer
     {
         IEnumerable<approvalcamplist> GetApprovalCampList();
         approvalcampModel GetCamp(int campID, DateTime? dt);
+        int SaveCamp(approvalcampModel info);
+        int ApprovalCamp(approvalcampModel campInfo);
+        int RejectCamp(approvalcampModel info);
     }
 }

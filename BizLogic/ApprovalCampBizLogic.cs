@@ -42,5 +42,15 @@ namespace BizLogic
         public approvalcampModel GetCamp(int campID, DateTime? dt){
             return appCampBase.GetCamp(campID, dt);
         }
+        public int SaveCamp(approvalcampModel info) {
+            return appCampBase.SaveCamp(info);
+        }
+        public int ApprovalCamp(approvalcampModel campInfo) {
+            return appCampBase.ApprovalCamp(campInfo);
+        }
+        public int RejectCamp(approvalcampModel info)
+        {
+            return appCampBase.RejectCamp(info);
+        }
     }
 }

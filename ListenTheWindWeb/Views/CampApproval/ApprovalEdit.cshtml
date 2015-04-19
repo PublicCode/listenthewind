@@ -10,18 +10,23 @@
     <div class="detail-con clear">
         <div class="detail-left">
             <div class="clear">
-                <div id="slider" class="flexslider2">
-                    <ul class="slides">
-                        <li ng-repeat="campphoto in camp.ModelListcampphoto">
-                            <img src="../../UploadImg/Camp/{{campphoto.CampPhoteFile}}" /></li>
-                    </ul>
-                </div>
-                <div id="carousel" class="flexslider4">
-                    <ul class="slides">
-                        <li ng-repeat="campphoto in camp.ModelListcampphoto" style="margin-right:5px">
-                            <img style="width:123px; height:81px" src="../../UploadImg/Camp/{{campphoto.CampPhoteFile}}" /></li>
-                    </ul>
-                </div>
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td>
+                            <div id="fine-uploader-left" style="float:left; width:140px; height:30px; overflow:hidden"></div>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr ng-repeat="campphoto in camp.ModelListcampphoto">
+                        <td>
+                            <img ng-show="campphoto.CampPhotoID > 0" src="../../UploadImg/Camp/{{campphoto.CampPhoteFile}}" style="width:140px; height:95px; border:1px solid #999" />
+                            <img ng-hide="campphoto.CampPhotoID > 0" src="../../UploadImg/TempFile/{{campphoto.CampPhoteFile}}" style="width:140px; height:95px; border:1px solid #999" />
+                        </td>
+                        <td style="vertical-align:top; padding:0 0 0 10px">
+                            <a href="javascript:void(0)" style="width:120px;height:31px; background:#2f3443; font-size:14px; color:#fff; text-align:center; line-height:31px; font-size:12px; font-weight:bold; display:block" ng-click="RemoveCampPhoto($index)">删 除</a>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <div class="tab-con">
                 <div class="tab-nav clear"><a href="javascript:void(0)" class="crr">描述</a><a href="javascript:void(0)">营地类型</a><a href="javascript:void(0)">听风桩位置</a><a href="javascript:void(0)" style="margin-right: 0">营地位置</a></div>
@@ -38,6 +43,7 @@
                         </ul>
                     </div>
                     <div class="tab-p" style="display: none">
+                        <div id="fine-uploader-left1" style="float:left; width:140px; height:30px; overflow:hidden"></div>
                         <img style="width: 530px; height: 330px; overflow: hidden" src="../../UploadImg/Camp/{{camp.CampPic}}" />
                     </div>
                     <div id="allmap" class="tab-p" style="display: none">
@@ -68,20 +74,20 @@
                         </li>
                     </ul>
                 </div>
-                <div class="ck-comment" name="box2">
+                <div class="ck-comment" name="box2" ng-show="camp.ModelListcampcomment.length > 2">
                     <a ng-click="ShowMoreCommenScreen();">查看更多评论&gt;&gt;&gt;</a>
                 </div>
             </div>
         </div>
         <div class="detail-right">
-            <div>
+            <div class="ApprovalBtns">
                 <input type="button" value="保 &nbsp; 存" ng-click="SaveApprovalCamp('saveBy2')" /> &nbsp;
                 <input type="button" value="提 &nbsp; 交" ng-click="SaveApprovalCamp('submitBy2')" /> &nbsp;
-                <input type="button" value="取 &nbsp; 消" />
+                <input type="button" value="取 &nbsp; 消" ng-click="CancelApprovalCamp()" />
             </div>
             <div class="price">
                 <div class="x-bg-con" ng-bind-html="camp.CampLevel | toCampLevel"></div>
-                <h1 style="margin-bottom: 15px;">听风编号:{{camp.CampNum}}<strong><input type="text" ng-model="camp.CampName" class="inputtext02" /></strong></h1>
+                <h1 style="margin-bottom: 15px;">听风编号:{{camp.CampNum}}<strong><input type="text" ng-model="camp.CampName" class="inputtext02" style="width:120px" /></strong></h1>
                 <div class="rmb" style="line-height: 200%">￥:<input type="text" ng-model="camp.PilePrice" class="inputtext02" /></div>
                 <div class="tf-ts" style="padding: 15px 0 10px">
                     <h3 style="line-height: 24px;">听风特色</h3>
@@ -93,7 +99,7 @@
                         </ul>
                     </div>
                     <div class="pr-submit clear">
-                        <a ng-click="ShowPileScreen();" style="margin-right: 36px; background:#2f3443">在线预定</a><a ng-click="CampCollect();" style="">收藏保存</a>
+                        <a ng-click="ShowPileScreen();" style="margin-right: 36px; background:#2f3443">桩管理</a>
                     </div>
                 </div>
                 <div class="yz_introduction">
@@ -119,14 +125,20 @@
                 <button type="button" style="float: right; padding: 0 10px" class="DeleteLine" data-dismiss="modal">
                     X
                 </button>
-                <span style="font-size: 18px;">选择桩号 &nbsp;&nbsp;&nbsp;</span>
+                <span style="font-size: 18px;">管理桩 &nbsp;&nbsp;&nbsp;</span>
             </div>
         </div>
         <div id="divSelPileContent">
-            <div style="width: 750px; height: 330px; overflow: hidden; padding: 5px">
-                <span ng-repeat="camppile in camp.ModelListcamppile">
-                    <input class="SelPileBtn" type="button" value="{{camppile.PileNumber}}" ng-disabled="!camppile.Flag" ng-click="LinkToCampBook(camppile.PileID);" />
-                </span>
+            <div style="width: 780px; height: 300px; overflow: hidden; padding: 5px">
+                <div ng-repeat="camppile in camp.ModelListcamppile" style="float:left; width:130px; margin-bottom:5px">
+                    <input type="button" value="{{camppile.PileNumber}}" style="width:115px; padding:7px 0; background-color:#f3f3f3; border:1px solid #e3e3e3" />
+                    <a href="javascript:void(0)" style="color:#000" ng-hide="camppile.Flag" ng-click="RemoveCampPile($index)"> X </a>
+                </div>
+            </div>
+            <div>
+                添加新桩：
+                <input type="text" maxlength="50" ng-model="PileNumber" /> &nbsp; 
+                <input type="button" style="width:70px; padding:3px 0; background-color:#f3f3f3; border:1px solid #e3e3e3" value="添 加" ng-click="AddCampPile()" />
             </div>
         </div>
     </div>
@@ -171,25 +183,25 @@
         ApprovalCamp.CampInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.CampInfo));
         angular.element(document).ready(function () {
             angular.bootstrap($('body'), ['SO']);
-            $('#carousel').flexslider({
-                animation: "slide",
-                controlNav: false,
-                animationLoop: false,
-                slideshow: false,
-                itemWidth: 125,
-                itemMargin: 5,
-                asNavFor: '#slider'
-            });
+            //$('#carousel').flexslider({
+            //    animation: "slide",
+            //    controlNav: false,
+            //    animationLoop: false,
+            //    slideshow: false,
+            //    itemWidth: 125,
+            //    itemMargin: 5,
+            //    asNavFor: '#slider'
+            //});
 
-            $('#slider').flexslider({
-                animation: "slide",
-                controlNav: false,
-                animationLoop: false,
-                slideshow: false,
-                sync: "#carousel",
-                start: function(slider){
-                }
-            });
+            //$('#slider').flexslider({
+            //    animation: "slide",
+            //    controlNav: false,
+            //    animationLoop: false,
+            //    slideshow: false,
+            //    sync: "#carousel",
+            //    start: function(slider){
+            //    }
+            //});
         });
         $(".tab-nav a").click(function(){
             var index = $(".tab-nav a").index(this);

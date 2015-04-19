@@ -29,6 +29,7 @@ namespace WebModel.ApprovalCamp
         public string CreateByName { get; set; }
         public int? ManagedByID { get; set; }
         public string ManagedByName { get; set; }
+        public string RejectReason { get; set; }
         public string ApprovalStatus { get; set; }
 
         public virtual List<approvalcampcommentModel> ModelListcampcomment { get; set; }

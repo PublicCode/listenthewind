@@ -45,7 +45,10 @@
                     </div>
                     <div class="y-login" ng-hide="bdUL.UserID == 0">
                         <!--登录-->
-                        <a href="/User/UserPayBook">用户管理</a><a href="#" ng-bind="bdUL.UserName"></a><a href="#" ng-click="bdLogOff()" class="sign-out">退出</a>
+                        <a href="/User/UserPayBook">用户管理</a>
+                        <a href="/CampApproval/Index" ng-show="bdUL.UserType == 2 || bdUL.UserType == 3">营地管理</a>
+                        <a href="#" ng-bind="bdUL.UserName"></a>
+                        <a href="#" ng-click="bdLogOff()" class="sign-out">退出</a>
                     </div>
                 </div>
             </div>
