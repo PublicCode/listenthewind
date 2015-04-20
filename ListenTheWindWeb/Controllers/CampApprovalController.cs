@@ -50,12 +50,88 @@ namespace HDS.QMS.Controllers
             ViewBag.CampInfo = JsonConvert.SerializeObject(campmodel);
             return View();
         }
+        public ActionResult CampFileUpload()
+        {
+            string savePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UpLoadPath"]) + "TempFile";
+            string strTemp = string.Empty;
+            var fileName = DateTime.Now.Ticks.ToString() + ".jpg";
+            try
+            {
+                using (var inputStream = Request.Files.Count > 0 ? Request.Files[0].InputStream : Request.InputStream)
+                {
+                    using (var flieStream = new FileStream(savePath + @"\" + fileName, FileMode.Create))
+                    {
+                        inputStream.CopyTo(flieStream);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false }, "text/plain");
+                throw ex;
+            }
+            return Json(new { success = true, fileName = fileName }, "text/plain");
+        }
+        public ActionResult CampFileUpload1()
+        {
+            string savePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UpLoadPath"]) + "Camp";
+            string strTemp = string.Empty;
+            var fileName = DateTime.Now.Ticks.ToString() + ".jpg";
+            try
+            {
+                using (var inputStream = Request.Files.Count > 0 ? Request.Files[0].InputStream : Request.InputStream)
+                {
+                    using (var flieStream = new FileStream(savePath + @"\" + fileName, FileMode.Create))
+                    {
+                        inputStream.CopyTo(flieStream);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false }, "text/plain");
+                throw ex;
+            }
+            return Json(new { success = true, fileName = fileName }, "text/plain");
+        }
+        public void MoveCampPhotos(List<approvalcampphotoModel> lst)
+        {
+            foreach (var info in lst)
+            {
+                if (info.CampPhotoID == 0)
+                {
+                    string savePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UpLoadPath"]);
+                    var oFile = savePath + "TempFile\\" + info.CampPhoteFile;
+                    var nFile = savePath + "Camp\\" + info.CampPhoteFile;
+                    System.IO.File.Move(oFile, nFile);
+                }
+            }
+        }
         public ActionResult SaveApprovalCamp(approvalcampModel info, string ops)
         {
             if (ops == "submitBy2")
             {
                 info.ApprovalStatus = "待审批";
+                info.RejectReason = "";
             }
+            bizLogic.SaveCamp(info);
+            MoveCampPhotos(info.ModelListcampphoto);
+            return Json(new { campID = info.CampID });
+        }
+        public ActionResult ApprovalCamp(approvalcampModel info, string ops)
+        {
+            if (ops == "submitBy3")
+            {
+                info.ApprovalStatus = "已审批";
+                info.RejectReason = "";
+            }
+            bizLogic.ApprovalCamp(info);
+            return Json(new { campID = info.CampID });
+        }
+        public ActionResult RejectCamp(approvalcampModel info)
+        {
+            info.ApprovalStatus = "拒绝";
+            bizLogic.RejectCamp(info);
             return Json(new { campID = info.CampID });
         }
     }

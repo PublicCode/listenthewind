@@ -115,12 +115,10 @@ namespace HDS.QMS.Controllers
             ViewBag.UserIntegralList = JsonConvert.SerializeObject(bizLogic.GetIntegralList(1,20));
             return View();
         }
-
         public ActionResult UserHeaderImg()
         {
             return View();
         }
-
         public ActionResult UserFileUpload()
         {
             string savePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UpLoadPath"]) + "TempFile";
