@@ -460,19 +460,6 @@ namespace DataAccessLayer
             ModelConverter.Convert<approvalcampModel, camp>(campmodel, info);
             #endregion
 
-            #region Approcal Camp Comment
-            info.Listcampcomment = new List<campcomment>();
-            if (campmodel.ModelListcampcomment != null)
-            {
-                foreach (var md in campmodel.ModelListcampcomment)
-                {
-                    var ef = new campcomment();
-                    ModelConverter.Convert<approvalcampcommentModel, campcomment>(md, ef);
-                    info.Listcampcomment.Add(ef);
-                }
-            }
-            #endregion
-
             #region Approcal Camp Host
             info.Listcamphost = new List<camphost>();
             if (campmodel.ModelListcamphost != null)
@@ -561,33 +548,6 @@ namespace DataAccessLayer
                 dc.Entry(origAppCamp).CurrentValues.SetValues(info);
                 #endregion
 
-                #region Approval Camp Comment
-                if (info.Listcampcomment != null)
-                {
-                    foreach (var efInfo in info.Listcampcomment)
-                    {
-                        if (efInfo.CampCommentID > 0)
-                        {
-                            var origAppCampComment = dc.approvalcampcomments.Where(c => c.CampCommentID == efInfo.CampCommentID).ToList();
-                            if (origAppCampComment != null)
-                            {
-                                dc.Entry(origAppCampComment).CurrentValues.SetValues(efInfo);
-                            }
-                        }
-                        else
-                        {
-                            dc.campcomments.Add(efInfo);
-                        }
-                    }
-                    var origComment = dc.campcomments.Where(c => c.CampID == info.CampID).ToList();
-                    var newIds = info.Listcampcomment.Where(c => c.CampCommentID > 0).Select(c => c.CampCommentID);
-                    foreach (var comm in origComment.Where(c => !newIds.Any(d => c.CampCommentID == d)))
-                    {
-                        dc.campcomments.Remove(comm);
-                    }
-                }
-                #endregion
-
                 #region Approval Camp Item
                 if (info.Listcampitem != null)
                 {
@@ -613,6 +573,13 @@ namespace DataAccessLayer
                         dc.campitems.Remove(item);
                     }
                 }
+                else {
+                    var origItem = dc.campitems.Where(c => c.CampID == info.CampID).ToList();
+                    foreach (var item in origItem)
+                    {
+                        dc.campitems.Remove(item);
+                    }
+                }
                 #endregion
 
                 #region Approval Camp Photo
@@ -627,6 +594,8 @@ namespace DataAccessLayer
                             {
                                 dc.Entry(origAppCampPhoto).CurrentValues.SetValues(efInfo);
                             }
+                            else
+                                dc.campphotos.Add(efInfo);
                         }
                         else
                         {
@@ -636,6 +605,13 @@ namespace DataAccessLayer
                     var origPhoto = dc.campphotos.Where(c => c.CampID == info.CampID).ToList();
                     var newIds = info.Listcampphoto.Where(c => c.CampPhotoID > 0).Select(c => c.CampPhotoID);
                     foreach (var photo in origPhoto.Where(c => !newIds.Any(d => c.CampPhotoID == d)))
+                    {
+                        dc.campphotos.Remove(photo);
+                    }
+                }
+                else {
+                    var origPhoto = dc.campphotos.Where(c => c.CampID == info.CampID).ToList();
+                    foreach (var photo in origPhoto)
                     {
                         dc.campphotos.Remove(photo);
                     }
@@ -654,6 +630,10 @@ namespace DataAccessLayer
                             {
                                 dc.Entry(origAppCampPile).CurrentValues.SetValues(efInfo);
                             }
+                            else
+                            {
+                                dc.camppiles.Add(efInfo);
+                            }
                         }
                         else
                         {
@@ -663,6 +643,13 @@ namespace DataAccessLayer
                     var origPile = dc.approvalcamppiles.Where(c => c.CampID == info.CampID).ToList();
                     var newIds = info.Listcamppile.Where(c => c.PileID > 0).Select(c => c.PileID);
                     foreach (var photo in origPile.Where(c => !newIds.Any(d => c.PileID == d)))
+                    {
+                        dc.approvalcamppiles.Remove(photo);
+                    }
+                }
+                else {
+                    var origPile = dc.approvalcamppiles.Where(c => c.CampID == info.CampID).ToList();
+                    foreach (var photo in origPile)
                     {
                         dc.approvalcamppiles.Remove(photo);
                     }
