@@ -72,7 +72,7 @@
                 <button class="f_btns" style="float: right; margin-right: 43px" ng-click="createUser()" ng-show="UserAllInfoObj.usermodel.MailFlag != 1 || UserAllInfoObj.usermodel.MobileFlag != 1">信息确认</button>
             </div>
         </div>
-        <div class="info-dd-list">
+        <div class="info-dd-list" ng-show="UserAllInfoObj.usermodel.UserID != 0">
             <h2>个人信息<a href="javascript:void(0)" class="open-guan">开关</a></h2>
             <div class="height-auto">
                 <div class="input-content">

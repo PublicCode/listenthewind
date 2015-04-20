@@ -469,7 +469,7 @@ soNgModule.controller("AssignManagerForCampCtrl", ['$scope', '$routeParams', '$h
                     url: '/User/ChooseManager',
                     data: $scope.currentCamp,
                 }).success(function (data) {
-                    if (data == "True") {
+                    if (data.Code == '1') {
                         alert("保存成功！");
                         $scope.$apply();
                     }

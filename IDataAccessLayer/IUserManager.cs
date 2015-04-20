@@ -20,7 +20,7 @@ namespace IDataAccessLayer
         string saveUserAuthInfo(UserModel userModel);
         string saveIDNumberInfo(UserModel userModel);
 
-        object GetAllUserForList(int page, int limit);
+        object GetAllUserForList(int page, int limit, bool includeCurrentUser=false );
         User GetUserInfo(int userId);
 
         int CreateUser(User user);

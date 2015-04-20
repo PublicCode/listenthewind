@@ -285,9 +285,13 @@ namespace DataAccessLayer
                 loginflag = flag
             };
         }
-        public object GetAllUserForList(int page, int limit)
+        public object GetAllUserForList(int page, int limit, bool includeCurrentUser = false)
         {
             IEnumerable<User> lstEF = dc.Users;
+            if (includeCurrentUser == false)
+            {
+                lstEF = dc.Users.Where(m => m.UserID != _user.UserID);
+            }
             IEnumerable<User> res = lstEF;
              if (page > 0)
             {
