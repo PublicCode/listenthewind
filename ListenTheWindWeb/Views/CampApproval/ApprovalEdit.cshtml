@@ -12,12 +12,16 @@
             <div class="clear">
                 <table cellpadding="0" cellspacing="0">
                     <tr>
+                        <td style="width:30px">&nbsp;</td>
                         <td>
                             <div id="fine-uploader-left" style="float:left; width:140px; height:30px; overflow:hidden"></div>
                         </td>
                         <td></td>
                     </tr>
                     <tr ng-repeat="campphoto in camp.ModelListcampphoto">
+                        <td style="vertical-align:top">
+                            <input type="radio" name="campPhoto" value="{{campphoto.CampPhoteFile}}" ng-model="camp.CampPhoto" /> &nbsp;
+                        </td>
                         <td>
                             <img ng-show="campphoto.CampPhotoID > 0" src="../../UploadImg/Camp/{{campphoto.CampPhoteFile}}" style="width:140px; height:95px; border:1px solid #999" />
                             <img ng-hide="campphoto.CampPhotoID > 0" src="../../UploadImg/TempFile/{{campphoto.CampPhoteFile}}" style="width:140px; height:95px; border:1px solid #999" />
@@ -53,30 +57,7 @@
                 </div>
             </div>
             <div class="comment-con">
-                <h2>用户评论</h2>
-                <div class="comment-list">
-                    <ul>
-                        <li class="clear" ng-repeat="campcom in camp.ModelListcampcomment | commentNumber : 2">
-                            <div class="cl-left">
-                                <a href="#">
-                                    <img src="../../Content/images/u_img1.png" /></a>
-                            </div>
-                            <div class="cl-right">
-                                <a href="javascript:void(0)" ng-click="deleteComment($index)" style="display:block; float:right">delete</a>
-                                <strong>{{campcom.UserName}}</strong>
-                                <em>{{campcom.CommentTime|  date:'yyyy年MM月dd日 hh:mm'}}</em>
-                                <p>{{campcom.CommentCon}}</p>
-                                <div class="replay" ng-show="campcom.CommentRes.length > 0">
-                                    <a style="display:block; float:right" ng-click="deleteCommentRes(campcom)">delete</a>
-                                    回复<p>{{campcom.CommentRes}}</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="ck-comment" name="box2" ng-show="camp.ModelListcampcomment.length > 2">
-                    <a ng-click="ShowMoreCommenScreen();">查看更多评论&gt;&gt;&gt;</a>
-                </div>
+                <h2><a ng-click="ShowMoreCommenScreen();">用户评论</a></h2>
             </div>
         </div>
         <div class="detail-right">
@@ -105,7 +86,8 @@
                         </ul>
                     </div>
                     <div class="pr-submit clear">
-                        <a ng-click="ShowPileScreen();" style="margin-right: 36px; background:#2f3443">桩管理</a>
+                        <a ng-click="ShowPileScreen();" style="margin-right:12px; background:#2f3443">桩-管理</a> &nbsp; &nbsp; 
+                        <a ng-click="ShowPilePriceScreen();" style="background:#2f3443">桩-单价管理</a>
                     </div>
                 </div>
                 <div class="yz_introduction">
@@ -122,6 +104,65 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div id="divSelPilePrice" class="modal hide">
+        <div class="modal-header" style="background-color: #9E9500;">
+            <div style="text-align: left; font-weight: bold;">
+                <button type="button" style="float: right; padding: 0 10px" class="DeleteLine" data-dismiss="modal">
+                    X
+                </button>
+                <span style="font-size: 18px;">管理桩单价 &nbsp;&nbsp;&nbsp;</span>
+            </div>
+        </div>
+        <div id="divSelPilePriceContent">
+            <div style="width: 780px; height: 350px; overflow: auto; padding: 5px">
+                <div class="g_ds_list clear" style="width:100%">
+                    <ul>
+                        <li class="clear" ng-repeat="campprice in camp.ModelListcampprice">
+                            <div class="g_ls_img">
+                                <img src="../../UploadImg/Camp/{{campprice.ItemImage}}" style="width:80px; height:80px;" alt=""/>
+                            </div>
+                            <div class="g_ls_right">
+                                <div class="g_ls_tit">{{campprice.ItemName}}</div>
+                            </div>
+                            <div class="g_ls_sl">
+                                <span>单位：{{campprice.ItemUnit}}</span>
+                                <span>单价：{{campprice.ItemPrice}}</span>
+                                <a href="javascript:void(0)" ng-click="RemoveCampPilePrice($index)">X</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div style="padding:5px">
+                <table cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td>项目名称</td>
+                        <td><input type="text" ng-model="CampPilePrice.ItemName" class="inputtext02" /></td>
+                        <td>图片</td>
+                        <td rowspan="3">
+                            <div id="fine-uploader-left2" style="height:32px; overflow:hidden"></div>
+                            <img src="../../UploadImg/Camp/{{CampPilePrice.ItemImage}}" style="width:80px; height:80px;" alt=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>单位</td>
+                        <td><input type="text" ng-model="CampPilePrice.ItemUnit" class="inputtext02" /></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>单价</td>
+                        <td><input type="text" ng-model="CampPilePrice.ItemPrice" class="inputtext02" /></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <input type="button" style="width:70px; padding:3px 0; background-color:#f3f3f3; border:1px solid #e3e3e3" value="添 加" ng-click="AddCampPilePrice()" />
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
@@ -167,13 +208,15 @@
                                     <img src="../../Content/images/u_img1.png" /></a>
                             </div>
                             <div class="cl-right">
-                                <a href="javascript:void(0)" ng-click="deleteComment($index)" style="display:block; float:right">delete</a>
+                                <a href="javascript:void(0)" ng-click="deleteComment($index)" style="display:block; float:right">X</a>
                                 <strong>{{campcom.UserName}}</strong>
                                 <em>{{campcom.CommentTime|  date:'yyyy年MM月dd日 hh:mm'}}</em>
                                 <p>{{campcom.CommentCon}}</p>
-                                <div class="replay" ng-show="campcom.CommentRes.length > 0">
-                                    <a style="display:block; float:right" ng-click="deleteCommentRes(campcom)">delete</a>
-                                    回复<p>{{campcom.CommentRes}}</p>
+                                <div class="replay">
+                                    <textarea style="width:98%; height:30px" ng-model="campcom.CommentRes"></textarea>
+                                    <br />
+                                    <a href="javascript:void(0)" ng-click="CommentUpdateRecord(campcom)">回复</a> &nbsp; &nbsp;
+                                    <a href="javascript:void(0)" ng-show="campcom.CommentRes.length > 0" ng-click="CommentDeleteRes(campcom)">X</a>
                                 </div>
                             </div>
                         </li>

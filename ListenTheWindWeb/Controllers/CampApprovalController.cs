@@ -94,6 +94,28 @@ namespace HDS.QMS.Controllers
             }
             return Json(new { success = true, fileName = fileName }, "text/plain");
         }
+        public ActionResult CampFileUpload2()
+        {
+            string savePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UpLoadPath"]) + "Camp";
+            string strTemp = string.Empty;
+            var fileName = DateTime.Now.Ticks.ToString() + ".jpg";
+            try
+            {
+                using (var inputStream = Request.Files.Count > 0 ? Request.Files[0].InputStream : Request.InputStream)
+                {
+                    using (var flieStream = new FileStream(savePath + @"\" + fileName, FileMode.Create))
+                    {
+                        inputStream.CopyTo(flieStream);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false }, "text/plain");
+                throw ex;
+            }
+            return Json(new { success = true, fileName = fileName }, "text/plain");
+        }
         public void MoveCampPhotos(List<approvalcampphotoModel> lst)
         {
             foreach (var info in lst)
@@ -107,12 +129,20 @@ namespace HDS.QMS.Controllers
                 }
             }
         }
+        public void UpdateCommentRes(int id, string cres, string type)
+        {
+            bizLogic.UpdateComment(id, cres, type);
+        }
         public ActionResult SaveApprovalCamp(approvalcampModel info, string ops)
         {
             if (ops == "submitBy2")
             {
                 info.ApprovalStatus = "待审批";
                 info.RejectReason = "";
+            }
+            else if (info.CampID == 0)
+            {
+                info.ApprovalStatus = "待审批";
             }
             bizLogic.SaveCamp(info);
             MoveCampPhotos(info.ModelListcampphoto);
@@ -125,6 +155,7 @@ namespace HDS.QMS.Controllers
                 info.ApprovalStatus = "已审批";
                 info.RejectReason = "";
             }
+            bizLogic.SaveCamp(info);
             bizLogic.ApprovalCamp(info);
             return Json(new { campID = info.CampID });
         }

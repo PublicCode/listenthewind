@@ -15,5 +15,6 @@ namespace IDataAccessLayer
         int SaveCamp(approvalcampModel info);
         int ApprovalCamp(approvalcampModel campInfo);
         int RejectCamp(approvalcampModel info);
+        void UpdateComment(int id, string cres, string type);
     }
 }

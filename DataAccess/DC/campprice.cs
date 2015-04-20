@@ -14,7 +14,7 @@ namespace DataAccess.DC
         /// <summary>
         /// Key
         /// </summary>
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CampPriceID { get; set; }
 
         public string LoggedType { get { return "Camp Price"; } }

@@ -54,10 +54,10 @@ namespace DataAccessLayer
 
             if (campInDb != null)
             {
-                foreach (approvalcampcomment campcomInDB in campInDb.Listapprovalcampcomment)
+                foreach (campcomment campcomInDB in campInDb.Listapprovalcampcomment)
                 {
                     var campcommentmodel = new approvalcampcommentModel();
-                    ModelConverter.Convert<approvalcampcomment, approvalcampcommentModel>(campcomInDB, campcommentmodel);
+                    ModelConverter.Convert<campcomment, approvalcampcommentModel>(campcomInDB, campcommentmodel);
                     campmodel.ModelListcampcomment.Add(campcommentmodel);
                 }
             }
@@ -219,35 +219,6 @@ namespace DataAccessLayer
                     dc.Entry(origAppCamp).CurrentValues.SetValues(newAppCamp);
                     #endregion
 
-                    #region Approval Camp Comment
-                    if (info.ModelListcampcomment != null)
-                    {
-                        foreach (var nInfo in info.ModelListcampcomment)
-                        {
-                            var efInfo = new approvalcampcomment();
-                            ModelConverter.Convert(nInfo, efInfo);
-                            if (efInfo.CampCommentID > 0)
-                            {
-                                var origAppCampComment = dc.approvalcampcomments.FirstOrDefault(c => c.CampCommentID == nInfo.CampCommentID);
-                                if (origAppCampComment != null)
-                                {
-                                    dc.Entry(origAppCampComment).CurrentValues.SetValues(efInfo);
-                                }
-                            }
-                            else
-                            {
-                                dc.approvalcampcomments.Add(efInfo);
-                            }
-                        }
-                        var origComment = dc.approvalcampcomments.Where(c => c.CampID == info.CampID).ToList();
-                        var newIds = info.ModelListcampcomment.Where(c => c.CampCommentID > 0).Select(c => c.CampCommentID);
-                        foreach (var comm in origComment.Where(c => !newIds.Any(d => c.CampCommentID == d)))
-                        {
-                            dc.approvalcampcomments.Remove(comm);
-                        }
-                    }
-                    #endregion
-
                     #region Approval Camp Item
                     if (info.ModelListcampitem != null)
                     {
@@ -274,6 +245,13 @@ namespace DataAccessLayer
                         var origItem = dc.approvalcampitems.Where(c => c.CampID == info.CampID).ToList();
                         var newIds = info.ModelListcampitem.Where(c => c.CampItemID > 0 && c.Checked).Select(c => c.CampItemID);
                         foreach (var item in origItem.Where(c => !newIds.Any(d => c.CampItemID == d)))
+                        {
+                            dc.approvalcampitems.Remove(item);
+                        }
+                    }
+                    else {
+                        var origItem = dc.approvalcampitems.Where(c => c.CampID == info.CampID).ToList();
+                        foreach (var item in origItem)
                         {
                             dc.approvalcampitems.Remove(item);
                         }
@@ -307,6 +285,13 @@ namespace DataAccessLayer
                             dc.approvalcampphotos.Remove(photo);
                         }
                     }
+                    else {
+                        var origPhoto = dc.approvalcampphotos.Where(c => c.CampID == info.CampID).ToList();
+                        foreach (var photo in origPhoto)
+                        {
+                            dc.approvalcampphotos.Remove(photo);
+                        }
+                    }
                     #endregion
 
                     #region Approval Camp Pile
@@ -336,6 +321,86 @@ namespace DataAccessLayer
                             dc.approvalcamppiles.Remove(photo);
                         }
                     }
+                    else {
+                        var origPile = dc.approvalcamppiles.Where(c => c.CampID == info.CampID).ToList();
+                        foreach (var photo in origPile)
+                        {
+                            dc.approvalcamppiles.Remove(photo);
+                        }
+                    }
+                    #endregion
+
+                    #region Approval Camp Price
+                    if (info.ModelListcampprice != null)
+                    {
+                        foreach (var nInfo in info.ModelListcampprice)
+                        {
+                            var efInfo = new approvalcampprice();
+                            ModelConverter.Convert(nInfo, efInfo);
+                            if (efInfo.CampPriceID > 0)
+                            {
+                                var origAppCampPrice = dc.approvalcampprices.FirstOrDefault(c => c.CampPriceID == nInfo.CampPriceID);
+                                if (origAppCampPrice != null)
+                                {
+                                    dc.Entry(origAppCampPrice).CurrentValues.SetValues(efInfo);
+                                }
+                            }
+                            else
+                            {
+                                dc.approvalcampprices.Add(efInfo);
+                            }
+                        }
+                        var origPrice = dc.approvalcampprices.Where(c => c.CampID == info.CampID).ToList();
+                        var newIds = info.ModelListcampprice.Where(c => c.CampPriceID > 0).Select(c => c.CampPriceID);
+                        foreach (var photo in origPrice.Where(c => !newIds.Any(d => c.CampPriceID == d)))
+                        {
+                            dc.approvalcampprices.Remove(photo);
+                        }
+                    }
+                    else
+                    {
+                        var origPile = dc.approvalcampprices.Where(c => c.CampID == info.CampID).ToList();
+                        foreach (var photo in origPile)
+                        {
+                            dc.approvalcampprices.Remove(photo);
+                        }
+                    }
+                    #endregion
+
+                    #region Approval Camp Type
+                    if (info.ModelListcamptype != null)
+                    {
+                        foreach (var nInfo in info.ModelListcamptype)
+                        {
+                            var efInfo = new approvalcamptype();
+                            ModelConverter.Convert(nInfo, efInfo);
+                            if (efInfo.CampTypeID > 0 && nInfo.Checked)
+                            {
+                                var origAppCampType = dc.approvalcamptypes.FirstOrDefault(c => c.CampTypeID == nInfo.CampTypeID);
+                                if (origAppCampType != null)
+                                {
+                                    dc.Entry(origAppCampType).CurrentValues.SetValues(efInfo);
+                                }
+                            }
+                            else if (nInfo.Checked)
+                            {
+                                dc.approvalcamptypes.Add(efInfo);
+                            }
+                        }
+                        var origType = dc.approvalcamptypes.Where(c => c.CampID == info.CampID).ToList();
+                        var newIds = info.ModelListcamptype.Where(c => c.CampTypeID > 0 && c.Checked).Select(c => c.CampTypeID);
+                        foreach (var camptyp in origType.Where(c => !newIds.Any(d => c.CampTypeID == d)))
+                        {
+                            dc.approvalcamptypes.Remove(camptyp);
+                        }
+                    }
+                    else {
+                        var origType = dc.approvalcamptypes.Where(c => c.CampID == info.CampID).ToList();
+                        foreach (var camptyp in origType)
+                        {
+                            dc.approvalcamptypes.Remove(camptyp);
+                        }
+                    }
                     #endregion
                 }
                 dc.SaveChanges();
@@ -355,20 +420,7 @@ namespace DataAccessLayer
             #region Approval Camp
             ModelConverter.Convert<approvalcampModel, approvalcamp>(campmodel, info);
             #endregion
-
-            #region Approcal Camp Comment
-            info.Listapprovalcampcomment = new List<approvalcampcomment>();
-            if (campmodel.ModelListcampcomment != null)
-            {
-                foreach (approvalcampcommentModel md in campmodel.ModelListcampcomment)
-                {
-                    var campcomment = new approvalcampcomment();
-                    ModelConverter.Convert<approvalcampcommentModel, approvalcampcomment>(md, campcomment);
-                    info.Listapprovalcampcomment.Add(campcomment);
-                }
-            }
-            #endregion
-
+            
             #region Approcal Camp Host
             info.Listapprovalcamphost = new List<approvalcamphost>();
             if (campmodel.ModelListcamphost != null)
@@ -434,6 +486,19 @@ namespace DataAccessLayer
             }
             #endregion
 
+            #region Approval Camp Price
+            info.Listapprovalcampprice = new List<approvalcampprice>();
+            if (campmodel.ModelListcampprice != null)
+            {
+                foreach (var md in campmodel.ModelListcampprice)
+                {
+                    var ef = new approvalcampprice();
+                    ModelConverter.Convert<approvalcamppriceModel, approvalcampprice>(md, ef);
+                    info.Listapprovalcampprice.Add(ef);
+                }
+            }
+            #endregion
+
             #region Approval Camp Type
             info.Listapprovalcamptype = new List<approvalcamptype>();
             foreach (var md in campmodel.ModelListcamptype)
@@ -458,19 +523,6 @@ namespace DataAccessLayer
             var info = new camp();
             #region Approval Camp
             ModelConverter.Convert<approvalcampModel, camp>(campmodel, info);
-            #endregion
-
-            #region Approcal Camp Comment
-            info.Listcampcomment = new List<campcomment>();
-            if (campmodel.ModelListcampcomment != null)
-            {
-                foreach (var md in campmodel.ModelListcampcomment)
-                {
-                    var ef = new campcomment();
-                    ModelConverter.Convert<approvalcampcommentModel, campcomment>(md, ef);
-                    info.Listcampcomment.Add(ef);
-                }
-            }
             #endregion
 
             #region Approcal Camp Host
@@ -537,6 +589,19 @@ namespace DataAccessLayer
             }
             #endregion
 
+            #region Approval Camp Price
+            info.Listcampprice = new List<campprice>();
+            if (campmodel.ModelListcampprice != null)
+            {
+                foreach (var md in campmodel.ModelListcampprice)
+                {
+                    var ef = new campprice();
+                    ModelConverter.Convert<approvalcamppriceModel, campprice>(md, ef);
+                    info.Listcampprice.Add(ef);
+                }
+            }
+            #endregion
+
             #region Approval Camp Type
             info.Listcamptype = new List<camptype>();
             foreach (var md in campmodel.ModelListcamptype)
@@ -557,38 +622,11 @@ namespace DataAccessLayer
             var origAppCamp = dc.camps.FirstOrDefault(c => c.CampID == campInfo.CampID);
             if (origAppCamp != null)
             {
-                #region Approval Camp
+                #region Camp
                 dc.Entry(origAppCamp).CurrentValues.SetValues(info);
                 #endregion
 
-                #region Approval Camp Comment
-                if (info.Listcampcomment != null)
-                {
-                    foreach (var efInfo in info.Listcampcomment)
-                    {
-                        if (efInfo.CampCommentID > 0)
-                        {
-                            var origAppCampComment = dc.approvalcampcomments.Where(c => c.CampCommentID == efInfo.CampCommentID).ToList();
-                            if (origAppCampComment != null)
-                            {
-                                dc.Entry(origAppCampComment).CurrentValues.SetValues(efInfo);
-                            }
-                        }
-                        else
-                        {
-                            dc.campcomments.Add(efInfo);
-                        }
-                    }
-                    var origComment = dc.campcomments.Where(c => c.CampID == info.CampID).ToList();
-                    var newIds = info.Listcampcomment.Where(c => c.CampCommentID > 0).Select(c => c.CampCommentID);
-                    foreach (var comm in origComment.Where(c => !newIds.Any(d => c.CampCommentID == d)))
-                    {
-                        dc.campcomments.Remove(comm);
-                    }
-                }
-                #endregion
-
-                #region Approval Camp Item
+                #region Camp Item
                 if (info.Listcampitem != null)
                 {
                     foreach (var efInfo in info.Listcampitem)
@@ -613,9 +651,16 @@ namespace DataAccessLayer
                         dc.campitems.Remove(item);
                     }
                 }
+                else {
+                    var origItem = dc.campitems.Where(c => c.CampID == info.CampID).ToList();
+                    foreach (var item in origItem)
+                    {
+                        dc.campitems.Remove(item);
+                    }
+                }
                 #endregion
 
-                #region Approval Camp Photo
+                #region Camp Photo
                 if (info.Listcampphoto != null)
                 {
                     foreach (var efInfo in info.Listcampphoto)
@@ -627,6 +672,8 @@ namespace DataAccessLayer
                             {
                                 dc.Entry(origAppCampPhoto).CurrentValues.SetValues(efInfo);
                             }
+                            else
+                                dc.campphotos.Add(efInfo);
                         }
                         else
                         {
@@ -640,19 +687,30 @@ namespace DataAccessLayer
                         dc.campphotos.Remove(photo);
                     }
                 }
+                else {
+                    var origPhoto = dc.campphotos.Where(c => c.CampID == info.CampID).ToList();
+                    foreach (var photo in origPhoto)
+                    {
+                        dc.campphotos.Remove(photo);
+                    }
+                }
                 #endregion
 
-                #region Approval Camp Pile
+                #region Camp Pile
                 if (info.Listcamppile != null)
                 {
                     foreach (var efInfo in info.Listcamppile)
                     {
                         if (efInfo.PileID > 0)
                         {
-                            var origAppCampPile = dc.approvalcamppiles.FirstOrDefault(c => c.PileID == efInfo.PileID);
+                            var origAppCampPile = dc.camppiles.FirstOrDefault(c => c.PileID == efInfo.PileID);
                             if (origAppCampPile != null)
                             {
                                 dc.Entry(origAppCampPile).CurrentValues.SetValues(efInfo);
+                            }
+                            else
+                            {
+                                dc.camppiles.Add(efInfo);
                             }
                         }
                         else
@@ -660,11 +718,96 @@ namespace DataAccessLayer
                             dc.camppiles.Add(efInfo);
                         }
                     }
-                    var origPile = dc.approvalcamppiles.Where(c => c.CampID == info.CampID).ToList();
+                    var origPile = dc.camppiles.Where(c => c.CampID == info.CampID).ToList();
                     var newIds = info.Listcamppile.Where(c => c.PileID > 0).Select(c => c.PileID);
                     foreach (var photo in origPile.Where(c => !newIds.Any(d => c.PileID == d)))
                     {
-                        dc.approvalcamppiles.Remove(photo);
+                        dc.camppiles.Remove(photo);
+                    }
+                }
+                else {
+                    var origPile = dc.camppiles.Where(c => c.CampID == info.CampID).ToList();
+                    foreach (var photo in origPile)
+                    {
+                        dc.camppiles.Remove(photo);
+                    }
+                }
+                #endregion
+
+                #region Camp Price
+                if (info.Listcampprice != null)
+                {
+                    foreach (var efInfo in info.Listcampprice)
+                    {
+                        if (efInfo.CampPriceID > 0)
+                        {
+                            var origAppCampPile = dc.campprices.FirstOrDefault(c => c.CampPriceID == efInfo.CampPriceID);
+                            if (origAppCampPile != null)
+                            {
+                                dc.Entry(origAppCampPile).CurrentValues.SetValues(efInfo);
+                            }
+                            else
+                            {
+                                dc.campprices.Add(efInfo);
+                            }
+                        }
+                        else
+                        {
+                            dc.campprices.Add(efInfo);
+                        }
+                    }
+                    var origPile = dc.campprices.Where(c => c.CampID == info.CampID).ToList();
+                    var newIds = info.Listcampprice.Where(c => c.CampPriceID > 0).Select(c => c.CampPriceID);
+                    foreach (var photo in origPile.Where(c => !newIds.Any(d => c.CampPriceID == d)))
+                    {
+                        dc.campprices.Remove(photo);
+                    }
+                }
+                else
+                {
+                    var origPrice = dc.campprices.Where(c => c.CampID == info.CampID).ToList();
+                    foreach (var price in origPrice)
+                    {
+                        dc.campprices.Remove(price);
+                    }
+                }
+                #endregion
+
+                #region Camp Type
+                if (info.Listcamptype != null)
+                {
+                    foreach (var efInfo in info.Listcamptype)
+                    {
+                        if (efInfo.CampTypeID > 0)
+                        {
+                            var origAppCampType = dc.camptypes.FirstOrDefault(c => c.CampTypeID == efInfo.CampTypeID);
+                            if (origAppCampType != null)
+                            {
+                                dc.Entry(origAppCampType).CurrentValues.SetValues(efInfo);
+                            }
+                            else
+                            {
+                                dc.camptypes.Add(efInfo);
+                            }
+                        }
+                        else
+                        {
+                            dc.camptypes.Add(efInfo);
+                        }
+                    }
+                    var origPile = dc.camptypes.Where(c => c.CampID == info.CampID).ToList();
+                    var newIds = info.Listcamptype.Where(c => c.CampTypeID > 0).Select(c => c.CampTypeID);
+                    foreach (var type in origPile.Where(c => !newIds.Any(d => c.CampTypeID == d)))
+                    {
+                        dc.camptypes.Remove(type);
+                    }
+                }
+                else
+                {
+                    var origtype = dc.camptypes.Where(c => c.CampID == info.CampID).ToList();
+                    foreach (var campType in origtype)
+                    {
+                        dc.camptypes.Remove(campType);
                     }
                 }
                 #endregion
@@ -685,6 +828,31 @@ namespace DataAccessLayer
             dc.Entry(origAppCamp).CurrentValues.SetValues(newAppCamp);
             dc.SaveChanges();
             return info.CampID;
+        }
+        #endregion
+
+        #region Comment
+        public void UpdateComment(int id, string cres, string type) {
+            var ef = dc.campcomments.FirstOrDefault(c => c.CampCommentID == id);
+            if (type == "DeleteRes")
+            {
+                if (ef != null)
+                {
+                    ef.CommentRes = "";
+                    dc.SaveChanges();
+                }
+            }
+            else if (type == "UpdateRes") {
+                if (ef != null)
+                {
+                    ef.CommentRes = cres;
+                    dc.SaveChanges();
+                }
+            }
+            else if (type == "DeleteRecord") {
+                dc.campcomments.Remove(ef);
+                dc.SaveChanges();
+            }
         }
         #endregion
     }

@@ -31,7 +31,6 @@ namespace DataAccess.DC
 
         public DbSet<approvalcamp> approvalcamps { get; set; }
         public DbSet<approvalcampcollect> approvalcampcollects { get; set; }
-        public DbSet<approvalcampcomment> approvalcampcomments { get; set; }
         public DbSet<approvalcamphost> approvalcamphosts { get; set; }
         public DbSet<approvalcamphostlanguage> approvalcamphostlanguages { get; set; }
         public DbSet<approvalcampitem> approvalcampitems { get; set; }

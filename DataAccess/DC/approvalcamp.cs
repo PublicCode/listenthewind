@@ -35,7 +35,7 @@ namespace DataAccess.DC
         public string ApprovalStatus { get; set; }
 
         [ForeignKey("CampID")]
-        public virtual ICollection<approvalcampcomment> Listapprovalcampcomment { get; set; }
+        public virtual ICollection<campcomment> Listapprovalcampcomment { get; set; }
         [ForeignKey("CampID")]
         public virtual ICollection<approvalcamphost> Listapprovalcamphost { get; set; }
         [ForeignKey("CampID")]
@@ -56,19 +56,6 @@ namespace DataAccess.DC
         public int CampCollectID { get; set; }
         public int CampID { get; set; }
         public int UserID { get; set; }
-    }
-    [Table("approvalcampcomment")]
-    public class approvalcampcomment
-    {
-        [Key]
-        public int CampCommentID { get; set; }
-        public int CampID { get; set; }
-        public int UserID { get; set; }
-        public string UserName { get; set; }
-        public string CommentCon { get; set; }
-        public string CommentRes { get; set; }
-        public DateTime? CommentTime { get; set; }
-        public DateTime? ResponseTime { get; set; }
     }
     [Table("approvalcamphost")]
     public class approvalcamphost

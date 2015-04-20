@@ -44,27 +44,7 @@
                 </div>
             </div>
             <div class="comment-con">
-                <h2>用户评论</h2>
-                <div class="comment-list">
-                    <ul>
-                        <li class="clear" ng-repeat="campcom in camp.ModelListcampcomment | commentNumber : 2">
-                            <div class="cl-left">
-                                <a href="#">
-                                    <img src="../../Content/images/u_img1.png" /></a>
-                            </div>
-                            <div class="cl-right">
-                                <strong>{{campcom.UserName}}</strong>
-                                <em>{{campcom.CommentTime|  date:'yyyy年MM月dd日 hh:mm'}}</em>
-                                <p>{{campcom.CommentCon}}</p>
-                                <div class="replay" ng-show="campcom.CommentRes.length > 0">回复<p>{{campcom.CommentRes}}</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="ck-comment" name="box2">
-                    <a ng-click="ShowMoreCommenScreen();">查看更多评论&gt;&gt;&gt;</a>
-                </div>
+                <h2><a ng-click="ShowMoreCommenScreen();">用户评论</a></h2>
             </div>
         </div>
         <div class="detail-right">
@@ -89,7 +69,8 @@
                         </div>
                     </div>
                     <div class="pr-submit clear">
-                        <a ng-click="ShowPileScreen();" style="margin-right: 36px; background:#2f3443">查看当前桩</a>
+                        <a ng-click="ShowPileScreen();" style="margin-right:12px; background:#2f3443">查看当前桩</a> &nbsp; &nbsp; 
+                        <a ng-click="ShowPilePriceScreen();" style="background:#2f3443">查看单价</a>
                     </div>
                 </div>
                 <div class="yz_introduction">
@@ -106,6 +87,36 @@
 
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="divSelPilePrice" class="modal hide">
+        <div class="modal-header" style="background-color: #9E9500;">
+            <div style="text-align: left; font-weight: bold;">
+                <button type="button" style="float: right; padding: 0 10px" class="DeleteLine" data-dismiss="modal">
+                    X
+                </button>
+                <span style="font-size: 18px;">管理桩单价 &nbsp;&nbsp;&nbsp;</span>
+            </div>
+        </div>
+        <div id="divSelPilePriceContent">
+            <div style="width: 780px; height: 530px; overflow: auto; padding: 5px">
+                <div class="g_ds_list clear" style="width:100%">
+                    <ul>
+                        <li class="clear" ng-repeat="campprice in camp.ModelListcampprice">
+                            <div class="g_ls_img">
+                                <img src="../../UploadImg/Camp/{{campprice.ItemImage}}" style="width:80px; height:80px;" alt=""/>
+                            </div>
+                            <div class="g_ls_right">
+                                <div class="g_ls_tit">{{campprice.ItemName}}</div>
+                            </div>
+                            <div class="g_ls_sl">
+                                <span>单位：{{campprice.ItemUnit}}</span>
+                                <span>单价：{{campprice.ItemPrice}}</span>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

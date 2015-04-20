@@ -52,5 +52,8 @@ namespace BizLogic
         {
             return appCampBase.RejectCamp(info);
         }
+        public void UpdateComment(int campcommentid, string cres, string type) {
+            appCampBase.UpdateComment(campcommentid, cres, type);
+        }
     }
 }
