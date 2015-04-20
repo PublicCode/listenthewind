@@ -57,30 +57,7 @@
                 </div>
             </div>
             <div class="comment-con">
-                <h2>用户评论</h2>
-                <div class="comment-list">
-                    <ul>
-                        <li class="clear" ng-repeat="campcom in camp.ModelListcampcomment | commentNumber : 2">
-                            <div class="cl-left">
-                                <a href="#">
-                                    <img src="../../Content/images/u_img1.png" /></a>
-                            </div>
-                            <div class="cl-right">
-                                <a href="javascript:void(0)" ng-click="deleteComment($index)" style="display:block; float:right">delete</a>
-                                <strong>{{campcom.UserName}}</strong>
-                                <em>{{campcom.CommentTime|  date:'yyyy年MM月dd日 hh:mm'}}</em>
-                                <p>{{campcom.CommentCon}}</p>
-                                <div class="replay" ng-show="campcom.CommentRes.length > 0">
-                                    <a style="display:block; float:right" ng-click="deleteCommentRes(campcom)">delete</a>
-                                    回复<p>{{campcom.CommentRes}}</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="ck-comment" name="box2" ng-show="camp.ModelListcampcomment.length > 2">
-                    <a ng-click="ShowMoreCommenScreen();">查看更多评论&gt;&gt;&gt;</a>
-                </div>
+                <h2><a ng-click="ShowMoreCommenScreen();">用户评论</a></h2>
             </div>
         </div>
         <div class="detail-right">
@@ -231,13 +208,15 @@
                                     <img src="../../Content/images/u_img1.png" /></a>
                             </div>
                             <div class="cl-right">
-                                <a href="javascript:void(0)" ng-click="deleteComment($index)" style="display:block; float:right">delete</a>
+                                <a href="javascript:void(0)" ng-click="deleteComment($index)" style="display:block; float:right">X</a>
                                 <strong>{{campcom.UserName}}</strong>
                                 <em>{{campcom.CommentTime|  date:'yyyy年MM月dd日 hh:mm'}}</em>
                                 <p>{{campcom.CommentCon}}</p>
-                                <div class="replay" ng-show="campcom.CommentRes.length > 0">
-                                    <a style="display:block; float:right" ng-click="deleteCommentRes(campcom)">delete</a>
-                                    回复<p>{{campcom.CommentRes}}</p>
+                                <div class="replay">
+                                    <textarea style="width:98%; height:30px" ng-model="campcom.CommentRes"></textarea>
+                                    <br />
+                                    <a href="javascript:void(0)" ng-click="CommentUpdateRecord(campcom)">回复</a> &nbsp; &nbsp;
+                                    <a href="javascript:void(0)" ng-show="campcom.CommentRes.length > 0" ng-click="CommentDeleteRes(campcom)">X</a>
                                 </div>
                             </div>
                         </li>

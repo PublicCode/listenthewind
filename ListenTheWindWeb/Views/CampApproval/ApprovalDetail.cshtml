@@ -44,27 +44,7 @@
                 </div>
             </div>
             <div class="comment-con">
-                <h2>用户评论</h2>
-                <div class="comment-list">
-                    <ul>
-                        <li class="clear" ng-repeat="campcom in camp.ModelListcampcomment | commentNumber : 2">
-                            <div class="cl-left">
-                                <a href="#">
-                                    <img src="../../Content/images/u_img1.png" /></a>
-                            </div>
-                            <div class="cl-right">
-                                <strong>{{campcom.UserName}}</strong>
-                                <em>{{campcom.CommentTime|  date:'yyyy年MM月dd日 hh:mm'}}</em>
-                                <p>{{campcom.CommentCon}}</p>
-                                <div class="replay" ng-show="campcom.CommentRes.length > 0">回复<p>{{campcom.CommentRes}}</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="ck-comment" name="box2">
-                    <a ng-click="ShowMoreCommenScreen();">查看更多评论&gt;&gt;&gt;</a>
-                </div>
+                <h2><a ng-click="ShowMoreCommenScreen();">用户评论</a></h2>
             </div>
         </div>
         <div class="detail-right">

@@ -54,10 +54,10 @@ namespace DataAccessLayer
 
             if (campInDb != null)
             {
-                foreach (approvalcampcomment campcomInDB in campInDb.Listapprovalcampcomment)
+                foreach (campcomment campcomInDB in campInDb.Listapprovalcampcomment)
                 {
                     var campcommentmodel = new approvalcampcommentModel();
-                    ModelConverter.Convert<approvalcampcomment, approvalcampcommentModel>(campcomInDB, campcommentmodel);
+                    ModelConverter.Convert<campcomment, approvalcampcommentModel>(campcomInDB, campcommentmodel);
                     campmodel.ModelListcampcomment.Add(campcommentmodel);
                 }
             }
@@ -420,20 +420,7 @@ namespace DataAccessLayer
             #region Approval Camp
             ModelConverter.Convert<approvalcampModel, approvalcamp>(campmodel, info);
             #endregion
-
-            #region Approcal Camp Comment
-            info.Listapprovalcampcomment = new List<approvalcampcomment>();
-            if (campmodel.ModelListcampcomment != null)
-            {
-                foreach (approvalcampcommentModel md in campmodel.ModelListcampcomment)
-                {
-                    var campcomment = new approvalcampcomment();
-                    ModelConverter.Convert<approvalcampcommentModel, approvalcampcomment>(md, campcomment);
-                    info.Listapprovalcampcomment.Add(campcomment);
-                }
-            }
-            #endregion
-
+            
             #region Approcal Camp Host
             info.Listapprovalcamphost = new List<approvalcamphost>();
             if (campmodel.ModelListcamphost != null)
@@ -841,6 +828,31 @@ namespace DataAccessLayer
             dc.Entry(origAppCamp).CurrentValues.SetValues(newAppCamp);
             dc.SaveChanges();
             return info.CampID;
+        }
+        #endregion
+
+        #region Comment
+        public void UpdateComment(int id, string cres, string type) {
+            var ef = dc.campcomments.FirstOrDefault(c => c.CampCommentID == id);
+            if (type == "DeleteRes")
+            {
+                if (ef != null)
+                {
+                    ef.CommentRes = "";
+                    dc.SaveChanges();
+                }
+            }
+            else if (type == "UpdateRes") {
+                if (ef != null)
+                {
+                    ef.CommentRes = cres;
+                    dc.SaveChanges();
+                }
+            }
+            else if (type == "DeleteRecord") {
+                dc.campcomments.Remove(ef);
+                dc.SaveChanges();
+            }
         }
         #endregion
     }

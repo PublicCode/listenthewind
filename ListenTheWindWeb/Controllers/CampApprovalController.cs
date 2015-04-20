@@ -129,6 +129,10 @@ namespace HDS.QMS.Controllers
                 }
             }
         }
+        public void UpdateCommentRes(int id, string cres, string type)
+        {
+            bizLogic.UpdateComment(id, cres, type);
+        }
         public ActionResult SaveApprovalCamp(approvalcampModel info, string ops)
         {
             if (ops == "submitBy2")

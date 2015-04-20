@@ -265,9 +265,41 @@ soNgModule.controller("ApprovalCampEditCtrl", ['$scope', '$routeParams', '$http'
         $('#divMoreCommenScreen').modal('show');
     };
     $scope.deleteComment = function (index) {
+        $scope.CommentDeleteRecord($scope.camp.ModelListcampcomment[index]);
         $scope.camp.ModelListcampcomment.splice(index, 1);
     };
-    $scope.deleteCommentRes = function (model) {
-        model.CommentRes = "";
+    $scope.CommentDeleteRes = function (model) {
+        $http({
+            method: 'post',
+            url: '/CampApproval/UpdateCommentRes',
+            data: { id: model.CampCommentID, cres: '', type: 'DeleteRes' }
+        }).success(function (data) {
+            model.CommentRes = "";
+            alert("删除成功");
+        }).error(function (d, s, h, c) {
+            alert("error");
+        });
+    };
+    $scope.CommentDeleteRecord = function (model) {
+        $http({
+            method: 'post',
+            url: '/CampApproval/UpdateCommentRes',
+            data: { id: model.CampCommentID, cres: '', type: 'DeleteRecord' }
+        }).success(function (data) {
+            alert("删除成功");
+        }).error(function (d, s, h, c) {
+            alert("error");
+        });
+    };
+    $scope.CommentUpdateRecord = function (model) {
+        $http({
+            method: 'post',
+            url: '/CampApproval/UpdateCommentRes',
+            data: { id: model.CampCommentID, cres: model.CommentRes, type: 'UpdateRes' }
+        }).success(function (data) {
+            alert("更新成功");
+        }).error(function (d, s, h, c) {
+            alert("error");
+        });
     };
 }]);
