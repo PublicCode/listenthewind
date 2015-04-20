@@ -26,7 +26,7 @@ namespace DataAccessLayer
         {
             var user = new User();
             dcObj = DCLoader.GetMyDC();
-            user = dcObj.Users.FirstOrDefault(c => c.UserName== userName);
+            user = dcObj.Users.FirstOrDefault(c => c.UserName== userName && c.Active == 1);
             if (user != null && user.Pwd == passWord)
             {
                 if (!fromMobile)

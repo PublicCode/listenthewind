@@ -34,5 +34,7 @@ namespace IDataAccessLayer
         List<User> GetAllManagerList();
 
         int ChooseManager(WebModel.ApprovalCamp.approvalcampModel approvedCamp);
+
+        int SaveUserInfo(UserModel userModel);
     }
 }

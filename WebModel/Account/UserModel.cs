@@ -29,7 +29,7 @@ namespace WebModel.Account
         public string Intro { get; set; }
 
         public string UserType { get; set; }
-
+        public string UserTypeShow { get; set; }
         public int? MailFlag { get; set; }
         public int? MobileFlag { get; set; }
 

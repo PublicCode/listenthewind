@@ -66,6 +66,22 @@ namespace BizLogic
             User user = userBase.GetUserInfo(userId); 
             UserModel userModel = new UserModel();
             ModelConverter.Convert<User, UserModel>(user, userModel);
+            if (user.UserType == "0")
+            {
+                userModel.UserTypeShow = "一般用户";
+            }
+            else if (user.UserType == "1")
+            {
+                userModel.UserTypeShow = "营主";
+            }
+            else if (user.UserType == "2")
+            {
+                userModel.UserTypeShow = "营长";
+            }
+            else if (user.UserType == "3")
+            {
+                userModel.UserTypeShow = "管理员";
+            }
             return userModel;
         }
         
@@ -117,6 +133,11 @@ namespace BizLogic
         public int ChooseManager(approvalcampModel approvedCamp)
         {
             return userBase.ChooseManager(approvedCamp);
+        }
+
+        public int SaveUserInfo(UserModel userModel)
+        {
+            return userBase.SaveUserInfo(userModel);
         }
     }
 }

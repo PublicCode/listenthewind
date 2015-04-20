@@ -68,6 +68,37 @@ namespace DataAccess.DC
 
         public string UserType { get; set; }
 
+        [NotMapped]
+        public string UserTypeShow
+        {
+            get
+            {
+                if (UserType == "0")
+                {
+                    return "一般用户";
+                }
+                else if (UserType == "1")
+                {
+                    return "营主";
+                }
+                else if (UserType == "2")
+                {
+                    return "营长";
+                }
+                else if (UserType == "3")
+                {
+                    return "管理员";
+                }
+                else
+                {
+                    return "一般用户";
+                }
+            }
+            set { }
+        }
+
+        public int? Active { get; set; }
+
         public int? MailFlag { get; set; }
         public int? MobileFlag { get; set; }
 

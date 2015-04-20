@@ -184,6 +184,12 @@ namespace HDS.QMS.Controllers
                 return Json(new { Code = "Fail", Message = "程序错误" });
         }
 
+        public int saveUserInfo(UserModel userModel)
+        {
+            return bizLogic.SaveUserInfo(userModel);
+        }
+
+
         public string saveUserBasicInfo(UserModel userModel)
         {
             return bizLogic.saveUserBasicInfo(userModel);

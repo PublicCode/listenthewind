@@ -142,6 +142,7 @@ namespace DataAccessLayer
                 return -1;
             }
             user.CreateTime = DateTime.Now;
+            user.Active = 1;
             dc.Users.Add(user);
             dc.SaveChanges();
             UserIntegralHistory newUserHistory = new UserIntegralHistory();
@@ -173,7 +174,7 @@ namespace DataAccessLayer
                 if (campManaged == null)
                 {
                     var user = dc.Users.FirstOrDefault(m => m.UserID == userId);
-                    dc.Users.Remove(user);
+                    user.Active = 0;
                     dc.SaveChanges();
                     return 1;
                 }
@@ -210,7 +211,23 @@ namespace DataAccessLayer
                 return "False";
             }
         }
-
+        public int SaveUserInfo(UserModel userModel)
+        {
+            try
+            {
+                User user = dc.Users.FirstOrDefault(m => m.UserID == userModel.UserID);
+                if (user != null)
+                {
+                    ModelConverter.Convert<UserModel, User>(userModel, user);
+                }
+                dc.SaveChanges();
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
         public string saveUserAuthInfo(UserModel userModel)
         {
             try
@@ -287,7 +304,7 @@ namespace DataAccessLayer
         }
         public object GetAllUserForList(int page, int limit, bool includeCurrentUser = false)
         {
-            IEnumerable<User> lstEF = dc.Users;
+            IEnumerable<User> lstEF = dc.Users.OrderBy(m=>m.IDNumberFlag);
             if (includeCurrentUser == false)
             {
                 lstEF = dc.Users.Where(m => m.UserID != _user.UserID);

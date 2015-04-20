@@ -12,6 +12,7 @@
                 <h2>链接</h2>
                 <ul>
                     <li><a href="/User/UserManagement">用户管理</a></li>
+                    <li><a href="/User/AssignManager">分配营地管理员</a></li>
                     <!-- 添加crr选中-->
                 </ul>
             </div>
@@ -19,34 +20,15 @@
     
     <div class="info-right">
         <div class="info-dd-list">
-            <h2>验证我的身份 <a href="javascript:void(0)" class="open-guan">开关</a></h2>
-            <div class="height-auto">
-                <div class="yz-content">
-                    <h3>风客身份已验证。</h3>
-                    <p>
-                        在听风营中建立信任，最简单的方法就是获得您的“听风营身份”。我们通过匹配您的在线帐号信息
-和正式身份证明来验证您的身份。<a href="#" class="orange">了解更多</a>
-                    </p>
-                </div>
-                <div class="yes-info" style="display: none">
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </div>
-                <a href="#" class="lv-x dark-blue">更多身份证验证</a>
-            </div>
-        </div>
-        <div class="info-dd-list">
             <h2>账号信息<a href="javascript:void(0)" class="open-guan">开关</a></h2>
             <div class="height-auto">
                 <div class="input-content">
                     <ul class="input-list-txt">
                         <li class="clear">
                             <label>用户名:</label><input type="text" ng-model="UserAllInfoObj.usermodel.UserName"  ng-disabled=" UserAllInfoObj.usermodel.UserID != 0  readonly="readonly" />
+                        </li>
+                        <li class="clear">
+                            <label>真实姓名:</label><input type="text" class="user-wt" ng-model="UserAllInfoObj.usermodel.Name" required placeholder="请输入你的真实姓名" />
                         </li>
                         <li class="clear">
                             <label>电子邮箱:</label><input type="text" ng-model="UserAllInfoObj.usermodel.Email" id="mail" ng-disabled="UserAllInfoObj.usermodel.MailFlag == 1" /><span><strong ng-show="UserAllInfoObj.usermodel.MailFlag == 1">已认证</strong><a href="javascript:void(0)" class="f_wlz" id="f_wlz_ml" ng-show="UserAllInfoObj.usermodel.MailFlag != 1">未认证</a></span>
@@ -69,10 +51,10 @@
                         </li>
                     </ul>
                 </div>
-                <button class="f_btns" style="float: right; margin-right: 43px" ng-click="createUser()" ng-show="UserAllInfoObj.usermodel.MailFlag != 1 || UserAllInfoObj.usermodel.MobileFlag != 1">信息确认</button>
+                
             </div>
         </div>
-        <div class="info-dd-list" ng-show="UserAllInfoObj.usermodel.UserID != 0">
+        <div class="info-dd-list">
             <h2>个人信息<a href="javascript:void(0)" class="open-guan">开关</a></h2>
             <div class="height-auto">
                 <div class="input-content">
@@ -99,10 +81,10 @@
 
                     </ul>
                 </div>
-                <button class="f_btns" style="float: right; margin-right: 43px" ng-click="saveUserBasicInfo()">信息确认</button>
+               <button class="f_btns" style="float: right; margin-right: 43px" ng-click="saveUser(UserAllInfoObj.usermodel.UserID)">信息确认</button>
             </div>
         </div>
-        <div class="info-dd-list" ng-show="UserAllInfoObj.usermodel.UserID != 0">
+        <div class="info-dd-list" style="display:none">
             <h2>身份证明<a href="javascript:void(0)" class="open-guan">开关</a></h2>
             <div class="height-auto">
                 <div class="input-content">

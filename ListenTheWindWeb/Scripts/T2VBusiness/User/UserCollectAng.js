@@ -273,6 +273,26 @@ soNgModule.controller("UserInfoCtrl", ['$scope', '$routeParams', '$http', '$loca
             });
         }
     };
+    $scope.saveUser = function (userId) {
+        if ($scope.checkUserStatus()) {
+            if (userId == 0)
+                $scope.createUser();
+            else {
+                $http({
+                    method: 'post',
+                    url: '/User/saveUserInfo',
+                    data: $scope.UserAllInfoObj.usermodel,
+                }).success(function (data) {
+                    if (data == 1) {
+                        alert("保存成功！");
+                        $scope.$apply();
+                    }
+                }).error(function (d, s, h, c) {
+                    alert("error");
+                });
+            }
+        }
+    };
     $scope.saveUserBasicInfo = function () {
         
         if ($scope.checkUserStatus()) {
