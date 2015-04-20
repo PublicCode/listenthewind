@@ -30,6 +30,9 @@
             alert("error");
         });
     };
+    $scope.GoToEdit = function () {
+        window.location.href = "/CampApproval/ApprovalEdit?CampID=0&dt=";
+    };
 }]);
 
 soNgModule.controller("ApprovalCampDetailCtrl", ['$scope', '$routeParams', '$http', function ($scope, $routeParams, $http) {
@@ -60,7 +63,7 @@ soNgModule.controller("ApprovalCampDetailCtrl", ['$scope', '$routeParams', '$htt
             url: '/CampApproval/RejectCamp',
             data: { info: $scope.camp }
         }).success(function (data) {
-            window.location.href = "/CampApproval/ApprovalDetail?CampID=" + data.campID + "&dt=";
+            window.location.href = "/CampApproval";
         }).error(function (d, s, h, c) {
             alert("error");
         });
@@ -75,7 +78,10 @@ soNgModule.controller("ApprovalCampDetailCtrl", ['$scope', '$routeParams', '$htt
             url: '/CampApproval/ApprovalCamp',
             data: { info: $scope.camp, ops: type }
         }).success(function (data) {
-            window.location.href = "/CampApproval/ApprovalDetail?CampID=" + data.campID + "&dt=";
+            if (type == "submitBy3")
+                window.location.href = "/CampApproval/";
+            else
+                window.location.href = "/CampApproval/ApprovalDetail?CampID=" + data.campID + "&dt=";
         }).error(function (d, s, h, c) {
             alert("error");
         });
@@ -89,7 +95,12 @@ soNgModule.controller("ApprovalCampDetailCtrl", ['$scope', '$routeParams', '$htt
             $('#divSelPile').modal('show');
         }
     };
-
+    $scope.ShowPilePriceScreen = function () {
+        if ($scope.checkUserStatus()) {
+            $("#divSelPilePrice").css("left", screen.width / 2 - 60).css("height", "600px").css("width", "800px");
+            $('#divSelPilePrice').modal('show');
+        }
+    };
     $scope.ShowMoreCommenScreen = function () {
         $("#divMoreCommenScreen").css("left", screen.width / 2 - 60).css("height", "400px").css("width", "800px");
         $('#divMoreCommenScreen').modal('show');
@@ -100,8 +111,20 @@ soNgModule.controller("ApprovalCampEditCtrl", ['$scope', '$routeParams', '$http'
     if (ApprovalCamp.CampInfo) {
         $scope.camp = JSON.parse(ApprovalCamp.CampInfo);
     };
+    $scope.ValidSave = function () {
+        var flag = true;
+        if ($scope.camp.CampPhoto == "") {
+            alert("请设置默认主营地图片");
+            flag = false;
+        }
+        else if ($scope.camp.ModelListcampphoto.length == 0) {
+            alert("请上传营地照片.");
+            flag = false;
+        }
+        return flag
+    };
     $scope.SaveApprovalCamp = function (type) {
-        if ($scope.camp.ModelListcampphoto.length > 0) {
+        if ($scope.ValidSave()){
             $http({
                 method: 'post',
                 url: '/CampApproval/SaveApprovalCamp',
@@ -111,9 +134,6 @@ soNgModule.controller("ApprovalCampEditCtrl", ['$scope', '$routeParams', '$http'
             }).error(function (d, s, h, c) {
                 alert("error");
             });
-        }
-        else {
-            alert("请上传营地照片.");
         }
     };
     $scope.CancelApprovalCamp = function () {
@@ -156,7 +176,7 @@ soNgModule.controller("ApprovalCampEditCtrl", ['$scope', '$routeParams', '$http'
         }).on('complete', function (event, id, fileName, responseJSON) {
             if (responseJSON.success) {
                 $scope.camp.CampPic = responseJSON.fileName;
-                $("#fine-uploader-left").html("");
+                $("#fine-uploader-left1").html("");
                 $scope.fileUpload1();
                 responseJSON.success = false;
                 $scope.$apply();
@@ -166,7 +186,31 @@ soNgModule.controller("ApprovalCampEditCtrl", ['$scope', '$routeParams', '$http'
         });
     };
     $scope.fileUpload1();
+    $scope.fileUpload2 = function () {
+        $("#fine-uploader-left2").fineUploader({
+            request: {
+                endpoint: SiteRoot + '/CampFileUpload2'
+            },
+            params: {},
+            multiple: false
+        }).on('validate', function (id, fileName) {
+        }).on('complete', function (event, id, fileName, responseJSON) {
+            if (responseJSON.success) {
+                $scope.CampPilePrice.ItemImage = responseJSON.fileName;
+                //$("#fine-uploader-left2").html("");
+                responseJSON.success = false;
+                $scope.$apply();
+                //$scope.fileUpload2();
+            }
+            else if (responseJSON.fileName == undefined)
+                alert("附件上传失败！");
+        });
+    };
+    $scope.fileUpload2();
     $scope.RemoveCampPhoto = function (index) {
+        if ($scope.camp.CampPhoto == $scope.camp.ModelListcampphoto[index].CampPhoteFile) {
+            $scope.camp.CampPhoto = "";
+        }
         $scope.camp.ModelListcampphoto.splice(index, 1);
     };
     $scope.ShowPileScreen = function () {
@@ -182,6 +226,40 @@ soNgModule.controller("ApprovalCampEditCtrl", ['$scope', '$routeParams', '$http'
         $scope.camp.ModelListcamppile.push({ PileID: 0, CampID: $scope.camp.CampID, PileNumber: $scope.PileNumber, Active: 0 });
         $scope.PileNumber = "";
     };
+
+    $scope.ShowPilePriceScreen = function () {
+        if ($scope.checkUserStatus()) {
+            $("#divSelPilePrice").css("left", screen.width / 2 - 60).css("height", "600px").css("width", "800px");
+            $('#divSelPilePrice').modal('show');
+        }
+    };
+    var res = { CampPriceID: 0, CampID: $scope.camp.CampID, ItemName: '', ItemUnit: '', ItemPrice: 0, ItemImage: '' };
+    $scope.CampPilePrice = angular.copy(res);
+    $scope.AddCampPilePrice = function () {
+        if ($scope.CampPilePrice.ItemName == "") {
+            alert("请输入项目名称");
+            return false;
+        }
+        if ($scope.CampPilePrice.ItemUnit == "") {
+            alert("请输入单位");
+            return false;
+        }
+        if ($scope.CampPilePrice.ItemPrice == "") {
+            alert("请输入单价");
+            return false;
+        }
+        if ($scope.CampPilePrice.ItemImage == "") {
+            alert("请输入图片");
+            return false;
+        }
+        $scope.camp.ModelListcampprice.push($scope.CampPilePrice);
+        $scope.CampPilePrice = angular.copy(res);
+        $scope.$apply();
+    };
+    $scope.RemoveCampPilePrice = function (index) {
+        $scope.camp.ModelListcampprice.splice(index, 1);
+    };
+
     $scope.ShowMoreCommenScreen = function () {
         $("#divMoreCommenScreen").css("left", screen.width / 2 - 60).css("height", "400px").css("width", "800px");
         $('#divMoreCommenScreen').modal('show');
@@ -192,4 +270,4 @@ soNgModule.controller("ApprovalCampEditCtrl", ['$scope', '$routeParams', '$http'
     $scope.deleteCommentRes = function (model) {
         model.CommentRes = "";
     };
-}]); 
+}]);
