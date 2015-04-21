@@ -42,7 +42,6 @@ namespace DataAccess.DC
 
         [Display(Name="Email")]
         [Column("Mail")]
-        [RegularExpression(@"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$",ErrorMessage = "Invalid email format.")]
         public string Email { get; set; }
 
         /// <summary>
@@ -50,7 +49,7 @@ namespace DataAccess.DC
         /// </summary>
         public string Mobile { get; set; }
 
-        public string UserIntegral { get; set; }
+        public int? UserIntegral { get; set; }
 
         /// <summary>
         /// CreateDate
@@ -73,19 +72,19 @@ namespace DataAccess.DC
         {
             get
             {
-                if (UserType == "0")
+                if (UserType == "1")
                 {
                     return "一般用户";
                 }
-                else if (UserType == "1")
+                else if (UserType == "2")
                 {
                     return "营主";
                 }
-                else if (UserType == "2")
+                else if (UserType == "3")
                 {
                     return "营长";
                 }
-                else if (UserType == "3")
+                else if (UserType == "4")
                 {
                     return "管理员";
                 }

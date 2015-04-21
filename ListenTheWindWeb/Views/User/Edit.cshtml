@@ -25,13 +25,13 @@
                 <div class="input-content">
                     <ul class="input-list-txt">
                         <li class="clear">
-                            <label>用户名:</label><input type="text" ng-model="UserAllInfoObj.usermodel.UserName"  ng-disabled=" UserAllInfoObj.usermodel.UserID != 0  readonly="readonly" />
+                            <label>用户名:</label><input type="text" ng-model="UserAllInfoObj.usermodel.UserName"  ng-disabled=" UserAllInfoObj.usermodel.UserID != 0" />
                         </li>
                         <li class="clear">
                             <label>真实姓名:</label><input type="text" class="user-wt" ng-model="UserAllInfoObj.usermodel.Name" required placeholder="请输入你的真实姓名" />
                         </li>
                         <li class="clear">
-                            <label>电子邮箱:</label><input type="text" ng-model="UserAllInfoObj.usermodel.Email" id="mail" ng-disabled="UserAllInfoObj.usermodel.MailFlag == 1" /><span><strong ng-show="UserAllInfoObj.usermodel.MailFlag == 1">已认证</strong><a href="javascript:void(0)" class="f_wlz" id="f_wlz_ml" ng-show="UserAllInfoObj.usermodel.MailFlag != 1">未认证</a></span>
+                            <label>电子邮箱:</label><input type="text" ng-model="UserAllInfoObj.usermodel.Email" id="mail" ng-disabled="UserAllInfoObj.usermodel.MailFlag == 1" />
                         </li>
                         <li class="clear">
                             <label>密码:</label><input type="password" ng-model="UserAllInfoObj.usermodel.Pwd" id="pwd" />
@@ -39,15 +39,14 @@
                         <li class="clear">
                             <label>用户类别:</label>
                             <select id="UserType" ng-model="UserAllInfoObj.usermodel.UserType">
-                                <option value="">请选择</option>
-                                <option value="0">一般用户</option>
-                                <option value="1">营主</option>
-                                <option value="2">营长</option>
-                                <option value="3">管理员</option>
+                                <option value="1">一般用户</option>
+                                <option value="2">营主</option>
+                                <option value="3">营长</option>
+                                <option value="4">管理员</option>
                             </select>
                         </li>
                         <li class="clear">
-                            <label>手机号:</label><input type="text" ng-model="UserAllInfoObj.usermodel.Mobile" ng-disabled="UserAllInfoObj.usermodel.MobileFlag == 1" id="phone" /><span><strong ng-show="UserAllInfoObj.usermodel.MobileFlag == 1">已认证</strong><a href="javascript:void(0)" class="f_wlz" id="f_wlz_mb" ng-show="UserAllInfoObj.usermodel.MobileFlag != 1">未认证</a></span>
+                            <label>手机号:</label><input type="text" ng-model="UserAllInfoObj.usermodel.Mobile" ng-disabled="UserAllInfoObj.usermodel.MobileFlag == 1" id="phone" />
                         </li>
                     </ul>
                 </div>
