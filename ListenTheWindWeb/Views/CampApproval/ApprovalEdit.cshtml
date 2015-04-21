@@ -48,7 +48,7 @@
                     </div>
                     <div class="tab-p" style="display: none">
                         <div id="fine-uploader-left1" style="float:left; width:140px; height:30px; overflow:hidden"></div>
-                        <img style="width: 530px; height: 330px; overflow: hidden" src="../../UploadImg/Camp/{{camp.CampPic}}" />
+                        <img ng-show="camp.CampPic.length > 0" style="width: 530px; height: 330px; overflow: hidden" src="../../UploadImg/Camp/{{camp.CampPic}}" />
                     </div>
                     <div id="allmap" class="tab-p" style="display: none">
                         经度： <input type="text" ng-model="camp.Latitude" class="inputtext02" />&nbsp; 
@@ -93,7 +93,7 @@
                 <div class="yz_introduction">
                     <h3>听风营长介绍</h3>
                     <div class="yz-img">
-                        <img src="../../UploadImg/Camp/{{camp.ModelListcamphost[0].CampHostPhoto}}" />
+                        <img ng-show="camp.ModelListcamphost[0].CampHostPhoto.length > 0" src="../../UploadImg/Camp/{{camp.ModelListcamphost[0].CampHostPhoto}}" />
                     </div>
                     <div class="yz-con">
                         <div class="yz-nav">

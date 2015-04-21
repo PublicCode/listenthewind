@@ -864,7 +864,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -936,6 +935,7 @@
     <Content Include="Scripts\Vendor\JqueryUploadify\UploadFile.ashx" />
     <Content Include="DownLoadData\Template\postemplate.xlsx" />
     <Content Include="DownLoadData\Template\quotetemplate.xlsx" />
+    <None Include="Properties\PublishProfiles\Ting.pubxml" />
     <None Include="Scripts\Vendor\JqueryUploadify\uploadify.fla" />
     <Content Include="Views\Shared\InnerTopBar.cshtml" />
     <Content Include="Views\Admin\User.cshtml" />
