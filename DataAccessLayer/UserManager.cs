@@ -145,10 +145,7 @@ namespace DataAccessLayer
             user.Active = 1;
             dc.Users.Add(user);
             dc.SaveChanges();
-            UserIntegralHistory newUserHistory = new UserIntegralHistory();
-            newUserHistory.UserID = user.UserID;
-            newUserHistory.HappenedDateTime = DateTime.Now;
-            newUserHistory.SpentIntegral = 500;
+            
             return user.UserID;
         }
         public bool PassValidate(int userId)
@@ -157,6 +154,21 @@ namespace DataAccessLayer
             {
                 var user = dc.Users.FirstOrDefault(m => m.UserID == userId);
                 user.IDNumberFlag = 1;
+                if (!user.UserIntegral.HasValue)
+                {
+                    user.UserIntegral = 500;
+                }
+                else
+                {
+                    user.UserIntegral = user.UserIntegral.Value + 500;
+                }
+                UserIntegralHistory newUserHistory = new UserIntegralHistory();
+                newUserHistory.UserID = userId;
+                newUserHistory.HappenedDateTime = DateTime.Now;
+                newUserHistory.SpentIntegral = 500;
+                newUserHistory.IntegralInfo = "身份验证奖励";
+                newUserHistory.AdminID = _user.UserID;
+                dc.UserIntegralHistorys.Add(newUserHistory);
                 dc.SaveChanges();
 
                 return true;
