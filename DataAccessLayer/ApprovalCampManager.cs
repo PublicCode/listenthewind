@@ -638,6 +638,9 @@ namespace DataAccessLayer
                             {
                                 dc.Entry(origAppCampItem).CurrentValues.SetValues(efInfo);
                             }
+                            else {
+                                dc.campitems.Add(efInfo);
+                            }
                         }
                         else
                         {

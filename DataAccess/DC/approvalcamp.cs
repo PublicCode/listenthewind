@@ -32,6 +32,7 @@ namespace DataAccess.DC
         public string CreateByName { get; set; }
         public int? ManagedByID { get; set; }
         public string ManagedByName { get; set; }
+        public string RejectReason { get; set; }
         public string ApprovalStatus { get; set; }
 
         [ForeignKey("CampID")]

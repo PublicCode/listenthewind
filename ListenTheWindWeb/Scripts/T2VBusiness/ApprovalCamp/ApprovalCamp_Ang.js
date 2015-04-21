@@ -223,7 +223,7 @@ soNgModule.controller("ApprovalCampEditCtrl", ['$scope', '$routeParams', '$http'
         $scope.camp.ModelListcamppile.splice(index, 1);
     };
     $scope.AddCampPile = function () {
-        $scope.camp.ModelListcamppile.push({ PileID: 0, CampID: $scope.camp.CampID, PileNumber: $scope.PileNumber, Active: 0 });
+        $scope.camp.ModelListcamppile.push({ PileID: 0, CampID: $scope.camp.CampID, PileNumber: $scope.PileNumber, Active: 1 });
         $scope.PileNumber = "";
     };
 

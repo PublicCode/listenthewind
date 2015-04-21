@@ -36,7 +36,7 @@
                                  <a href="javascript:void(0)">
                                     <button class="f_btns" ng-click="deleteUser($index)">删除用户</button>
                                 </a>
-                                <a href="javascript:void(0)" ng-show="c.IDNumberFlag == 0 && currentUser.IDNumberImg1 != null && currentUser.IDNumberImg2 != null">
+                                <a href="javascript:void(0)" ng-show="c.IDNumberFlag == 0 && c.IDNumberImg1 != null && c.IDNumberImg2 != null">
                                     <button class="f_btns" ng-click="validateUser($index)">验证用户</button>
                                 </a>
                                 <a href="/User/Edit?UserID={{c.UserID}}">

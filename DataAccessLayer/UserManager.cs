@@ -352,7 +352,7 @@ namespace DataAccessLayer
         }
         public List<User> GetAllManagerList()
         {
-            var managerList = dc.Users.Where(m=>m.UserType != "0").ToList();
+            var managerList = dc.Users.Where(m=>m.UserType == "3").ToList();
             return managerList;
         }
         public int ChooseManager(WebModel.ApprovalCamp.approvalcampModel approvedCamp)
