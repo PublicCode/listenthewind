@@ -47,7 +47,7 @@
                         <!--登录-->
                         
                         <a href="/User/UserManagement" ng-show="bdUL.UserType == 4">管理员管理</a>
-                        <a href="/User/UserPayBook">个人信息管理</a><a href="#" ng-bind="bdUL.UserName"></a>
+                        <a href="/User/UserPayBook">个人信息管理</a>
                         <a href="/CampApproval/Index" ng-show="bdUL.UserType == 2 || bdUL.UserType == 3">营地管理</a>
                         <a href="#" ng-bind="bdUL.UserName"></a>
                         <a href="#" ng-click="bdLogOff()" class="sign-out">退出</a>
