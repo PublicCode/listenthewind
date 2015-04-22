@@ -283,12 +283,15 @@ soNgModule.controller("ApprovalCampEditCtrl", ['$scope', '$routeParams', '$http'
     $scope.ShowCampHostLanguage = function () {
         $scope.CampHostLanguage = angular.copy(resLang);
         if ($scope.checkUserStatus()) {
-            $("#divCampHostLanguage").css("left", screen.width / 2 - 60).css("height", "600px").css("width", "800px");
+            $("#divCampHostLanguage").css("left", screen.width / 2 - 60).css("height", "260px").css("width", "450px");
             $('#divCampHostLanguage').modal('show');
         }
     };
     $scope.AddCampHostLanguage = function () {
-        $scope.camp.ModelListcamphost[0].ModelListcamphostlanguage.push($scope.CampHostLanguage);
+        var flag = $scope.camp.ModelListcamphost[0].ModelListcamphostlanguage.filter(function (l) { return l.Language == $scope.CampHostLanguage.Language });
+        if (flag.length == 0) {
+            $scope.camp.ModelListcamphost[0].ModelListcamphostlanguage.push($scope.CampHostLanguage);
+        }
         $scope.CampHostLanguage = angular.copy(resLang);
     };
 

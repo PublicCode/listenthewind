@@ -85,6 +85,7 @@ namespace DataAccessLayer
             }
             else {
                 var camphostmodel = new approvalcamphostModel();
+                camphostmodel.ModelListcamphostlanguage = new List<approvalcamphostlanguageModel>();
                 var languagemodel = new approvalcamphostlanguageModel();
                 camphostmodel.ModelListcamphostlanguage.Add(languagemodel);
                 campmodel.ModelListcamphost.Add(camphostmodel);
@@ -404,6 +405,51 @@ namespace DataAccessLayer
                         }
                     }
                     #endregion
+
+                    #region Approval Camp Host
+                    if (info.ModelListcamphost.Count > 0)
+                    {
+                        var campHost = info.ModelListcamphost[0];
+                        var efInfo = new approvalcamphost();
+                        ModelConverter.Convert(campHost, efInfo);
+                        efInfo.UserID = _user.UserID;
+                        efInfo.Listapprovalcamphostlanguage = new List<approvalcamphostlanguage>();
+                        if (campHost.ModelListcamphostlanguage.Count > 0)
+                        {
+                            foreach (var sInfo in campHost.ModelListcamphostlanguage)
+                            {
+                                if (string.IsNullOrEmpty(sInfo.Language))
+                                    continue;
+                                var efsInfo = new approvalcamphostlanguage();
+                                ModelConverter.Convert(sInfo, efsInfo);
+                                if (efsInfo.CampHostLanguageID > 0)
+                                {
+                                    var origAppCampHostLang = dc.approvalcamphostlanguages.FirstOrDefault(c => c.CampHostLanguageID == efsInfo.CampHostLanguageID);
+                                    if (origAppCampHostLang != null)
+                                    {
+                                        dc.Entry(origAppCampHostLang).CurrentValues.SetValues(efsInfo);
+                                    }
+                                }
+                                else {
+                                    dc.approvalcamphostlanguages.Add(efsInfo);
+                                }
+                            }
+                            var origLang = dc.approvalcamphostlanguages.Where(c => c.CampHostID == campHost.CampHostID).ToList();
+                            var newIds = campHost.ModelListcamphostlanguage.Where(c => c.CampHostLanguageID > 0).Select(c => c.CampHostLanguageID);
+                            foreach (var camphostLang in origLang.Where(c => !newIds.Any(d => c.CampHostLanguageID == d)))
+                            {
+                                dc.approvalcamphostlanguages.Remove(camphostLang);
+                            }
+                        }
+                        else {
+                            var origLang = dc.approvalcamphostlanguages.Where(c => c.CampHostID == campHost.CampHostID).ToList();
+                            foreach (var campHostLang in origLang)
+                            {
+                                dc.approvalcamphostlanguages.Remove(campHostLang);
+                            }
+                        }
+                    }
+                    #endregion
                 }
                 dc.SaveChanges();
             }
@@ -425,7 +471,7 @@ namespace DataAccessLayer
             
             #region Approcal Camp Host
             info.Listapprovalcamphost = new List<approvalcamphost>();
-            if (campmodel.ModelListcamphost != null)
+            if (campmodel.ModelListcamphost.Count > 0)
             {
                 foreach (var md in campmodel.ModelListcamphost)
                 {
@@ -433,7 +479,6 @@ namespace DataAccessLayer
                     ModelConverter.Convert<approvalcamphostModel, approvalcamphost>(md, ef);
 
                     ef.Listapprovalcamphostlanguage = new List<approvalcamphostlanguage>();
-
                     foreach (var sMD in md.ModelListcamphostlanguage)
                     {
                         var sEF = new approvalcamphostlanguage();
@@ -813,6 +858,50 @@ namespace DataAccessLayer
                     foreach (var campType in origtype)
                     {
                         dc.camptypes.Remove(campType);
+                    }
+                }
+                #endregion
+
+                #region Approval Camp Host
+                if (info.Listcamphost.Count > 0)
+                {
+                    var campHost = info.Listcamphost.ToList()[0];
+                    var efInfo = new camphost();
+                    ModelConverter.Convert(campHost, efInfo);
+                    efInfo.Listcamphostlanguage = new List<camphostlanguage>();
+                    if (campHost.Listcamphostlanguage.Count > 0)
+                    {
+                        foreach (var sInfo in campHost.Listcamphostlanguage)
+                        {
+                            var efsInfo = new camphostlanguage();
+                            ModelConverter.Convert(sInfo, efsInfo);
+                            if (efsInfo.CampHostLanguageID > 0)
+                            {
+                                var origCampHostLang = dc.camphostlanguages.FirstOrDefault(c => c.CampHostLanguageID == efsInfo.CampHostLanguageID);
+                                if (origCampHostLang != null)
+                                {
+                                    dc.Entry(origCampHostLang).CurrentValues.SetValues(efsInfo);
+                                }
+                            }
+                            else
+                            {
+                                dc.camphostlanguages.Add(efsInfo);
+                            }
+                        }
+                        var origLang = dc.camphostlanguages.Where(c => c.CampHostID == campHost.CampHostID).ToList();
+                        var newIds = campHost.Listcamphostlanguage.Where(c => c.CampHostLanguageID > 0).Select(c => c.CampHostLanguageID);
+                        foreach (var camphostLang in origLang.Where(c => !newIds.Any(d => c.CampHostLanguageID == d)))
+                        {
+                            dc.camphostlanguages.Remove(camphostLang);
+                        }
+                    }
+                    else
+                    {
+                        var origLang = dc.camphostlanguages.Where(c => c.CampHostID == campHost.CampHostID).ToList();
+                        foreach (var campHostLang in origLang)
+                        {
+                            dc.camphostlanguages.Remove(campHostLang);
+                        }
                     }
                 }
                 #endregion

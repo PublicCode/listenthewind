@@ -96,12 +96,15 @@
                         <div id="fine-uploader-left3" style="float:left; width:140px; height:30px; overflow:hidden"></div>
                         <img ng-show="camp.ModelListcamphost[0].CampHostPhoto.length > 0" src="../../UploadImg/Camp/{{camp.ModelListcamphost[0].CampHostPhoto}}" />
                     </div>
-                    <div class="yz-con">
+                    <div class="yz-con" style="clear:both">
                         <div class="yz-nav">
-                            <a href="javascript:void(0)">营主介绍</a> &nbsp; &nbsp; <a href="javascript:void(0)" ng-click="ShowCampHostLanguage()">营主语言管理</a>
+                            <a href="javascript:void(0)">营主介绍</a> &nbsp; &nbsp;
                         </div>
                         <div class="yz-txt">
-                            <p><textarea ng-model="camp.ModelListcamphost[0].CampHostIntro"></textarea></p>
+                            <textarea ng-model="camp.ModelListcamphost[0].CampHostIntro" style="width:98%; height:120px"></textarea>
+                        </div>
+                        <div class="pr-submit clear">
+                            <a href="javascript:void(0)" ng-click="ShowCampHostLanguage()" style="background:#2f3443">营主语言管理</a>
                         </div>
                     </div>
                 </div>
@@ -118,28 +121,24 @@
             </div>
         </div>
         <div id="divCampHostLanguageContent">
-            <div style="width: 780px; height: 350px; overflow: auto; padding: 5px">
-                <div class="g_ds_list clear" style="width:100%">
-                    <ul>
-                        <li class="clear" ng-repeat="campprice in camp.ModelListcampprice">
-                            &nbsp;
-                        </li>
-                    </ul>
-                </div>
+            <div style="width: 380px; height: 150px; overflow: auto; padding: 5px">
+                <ul>
+                    <li ng-repeat="c in camp.ModelListcamphost[0].ModelListcamphostlanguage">
+                        {{c.Language}}
+                    </li>
+                </ul>
             </div>
             <div style="padding:5px">
                 <table cellpadding="0" cellspacing="0" width="100%">
                     <tr>
-                        <td>营主语言</td>
-                        <td>
-                            <select ng-model="CampHostLanguage.Language">
-                                <option></option>
-                                <option></option>
-                                <option></option>
+                        <td style="width:75px">营主语言</td>
+                        <td style="width:145px">
+                            <select ng-model="CampHostLanguage.Language" style="width:140px">
+                                <option>中文</option>
+                                <option>英文</option>
+                                <option>地方方言</option>
                             </select>
                         </td>
-                    </tr>
-                    <tr>
                         <td>
                             <input type="button" style="width:70px; padding:3px 0; background-color:#f3f3f3; border:1px solid #e3e3e3" value="添 加" ng-click="AddCampHostLanguage()" />
                         </td>
