@@ -93,17 +93,58 @@
                 <div class="yz_introduction">
                     <h3>听风营主介绍</h3>
                     <div class="yz-img">
+                        <div id="fine-uploader-left3" style="float:left; width:140px; height:30px; overflow:hidden"></div>
                         <img ng-show="camp.ModelListcamphost[0].CampHostPhoto.length > 0" src="../../UploadImg/Camp/{{camp.ModelListcamphost[0].CampHostPhoto}}" />
                     </div>
                     <div class="yz-con">
                         <div class="yz-nav">
-                            <a href="#">营主介绍</a>
+                            <a href="javascript:void(0)">营主介绍</a> &nbsp; &nbsp; <a href="javascript:void(0)" ng-click="ShowCampHostLanguage()">营主语言管理</a>
                         </div>
                         <div class="yz-txt">
                             <p><textarea ng-model="camp.ModelListcamphost[0].CampHostIntro"></textarea></p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div id="divCampHostLanguage" class="modal hide">
+        <div class="modal-header" style="background-color: #9E9500;">
+            <div style="text-align: left; font-weight: bold;">
+                <button type="button" style="float: right; padding: 0 10px" class="DeleteLine" data-dismiss="modal">
+                    X
+                </button>
+                <span style="font-size: 18px;">营主语言管理 &nbsp;&nbsp;&nbsp;</span>
+            </div>
+        </div>
+        <div id="divCampHostLanguageContent">
+            <div style="width: 780px; height: 350px; overflow: auto; padding: 5px">
+                <div class="g_ds_list clear" style="width:100%">
+                    <ul>
+                        <li class="clear" ng-repeat="campprice in camp.ModelListcampprice">
+                            &nbsp;
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div style="padding:5px">
+                <table cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td>营主语言</td>
+                        <td>
+                            <select ng-model="CampHostLanguage.Language">
+                                <option></option>
+                                <option></option>
+                                <option></option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="button" style="width:70px; padding:3px 0; background-color:#f3f3f3; border:1px solid #e3e3e3" value="添 加" ng-click="AddCampHostLanguage()" />
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

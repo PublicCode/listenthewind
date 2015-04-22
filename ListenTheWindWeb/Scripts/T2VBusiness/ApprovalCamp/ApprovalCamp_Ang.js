@@ -279,6 +279,19 @@ soNgModule.controller("ApprovalCampEditCtrl", ['$scope', '$routeParams', '$http'
         $scope.camp.ModelListcampprice.splice(index, 1);
     };
 
+    var resLang = { CampHostLanguageID: 0, CampHostID: $scope.camp.ModelListcamphost[0].CampHostID, Language: '', BasicID: 0 };
+    $scope.ShowCampHostLanguage = function () {
+        $scope.CampHostLanguage = angular.copy(resLang);
+        if ($scope.checkUserStatus()) {
+            $("#divCampHostLanguage").css("left", screen.width / 2 - 60).css("height", "600px").css("width", "800px");
+            $('#divCampHostLanguage').modal('show');
+        }
+    };
+    $scope.AddCampHostLanguage = function () {
+        $scope.camp.ModelListcamphost[0].ModelListcamphostlanguage.push($scope.CampHostLanguage);
+        $scope.CampHostLanguage = angular.copy(resLang);
+    };
+
     $scope.ShowMoreCommenScreen = function () {
         $("#divMoreCommenScreen").css("left", screen.width / 2 - 60).css("height", "400px").css("width", "800px");
         $('#divMoreCommenScreen').modal('show');
