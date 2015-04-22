@@ -116,6 +116,28 @@ namespace HDS.QMS.Controllers
             }
             return Json(new { success = true, fileName = fileName }, "text/plain");
         }
+        public ActionResult CampFileUpload3()
+        {
+            string savePath = Server.MapPath(System.Configuration.ConfigurationManager.AppSettings["UpLoadPath"]) + "Camp";
+            string strTemp = string.Empty;
+            var fileName = DateTime.Now.Ticks.ToString() + ".jpg";
+            try
+            {
+                using (var inputStream = Request.Files.Count > 0 ? Request.Files[0].InputStream : Request.InputStream)
+                {
+                    using (var flieStream = new FileStream(savePath + @"\" + fileName, FileMode.Create))
+                    {
+                        inputStream.CopyTo(flieStream);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false }, "text/plain");
+                throw ex;
+            }
+            return Json(new { success = true, fileName = fileName }, "text/plain");
+        }
         public void MoveCampPhotos(List<approvalcampphotoModel> lst)
         {
             foreach (var info in lst)

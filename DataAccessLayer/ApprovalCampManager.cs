@@ -50,8 +50,8 @@ namespace DataAccessLayer
             if (campInDb != null)
                 ModelConverter.Convert<approvalcamp, approvalcampModel>(campInDb, campmodel);
 
+            #region Camp Comment
             campmodel.ModelListcampcomment = new List<approvalcampcommentModel>();
-
             if (campInDb != null)
             {
                 foreach (campcomment campcomInDB in campInDb.Listapprovalcampcomment)
@@ -61,9 +61,10 @@ namespace DataAccessLayer
                     campmodel.ModelListcampcomment.Add(campcommentmodel);
                 }
             }
+            #endregion
 
+            #region Camp Host
             campmodel.ModelListcamphost = new List<approvalcamphostModel>();
-
             if (campInDb != null)
             {
                 foreach (var camphostInDB in campInDb.Listapprovalcamphost)
@@ -84,25 +85,14 @@ namespace DataAccessLayer
             }
             else {
                 var camphostmodel = new approvalcamphostModel();
-                var efCampPhost = dc.approvalcamphosts.FirstOrDefault(c => c.UserID == this._user.UserID);
-                if (efCampPhost != null)
-                {
-                    ModelConverter.Convert<approvalcamphost, approvalcamphostModel>(efCampPhost, camphostmodel);
-
-                    camphostmodel.ModelListcamphostlanguage = new List<approvalcamphostlanguageModel>();
-                    var efCampPhostLang = dc.approvalcamphostlanguages.Where(c => c.CampHostID == efCampPhost.CampHostID).ToList();
-                    foreach (var languageInDb in efCampPhostLang)
-                    {
-                        var languagemodel = new approvalcamphostlanguageModel();
-                        ModelConverter.Convert<approvalcamphostlanguage, approvalcamphostlanguageModel>(languageInDb, languagemodel);
-                        camphostmodel.ModelListcamphostlanguage.Add(languagemodel);
-                    }
-                    campmodel.ModelListcamphost.Add(camphostmodel);
-                }
+                var languagemodel = new approvalcamphostlanguageModel();
+                camphostmodel.ModelListcamphostlanguage.Add(languagemodel);
+                campmodel.ModelListcamphost.Add(camphostmodel);
             }
+            #endregion
 
+            #region Camp Item
             campmodel.ModelListcampitem = new List<approvalcampitemModel>();
-
             var campItem = dc.basicdatacollects.Where(c => c.DataType == "campitem").ToList();
             foreach (var item in campItem)
             {
@@ -125,6 +115,9 @@ namespace DataAccessLayer
                 }
                 campmodel.ModelListcampitem.Add(campitemmodel);
             }
+            #endregion
+
+            #region Camp Photo
             campmodel.ModelListcampphoto = new List<approvalcampphotoModel>();
 
             if (campInDb != null)
@@ -136,6 +129,9 @@ namespace DataAccessLayer
                     campmodel.ModelListcampphoto.Add(campphotomodel);
                 }
             }
+            #endregion
+
+            #region Camp Pile
             campmodel.ModelListcamppile = new List<approvalcamppileModel>();
 
             if (campInDb != null)
@@ -155,9 +151,10 @@ namespace DataAccessLayer
                     campmodel.ModelListcamppile.Add(camppilemodel);
                 }
             }
+            #endregion
 
+            #region Camp Price
             campmodel.ModelListcampprice = new List<approvalcamppriceModel>();
-
             if (campInDb != null)
             {
                 foreach (var camppriceInDB in campInDb.Listapprovalcampprice)
@@ -167,6 +164,9 @@ namespace DataAccessLayer
                     campmodel.ModelListcampprice.Add(camppricemodel);
                 }
             }
+            #endregion
+
+            #region Camp Type
             campmodel.ModelListcamptype = new List<approvalcamptypeModel>();
             var campType = dc.basicdatacollects.Where(c => c.DataType == "camptype").ToList();
             foreach (var item in campType)
@@ -188,6 +188,8 @@ namespace DataAccessLayer
                 }
                 campmodel.ModelListcamptype.Add(camptypemodel);
             }
+            #endregion
+
             return campmodel;
         }
         public approvalcamp GetSingleCamp(int CampID)

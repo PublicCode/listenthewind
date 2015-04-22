@@ -91,16 +91,16 @@
                     </div>
                 </div>
                 <div class="yz_introduction">
-                    <h3>听风营长介绍</h3>
+                    <h3>听风营主介绍</h3>
                     <div class="yz-img">
                         <img ng-show="camp.ModelListcamphost[0].CampHostPhoto.length > 0" src="../../UploadImg/Camp/{{camp.ModelListcamphost[0].CampHostPhoto}}" />
                     </div>
                     <div class="yz-con">
                         <div class="yz-nav">
-                            <a href="#">营长介绍</a>
+                            <a href="#">营主介绍</a>
                         </div>
                         <div class="yz-txt">
-                            <p>{{camp.ModelListcamphost[0].CampHostIntro}}</p>
+                            <p><textarea ng-model="camp.ModelListcamphost[0].CampHostIntro"></textarea></p>
                         </div>
                     </div>
                 </div>
@@ -232,25 +232,6 @@
         ApprovalCamp.CampInfo = @Html.Raw(JsonConvert.SerializeObject(ViewBag.CampInfo));
         angular.element(document).ready(function () {
             angular.bootstrap($('body'), ['SO']);
-            //$('#carousel').flexslider({
-            //    animation: "slide",
-            //    controlNav: false,
-            //    animationLoop: false,
-            //    slideshow: false,
-            //    itemWidth: 125,
-            //    itemMargin: 5,
-            //    asNavFor: '#slider'
-            //});
-
-            //$('#slider').flexslider({
-            //    animation: "slide",
-            //    controlNav: false,
-            //    animationLoop: false,
-            //    slideshow: false,
-            //    sync: "#carousel",
-            //    start: function(slider){
-            //    }
-            //});
         });
         $(".tab-nav a").click(function(){
             var index = $(".tab-nav a").index(this);

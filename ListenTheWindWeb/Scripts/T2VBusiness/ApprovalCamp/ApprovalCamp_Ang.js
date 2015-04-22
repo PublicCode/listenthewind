@@ -207,6 +207,25 @@ soNgModule.controller("ApprovalCampEditCtrl", ['$scope', '$routeParams', '$http'
         });
     };
     $scope.fileUpload2();
+    $scope.fileUpload3 = function () {
+        $("#fine-uploader-left3").fineUploader({
+            request: {
+                endpoint: SiteRoot + '/CampFileUpload3'
+            },
+            params: {},
+            multiple: false
+        }).on('validate', function (id, fileName) {
+        }).on('complete', function (event, id, fileName, responseJSON) {
+            if (responseJSON.success) {
+                $scope.camp.ModelListcamphost[0].CampHostPhoto = responseJSON.fileName;
+                responseJSON.success = false;
+                $scope.$apply();
+            }
+            else if (responseJSON.fileName == undefined)
+                alert("附件上传失败！");
+        });
+    };
+    $scope.fileUpload3();
     $scope.RemoveCampPhoto = function (index) {
         if ($scope.camp.CampPhoto == $scope.camp.ModelListcampphoto[index].CampPhoteFile) {
             $scope.camp.CampPhoto = "";
